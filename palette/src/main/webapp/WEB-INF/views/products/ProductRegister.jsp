@@ -241,10 +241,9 @@
 									<tbody>
 										<tr><td><input type="text"  name="product_name"></td></tr>
 										<tr><td><select name="type_no">
-								
+									<option value="1">이수민</option>
 										</select></td></tr>
 										<tr><td><input type="text"  name="minimum_size"></td></tr>
-										<tr><td><input type="text"  name="maximum_size"></td></tr>
 										<tr><td><input type="text"  name="price"></td></tr>
 										<tr><td><input type="date" name="closing_date" ></td></tr>
 										<tr><td><textarea rows="4" cols="3" style="width:180px;" name="product_content"></textarea></td></tr>	
