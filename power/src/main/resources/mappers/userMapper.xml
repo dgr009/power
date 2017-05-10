@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bbs.dao.UserDao">
+	<!-- 
+		자주 실행되는 쿼리가 있을 때 쿼리에 이름을 붙여 저장 : View(가상테이블)
+		create view 이름 as select문..... 
+		create view 회원 as select userid,username,email,regdate,img....
+		db 사용자들은 users에서 작업하는 것이 아니라 회원에서 작업
+		
+	 -->
+
+	<select id="selectUserById" parameterType="string" resultType="User">
+		select userid,username,email,regdate,img from users where userid=#{userid}
+	</select>
+	<select id="selectUserByName" parameterType="string" resultType="User">
+		select userid,username,email,regdate,img from users where username like '%' || #{username} || '%'
+	</select>
+	<select id="checkUserid" parameterType="string" resultType="string">
+			select userid from users where userid=#{userid}
+	</select>
+	<select id="checkUserpwd" parameterType="hashmap" resultType="int">
+		select 1 from users where password=#{password} and userid=#{userid}
+	</select>
+	<insert id="insertUser" parameterType="User">
+		insert into users values(#{userid},#{username},#{password},#{email, jdbcType=VARCHAR},sysdate,#{img, jdbcType=VARCHAR})
+	</insert>
+	<update id="updateUser" parameterType="User">
+		update users set password=#{password},email=#{email, jdbcType=VARCHAR},img=#{img, jdbcType=VARCHAR} where userid=#{userid}
+	</update>
+	<delete id="deleteUser" parameterType="string">
+		delete from users where userid=#{userid}
+	</delete>
+</mapper>
+
+<!-- 
+	시퀀스가 기본키인 경우 : selectKey
+		게시판글에 댓글이 달리는 경우 : 게시판 글이 먼저 만들어진다
+		게시판글에 파일을 첨부하는경우 : 같이 만들어진다
+		<insert id="insertBoard" parameterType="Board" userGeneratedKeys="true" keyProperty="bno">
+			<selectKey keyProperty="bno" resultTYpe="int" ORDER="BEFORE">
+				select board_seq.nextval from dual
+			</selectKey>
+			insert into board values(#{bno}...)
+		</insert>	
+		DAO에서 Board의 Vo를 출력하면 bno가 담겨있다
+ -->

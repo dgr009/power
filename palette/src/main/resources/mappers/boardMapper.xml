@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bbs.dao.BoardDao">
+	<!-- 
+		자주 실행되는 쿼리가 있을 때 쿼리에 이름을 붙여 저장 : View(가상테이블)
+		create view 이름 as select문..... 
+		create view 회원 as select userid,username,email,regdate,img....
+		db 사용자들은 users에서 작업하는 것이 아니라 회원에서 작업
+		
+	 -->
+
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="bno">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			select board_seq.nextval from dual
+		</selectKey>
+		insert into board values(#{bno},#{userid},#{title},#{content},0,0)	
+	</insert>
+	
+	<insert id="insertAttach" parameterType="Attach">
+		insert into attach values(#{filename},#{bno})
+	</insert>
+	<select id="selectBoard" parameterType="int" resultType="Board">
+		select * from board where bno=#{bno}
+	</select>
+	<select id="selectAttach" parameterType="int" resultType="Attach">
+		select * from attach where bno=#{bno}
+	</select>
+</mapper>
+
+<!-- 
+	시퀀스가 기본키인 경우 : selectKey
+		게시판글에 댓글이 달리는 경우 : 게시판 글이 먼저 만들어진다
+		게시판글에 파일을 첨부하는경우 : 같이 만들어진다
+		<insert id="insertBoard" parameterType="Board" userGeneratedKeys="true" keyProperty="bno">
+			<selectKey keyProperty="bno" resultTYpe="int" ORDER="BEFORE">
+				select board_seq.nextval from dual
+			</selectKey>
+			insert into board values(#{bno}...)
+		</insert>	
+		DAO에서 Board의 Vo를 출력하면 bno가 담겨있다
+ -->
