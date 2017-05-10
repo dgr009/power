@@ -1,8 +1,10 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ 
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+
+
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -16,13 +18,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 <!-- CSS FILES -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/style.css"
-	media="screen" data-name="skins">
-<link rel="stylesheet" href="css/layout/wide.css" data-name="layout">
+<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
+<link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
 
-<link rel="stylesheet" type="text/css" href="/css/switcher.css"
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -67,7 +68,7 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
-		
+		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -76,8 +77,7 @@
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-								<a href="/hooligan/main/index"><img
-									src="/palette/WEB-INF/resource/static/images/logo.png" alt="" /></a>
+								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
 							</h1>
 						</div>
 					</div>
@@ -290,24 +290,24 @@
 			
 
 
-					<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-					<script src="js/bootstrap.min.js"></script>
-					<script src="js/jquery.easing.1.3.js"></script>
-					<script src="js/retina-1.1.0.min.js"></script>
-					<script type="text/javascript" src="js/jquery.cookie.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
 					<!-- jQuery cookie -->
-					<script type="text/javascript" src="js/styleswitch.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
 					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="js/jquery.smartmenus.min.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
 					<script type="text/javascript"
-						src="js/jquery.smartmenus.bootstrap.min.js"></script>
-					<script type="text/javascript" src="js/jquery.jcarousel.js"></script>
-					<script type="text/javascript" src="js/jflickrfeed.js"></script>
+						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
 					<script type="text/javascript"
-						src="js/jquery.magnific-popup.min.js"></script>
-					<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
-					<script type="text/javascript" src="js/swipe.js"></script>
-					<script type="text/javascript" src="js/jquery-scrolltofixed-min.js"></script>
+						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 
 
 					<script type="text/javascript">
@@ -559,6 +559,6 @@
 													});
 										});
 					</script>
-					<script src="js/main.js"></script>
+					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>
