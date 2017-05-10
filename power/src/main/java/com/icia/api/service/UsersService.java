@@ -1,5 +1,5 @@
 package com.icia.api.service;
 
-public class usersService {
+public class UsersService {
 
 }

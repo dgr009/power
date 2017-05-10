@@ -1,5 +1,5 @@
 package com.icia.api.dao;
 
-public class usersDao {
+public class UsersDao {
 
 }
