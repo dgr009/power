@@ -23,18 +23,15 @@ public class UsersService {
 	public int hasUserId(String userId){
 		return dao.hasUserId(userId);
 	}
-	public String FindId(Map<String,String> map){
-		return dao.FindId(map);
+	public String FindId(String userName,String userMail){
+		return dao.FindId(userName,userMail);
 	}
-	public String FindPwd(Map<String,String> map){
-		return dao.FindPwd(map);
+	public String FindPwd(String userId,String userName,String userMail){
+		return dao.FindPwd(userId,userName,userMail);
 	}
 	public String userLogin(String userId,String userPwd){
 		String token = "";
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("userId", userId);
-		map.put("userPwd", userPwd);
-		Users user = dao.userLogin(map);
+		Users user = dao.userLogin(userId,userPwd);
 		if(user==null)
 			return token;
 		
