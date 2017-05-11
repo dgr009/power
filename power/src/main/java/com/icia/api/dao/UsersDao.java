@@ -29,6 +29,7 @@ public class UsersDao {
 		map.put("userMail", userMail);
 		return tpl.selectOne("api.dao.UsersDao.usersFindId",map);
 	}
+	
 	//비밀번호 찾기
 	public String FindPwd(String userId,String userName,String userMail){
 		Map<String,String> map = new HashMap<String,String>();
@@ -69,9 +70,9 @@ public class UsersDao {
 	}
 	
 	
-	
-	
-	
+	public void main(){
+		
+	}
 	
 	
 	
