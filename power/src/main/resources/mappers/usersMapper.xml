@@ -42,7 +42,7 @@
 		]]>
 	</select>
 	<!-- 주문내역보기 -->
-	<select id="usersOrderList" parameterType="hashmap">
+	<select id="usersOrderList" parameterType="hashmap" resultType="OrderList">
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
@@ -65,7 +65,7 @@
 		update users set user_point=user_point-#{tradePoint} where user_id=#{userId}
 	</update>
 	<!-- 포인트 내역확인 -->
-	<select id="usersTradeList" parameterType="string" resultType="PointStateMent">
+	<select id="usersTradeList" parameterType="string" resultType="PointStatement">
 		select * from point_statement where user_id=#{userId}
 	</select>	
 	<!-- 개인 회원 정보 보기 -->
@@ -75,12 +75,12 @@
 		from users where user_id=#{userId}
 	</select>
 	<!-- 개인 회원 정보 변경 -->
-	<update id="userUpdate" parameterType="Users">
+	<update id="usersUpdate" parameterType="Users">
 		update users set user_address=#{userAdrress},user_post=#{userPost},user_mail=#{userMail},
 			user_phone=#{userPhone} from user_id=#{userId}
 	</update>
 	<!-- 개인 회원 비활성화 -->
-	<update id="userDelete" parameterType="string">
+	<update id="usersDelete" parameterType="string">
 		update users set enabled=0 from user_id=#{userId}
 	</update>
 	<!-- 장바구니 리스트 -->
