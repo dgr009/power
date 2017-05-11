@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="api.dao.UserDao">
+<mapper namespace="api.dao.UsersDao">
+	<!-- 회원 가입 -->
+	<insert id="usersRegister" parameterType="Users">
+		insert into users values(#{userId},#{userPwd},#{userName},#{userAddress},#{userPost},#{userMail},#{userPhone},0,'0','1','bronze')
+	</insert>
+	<!-- 회원 아이디 중복 체크 -->
+	<select id="usersHasId" parameterType="string" resultType="int">
+		select count(*) from users where user_id=#{userId}
+	</select>
+	<!-- 회원 아이디 찾기 -->
+	<select id="usersFindId" parameterType="hashmap" resultType="string">
+		select user_id from users where user_name=#{userName} and user_mail=#{userMail}
+	</select>
+	<!-- 회원 비밀번호 찾기 -->
+	<select id="usersFindPwd" parameterType="hashmap" resultType="string">
+		select user_pwd from users where user_id=#{userId} and user_name=#{userName} and user_mail=#{userMail}
+	</select>
+	<!-- 회원 로그인 -->
+	<select id="usersLogin" parameterType="hashmap" resultType="Users">
+		select * from users where user_id=#{userId} and user_pwd=#{userPwd}
+	</select>
+	<!-- 즐겨찾기 추가 -->
+	<insert id="usersBookmark" parameterType="hashmap">
+		insert into bookmark values(#{order_id},#{owner_id})
+	</insert>
+	<!-- 즐겨찾기 해제 -->
+	<delete id="usersBookmarkDelete" parameterType="hashmap">
+		delete from bookmark where order_id=#{order_id} and owner_id=#{owner_id}
+	</delete>
+	<select id="usersBookmarkList" parameterType="string">
+		
+	</select>
 	
 </mapper>

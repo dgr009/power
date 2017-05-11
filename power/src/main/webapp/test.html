@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#login").on("click",function(){
+			var data = new FormData(); // html5 객체
+			data.append("userId","tiger");
+			data.append("userPwd","scott");
+			alert(data);
+			alert($(data).serialize());
+			$.ajax({
+				url: "/api/users/login",
+				type: "post",
+				data: $(data).serialize(),
+				dataType:"text",
+				success:function(token){
+					//토큰을 저장. html5 web storage에 저장
+					//XSS 공격에 취약
+					console.log(token);
+					localStorage.setItem("token",token);
+				}
+			})
+		})
+		$("#delete").on("click",function(){
+			 $.ajax({
+				 url:"/token/user/5",
+				 type:"delete",
+				 beforeSend:function(xhr){
+					 //xhr : XmlHttpRequest 객체로 자바스크립의 ajax의 요청객체
+					 //jQuery는 xhr을 감춰놓았지만 헤더에 토큰을 추가해야하므로 xhr을 사용한다
+					 xhr.setRequestHeader("token",localStorage.getItem("token"));
+				 },
+				 success:function(result){
+					 //성공은 작업이 성공했다는 말이 아니다.
+					 //다만 서버가 응답했다는 의미
+					 //localStorage.setItem("token","");
+					 localStorage.removeItem("token");
+					 console.log(result);
+				 }
+			 })
+		})
+	})
+</script>
+</head>
+<body>
+아이디 : <input type="text" id="userId"><br>
+비밀번호 : <input type="text" id="userPwd"><br>
+<input type="button" id="login" value="로그인"><br>
+<input type="button" id="delete" value="삭제"><br>
+</body>
+</html>
