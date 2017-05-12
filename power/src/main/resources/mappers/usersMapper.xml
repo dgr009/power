@@ -24,14 +24,80 @@
 	</select>
 	<!-- 즐겨찾기 추가 -->
 	<insert id="usersBookmark" parameterType="hashmap">
-		insert into bookmark values(#{order_id},#{owner_id})
+		insert into bookmark values(#{orderId},#{ownerId})
 	</insert>
 	<!-- 즐겨찾기 해제 -->
 	<delete id="usersBookmarkDelete" parameterType="hashmap">
-		delete from bookmark where order_id=#{order_id} and owner_id=#{owner_id}
+		delete from bookmark where order_id=#{orderId} and owner_id=#{ownerId}
 	</delete>
-	<select id="usersBookmarkList" parameterType="string">
-		
+	<!-- 즐겨찾기 목록 -->
+	<select id="usersBookmarkList" parameterType="hashmap" resultType="BookmarkList">
+		<![CDATA[
+		  	select * from  
+				(select rownum rnum,a.* from 
+					(select b.owner_id,h.home_title from bookmark b,
+					home h where b.owner_id=h.user_id and b.order_id=#{userId}) a 
+      			where rownum<=#{end}) a2 
+ 			where rnum>=#{start};
+		]]>
 	</select>
-	
+	<!-- 주문내역보기 -->
+	<select id="usersOrderList" parameterType="hashmap" resultType="OrderList">
+		<![CDATA[
+		  	select * from  
+				(select rownum rnum,a.* from 
+					(select o.order_no,o.order_size,o.order_state,o.order_price from order_statement o,
+					users u,item i where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{userId}) a 
+      			where rownum<=#{end}) a2 
+ 			where rnum>=#{start}
+		]]>
+	</select>
+	<!-- 주문취소하기 -->
+	<delete id="usersOrderDelete" parameterType="int">
+		delete from order_statement where order_no=#{orderNo}
+	</delete>
+	<!-- 포인트 충전하기 -->
+	<update id="usersChargePoint" parameterType="hashmap">
+		update users set user_point=user_point+#{tradePoint} where user_id=#{userId}
+	</update>
+	<!-- 포인트 환급하기 -->
+	<update id="usersRefundPoint" parameterType="hashmap">
+		update users set user_point=user_point-#{tradePoint} where user_id=#{userId}
+	</update>
+	<!-- 포인트 내역확인 -->
+	<select id="usersTradeList" parameterType="string" resultType="PointStatement">
+		select * from point_statement where user_id=#{userId}
+	</select>	
+	<!-- 개인 회원 정보 보기 -->
+	<select id="usersInfo" parameterType="string" resultType="Users">
+		select user_name,user_id,user_address,user_post,
+			user_mail,user_phone,user_point,user_ishome,user_grade 
+		from users where user_id=#{userId}
+	</select>
+	<!-- 개인 회원 정보 변경 -->
+	<update id="usersUpdate" parameterType="Users">
+		update users set user_address=#{userAdrress},user_post=#{userPost},user_mail=#{userMail},
+			user_phone=#{userPhone} from user_id=#{userId}
+	</update>
+	<!-- 개인 회원 비활성화 -->
+	<update id="usersDelete" parameterType="string">
+		update users set enabled=0 from user_id=#{userId}
+	</update>
+	<!-- 장바구니 리스트 -->
+	<select id="usersBasketList" parameterType="hashmap" resultType="Basket">
+		<![CDATA[
+		select * from  
+				(select rownum rnum,a.* from
+		  			(select m.img_name, i.item_name,i.ITEM_PRICE,i.ITEM_INVEN 
+					from basket b,item i,item_img m 
+					where m.img_no in(select min(img_no) from item_img group by item_no)
+						and b.item_no=i.item_no and b.user_id=#{userId}) a
+					where rownum<=#{end}) a2 
+ 			where rnum>=#{start}
+		]]>
+	</select>
+	<!-- 장바구니 상품 삭제하기 -->
+	<delete id="usersBasketDelete" parameterType="string">
+		delete from basket where user_id=#{userId}
+	</delete>
 </mapper>
