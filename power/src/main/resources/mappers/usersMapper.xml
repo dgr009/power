@@ -20,7 +20,7 @@
 	</select>
 	<!-- 회원 로그인 -->
 	<select id="usersLogin" parameterType="hashmap" resultType="Users">
-		select * from users where user_id=#{userId} and user_pwd=#{userPwd}
+		select user_id userId,user_pwd userPwd,user_name userName,user_address userAddress,user_post userPost,user_mail userMail,user_phone userPhone,user_point userPoint,user_ishome userIsHome,enabled,user_grade userGrade from users where user_id=#{userId} and user_pwd=#{userPwd}
 	</select>
 	<!-- 즐겨찾기 추가 -->
 	<insert id="usersBookmark" parameterType="hashmap">
@@ -35,10 +35,10 @@
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select b.owner_id,h.home_title from bookmark b,
-					home h where b.owner_id=h.user_id and b.order_id=#{userId}) a 
-      			where rownum<=#{end}) a2 
- 			where rnum>=#{start};
+					(select b.owner_id ownerId,h.home_title homeTitle,h.home from bookmark b,
+					home h where b.owner_id=h.user_id and b.order_id=#{orderId}) a 
+      			where rownum<=#{end}) 
+ 			where rnum>=#{start}
 		]]>
 	</select>
 	<!-- 주문내역보기 -->
@@ -46,9 +46,9 @@
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select o.order_no,o.order_size,o.order_state,o.order_price from order_statement o,
-					users u,item i where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{userId}) a 
-      			where rownum<=#{end}) a2 
+					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_price orderPrice,i.item_name itemName from order_statement o,
+					users u,item i where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId}) a 
+      			where rownum<=#{end})
  			where rnum>=#{start}
 		]]>
 	</select>
@@ -88,7 +88,7 @@
 		<![CDATA[
 		select * from  
 				(select rownum rnum,a.* from
-		  			(select m.img_name, i.item_name,i.ITEM_PRICE,i.ITEM_INVEN 
+		  			(select m.img_name imgName, i.item_name itemName,i.ITEM_PRICE itemPrice,i.ITEM_INVEN itemInven 
 					from basket b,item i,item_img m 
 					where m.img_no in(select min(img_no) from item_img group by item_no)
 						and b.item_no=i.item_no and b.user_id=#{userId}) a

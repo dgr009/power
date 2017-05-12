@@ -23,7 +23,7 @@ public class UsersDao {
 		return tpl.selectOne("api.dao.UsersDao.usersHasId",userId);
 	}
 	//아이디 찾기
-	public String FindId(String userName,String userMail){
+	public String findId(String userName,String userMail){
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("userName", userName);
 		map.put("userMail", userMail);
@@ -31,7 +31,7 @@ public class UsersDao {
 	}
 	
 	//비밀번호 찾기
-	public String FindPwd(String userId,String userName,String userMail){
+	public String findPwd(String userId,String userName,String userMail){
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("userId", userId);
 		map.put("userName", userName);

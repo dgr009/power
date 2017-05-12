@@ -24,10 +24,10 @@ public class UsersService {
 		return dao.hasUserId(userId);
 	}
 	public String FindId(String userName,String userMail){
-		return dao.FindId(userName,userMail);
+		return dao.findId(userName,userMail);
 	}
 	public String FindPwd(String userId,String userName,String userMail){
-		return dao.FindPwd(userId,userName,userMail);
+		return dao.findPwd(userId,userName,userMail);
 	}
 	public String userLogin(String userId,String userPwd){
 		String token = "";
