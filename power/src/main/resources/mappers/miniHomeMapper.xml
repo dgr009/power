@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="api.dao.HomeDao">
+
+	<!-- 홈페이지 개설 -->
+	<insert id="miniHomeRegisterHomepage" parameterType="MiniHome">
+		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce})
+	</insert>
+	
+	<!-- 홈페이지 수정 -->
+	<update id="miniHomeUpdate" parameterType="MiniHome">
+		update home set home_title=#{homeTitle}, home_img=#{homeImg}, home_design=#{homeDesign}, 
+		home_introduce=#{homeIntroduce} where user_id=#{userId}
+	</update>
+	
+	<!-- 홈페이지 폐쇄 -->
+	<delete id="miniHomeDelete" parameterType="string">
+		delete from home where user_id=#{userId}
+	</delete>
+	
+	<!-- 홈페이지 결제 : 결제기록 생성 -->
+	<update id="miniHomeInsertTradeStatementForPay" parameterType="ActiveDate">
+		<selectKey keyProperty="activeNo" resultType="int" order="BEFORE">
+			select seq_active.nextval from dual
+		</selectKey>
+		insert into activedate(activeno,active_start,user_id) values(#{activeNo},sysdate,#{userId})
+	</update>
+	
+	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
+	<update id="miniHomeDecreaseUsersPointForPay" parameterType="hashmap">
+		update users set user_point=user_point-#{price} where user_id=#{userId};
+	</update>
+	
+	<resultMap id="getMini" type="com.icia.api.vo.MiniHome">
+		<result property="userName" column="user_name"/>				
+		<result property="userMail" column="user_mail"/>
+		<result property="userPhone" column="user_phone"/>
+		<result property="userGrade" column="user_grade"/>
+	</resultMap>
+	
+	<resultMap id="getMiniJoinActive" type="com.icia.api.vo.ActiveDate" extends="getMini">
+		<result property="homeIntroduce" column="home_introduce"/>	
+	</resultMap>
+	
+	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
+	<select id="miniHomeSelectSellerInformation" parameterType="string" resultMap="getMiniJoinActive">
+		select u.user_name,u.user_mail,u.user_phone,u.user_grade,h.home_introduce from users u, home h 
+		where u.user_id=h.user_id and u.user_id=#{userId}
+	</select>
+	
+	
+	
+</mapper>
+
+<!-- <resultmap id="getMember" class="member"> -->
+<!-- <result property="id" column="m_id"> -->
+<!-- <result property="pwd" column="m_pwd"> -->
+<!-- </result></result></resultmap> -->
+ 
+<!--  위 getMember의 내용에서 더 확장됨을 의미 한다 -->
+<!-- <resultmap id="getJoinMember" class="member" extends="getMember"> -->
+<!-- <result property="company_id" column="company_id"> -->
+<!-- <result property="company_pwd" column="company_pwd"> -->
+<!-- </result></result></resultmap> -->
+ 
+<!-- <select id="getJoinMemberList" resultmap="getJoinMember"> -->
+<!-- select a.id as id, a.pwd as pwd, -->
+<!-- b.company_id as company_id, -->
+<!-- b.company_pwd as company_pwd -->
+<!-- from member a, member_company b -->
+<!-- where a.m_seq = b.c_seq -->
+<!-- 2and a.m_seq = 1 -->
+<!-- </select> -->

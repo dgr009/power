@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="api.dao.MiniHomeBoardDao">
+
+	<!-- (개인)공지게시판 작성 -->
+	<insert id="miniHomeRegisterNotice" parameterType="MiniHomeNotice">
+		<selectKey keyProperty="noticeArticleNo" resultType="int" order="BEFORE">
+			select seq_notice.nextval from dual
+		</selectKey>
+		insert into notice_board values(#{noticeArticleNo},#{noticeArticleTitle},#{noticeArticleContent}
+		,sysdate,#{userId})
+	</insert>
+	
+	<!-- (개인)공지게시판 수정 -->
+	<update id="miniHomeUpdateNotice" parameterType="MiniHomeNotice">
+		update notice_board set notice_article_title=#{noticeArticleTitle}, notice_article_content=#{noticeArticleContent} 
+		where notice_article_no=#{userId}
+	</update>
+	
+	<!-- (개인)공지게시판 삭제 -->
+	<delete id="miniHomeDeleteNotice" parameterType="int">
+		delete from notice_board where notice_article_no=#{noticeArticleNo}
+	</delete>
+	
+	<!-- (개인)공지게시판 리스트 -->
+	<select id="miniHomeSelectNoticeList" parameterType="hashmap" resultType="MiniHomeNotice">
+		<![CDATA[
+			select b2.* from 
+			  (select rownum rnum, b.* from
+			    (select notice_article_no noticeArticleNo, notice_article_title noticeArticleTitle ,
+			    notice_article_date noticeArticleDate,user_id userId from notice_board where user_id=#{userId} 
+			    order by notice_article_no desc) b
+			  where rownum<=#{end}) b2
+			where rnum>=#{start}
+		]]>
+	</select>
+	
+	<!-- (개인)공지게시판 뷰 -->
+	<select id="miniHomeSelectNoticeView" parameterType="int" resultType="MiniHomeNotice">
+		select notice_article_no noticeArticleNo,notice_article_title noticeArticleTitle, 
+		notice_article_content noticeArticleContent,notice_article_date noticeArticleDate,user_id userId 
+		from notice_board where notice_article_no=#{noticeArticleNo}
+	</select>
+	
+	<!-- (개인)공지게시판 총 게시글 수 -->
+	<select id="miniHomeNumberOfNotice" resultType="int" parameterType="string">
+		select count(*) from notice_board where user_id=#{userId}
+	</select>
+	
+	<!--  (개인)자유게시판 작성-->
+	<insert id="miniHomeRegisterFree" parameterType="MiniHomeFree">
+		<selectKey keyProperty="freeNo" resultType="int" order="BEFORE">
+			select seq_free.nextval from dual
+		</selectKey>
+		insert into free_board values(#{freeNo},#{freeTitle},#{freeName},0,#{freeContent},sysdate,#{userId})
+	</insert>
+	
+	<!--  (개인)자유게시판 수정-->
+	<update id="miniHomeUpdateFree" parameterType="MiniHomeFree">
+		update free_board set title=#{freeTitle}, content=#{freeContent} where free_no=#{freeNo}
+	</update>
+	
+	<!--  (개인)자유게시판 삭제-->
+	<delete id="miniHomeDeleteFree" parameterType="int">
+		delete from free_board where free_no=#{freeNo}
+	</delete>
+	
+	<!--  (개인)자유게시판 리스트-->
+	<select id="miniHomeSelectFreeList" parameterType="hashmap" resultType="MiniHomeFree">
+		<![CDATA[
+			select * from 
+			  (select rownum rnum, b.* from
+			    (select free_no freeNo,free_title freeTitle, free_name freeName, free_hits freeHits,
+			    free_content freeContent, free_date freeDate,user_id userId 
+			    from free_board where user_id=#{userId} order by free_no desc) b
+			  where rownum<=#{end}) 
+			where rnum>=#{start}
+		]]>
+	</select>
+	<!--  (개인)자유게시판 뷰-->
+	<select id="miniHomeSelectFreeView" parameterType="int" resultType="MiniHomeFree">
+		select free_no,free_title,free_name,free_hits,free_content,free_date,user_id from free_board where free_no=#{freeNo}
+	</select>
+	
+	<!--  (개인)자유게시판 총 게시글 수-->
+	<select id="miniHomeNumberOfFree" resultType="int" parameterType="string">
+		select count(*) from notice_board where user_id=#{userId}
+	</select>
+	
+	<!-- 자유게시판 댓글 하나 조회 -->
+	<select id="miniHomeSelectOneFreeReple" resultType="MiniHomeFreeReple" parameterType="string">
+		select * from free_reple where free_reple_no=#{freeRepleNo}
+	</select>
+	<!-- 자유게시판 모든댓글 조회 -->
+	<select id="miniHomeSelectAllFreeReple" parameterType="int" resultType="MiniHomeFreeReple">
+		select free_reple_no,free_no,free_reple_name,free_reple_content,free_reple_date from free_reple where free_no=#{freeNo}
+	</select>
+	<!-- 자유게시판 조회수 증가 -->
+	<update id="miniHomeFreeIncreaseHits" parameterType="int">
+		update free_board set free_hits=free_hits+1 where free_no=#{freeNo}
+	</update>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
