@@ -5,8 +5,10 @@
 
 	<!-- 홈페이지 개설 -->
 	<insert id="miniHomeRegisterHomepage" parameterType="MiniHome">
+	
 		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce})
 	</insert>
+	
 	
 	<!-- 홈페이지 수정 -->
 	<update id="miniHomeUpdate" parameterType="MiniHome">
