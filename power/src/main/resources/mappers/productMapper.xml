@@ -24,6 +24,9 @@ select imgno_seq.nextval from dual
 insert into item_img values(#{imgNo},#{imgName},#{itemNo})
 </insert>
 <!-- 상품정보변경 -->
+<update id="updateItemImg" parameterType="ItemImg">
+update Item_img set img_name=#{imgName} where img_no=#{imgNo}
+</update>
 <!-- 상품옵션변경 -->
 <update id="updateOption" parameterType="ItemOption">
 update item_option set(option_name={optionName}) where option_no=#{optionNo}
