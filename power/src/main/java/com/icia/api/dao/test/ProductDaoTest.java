@@ -1,5 +1,6 @@
 package com.icia.api.dao.test;
 
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,4 +14,9 @@ public class ProductDaoTest {
 	
 	@Autowired
 	private ProductDao dao;
+	@Test
+	public void  selectItemDetail(){
+		System.out.println(dao.selectItemDetail(4));
+	}
+	
 }
