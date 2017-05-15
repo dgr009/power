@@ -82,6 +82,39 @@ public class MiniHomeBoardDao {
 	public void miniHomeFreeIncreaseHits(int freeNo){
 		tpl.update("api.dao.MiniHomeBoardDao.miniHomeFreeIncreaseHits",freeNo);
 	}
+	//자유게시판 댓글 추가
+	public void miniHomeRegisterFreeReple(MiniHomeFreeReple reple){
+		tpl.insert("api.dao.MiniHomeBoardDao.miniHomeRegisterFreeReple",reple);
+	}
+	//자유게시판 댓글 수정
+	public void miniHomeUpdateFreeReple(MiniHomeFreeReple reple){
+		tpl.update("api.dao.MiniHomeBoardDao.miniHomeUpdateFreeReple",reple);
+	}
+	//자유게시판 댓글 삭제
+	public void miniHomeDeleteFreeReple(int freeRepleNo){
+		tpl.delete("api.dao.MiniHomeBoardDao.miniHomeDeleteFreeReple",freeRepleNo);
+	}
+	//자유게시판 댓글 전체삭제
+	public void miniHomeDeleteAllFreeReple(int freeNo){
+		tpl.delete("api.dao.MiniHomeBoardDao.miniHomeDeleteAllFreeReple",freeNo);
+	}
+	//자유게시판 댓글 수 증가
+	public void miniHomeIncreaseFreeRepleCnt(int freeNo){
+		tpl.update("api.dao.MiniHomeBoardDao.miniHomeIncreaseFreeRepleCnt",freeNo);
+	}
+	//자유게시판 댓글 수 감소
+	public void miniHomeDecreaseFreeRepleCnt(int freeNo){
+		tpl.update("api.dao.MiniHomeBoardDao.miniHomeDecreaseFreeRepleCnt",freeNo);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 	

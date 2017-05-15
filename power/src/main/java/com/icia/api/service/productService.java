@@ -220,7 +220,12 @@ public class productService {
 		result.put("pagination", p);
 		return new Gson().toJson(result);	
 	}
-	
-	
+	//미니홈메인 상품등록순9개
+	public String selectItemListOrderByDate(String userId){
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("result", dao.selectItemListOrderByDate(userId));
+		return new Gson().toJson(result);
+	}
+	//미니홈메인
 
 }

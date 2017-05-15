@@ -9,8 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class MiniHomeFreeReple {
 	private int freeRepleNo;
-	private String freeNo;
 	private String freeRepleName;
-	private Date freeRepleContent;
-	private String freeRepleDate;
+	private String freeRepleContent;
+	private Date freeRepleDate;
+	private int freeNo;
 }

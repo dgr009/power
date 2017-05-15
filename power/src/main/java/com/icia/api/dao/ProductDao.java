@@ -183,8 +183,8 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectItemListByKind", map);
 	}
 	//미니홈메인 상품등록순 9개
-	public List<ItemList> selectItemListOrderByDate(HashMap<String, Object> map){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByDate", map);
+	public List<ItemList> selectItemListOrderByDate(String userId){
+		return tpl.selectList("api.dao.ProductDao.selectListOrderByDate", userId);
 	}
 	//미니홈메인 상품재고순 9개
 	public List<ItemList> selectItemListOrderByInven(HashMap<String, Object> map){

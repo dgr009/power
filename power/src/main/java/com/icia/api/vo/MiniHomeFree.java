@@ -15,4 +15,5 @@ public class MiniHomeFree {
 	private String freeContent;
 	private Date freeDate;
 	private String userId;
+	private int freeRepleCnt;
 }

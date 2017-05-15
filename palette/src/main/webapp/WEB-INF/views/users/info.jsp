@@ -9,7 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	
 <script type="text/javascript">
-$(function(){
+/*$(function(){
 	$("#join").on("click",function(e){
 		e.preventDefault(); //기본 이벤트를 차단
 		var formData = new FormData();
@@ -35,21 +35,22 @@ $(function(){
 	})
 	
 	
-})
+})*/
 </script>
 </head>
 <body>
-	<h1>회원 가입</h1>
+	<h1>회원 정보</h1>
+	<form action="/palette/users/update" method="post">
 	<table border="1">
-		<tr><td>이름</td><td><input type="text" id="userName" name="userName"></td></tr>
-		<tr><td>아이디</td><td><input type="text" id="userId" name="userId"></td></tr>
-		<tr><td>비밀번호</td><td><input type="password" id="userPwd" name="userPwd"></td></tr>
-		<tr><td>이메일</td><td><input type="text" id="userMail" name="userMail"></td></tr>
-		<tr><td>핸드폰</td><td><input type="text" id="userPhone" name="userPhone"></td></tr>
-		<tr><td>주소</td><td><input type="text" id="userAddress" name="userAddress"></td></tr>
-		<tr><td>우편번호</td><td><input type="text" id="userPost" name="userPost"></td></tr>
+		<tr><td>이름</td><td>${user.userName } </td></tr>
+		<tr><td>아이디</td><td>${user.userId}</td></tr>
+		<tr><td>이메일</td><td>${user.userMail}</td></tr>
+		<tr><td>핸드폰</td><td>${user.userPhone}</td></tr>
+		<tr><td>주소</td><td>${user.userAddress}</td></tr>
+		<tr><td>우편번호</td><td>${user.userPost}</td></tr>
 	</table>
 	
-	<button type="button" id="join">가입</button>
+	<button type="submit" id="update">수정</button>
+	</form>
 </body>
 </html>
