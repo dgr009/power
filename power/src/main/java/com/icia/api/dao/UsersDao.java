@@ -39,10 +39,10 @@ public class UsersDao {
 		return tpl.selectOne("api.dao.UsersDao.usersFindPwd", map);
 	}
 	//로그인
-	public Users userLogin(String userId, String userPwd){
+	public Users userLogin(Users user){
 		Map<String,String> map = new HashMap<String,String>();
-		map.put("userId", userId);
-		map.put("userPwd", userPwd);
+		map.put("userId", user.getUserId());
+		map.put("userPwd", user.getUserPwd());
 		return tpl.selectOne("api.dao.UsersDao.usersLogin", map);
 	}
 	//북마크(즐겨찾기) 추가

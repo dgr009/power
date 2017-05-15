@@ -1,14 +1,10 @@
 package com.icia.api.service;
 
-import java.io.*;
-import java.util.*;
-
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
-import com.auth0.jwt.*;
-import com.auth0.jwt.algorithms.*;
 import com.icia.api.dao.*;
+import com.icia.api.util.*;
 import com.icia.api.vo.*;
 
 @Service
@@ -29,31 +25,21 @@ public class UsersService {
 	public String FindPwd(String userId,String userName,String userMail){
 		return dao.findPwd(userId,userName,userMail);
 	}
+	/*
 	public String userLogin(String userId,String userPwd){
-		String token = "";
 		Users user = dao.userLogin(userId,userPwd);
-		if(user==null)
-			return token;
-		
-		//현재시간을 얻어 1시간을 더한다음 Date로 형변화
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR_OF_DAY) + 1);
-		Date date = new Date(cal.getTimeInMillis());
-		//암호화(인증) 알고리즘을 지정
-		Algorithm algorithm;
-		try {
-			algorithm = Algorithm.HMAC256("chs");
-			token = JWT.create().withIssuer("admin").withSubject(user.getUserId()).withExpiresAt(date).withClaim("issue", "icia").sign(algorithm);
-			
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		String token = TokenUtils.getToken(user);
 		
 		return token;
+	}*/
+	public String userLogin(Users user) {
+		Users realUser = dao.userLogin(user);
+		// 로그인에 실패하면 null이 돌아와 바로 비교하면 Null Pointer Exception
+		if(realUser!=null && realUser.getUserPwd().equals(user.getUserPwd())) {
+			return TokenUtils.getToken(realUser);
+		} else {
+			return null;
+		}
 	}
 	
 	public void userLogout(){
