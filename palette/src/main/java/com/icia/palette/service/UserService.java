@@ -14,6 +14,7 @@ import com.icia.palette.vo.*;
 @Service
 public class UserService {
 
+	//회원 로그인
 	public int login(String userId, String userPwd, HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
 		
@@ -34,7 +35,13 @@ public class UserService {
 		}
 		
 	}
-
+	
+	//회원 로그아웃
+	public void logout(HttpSession session) {
+		session.removeAttribute("token");
+	}
+	
+	//회원 가입
 	public void insert(HttpSession session, Users user) {
 		RestTemplate tpl = new RestTemplate();
 		System.out.println("Service User" + user);
@@ -45,7 +52,8 @@ public class UserService {
 		
 		System.out.println(result);
 	}
-
+	
+	//회원 정보보기
 	public Users userInfo(HttpSession session,String userId) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -57,10 +65,6 @@ public class UserService {
 		System.out.println("userInfo : "+user);
 		
 		return user;
-	}
-
-	public void logout(HttpSession session) {
-		session.removeAttribute("token");
 	}
 	
 }

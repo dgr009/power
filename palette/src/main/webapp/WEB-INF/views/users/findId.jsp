@@ -43,6 +43,7 @@
 </head>
 <body>
 	<h2>아이디 찾기</h2>
+	
 	이름 : <input type="text" id="userName" name="userName"><br>
 	이메일 : <input type="text" id="userMail" name="userMail"><br>
 	<button id="find">아이디찾기</button>

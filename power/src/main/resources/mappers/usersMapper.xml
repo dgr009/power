@@ -83,7 +83,7 @@
 		update users set user_address=#{userAdrress},user_post=#{userPost},user_mail=#{userMail},
 			user_phone=#{userPhone} from user_id=#{userId}
 	</update>
-	<!-- 개인 회원 비활성화 -->
+	<!-- 개인 회원 비활성화(탈퇴) -->
 	<update id="usersDelete" parameterType="string">
 		update users set enabled=0 from user_id=#{userId}
 	</update>
