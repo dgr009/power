@@ -2,7 +2,6 @@ package com.icia.api.dao.test;
 
 import org.junit.*;
 import org.junit.runner.*;
-import org.mybatis.spring.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
@@ -36,8 +35,37 @@ public class MiniHomeDaoTest {
 	}
 	
 	//자유리스트 테스트
-	@Test
+	//@Test
 	public void selectFreeListTest(){
-		System.out.println(dao.miniHomeSelectFreeList(1, 10, "qhrals8"));
+		System.out.println(dao.miniHomeSelectFreeList(1, 10, "qhrals8").size());
 	}
+	//자유 뷰 테스트
+	//@Test
+	public void selectFreeViewTest(){
+		System.out.println(dao.miniHomeSelectFreeView(2));
+	}
+	//자유 댓글 추가
+	//@Test
+	public void insertFreeReple(){
+		MiniHomeFreeReple reple = new MiniHomeFreeReple();
+		reple.setFreeRepleNo(2);
+		reple.setFreeRepleName("복민");
+		reple.setFreeRepleContent("gdgdgdg");
+		reple.setFreeNo(2);
+		dao.miniHomeRegisterFreeReple(reple);
+	}
+	//댓글 삭제
+	//@Test
+	public void deleteFreeReple(){
+		dao.miniHomeDeleteFreeReple(31);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
