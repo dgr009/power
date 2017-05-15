@@ -12,7 +12,8 @@
 			<tr><td>아이디</td><td><input type="text" id="userId" name="userId" placeholder="아이디"></td></tr>
 			<tr><td>비밀번호</td><td><input type="text" id="userPwd" name="userPwd" placeholder="비밀번호"></td></tr>
 		</table>
-		<button>로그인</button>
+		<input type='submit' value="로그인">
 	</form>
+	<button id="findId" onclick='location.href="/palette/users/findId"'>아이디찾기</button> <button id="findPwd" onclick='location.href="/palette/users/findPwd"'>비밀번호찾기</button>
 </body>
 </html>

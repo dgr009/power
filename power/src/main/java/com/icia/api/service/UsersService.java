@@ -20,10 +20,10 @@ public class UsersService {
 	public int hasUserId(String userId){
 		return dao.hasUserId(userId);
 	}
-	public String FindId(String userName,String userMail){
+	public String findId(String userName,String userMail){
 		return dao.findId(userName,userMail);
 	}
-	public String FindPwd(String userId,String userName,String userMail){
+	public String findPwd(String userId,String userName,String userMail){
 		return dao.findPwd(userId,userName,userMail);
 	}
 

@@ -29,8 +29,24 @@
 					$("#idchecked").css("color","red")
 				}
     			else{
-    				$("#idchecked").html("")
+    				$.ajax({
+        				url:"/api/users/hasId",
+        				type:"post",
+        				data : {"userId":$("#id").val()},
+        				dataType:"json",
+        				success:function(result) {
+        					if(result==0){
+        						$("#idchecked").html("사용 가능한 아이디입니다.");
+        						$("#idchecked").css("color","green");
+        					}else{
+        						$("#idchecked").html("이미 사용중인 아이디입니다.");
+        						$("#idchecked").css("color","red");
+        					}
+        				}
+        			})
     			}
+    			
+    			
     			
     		
     			

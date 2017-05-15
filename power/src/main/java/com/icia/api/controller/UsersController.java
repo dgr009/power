@@ -32,12 +32,12 @@ public class UsersController {
 	}
 	
 	//아이디 중복 확인 ( 아이디 존재할경우 1이상 리턴)
-	@RequestMapping(value="/hasId", method=RequestMethod.POST)
-	public ResponseEntity<String> usersHasId(@RequestParam String userId){
+	@RequestMapping(value="/hasId", method=RequestMethod.POST, produces="text/html;charset=utf-8")
+	public String usersHasId(@RequestParam String userId){
 		if(service.hasUserId(userId)==0)
-			return new ResponseEntity<String>(service.hasUserId(userId)+"",HttpStatus.OK);
+			return service.hasUserId(userId)+"";
 		else
-			return new ResponseEntity<String>(service.hasUserId(userId)+"",HttpStatus.BAD_REQUEST);
+			return service.hasUserId(userId)+"";
 	}
 	
 	//회원 로그인
@@ -49,15 +49,7 @@ public class UsersController {
 		else
 			return token;
 	}
-	/*@RequestMapping(value="/{bno}",method=RequestMethod.DELETE,produces="text/html;charset=UTF-8")
-	public ResponseEntity<String> delete(@PathVariable int bno,@RequestHeader("token") String token){
-		System.out.println(token);
-		if(service.getRightToken(token))
-			return new ResponseEntity<String>("토큰 확인 성공",HttpStatus.OK);
-		else
-			return new ResponseEntity<String>("토큰 확인 실패",HttpStatus.BAD_REQUEST);
-	}*/
-	
+
 	//회원 토큰으로 정보 얻기
 	@RequestMapping(value="/info/{userId}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String read(@RequestHeader("token") String token, @PathVariable String userId) {
@@ -66,8 +58,22 @@ public class UsersController {
 		return new Gson().toJson(user);
 	}
 	
+	@RequestMapping(value="/findId", method=RequestMethod.POST, produces="text/html;charset=utf-8")
+	public String usersFindId(@RequestParam String userName,@RequestParam String userMail){
+		String result = service.findId(userName,userMail);
+		if(result==null)
+			return "아이디를 찾을 수 없습니다.";
+		else
+			return result;
+	}
 	
-	
+	@RequestMapping(value="/findPwd", method=RequestMethod.POST, produces="text/html;charset=utf-8")
+	public String usersFindPwd(@RequestParam String userId,@RequestParam String userName,@RequestParam String userMail){
+		if(service.findPwd(userId,userName,userMail)==null)
+			return 0+"";
+		else
+			return service.findPwd(userId,userName,userMail);
+	}
 	
 	
 	

@@ -22,6 +22,11 @@ public class UsersController {
 	@Autowired
 	private UserService service;
 	
+	@RequestMapping(value="/home")
+	public String home(){
+		return "main";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginStart() {
 		return "users/login";
@@ -35,12 +40,12 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/insert",method = RequestMethod.GET)
-	public String InsertStart(){
+	public String insertStart(){
 		return "users/insert";
 	}
 	
 	@RequestMapping(value="/insert",method = RequestMethod.POST)
-	public String InsertEnd(HttpSession session,@ModelAttribute Users user){
+	public String insertEnd(HttpSession session,@ModelAttribute Users user){
 		service.insert(session,user);
 		return "main";
 	}
@@ -51,5 +56,17 @@ public class UsersController {
 		return "users/info";
 	}
 	
+	@RequestMapping(value="/findId",method = RequestMethod.GET)
+	public String findIdStart(){
+		return "users/usersFindId";
+	}
+	
+	
+	@RequestMapping(value="/findPwd",method = RequestMethod.GET)
+	public String findPwdStart(){
+		return "users/usersFindPwd";
+	}
+	
+
 	
 }
