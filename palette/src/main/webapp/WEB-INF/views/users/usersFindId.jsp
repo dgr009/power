@@ -17,11 +17,12 @@
 				data : {"userName":$("#userName").val(),"userMail":$("#userMail").val()},
 				dataType:"json",
 				success:function(result) {
-					alert("asd");
-					$("#target").html(result)
+						alert(result)
+						$("#result").html(result);
+						$("#result").css("color","green");
+					
 				}
 			})
-			
 		})
 	})
 </script>
@@ -31,7 +32,6 @@
 	이름 : <input type="text" id="userName" name="userName"><br>
 	이메일 : <input type="text" id="userMail" name="userMail"><br>
 	<button id="find">아이디찾기</button>
-	
-	<p id="target">asd</p>
+	<p id="result"></p>
 </body>
 </html>

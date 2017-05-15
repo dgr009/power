@@ -60,11 +60,11 @@ public class UsersController {
 	
 	@RequestMapping(value="/findId", method=RequestMethod.POST, produces="text/html;charset=utf-8")
 	public String usersFindId(@RequestParam String userName,@RequestParam String userMail){
-		String result = service.findId(userName,userMail);
-		if(result==null)
-			return "아이디를 찾을 수 없습니다.";
+		String str =  service.findId(userName,userMail);
+		if(str==null)
+			return 1+"";
 		else
-			return result;
+			return 0+"";
 	}
 	
 	@RequestMapping(value="/findPwd", method=RequestMethod.POST, produces="text/html;charset=utf-8")
@@ -72,7 +72,7 @@ public class UsersController {
 		if(service.findPwd(userId,userName,userMail)==null)
 			return 0+"";
 		else
-			return service.findPwd(userId,userName,userMail);
+			return service.findPwd(userId,userName,userMail)+"";
 	}
 	
 	

@@ -40,9 +40,10 @@
 </head>
 <body>
 	<h2>비밀번호 찾기</h2>
-	아이디 : <input type="text" name="userId"><br>
-	이름 : <input type="text" name="userName"><br>
-	이메일 : <input type="text" name="userMail"><br>
-	<button>아이디찾기</button>
+	아이디 : <input type="text" id="userId" name="userId"><br>
+	이름 : <input type="text" id="userName" name="userName"><br>
+	이메일 : <input type="text" id="userMail" name="userMail"><br>
+	<button id="find">아이디찾기</button>
+	<p id="result"></p>
 </body>
 </html>
