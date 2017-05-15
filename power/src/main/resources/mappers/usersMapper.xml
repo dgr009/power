@@ -10,6 +10,10 @@
 	<select id="usersHasId" parameterType="string" resultType="int">
 		select count(*) from users where user_id=#{userId}
 	</select>
+	<!-- 회원 이메일 중복 체크 -->
+	<select id="usersHasMail" parameterType="string" resultType="int">
+		select count(*) from users where user_mail=#{userMail}
+	</select>
 	<!-- 회원 아이디 찾기 -->
 	<select id="usersFindId" parameterType="hashmap" resultType="string">
 		select user_id from users where user_name=#{userName} and user_mail=#{userMail}

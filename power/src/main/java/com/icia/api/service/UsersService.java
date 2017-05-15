@@ -20,6 +20,9 @@ public class UsersService {
 	public int hasUserId(String userId){
 		return dao.hasUserId(userId);
 	}
+	public int hasUserMail(String userMail) {
+		return dao.hasUserMail(userMail);
+	}
 	public String findId(String userName,String userMail){
 		return dao.findId(userName,userMail);
 	}
@@ -30,7 +33,7 @@ public class UsersService {
 	public String userLogin(Users user) {
 		Users realUser = dao.userLogin(user);
 		// 로그인에 실패하면 null이 돌아와 바로 비교하면 Null Pointer Exception
-		if(realUser!=null && realUser.getUserPwd().equals(user.getUserPwd())) {
+		if(realUser!=null) {
 			return TokenUtils.getToken(realUser);
 		} else {
 			return null;

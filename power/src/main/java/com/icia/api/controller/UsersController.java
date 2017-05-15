@@ -39,7 +39,15 @@ public class UsersController {
 		else
 			return service.hasUserId(userId)+"";
 	}
-	
+	//이메일 중복 확인 (이메일 존재할경우 1이상 리턴)
+		@RequestMapping(value="/hasMail", method=RequestMethod.POST, produces="text/html;charset=utf-8")
+		public String usersHasMail(@RequestParam String userMail){
+			int result = service.hasUserMail(userMail);
+			if(result==0)
+				return result+"";
+			else
+				return result+"";
+		}
 	//회원 로그인
 	@RequestMapping(value="/login", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String login(@RequestBody Users user) throws BindException {
@@ -58,21 +66,22 @@ public class UsersController {
 		return new Gson().toJson(user);
 	}
 	
-	@RequestMapping(value="/findId", method=RequestMethod.POST, produces="text/html;charset=utf-8")
+	@RequestMapping(value="/findId", method=RequestMethod.POST)
 	public String usersFindId(@RequestParam String userName,@RequestParam String userMail){
 		String result = service.findId(userName,userMail);
 		if(result==null)
-			return "아이디를 찾을 수 없습니다.";
+			return "0";
 		else
 			return result;
 	}
 	
 	@RequestMapping(value="/findPwd", method=RequestMethod.POST, produces="text/html;charset=utf-8")
 	public String usersFindPwd(@RequestParam String userId,@RequestParam String userName,@RequestParam String userMail){
-		if(service.findPwd(userId,userName,userMail)==null)
-			return 0+"";
+		String result = service.findPwd(userId,userName,userMail);
+		if(result==null)
+			return "0";
 		else
-			return service.findPwd(userId,userName,userMail);
+			return result;
 	}
 	
 	

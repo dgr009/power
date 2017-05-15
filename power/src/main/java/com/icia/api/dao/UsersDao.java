@@ -22,6 +22,10 @@ public class UsersDao {
 	public int hasUserId(String userId){
 		return tpl.selectOne("api.dao.UsersDao.usersHasId",userId);
 	}
+	//이메일 중복확인
+	public int hasUserMail(String userMail) {
+		return tpl.selectOne("api.dao.UsersDao.usersHasMail",userMail);
+	}
 	//아이디 찾기
 	public String findId(String userName,String userMail){
 		Map<String,String> map = new HashMap<String,String>();
@@ -121,6 +125,7 @@ public class UsersDao {
 	public int basketDelete(String userId){
 		return tpl.delete("api.dao.UsersDao.usersBasketDelete",userId);
 	}
+	
 
 	
 }

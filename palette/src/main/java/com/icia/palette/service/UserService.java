@@ -54,9 +54,13 @@ public class UserService {
 		System.out.println(requestEntity);
 		String result = tpl.exchange("http://localhost:8087/api/users/info/{userId}", HttpMethod.GET, requestEntity, String.class,userId).getBody();
 		Users user = new Gson().fromJson(result, Users.class);
-		System.out.println(user);
+		System.out.println("userInfo : "+user);
 		
 		return user;
+	}
+
+	public void logout(HttpSession session) {
+		session.removeAttribute("token");
 	}
 	
 }
