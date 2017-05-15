@@ -13,7 +13,7 @@ public class Users {
 	private String userPost;
 	private String userMail;
 	private String userPhone;
-	private Integer userPoint;
+	private int userPoint;
 	private String userIsHome;
 	private String enabled;
 	private String userGrade;

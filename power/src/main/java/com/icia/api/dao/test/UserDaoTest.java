@@ -50,9 +50,9 @@ public class UserDaoTest {
 		System.out.println(dao.findPwd("asd", "asd", "asd"));
 	}
 	//@Test
-	public void userLoginTest(){
+	/*public void userLoginTest(){
 		System.out.println(dao.userLogin("asd", "asd").toString());
-	}
+	}*/
 	//@Test
 	public void bookmarkTest(){
 		System.out.println(dao.bookmark("asd", "qwe"));
@@ -65,7 +65,8 @@ public class UserDaoTest {
 	public void bookmarkListTest(){
 		System.out.println(dao.bookmarkList("1", 1, 5).toString());
 	}
-	//@Test
+	
+	//Test
 	public void orderListTest(){
 		System.out.println(dao.orderList("1", 1, 5).toString());
 	}

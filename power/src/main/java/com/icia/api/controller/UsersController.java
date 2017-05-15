@@ -3,7 +3,7 @@ package com.icia.api.controller;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
-import org.springframework.stereotype.*;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.icia.api.service.*;
@@ -17,8 +17,8 @@ public class UsersController {
 	private UsersService service;	
 	
 	//회원 가입
-	@RequestMapping(value="/register", method=RequestMethod.POST)
-	public ResponseEntity<String> usersRegisterEnd(Users user){
+	@RequestMapping(value="/register", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> usersRegisterEnd(@RequestBody Users user) throws BindException{
 		logger.info(user.toString());;
 		service.insertUser(user);
 		return new ResponseEntity<String>(user.toString(),HttpStatus.OK);
@@ -34,10 +34,13 @@ public class UsersController {
 	}
 	
 	//회원 로그인
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public ResponseEntity<String> usersLogin(@RequestParam String userId, @RequestParam String userPwd){
-		logger.info("으아아악 : " + userId +" "+ userPwd);
-		return new ResponseEntity<String>(service.userLogin(userId,userPwd),HttpStatus.OK);
+	@RequestMapping(value="/login", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String login(@RequestBody Users user) throws BindException {
+		String token = service.userLogin(user);
+		if(token==null)
+			return "로그인 실패";
+		else
+			return token;
 	}
 	
 	/*@RequestMapping(value="/{bno}",method=RequestMethod.DELETE,produces="text/html;charset=UTF-8")
