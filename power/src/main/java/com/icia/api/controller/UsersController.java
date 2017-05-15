@@ -62,15 +62,7 @@ public class UsersController {
 	@RequestMapping(value="/info/{userId}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String read(@RequestHeader("token") String token, @PathVariable String userId) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		System.out.println("서버측 : " + token + " " + userId);
-		Users user = new Users();
-		if(TokenUtils.isValid(token)) {
-			String role = TokenUtils.get(token, "ROLE");
-			if(!role.equals("ROLE_USER"))
-				user = new Users("권한 부족");
-			user=  service.read(userId);
-		} else 
-			user = new Users("토큰 인증 실패");
+		Users user = service.read(userId,token);
 		return new Gson().toJson(user);
 	}
 	

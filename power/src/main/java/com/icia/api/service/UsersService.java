@@ -3,6 +3,7 @@ package com.icia.api.service;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import com.google.gson.*;
 import com.icia.api.dao.*;
 import com.icia.api.util.*;
 import com.icia.api.vo.*;
@@ -36,8 +37,17 @@ public class UsersService {
 		}
 	}
 
-	public Users read(String userId) {
-		return dao.userInfo(userId);
+	public Users read(String userId,String token) {
+		Users realUser = new Users();
+		if(TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			if(!role.equals("ROLE_USER"))
+				realUser = new Users("권한 부족");
+			else
+				realUser =  dao.userInfo(userId);
+		} else 
+			realUser = new Users("토큰 인증 실패");
+		return realUser;
 	}
 	
 }
