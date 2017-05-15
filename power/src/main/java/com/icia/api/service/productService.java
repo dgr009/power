@@ -226,6 +226,17 @@ public class productService {
 		result.put("result", dao.selectItemListOrderByDate(userId));
 		return new Gson().toJson(result);
 	}
-	//미니홈메인
+	//미니홈메인 상품재고순9개
+	public String selectItemListOrderByInven(String userId){
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("result", dao.selectItemListOrderByInven(userId));
+		return new Gson().toJson(result);
+	}
+	//미니홈메인 베스트상품순9개
+	public String selectItemListOrderByScore(String userId){
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("result", dao.selectItemListOrderByScore(userId));
+		return new Gson().toJson(result);
+	}
 
 }

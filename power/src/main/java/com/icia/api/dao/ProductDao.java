@@ -187,9 +187,14 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectListOrderByDate", userId);
 	}
 	//미니홈메인 상품재고순 9개
-	public List<ItemList> selectItemListOrderByInven(HashMap<String, Object> map){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByInven", map);
+	public List<ItemList> selectItemListOrderByInven(String userId){
+		return tpl.selectList("api.dao.ProductDao.selectListOrderByInven", userId);
 	}
+	//미니홈메인 베스트상품순 9개
+	public List<ItemList> selectItemListOrderByScore(String userId){
+		return tpl.selectList("api.dao.ProductDao.selectListOrderByScore", userId);
+	}
+	
 
 	
 	
