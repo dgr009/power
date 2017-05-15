@@ -1,10 +1,8 @@
-<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
  
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-
-
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -17,6 +15,7 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
+
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -67,10 +66,11 @@
 </head>
 <body>
 	<!--Start Header-->
-	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
-		</header>
-	<!-- End Header -->
+<header id="header">
+ <%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+ </header>
+ <!--end Header-->
+	
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
@@ -78,18 +78,16 @@
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
+							<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
 							</h1>
 						</div>
 					</div>
 					
-					
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+				     <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+                       <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
-		</div>
-		</div>
+		</div></div>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -103,29 +101,26 @@
                 </div>
             </div>
              </section>
-            
- 
-           
-            <div class="col-lg-12 col-md-12 col-sm-12">
+                     <div class="col-lg-12 col-md-12 col-sm-12">
             <br><br>
-					
-							<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
-							<div class="col-lg-9 col-md-9 col-sm-9">
+            
+            
+       <%@include file="/WEB-INF/views/AdminMenu.jsp" %>
+           	<div class="col-lg-9 col-md-9 col-sm-9">
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
-						
-							<form action="/hooligan/employee/productRegister" method="POST" enctype="multipart/form-data">
+
+							<form action="update" method="post">
 							
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
 									
 									<tr><td>상품명</td></tr>	
-									<tr><td>상품 종류</td></tr>
+									<tr><td>가격</td></tr>
 									<tr><td>최소수량</td></tr>
 									<tr><td>최대수량</td></tr>
-									<tr><td>판매 가격</td></tr>
-									<tr><td>마감일</td></tr>
 									<tr><td>상품 내용</td></tr>
+
 									
 								</tbody>
 							</table>
@@ -134,24 +129,21 @@
 							<div class="col-lg-3 col-md-3 col-sm-3">
 								<table>
 									<tbody>
-										<tr><td><input type="text"  name="product_name"></td></tr>
-										<tr><td><select name="type_no">
-									<option value="1">이수민</option>
-										</select></td></tr>
-										<tr><td><input type="text"  name="minimum_size"></td></tr>
-										<tr><td><input type="text"  name="price"></td></tr>
-										<tr><td><input type="date" name="closing_date" ></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:180px;" name="product_content"></textarea></td></tr>	
+										<tr><td><input type="text" ></td></tr>
+										<tr><td><input type="text" ></td></tr>
+										<tr><td><input type="text" ></td></tr>
+										<tr><td><input type="text" ></td></tr>
+										<tr><td><textarea rows="4" cols="3" style="width:180px;"></textarea></td></tr>
+										
 									</tbody>
 								</table>
 							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
+							<div class="col-lg-2 col-md-2 col-sm-2">
 							<table>
 									<tbody>
 
 										<tr><td>상품 이미지</td></tr>
 										<tr><td>제품 상세 이미지</td></tr>
-										<tr><td>제품 상세 내용</td></tr>
 
 									</tbody>
 								</table>
@@ -159,14 +151,14 @@
 							<div class="col-lg-3 col-md-3 col-sm-3">
 								<table>
 									<tbody>
-										<tr><td><input type="file" name="main_image_path" ></td></tr>
-										<tr><td><input type="file"  name="image_path"></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:180px;" name="detailcontent"></textarea></td></tr>
+										<tr><td><input type="file" ></td></tr>
+										<tr><td><input type="file" ></td></tr>
+										
 										</tbody>
 								</table>
-								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<button class="btn btn-default btn-lg btn-block" type="submit"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+								<br><br><br><br><br><br><br><br>
+								<button class="btn btn-default btn-lg btn-block" type="button"> 
+							<i class="fa fa-rocket"></i> 상품 수정하기</button>
 							</div>
                             
 							</form>
@@ -176,8 +168,9 @@
 							
 							
 							</div>
-							
 							</div></div>
+							
+							
 					
 
            
@@ -453,6 +446,6 @@
 													});
 										});
 					</script>
-					<script src="<c:url value="/resources/js/main.js"/>"></script>
+				<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>
