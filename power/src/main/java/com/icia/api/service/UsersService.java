@@ -41,7 +41,7 @@ public class UsersService {
 		Users realUser = new Users();
 		if(TokenUtils.isValid(token)) {
 			String role = TokenUtils.get(token, "ROLE");
-			
+			System.out.println(role);
 			if(!role.equals("ROLE_USER"))
 				realUser = new Users("권한 부족");
 			else
