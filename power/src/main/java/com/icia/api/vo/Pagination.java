@@ -1,8 +1,10 @@
 package com.icia.api.vo;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pagination {
 	private int pageNo;
 	private int startArticle;

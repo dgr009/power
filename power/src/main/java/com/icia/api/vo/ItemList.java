@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ItemList {
 private int itemNo;
 private String itemName;
-private int price;
-private int inven;
+private int itemPrice;
+private int itemInven;
 private String imgName;
 }
