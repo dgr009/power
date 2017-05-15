@@ -6,6 +6,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Users {
+	public Users(String msg) {
+		this.userId = msg;
+	}
 	private String userId;
 	private String userPwd;
 	private String userName;

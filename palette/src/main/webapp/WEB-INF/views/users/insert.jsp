@@ -32,10 +32,10 @@
 			processData:false,
 			contentType:false
 		})
-	})*/
+	})
 	
 	
-})
+})*/
 </script>
 </head>
 <body>

@@ -9,6 +9,6 @@
 </head>
 <body>
 asdasdasdasdasdas
-${userName}
+<a href="http://localhost:8087/palette/users/info/${user.userId}">개인 정보보기</a>
 </body>
 </html>
