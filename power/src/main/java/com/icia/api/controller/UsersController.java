@@ -6,7 +6,9 @@ import org.springframework.http.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
+import com.google.gson.*;
 import com.icia.api.service.*;
+import com.icia.api.util.*;
 import com.icia.api.vo.*;
 
 @RestController
@@ -20,8 +22,13 @@ public class UsersController {
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String> usersRegisterEnd(@RequestBody Users user) throws BindException{
 		logger.info(user.toString());;
-		service.insertUser(user);
-		return new ResponseEntity<String>(user.toString(),HttpStatus.OK);
+		int result = service.insertUser(user);
+		if(result==1){
+			return new ResponseEntity<String>(user.toString(),HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 	
 	//아이디 중복 확인 ( 아이디 존재할경우 1이상 리턴)
@@ -42,7 +49,6 @@ public class UsersController {
 		else
 			return token;
 	}
-	
 	/*@RequestMapping(value="/{bno}",method=RequestMethod.DELETE,produces="text/html;charset=UTF-8")
 	public ResponseEntity<String> delete(@PathVariable int bno,@RequestHeader("token") String token){
 		System.out.println(token);
@@ -52,6 +58,13 @@ public class UsersController {
 			return new ResponseEntity<String>("토큰 확인 실패",HttpStatus.BAD_REQUEST);
 	}*/
 	
+	//회원 토큰으로 정보 얻기
+	@RequestMapping(value="/info/{userId}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String read(@RequestHeader("token") String token, @PathVariable String userId) {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		Users user = service.read(userId,token);
+		return new Gson().toJson(user);
+	}
 	
 	
 	

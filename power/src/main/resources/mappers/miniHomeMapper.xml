@@ -21,33 +21,28 @@
 		delete from home where user_id=#{userId}
 	</delete>
 	
-	<!-- 홈페이지 결제 : 결제기록 생성 -->
-	<update id="miniHomeInsertTradeStatementForPay" parameterType="ActiveDate">
+	<!-- 홈페이지 결제 : 활성화기록 생성 -->
+	<update id="miniHomeInsertActiveStatement" parameterType="ActiveDate">
 		<selectKey keyProperty="activeNo" resultType="int" order="BEFORE">
 			select seq_active.nextval from dual
 		</selectKey>
-		insert into activedate(activeno,active_start,user_id) values(#{activeNo},sysdate,#{userId})
+		insert into activedate(activeno,active_start,active_end,user_id) values(#{activeNo},sysdate,add_months(sysdate,1),#{userId})
 	</update>
 	
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
-	<update id="miniHomeDecreaseUsersPointForPay" parameterType="hashmap">
-		update users set user_point=user_point-#{price} where user_id=#{userId};
+	<update id="miniHomeDecreaseUsersPoint" parameterType="hashmap">
+		update users set user_point=user_point-#{price} where user_id=#{userId}
 	</update>
 	
-	<resultMap id="getMini" type="com.icia.api.vo.MiniHome">
-		<result property="userName" column="user_name"/>				
-		<result property="userMail" column="user_mail"/>
-		<result property="userPhone" column="user_phone"/>
-		<result property="userGrade" column="user_grade"/>
-	</resultMap>
-	
-	<resultMap id="getMiniJoinActive" type="com.icia.api.vo.ActiveDate" extends="getMini">
-		<result property="homeIntroduce" column="home_introduce"/>	
-	</resultMap>
+	<!-- 홈페이지 결제 : 회원 활성화 -->
+	<update id="miniHomeActivateUser" parameterType="string">
+		update users set user_ishome=1 where user_id=#{userId}
+	</update>
 	
 	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
-	<select id="miniHomeSelectSellerInformation" parameterType="string" resultMap="getMiniJoinActive">
-		select u.user_name,u.user_mail,u.user_phone,u.user_grade,h.home_introduce from users u, home h 
+	<select id="miniHomeSelectSellerInformation" parameterType="string" resultType="MiniHomeInformation">
+		select u.user_name userName,u.user_mail userMail,u.user_phone userPhone,u.user_grade UserGrade,
+		h.home_introduce homeIntroduce from users u, home h 
 		where u.user_id=h.user_id and u.user_id=#{userId}
 	</select>
 	

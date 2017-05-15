@@ -3,6 +3,7 @@ package com.icia.api.service;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import com.google.gson.*;
 import com.icia.api.dao.*;
 import com.icia.api.util.*;
 import com.icia.api.vo.*;
@@ -13,8 +14,8 @@ public class UsersService {
 	@Autowired
 	private UsersDao dao;
 	
-	public void insertUser(Users user){
-		dao.insertUser(user);
+	public int insertUser(Users user){
+		return dao.insertUser(user);
 	}
 	public int hasUserId(String userId){
 		return dao.hasUserId(userId);
@@ -25,13 +26,7 @@ public class UsersService {
 	public String FindPwd(String userId,String userName,String userMail){
 		return dao.findPwd(userId,userName,userMail);
 	}
-	/*
-	public String userLogin(String userId,String userPwd){
-		Users user = dao.userLogin(userId,userPwd);
-		String token = TokenUtils.getToken(user);
-		
-		return token;
-	}*/
+
 	public String userLogin(Users user) {
 		Users realUser = dao.userLogin(user);
 		// 로그인에 실패하면 null이 돌아와 바로 비교하면 Null Pointer Exception
@@ -41,9 +36,19 @@ public class UsersService {
 			return null;
 		}
 	}
-	
-	public void userLogout(){
-		
+
+	public Users read(String userId,String token) {
+		Users realUser = new Users();
+		if(TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			
+			if(!role.equals("ROLE_USER"))
+				realUser = new Users("권한 부족");
+			else
+				realUser =  dao.userInfo(userId);
+		} else 
+			realUser = new Users("토큰 인증 실패");
+		return realUser;
 	}
 	
 }
