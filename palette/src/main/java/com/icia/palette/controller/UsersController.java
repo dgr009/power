@@ -51,8 +51,8 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/insert",method = RequestMethod.POST)
-	public String insertEnd(HttpSession session,@ModelAttribute Users user){
-		service.insert(session,user);
+	public String insertEnd(@ModelAttribute Users user){
+		service.insert(user);
 		return "maintest";
 	}
 	
@@ -73,6 +73,16 @@ public class UsersController {
 		return "users/findPwd";
 	}
 	
+	@RequestMapping(value="/update/{userId}",method = RequestMethod.GET)
+	public String updateStart(HttpSession session,@PathVariable String userId,Model model){
+		model.addAttribute("user", service.userInfo(session,userId));
+		return "users/update";
+	}
+	@RequestMapping(value="/update",method = RequestMethod.POST)
+	public String updateEnd(HttpSession session,@ModelAttribute Users user){
+		service.updateUser(session,user);
+		return "maintest";
+	}
 
 	
 }

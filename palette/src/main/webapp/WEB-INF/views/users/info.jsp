@@ -40,7 +40,6 @@
 </head>
 <body>
 	<h1>회원 정보</h1>
-	<form action="/palette/users/update" method="post">
 	<table border="1">
 		<tr><td>이름</td><td>${user.userName } </td></tr>
 		<tr><td>아이디</td><td>${user.userId}</td></tr>
@@ -50,7 +49,6 @@
 		<tr><td>우편번호</td><td>${user.userPost}</td></tr>
 	</table>
 	
-	<button type="submit" id="update">수정</button>
-	</form>
+	<button  id="update" onclick='location.href="http://localhost:8087/palette/users/update/${user.userId }"'>개인정보 수정하기</button>
 </body>
 </html>
