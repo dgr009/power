@@ -84,5 +84,16 @@ public class UsersController {
 		return "maintest";
 	}
 
+	@RequestMapping(value="/chargePoint/{userId}",method = RequestMethod.GET)
+	public String chargePointStart(HttpSession session,@PathVariable String userId,Model model){
+		model.addAttribute("userId", userId);
+		return "users/chargePoint";
+	}
+	
+	@RequestMapping(value="/chargePoint/{userId}",method = RequestMethod.POST)
+	public String chargePointEnd(HttpSession session,@PathVariable String userId,@RequestParam int tradePoint){
+		service.chargePoint(session,userId,tradePoint);
+		return "maintest";
+	}
 	
 }

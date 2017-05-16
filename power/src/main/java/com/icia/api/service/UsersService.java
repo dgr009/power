@@ -1,5 +1,7 @@
 package com.icia.api.service;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -68,5 +70,10 @@ public class UsersService {
 	//회원 정보 수정
 	public int updateUser(Users user){
 		return dao.userUpdate(user);
+	}
+
+	//회원 포인트 충전
+	public int chargePoint(Map<String, Object> map) {
+		return dao.chargePoint((String)map.get("userId"), (Integer)map.get("tradePoint"));
 	}
 }

@@ -79,5 +79,20 @@ public class UserService {
 		if(!result.equals("수정 실패"))
 			session.removeAttribute("token");
 	}
+
+	//포인트 충전하기
+	public void chargePoint(HttpSession session, String userId,int tradePoint) {
+		RestTemplate tpl = new RestTemplate();
+		Map<String,Object> map =new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("tradePoint", tradePoint);
+		System.out.println("Service Map : " + map);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(map), headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/chargePoint", HttpMethod.POST, requestEntity, String.class).getBody();
+		
+		System.out.println(result);
+	}
 	
 }
