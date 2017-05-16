@@ -32,8 +32,8 @@ public class MainService {
 		return dao.mainFreeBoardInsert(mainFreeBoard);
 	}
 	//메인 자유게시판 수정
-	public void mainFreeBoardUpdate(MainFreeBoard mainFreeBoard){
-		dao.mainFreeBoardUpdate(mainFreeBoard);
+	public int mainFreeBoardUpdate(MainFreeBoard mainFreeBoard){
+		return dao.mainFreeBoardUpdate(mainFreeBoard);
 	}
 	//메인 자유게시판 삭제
 	public void mainFreeBoardDalete(int mainArticleNo){

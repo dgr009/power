@@ -23,7 +23,6 @@ public class MainController {
 		model.addAttribute("userId", userId);
 		return "main/mainFreeBoardRegister";	
 	}
-	
 	//메인게시판 작성
 	@RequestMapping(value="/freeboard/register",method=RequestMethod.POST)
 	public String freeBoardRegisterEnd(@ModelAttribute MainFreeBoard free){
@@ -31,4 +30,25 @@ public class MainController {
 		System.out.println(result);
 		return "main";	
 	}
+	//자유게시판 뷰
+	@RequestMapping(value="/freeboard/view/{mainArticleNo}",method = RequestMethod.GET)
+	public String userInfoStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
+		model.addAttribute("main", service.mainFreeBoardView(session, mainArticleNo));
+		return "main/mainFreeBoardView";
+	}
+	/*업데이트 작성페이지로
+	@RequestMapping(value="/freeboard/update{",method = RequestMethod.GET)
+	public String freeBoardUpdateStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
+		String userid = service.getUserId(session);
+		model.addAttribute("userId",userId);
+		return "mini/update";
+	}*/
+		
+	/*/업데이트 처리
+	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}",method = RequestMethod.POST)
+	public String updateEnd(HttpSession session,@ModelAttribute MiniHomeFree free, @PathVariable int freeNo){
+		service.miniHomeUpdateFree(session, free);
+		return "redirect:freeView/"+freeNo;
+	}*/
+	
 }

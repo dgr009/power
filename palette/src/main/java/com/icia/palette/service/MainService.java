@@ -19,7 +19,7 @@ public class MainService {
 		Users user = (Users)session.getAttribute("user");
 		return user.getUserId();
 	}
-
+	//자유게시판 생성
 	public String mainFreeBoardRegister(MainFreeBoard free) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -29,4 +29,30 @@ public class MainService {
 		return result;
 	}
 	
+	//자유게시판 수정
+		public void miniHomeUpdateFree(MainFreeBoard free) {
+			RestTemplate tpl = new RestTemplate();
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
+			String result = tpl
+					.exchange("http://localhost:8087/api/", HttpMethod.PUT, requestEntity, String.class)
+					.getBody();
+
+			System.out.println(result);
+			//if (!result.equals("수정 실패"))
+			//	session.removeAttribute("token");
+		}
+		//자유게시판 뷰
+		public MainFreeBoard mainFreeBoardView(HttpSession session,int mainArticleNo) {
+			RestTemplate tpl = new RestTemplate();
+			HttpHeaders headers = new HttpHeaders();
+			HttpEntity requestEntity = new HttpEntity(headers);
+			System.out.println(requestEntity);
+			String result = tpl.exchange("http://localhost:8087/api/main/freeboard/view/{mainArticleNo}", HttpMethod.GET, requestEntity, String.class,mainArticleNo).getBody();
+			MainFreeBoard free = new Gson().fromJson(result, MainFreeBoard.class);
+			System.out.println(free);
+			
+			return free;
+		}
 }
