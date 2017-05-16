@@ -97,4 +97,17 @@ public class UserService {
 		System.out.println(result);
 	}
 	
+	/////////////////
+	// 충전내역 매퍼에 추가하기
+	//////////////
+	
+	//유저 아이디 토큰으로 받아오기
+	public String getUserIdByToken(HttpSession session) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity =  new HttpEntity(headers);
+		String result=tpl.exchange("http://localhost:8087/api/users/getUserId", HttpMethod.POST, requestEntity, String.class).getBody();
+		return result;
+	}
 }

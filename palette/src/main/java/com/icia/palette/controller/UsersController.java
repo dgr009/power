@@ -92,7 +92,8 @@ public class UsersController {
 	
 	@RequestMapping(value="/chargePoint",method = RequestMethod.POST)
 	public String chargePointEnd(HttpSession session,@RequestParam int tradePoint){
-		service.chargePoint(session,tradePoint);
+		String userId = service.getUserIdByToken(session);
+		service.chargePoint(session,userId,tradePoint);
 		return "maintest";
 	}
 	

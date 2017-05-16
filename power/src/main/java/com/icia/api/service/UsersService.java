@@ -67,13 +67,26 @@ public class UsersService {
 		return realUser;
 	}
 
-	//회원 정보 수정
-	public int updateUser(Users user){
+	// 회원 정보 수정
+	public int updateUser(Users user) {
 		return dao.userUpdate(user);
 	}
 
-	//회원 포인트 충전
+	// 회원 포인트 충전
 	public int chargePoint(Map<String, Object> map) {
-		return dao.chargePoint((String)map.get("userId"), (Integer)map.get("tradePoint"));
+		return dao.chargePoint((String) map.get("userId"), (Integer) map.get("tradePoint"));
+	}
+
+	// 토큰으로 userId 값 가져오기
+	public String getUserIdByToken(String token) {
+		String userId = null;
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_USER")) {
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return userId;
 	}
 }
