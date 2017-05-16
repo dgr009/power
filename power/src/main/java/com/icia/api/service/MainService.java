@@ -28,10 +28,8 @@ public class MainService {
 		return map;
 	}
 	//메인 자유게시판 작성
-	public void mainFreeBoard(MainFreeBoard mainFreeBoard,HttpServletRequest req){
-		HttpSession session = req.getSession();
-		Users user=(Users)session.getAttribute("userId");
-		dao.mainFreeBoardInsert(mainFreeBoard);
+	public int mainFreeBoardRegister(MainFreeBoard mainFreeBoard){
+		return dao.mainFreeBoardInsert(mainFreeBoard);
 	}
 	//메인 자유게시판 수정
 	public void mainFreeBoardUpdate(MainFreeBoard mainFreeBoard){

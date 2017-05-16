@@ -35,8 +35,8 @@ public class MainDao {
 		tpl.update("api.dao.MainFreeBoardDao.mainFreeBoardHitsCnt",mainArticleNo);
 	}
 	//자유게시판 생성하기 dddd
-	public void mainFreeBoardInsert(MainFreeBoard mainFreeBoard){
-		tpl.insert("api.dao.MainFreeBoardDao.mainFreeBoardInsert",mainFreeBoard);
+	public int mainFreeBoardInsert(MainFreeBoard mainFreeBoard){
+		return tpl.insert("api.dao.MainFreeBoardDao.mainFreeBoardInsert",mainFreeBoard);
 	}
 	//자유게시판 수정하기
 	public void mainFreeBoardUpdate(MainFreeBoard mainFreeBoard){

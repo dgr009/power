@@ -38,7 +38,6 @@ public class MiniHomeBoardService {
 		
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeList/{pageNo}", HttpMethod.GET, requestEntity, String.class,userId, pageNo).getBody();
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
-		
 		return map;		
 	}
 	
