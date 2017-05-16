@@ -21,7 +21,9 @@
 		<value>.jsp</value>
 	</property>
     </bean>
-
+    
+<bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
     <mvc:resources mapping="/resources/**" location="/resources/static/"
 	cache-period="31556926"/>
 

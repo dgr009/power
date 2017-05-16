@@ -126,9 +126,9 @@ public class UsersDao {
 	}
 
 	// 포인트 내역확인
-	//public List<PointStatement> tradeList(String userId) {
-	//	return tpl.selectList("api.dao.UsersDao.usersTradeList", userId);
-	//}
+	public List<PointStatement> tradeList(String userId) {
+		return tpl.selectList("api.dao.UsersDao.usersTradeList", userId);
+	}
 
 	// 개인 회원 정보 보기
 	public Users userInfo(String userId) {

@@ -76,13 +76,16 @@ $(function() {
 		}
 		$.ajax({
 			url:"/api/miniHome/admin/productRegister",
+			headers: { 'content-type': 'application/json' },
 			type:"post",
-			data:data,
+			data:JSON.stringify(data),
+			dataType:"JSON",
+			
 			success:function(result){
 				console.log(result);
 			},
 		error:function(request,status,error){
-			console.log("코드:"+request.status+",메시지:"+request.responseTest+",에러:"+error);
+			console.log("코드:"+request.status+",메시지:"+request.responseText+",에러:"+error);
 		},
 		contentType:false,
 		processData:false
@@ -141,7 +144,7 @@ $(function() {
 							<div class="col-lg-9 col-md-9 col-sm-9">
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
-							<form action="/hooligan/employee/productRegister" method="POST" enctype="multipart/form-data">
+							
 							
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
@@ -166,7 +169,7 @@ $(function() {
 										</select></td></tr>
 										<tr><td><input type="text"  name="itemSize"></td></tr>
 										<tr><td><input type="text"  name="itemPrice"></td></tr>
-										<tr><td><input type="text"  name="optionName"></td></tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -183,16 +186,16 @@ $(function() {
 							<div class="col-lg-3 col-md-3 col-sm-3">
 								<table>
 									<tbody>
-										<tr><td><input type="file" name="imgName" id=imgName multiple></td></tr>
+										<tr><td><input type="file" name="imgName" id="imgName" multiple></td></tr>
 										<tr><td><textarea rows="4" cols="3" style="width:200px;" name="itemContent" id="itemContent"></textarea></td></tr>
 										</tbody>
 								</table>
 								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="button" id="upload"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="button" id="upload" value="상품등록하기"> 
+							<i class="fa fa-rocket"></i>
 							</div>
                             
-							</form>
+						
 							
 									
 							</div>
