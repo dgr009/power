@@ -134,4 +134,13 @@ public class UsersController {
 		return userId;
 	}
 
+	// 회원 포인트 충전 환급 내역 보기
+	@RequestMapping(value = "/tradeList", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public String tradeList(@RequestParam String userId) throws BindException {
+		System.out.println("포인트 내역 " + userId);
+		Map<String, Object> map = service.tradeList(userId);
+		return new Gson().toJson(map);
+
+	}
+
 }

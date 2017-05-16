@@ -1,4 +1,4 @@
-package com.icia.palette.vo;
+package com.icia.api.vo;
 
 import java.sql.*;
 
@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PointStateMent {
+public class PointStatement {
 	private Date tradeDate;
 	private String userId;
 	private int tradePoint;

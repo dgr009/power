@@ -140,12 +140,15 @@ public class UserService {
 		return result;
 	}
 
-	public String tradeList(String userId) {
+	// 포인트 충전 환급 내역 보기
+	public Map<String,Object> tradeList(String userId) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		HttpEntity requestEntity = new HttpEntity(headers);
-		String result = tpl.exchange("http://localhost:8087/api/users/getUserId", HttpMethod.POST, requestEntity, String.class).getBody();
-		return result;
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId),headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/tradeList", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 	}
 
 }
