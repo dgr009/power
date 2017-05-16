@@ -151,12 +151,91 @@ public class MainService {
 	
 	//검색창에 상품이름으로 검색해서 상품보기
 	public HashMap<String, Object> mainSearchItem(int pageNo,String itemName){
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, mainServiceCenterCnt);
-		
+		int mainItemCnt = dao.mainItemCnt();
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, mainItemCnt);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
-		map.put("list", dao.mainSeartchItem(pagination.getStartArticle(),itemName));
+		map.put("list",dao.mainSeartchItem(pagination.getStartArticle(),pagination.getEndArticle(),itemName));
 		return map;
 	}
 	
+	
+	//최신상품 등록순
+		public HashMap<String, Object> mainNewItem(int pageNo){
+			int mainItemCnt = dao.mainItemCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainItemCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainNewItem(pagination.getStartArticle(),pagination.getEndArticle()));
+			return map;
+		}
+		
+		
+		//베스트 상품 리스트
+		public HashMap<String, Object> mainBestItem(int pageNo,String itemName){
+			int mainItemCnt = dao.mainItemCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainItemCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainBestItem(pagination.getStartArticle(),pagination.getEndArticle()));
+			return map;
+		}
+		
+		
+		//마감임박 상품 갖고오기(남은 재고순)
+		public HashMap<String, Object> mainClosingItem(int pageNo){
+			int mainItemCnt = dao.mainItemCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainItemCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainBestItem(pagination.getStartArticle(),pagination.getEndArticle()));
+			return map;
+		}
+		
+		
+		//최신개설 홈페이지 갖고오기
+		public HashMap<String, Object> mainNewMiniHome(int pageNo){
+			int mainItemCnt = dao.mainItemCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainItemCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainNewMiniHome(pagination.getStartArticle(),pagination.getEndArticle()));
+			return map;
+		}
+		//개인 홈페이지 아이디로 검색
+		public HashMap<String, Object> mainUserIdSearch(int pageNo,String userId){
+			int mainHomeCnt = dao.mainHomeCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainHomeCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainUserIdSearch(pagination.getStartArticle(),pagination.getEndArticle(),userId));
+			return map;
+		}		
+		//개인 홈페이지 제목으로 검색
+		public HashMap<String, Object> mainUserTitleSearch(int pageNo,String userTitle){
+			int mainHomeCnt = dao.mainHomeCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainHomeCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainUserTitleSearch(pagination.getStartArticle(),pagination.getEndArticle(),userTitle));
+			return map;
+		}		
+		//카테고리별 리스트 상품조회
+		public HashMap<String, Object> mainCategoryList(int pageNo){
+			int mainCategoryCnt = dao.mainCategoryCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainCategoryCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainCategoryList(pagination.getStartArticle(),pagination.getEndArticle()));
+			return map;
+		}
+		//인기 홈페이지 제목으로 검색
+		public HashMap<String, Object> mainRankingHome(int pageNo){
+			int mainHomeCnt = dao.mainHomeCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, mainHomeCnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list",dao.mainRankingHome(pagination.getStartArticle(),pagination.getEndArticle()));
+			return map;
+		}
 }

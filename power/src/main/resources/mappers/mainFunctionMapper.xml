@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="api.dao.MainFunctionDao">
+	<!-- 아이탬 개수 -->
+	<select id="mainItemCnt" resultType="int">
+		select count(*) from item
+	</select>
 	
 	<!--검색창에 검색해서 상품보기-->
  	<select id="mainSearchItem" parameterType="hashmap" resultType="Mainitem">
@@ -48,7 +52,7 @@
  	</select>
 
 <!--최신개설 홈페이지 갖고오기 -->
- 	<select id="mainNewMinihome"  parameterType="hashmap" resultType="MainMiniHomePage">
+ 	<select id="mainNewMiniHome"  parameterType="hashmap" resultType="MainMiniHomePage">
 	<![CDATA[
 		select * from
 		(select rownum rnum,b.* from
@@ -57,7 +61,10 @@
 			where rnum>=#{start}
  	]]>
  	</select>
-
+	<!-- 아이탬 개수 -->
+	<select id="mainHomeCnt" resultType="int">
+		select count(*) from home
+	</select>
 
 <!-- 개인 홈페이지(아이디로) 검색 -->
 	<select id="mainUserIdSearch" parameterType="hashmap" resultType="MainMiniHomePage">
@@ -95,7 +102,7 @@
 			where rnum>=#{start}
 		]]>
 	</select>
- 
+ 	
  	<!-- 카테고리별상품조회(리스트) -->
  	<select id="mainCategoryList" parameterType="hashmap" resultType="MainCategoryList">
 	<![CDATA[
@@ -103,11 +110,15 @@
 		(select rownum rnum,b.* from 
 		(select i.item_no,i.item_name,i.item_content,i.item_price,i.item_size,i.item_inven,i.item_date,i.user_id,m.img_name  
 	    from item i,item_img m where m.img_no in(select min(img_no) from item_img group by item_no) and
-		i.item_no=m.item_no and i.small_kind=#{smallKind})b
+		i.item_no=m.item_no order by i.small_kind desc)b
 		where rownum<=#{end}) where rnum>=#{start}
 	]]>
 	</select>
 
+	<!-- 카테고리 개수 -->
+	<select id="mainCategoryCnt" resultType="int">
+		select count(*) from small_kind
+	</select>
 
 
 

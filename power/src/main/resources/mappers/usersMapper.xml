@@ -64,10 +64,17 @@
 	<update id="usersChargePoint" parameterType="hashmap">
 		update users set user_point=user_point+#{tradePoint} where user_id=#{userId}
 	</update>
+	<insert id="usersChargePointState" parameterType="hashmap">
+		insert into point_statement values(sysdate,#{userId},#{tradePoint},'충전') 
+	</insert>
+	
 	<!-- 포인트 환급하기 -->
 	<update id="usersRefundPoint" parameterType="hashmap">
 		update users set user_point=user_point-#{tradePoint} where user_id=#{userId}
 	</update>
+	<insert id="usersRefundPointState" parameterType="hashmap">
+		insert into point_statement values(sysdate,#{userId},#{tradePoint}*(-1),'환급') 
+	</insert>
 	<!-- 포인트 내역확인 -->
 	<select id="usersTradeList" parameterType="string" resultType="PointStatement">
 		select * from point_statement where user_id=#{userId}

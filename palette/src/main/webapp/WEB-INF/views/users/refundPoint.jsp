@@ -22,10 +22,10 @@
 </script>
 </head>
 <body>
-	<h1>충전 페이지</h1>
-	<form action="/palette/users/chargePoint" method="post">
-		충전하실 금액 : <input type="text" name="tradePoint">
-		<button>충전 하기</button>
+	<h1>환급 페이지</h1>
+	<form action="/palette/users/refundPoint" method="post">
+		환급하실 금액 : <input type="text" name="tradePoint">
+		<button>환급 하기</button>
 	</form>
 </body>
 </html>

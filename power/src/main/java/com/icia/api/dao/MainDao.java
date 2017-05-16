@@ -155,6 +155,10 @@ public class MainDao {
 			map.put("itemName",itemName);
 			return tpl.selectList("api.dao.MainFunctionDao.mainSearchItem",map);
 		}
+		//아이탬 게시판 전체개수
+		public int mainItemCnt(){
+			return tpl.selectOne("api.dao.MainFunctionDao.mainItemCnt");
+		}
 		//최신상품 등록순
 		public List<MainItem> mainNewItem(int start,int end){
 			HashMap<String,Object> map = new HashMap<String, Object>();
@@ -177,8 +181,12 @@ public class MainDao {
 			map.put("end", end);
 			return tpl.selectList("api.dao.MainFunctionDao.mainClosingItem",map);
 		}
+		//홈페이지  전체개수
+		public int mainHomeCnt(){
+			return tpl.selectOne("api.dao.MainFunctionDao.mainHomeCnt");
+		}
 		//최신개설 홈페이지 갖고오기
-		public List<MainMiniHomePage> mainNewMinihome(int start,int end){
+		public List<MainMiniHomePage> mainNewMiniHome(int start,int end){
 			HashMap<String,Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
@@ -200,12 +208,15 @@ public class MainDao {
 			map.put("homeTitle",homeTitle);
 			return tpl.selectList("api.dao.MainFunctionDao.mainUserTitleSearch",map);
 		}
+		//홈페이지  전체개수
+		public int mainCategoryCnt(){
+			return tpl.selectOne("api.dao.MainFunctionDao.mainCategoryCnt");
+		}
 		//카테고리별상품조회(리스트)
-		public List<MainCategoryList> mainCategoryList(int start,int end,String samllKind){
+		public List<MainCategoryList> mainCategoryList(int start,int end){
 			HashMap<String,Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
-			map.put("samllKind",samllKind);
 			return tpl.selectList("api.dao.MainFunctionDao.mainCategoryList",map);
 		}
 		//인기홈페이지(리스트)

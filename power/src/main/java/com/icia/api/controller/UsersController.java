@@ -105,7 +105,7 @@ public class UsersController {
 
 	// 회원 포인트 충전
 	@RequestMapping(value = "/chargePoint", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
-	public ResponseEntity<String> chargePointEnd(@RequestBody Map<String,Object> map) throws BindException {
+	public ResponseEntity<String> chargePointEnd(@RequestBody Map<String, Object> map) throws BindException {
 		int result = service.chargePoint(map);
 		if (result == 1)
 			return new ResponseEntity<String>("충전 성공", HttpStatus.OK);
@@ -113,4 +113,25 @@ public class UsersController {
 			return new ResponseEntity<String>("충전 실패", HttpStatus.BAD_REQUEST);
 
 	}
+
+	// 회원 포인트 충전
+	@RequestMapping(value = "/refundPoint", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> refundPointEnd(@RequestBody Map<String, Object> map) throws BindException {
+		int result = service.refundPoint(map);
+		if (result == 1)
+			return new ResponseEntity<String>("충전 성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("충전 실패", HttpStatus.BAD_REQUEST);
+
+	}
+
+	// 회원 토큰으로 정보 얻기
+	@RequestMapping(value = "/getUserId", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String getUserIdByToken(@RequestHeader("token") String token) {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		System.out.println("Power Controller Token : " + token);
+		String userId = service.getUserIdByToken(token);
+		return userId;
+	}
+
 }
