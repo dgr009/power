@@ -135,11 +135,39 @@ public class UsersController {
 	}
 
 	// 회원 포인트 충전 환급 내역 보기
-	@RequestMapping(value = "/tradeList", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
-	public String tradeList(@RequestParam String userId) throws BindException {
+	@RequestMapping(value = "/tradeList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String tradeList(@RequestHeader("token") String token) {
+		String userId = service.getUserIdByToken(token);
 		System.out.println("포인트 내역 " + userId);
-		Map<String, Object> map = service.tradeList(userId);
-		return new Gson().toJson(map);
+		List<TradeStatement> list = service.tradeList(userId);
+		return new Gson().toJson(list);
+
+	}
+
+	// 회원 탈퇴 비활성화
+	@RequestMapping(value = "/delete", method = RequestMethod.PUT, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> usersDeleteEnd(@RequestHeader("token") String token) {
+		String userId = service.getUserIdByToken(token);
+		System.out.println("비활성화 아이디 :  " + userId);
+		int result = service.deleteUser(userId);
+
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+
+	}
+
+	// 회원 탈퇴 비활성화
+	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.PUT, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> usersReverseEnd(@PathVariable String userId) {
+		System.out.println("활성화 아이디 :  " + userId);
+		int result = service.reverseUser(userId);
+
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
 
 	}
 

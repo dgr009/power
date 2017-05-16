@@ -82,7 +82,7 @@
 	<!-- 개인 회원 정보 보기 -->
 	<select id="usersInfo" parameterType="string" resultType="Users">
 		select user_name,user_id,user_address,user_post,
-			user_mail,user_phone,user_point,user_ishome,user_grade 
+			user_mail,user_phone,user_point,user_ishome,enabled,user_grade 
 		from users where user_id=#{userId}
 	</select>
 	<!-- 개인 회원 정보 변경 -->

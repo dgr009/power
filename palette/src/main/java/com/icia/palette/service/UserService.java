@@ -27,13 +27,14 @@ public class UserService {
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/login", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
-		session.setAttribute("token", result);
-		Users user = userInfo(session, userId);
-		session.setAttribute("user", user);
+		
 		System.out.println(result);
 		if (result.equals("로그인 실패")) {
 			return 0;
 		} else {
+			session.setAttribute("token", result);
+			Users user = userInfo(session, userId);
+			session.setAttribute("user", user);
 			return 1;
 		}
 
@@ -141,14 +142,39 @@ public class UserService {
 	}
 
 	// 포인트 충전 환급 내역 보기
-	public Map<String,Object> tradeList(String userId) {
+	public List<TradeStatement> tradeList(HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId),headers);
+		headers.add("token", (String) session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
 		String result = tpl.exchange("http://localhost:8087/api/users/tradeList", HttpMethod.POST, requestEntity, String.class).getBody();
-		Map<String,Object> map = new Gson().fromJson(result, Map.class);
-		return map;
+		List<TradeStatement> list = new Gson().fromJson(result, List.class);
+		return list;
+	}
+
+	//유저 비활성화(탈퇴)
+	public String deleteUser(HttpSession session) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String) session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/users/delete", HttpMethod.PUT, requestEntity, String.class)
+				.getBody();
+
+		System.out.println(result);
+		return result;
+	}
+
+	//회원 활성화
+	public String reverseUser(String userId) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/reverse/{userId}", HttpMethod.PUT, requestEntity,String.class,userId).getBody();
+
+		System.out.println(result);
+		return result;
 	}
 
 }
