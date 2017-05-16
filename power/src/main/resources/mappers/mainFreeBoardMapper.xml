@@ -70,23 +70,29 @@
 	<delete id="mainFreeBoardRepleDelete" parameterType="int">
 		delete from main_free_reple where main_free_reple_no=#{mainFreeRepleNo}
 	</delete>
-	
+	<!--댓글 전체삭제 -->
+	<delete id="mainFreeBoardRepleAllDelete" parameterType="int">
+		delete from main_free_reple where main_free_reple_no=#{mainArticleNo}
+	</delete>
 	<!-- 답글의 개수를 1 증가시킨다 -->
-	<update id="incrementFreeRepleCnt" parameterType="int">
-		update board set main_free_reple_cnt=main_free_reple_cnt+1 where main_article_no=#{mainArticleNo}
+	<update id="incrementMainFreeRepleCnt" parameterType="int">
+		update board set main_free_reple_cnt=main_free_reple_cnt+1 where main_free_reple_no=#{mainFreeRepleNo}
 	</update>
 	<!--  자유게시판 전체 댓글 보기 -->
-	<select id="freeReleCnt"  parameterType="int" resultType="MainFreeReple">
+	<select id="mainFreeRepleAllCnt"  parameterType="int" resultType="MainFreeReple">
 		select main_free_reple_no,main_free_reple_name,main_free_reple_content,main_free_date
 		from main_free_reple where main_article_no=#{mainArticleNo}
 	
 	</select>
 	<!--  답글의 개수를 1 감소시킨다 -->
-	<update id="decrementFreeRepleCnt" parameterType="int">
-		update board set main_free_reple_cnt=main_free_reple_cnt-1 where main_free_reple_no=#{mainArticleNo}
+	<update id="decrementMainFreeRepleCnt" parameterType="int">
+		update board set main_free_reple_cnt=main_free_reple_cnt-1 where main_free_reple_no=#{mainFreeRepleNo}
 	</update>
-	
-	
+	<!-- 댓글 하나만 조회 -->
+	<select id="mainFreeRepleOne"  parameterType="int" resultType="MainFreeReple">
+		select main_free_reple_no,main_free_reple_name,main_free_reple_content,main_free_date
+		from main_free_reple where main_article_no=#{mainFreeRepleNo}
+	</select>
 
 
 </mapper>
