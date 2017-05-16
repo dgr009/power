@@ -55,12 +55,12 @@ public class MiniHomeBoardDao {
 	
 	//(개인)자유게시판 수정
 	public int miniHomeUpdateFree(MiniHomeFree free){
-		return tpl.insert("api.dao.MiniHomeBoardDao.miniHomeUpdateFree",free);
+		return tpl.update("api.dao.MiniHomeBoardDao.miniHomeUpdateFree",free);
 	} 
 	
 	//(개인)자유게시판 삭제
-	public void miniHomeDeleteFree(int freeNo){
-		tpl.insert("api.dao.MiniHomeBoardDao.miniHomeDeleteFree",freeNo);
+	public int miniHomeDeleteFree(int freeNo){
+		return tpl.delete("api.dao.MiniHomeBoardDao.miniHomeDeleteFree",freeNo);
 	} 
 	
 	//(개인)자유게시판 리스트

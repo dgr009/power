@@ -27,6 +27,11 @@
 		</table>
 		<input type="submit" value="수정">
 	</form>
+	<form action="/palette/miniHome/${mini.userId }/freeDelete/${mini.freeNo}" method="post">
+		<input type="submit" value="삭제">
+		<input type="hidden" value="${mini.userId }" name="userId" id="userId">
+		<input type="hidden" value="${mini.freeNo }" name="freeNo" id="freeNo">
+	</form>
 	
 </body>
 </html>

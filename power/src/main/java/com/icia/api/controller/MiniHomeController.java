@@ -60,10 +60,10 @@ public class MiniHomeController {
 	}
 	
 	//수정
-	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}", method=RequestMethod.PUT, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String> update(@RequestHeader("token") String token, @RequestBody MiniHomeFree free) throws BindException {
-		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		int result = service.miniHomeUpdateFree(free);;
+		System.out.println("-=-==-=-=-=-=-=-=-=--=--=="+free.toString());
+		int result = service.miniHomeUpdateFree(free);
 			
 		if(result==1){
 			return new ResponseEntity<String>(free.toString(),HttpStatus.OK);
@@ -72,7 +72,21 @@ public class MiniHomeController {
 		}
 	}
 	
-	
+	//자유게시판 삭제
+	@RequestMapping(value="/{userId}/freeDelete/{freeNo}", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> delete(@RequestHeader("token") String token, @PathVariable int freeNo, @PathVariable String userId) throws BindException {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		int result = service.miniHomeDeleteFree(freeNo);
+			
+		if(result==1){
+			return new ResponseEntity<String>(HttpStatus.OK);
+			
+		}else{
+			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
+			
+		}
+		}
+
 	
 	
 	

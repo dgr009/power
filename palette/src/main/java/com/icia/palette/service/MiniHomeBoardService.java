@@ -70,15 +70,25 @@ public class MiniHomeBoardService {
 		headers.add("token", (String) session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
+		System.out.println(free);
 		String result = tpl
-				.exchange("http://localhost:8087/api/miniHome/{userId}/freeUpdate/{freeNo}", HttpMethod.PUT, requestEntity, String.class)
+				.exchange("http://localhost:8087/api/miniHome/{userId}/freeUpdate/{freeNo}", HttpMethod.PUT, requestEntity, String.class,free.getUserId(),free.getFreeNo())
 				.getBody();
 
 		System.out.println(result);
 		if (!result.equals("수정 실패"))
 			session.removeAttribute("token");
 	}
-	
+	//자유게시판 삭제
+	public void miniHomeDeleteFree(HttpSession session,int freeNo,String userId){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity =  new  HttpEntity (headers);
+		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeDelete/{freeNo}", HttpMethod.DELETE, requestEntity, String.class,userId,freeNo).getBody();
+		
+	}
 }
 
 

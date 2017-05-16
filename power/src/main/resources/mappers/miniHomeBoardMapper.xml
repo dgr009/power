@@ -58,7 +58,7 @@
 	
 	<!--  (개인)자유게시판 수정-->
 	<update id="miniHomeUpdateFree" parameterType="MiniHomeFree">
-		update free_board set title=#{freeTitle}, content=#{freeContent} where free_no=#{freeNo}
+		update free_board set free_title=#{freeTitle}, free_content=#{freeContent} where free_no=#{freeNo}
 	</update>
 	
 	<!--  (개인)자유게시판 삭제-->
