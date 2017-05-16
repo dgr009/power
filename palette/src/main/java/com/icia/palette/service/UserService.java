@@ -25,7 +25,9 @@ public class UserService {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(map), headers);
 		String result = tpl.exchange("http://localhost:8087/api/users/login", HttpMethod.POST, requestEntity, String.class).getBody();
-		session.setAttribute("token", result);		
+		session.setAttribute("token", result);	
+		Users user = userInfo(session,userId);
+		session.setAttribute("user", user);
 		System.out.println(result);
 		if(result.equals("로그인 실패")){
 			return 0;
@@ -38,6 +40,7 @@ public class UserService {
 	//회원 로그아웃
 	public void logout(HttpSession session) {
 		session.removeAttribute("token");
+		session.removeAttribute("user");
 	}
 	
 	//회원 가입

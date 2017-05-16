@@ -4,6 +4,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 import com.google.gson.*;
 import com.icia.api.dao.*;
@@ -73,8 +74,19 @@ public class UsersService {
 	}
 
 	// 회원 포인트 충전
+	@Transactional
 	public int chargePoint(Map<String, Object> map) {
-		return dao.chargePoint((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		int result = dao.chargePoint((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		dao.chargePointState((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		return result;
+	}
+
+	// 회원 포인트 환급
+	@Transactional
+	public int refundPoint(Map<String, Object> map) {
+		int result = dao.refundPoint((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		dao.refundPointState((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		return result;
 	}
 
 	// 토큰으로 userId 값 가져오기

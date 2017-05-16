@@ -101,12 +101,28 @@ public class UsersDao {
 		return tpl.update("api.dao.UsersDao.usersChargePoint", map);
 	}
 
+	// 포인트 충전내역 추가하기
+	public int chargePointState(String userId, int tradePoint) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("tradePoint", tradePoint);
+		return tpl.insert("api.dao.UsersDao.usersChargePointState", map);
+	}
+
 	// 포인트 환급하기
 	public int refundPoint(String userId, int tradePoint) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("tradePoint", tradePoint);
 		return tpl.update("api.dao.UsersDao.usersRefundPoint", map);
+	}
+
+	// 포인트 환급내역 추가하기
+	public int refundPointState(String userId, int tradePoint) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("tradePoint", tradePoint);
+		return tpl.insert("api.dao.UsersDao.usersRefundPointState", map);
 	}
 
 	// 포인트 내역확인

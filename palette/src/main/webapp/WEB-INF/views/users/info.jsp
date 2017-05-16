@@ -1,3 +1,4 @@
+<%@page import="com.icia.palette.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -47,6 +48,7 @@
 		<tr><td>핸드폰</td><td>${user.userPhone}</td></tr>
 		<tr><td>주소</td><td>${user.userAddress}</td></tr>
 		<tr><td>우편번호</td><td>${user.userPost}</td></tr>
+		<tr><td>포인트</td><td>${user.userPoint}</td></tr>
 	</table>
 	
 	<button  id="update" onclick='location.href="http://localhost:8087/palette/users/update/${user.userId }"'>개인정보 수정하기</button>

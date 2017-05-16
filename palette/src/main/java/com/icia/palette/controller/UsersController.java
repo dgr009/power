@@ -84,14 +84,31 @@ public class UsersController {
 		return "maintest";
 	}
 
+	//포인트 충전하기 페이지
 	@RequestMapping(value="/chargePoint/{userId}",method = RequestMethod.GET)
 	public String chargePointStart(HttpSession session,@PathVariable String userId,Model model){
 		model.addAttribute("userId", userId);
 		return "users/chargePoint";
 	}
 	
+	//포인트 충전하기
 	@RequestMapping(value="/chargePoint",method = RequestMethod.POST)
 	public String chargePointEnd(HttpSession session,@RequestParam int tradePoint){
+		String userId = service.getUserIdByToken(session);
+		service.chargePoint(session,userId,tradePoint);
+		return "maintest";
+	}
+	
+	//포인트 환급하기 페이지
+	@RequestMapping(value="/refundPoint/{userId}",method = RequestMethod.GET)
+	public String refundPointStart(HttpSession session,@PathVariable String userId,Model model){
+		model.addAttribute("userId", userId);
+		return "users/refundPoint";
+	}
+	
+	//포인트 환급하기
+	@RequestMapping(value="/refundchargePoint",method = RequestMethod.POST)
+	public String refundPointEnd(HttpSession session,@RequestParam int tradePoint){
 		String userId = service.getUserIdByToken(session);
 		service.chargePoint(session,userId,tradePoint);
 		return "maintest";
