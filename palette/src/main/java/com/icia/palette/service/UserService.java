@@ -14,9 +14,9 @@ import com.icia.palette.vo.*;
 @Service
 public class UserService {
 
+	//회원 로그인
 	public int login(String userId, String userPwd, HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
-		
 		HashMap<String, String> map = new HashMap<String, String>();
 		System.out.println("아이디 비번 : " + userId +" " + userPwd);
 		map.put("userId", userId);
@@ -34,8 +34,14 @@ public class UserService {
 		}
 		
 	}
-
-	public void insert(HttpSession session, Users user) {
+	
+	//회원 로그아웃
+	public void logout(HttpSession session) {
+		session.removeAttribute("token");
+	}
+	
+	//회원 가입
+	public void insert(Users user) {
 		RestTemplate tpl = new RestTemplate();
 		System.out.println("Service User" + user);
 		HttpHeaders headers = new HttpHeaders();
@@ -45,7 +51,8 @@ public class UserService {
 		
 		System.out.println(result);
 	}
-
+	
+	//회원 정보보기
 	public Users userInfo(HttpSession session,String userId) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -54,9 +61,23 @@ public class UserService {
 		System.out.println(requestEntity);
 		String result = tpl.exchange("http://localhost:8087/api/users/info/{userId}", HttpMethod.GET, requestEntity, String.class,userId).getBody();
 		Users user = new Gson().fromJson(result, Users.class);
-		System.out.println(user);
+		System.out.println("userInfo : "+user);
 		
 		return user;
+	}
+
+	//회원 정보 수정
+	public void updateUser(HttpSession session,Users user) {
+		RestTemplate tpl = new RestTemplate();
+		System.out.println("Service User" + user);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(user), headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/update", HttpMethod.PUT, requestEntity, String.class).getBody();
+		
+		System.out.println(result);
+		if(!result.equals("수정 실패"))
+			session.removeAttribute("token");
 	}
 	
 }

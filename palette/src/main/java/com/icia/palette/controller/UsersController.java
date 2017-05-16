@@ -24,7 +24,7 @@ public class UsersController {
 	
 	@RequestMapping(value="/home")
 	public String home(){
-		return "main";
+		return "maintest";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -36,7 +36,13 @@ public class UsersController {
 	public String loginEnd(HttpSession session,@RequestParam String userId,@RequestParam String userPwd,Model model) {
 		int result = service.login(userId,userPwd,session);
 		if(result==1) model.addAttribute("user", service.userInfo(session,userId));
-		return "main";
+		return "maintest";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout (HttpSession session){
+		service.logout(session);
+		return "maintest";
 	}
 	
 	@RequestMapping(value="/insert",method = RequestMethod.GET)
@@ -45,9 +51,9 @@ public class UsersController {
 	}
 	
 	@RequestMapping(value="/insert",method = RequestMethod.POST)
-	public String insertEnd(HttpSession session,@ModelAttribute Users user){
-		service.insert(session,user);
-		return "main";
+	public String insertEnd(@ModelAttribute Users user){
+		service.insert(user);
+		return "maintest";
 	}
 	
 	@RequestMapping(value="/info/{userId}",method = RequestMethod.GET)
@@ -58,15 +64,25 @@ public class UsersController {
 	
 	@RequestMapping(value="/findId",method = RequestMethod.GET)
 	public String findIdStart(){
-		return "users/usersFindId";
+		return "users/findId";
 	}
 	
 	
 	@RequestMapping(value="/findPwd",method = RequestMethod.GET)
 	public String findPwdStart(){
-		return "users/usersFindPwd";
+		return "users/findPwd";
 	}
 	
+	@RequestMapping(value="/update/{userId}",method = RequestMethod.GET)
+	public String updateStart(HttpSession session,@PathVariable String userId,Model model){
+		model.addAttribute("user", service.userInfo(session,userId));
+		return "users/update";
+	}
+	@RequestMapping(value="/update",method = RequestMethod.POST)
+	public String updateEnd(HttpSession session,@ModelAttribute Users user){
+		service.updateUser(session,user);
+		return "maintest";
+	}
 
 	
 }
