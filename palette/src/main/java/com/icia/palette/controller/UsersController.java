@@ -90,9 +90,9 @@ public class UsersController {
 		return "users/chargePoint";
 	}
 	
-	@RequestMapping(value="/chargePoint/{userId}",method = RequestMethod.POST)
-	public String chargePointEnd(HttpSession session,@PathVariable String userId,@RequestParam int tradePoint){
-		service.chargePoint(session,userId,tradePoint);
+	@RequestMapping(value="/chargePoint",method = RequestMethod.POST)
+	public String chargePointEnd(HttpSession session,@RequestParam int tradePoint){
+		service.chargePoint(session,tradePoint);
 		return "maintest";
 	}
 	

@@ -71,6 +71,7 @@ public class UserService {
 		RestTemplate tpl = new RestTemplate();
 		System.out.println("Service User" + user);
 		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(user), headers);
 		String result = tpl.exchange("http://localhost:8087/api/users/update", HttpMethod.PUT, requestEntity, String.class).getBody();
@@ -84,6 +85,7 @@ public class UserService {
 	public void chargePoint(HttpSession session, String userId,int tradePoint) {
 		RestTemplate tpl = new RestTemplate();
 		Map<String,Object> map =new HashMap<String, Object>();
+		System.out.println(userId);
 		map.put("userId", userId);
 		map.put("tradePoint", tradePoint);
 		System.out.println("Service Map : " + map);
