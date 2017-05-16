@@ -50,8 +50,8 @@ public class MiniHomeBoardService {
 	}
 	
 	//(개인)자유게시판 작성
-	public void miniHomeRegisterFree(MiniHomeFree free){
-		dao.miniHomeRegisterFree(free);
+	public int miniHomeRegisterFree(MiniHomeFree free){
+		 return dao.miniHomeRegisterFree(free);
 	}
 	
 	//(개인)자유게시판 수정
@@ -113,6 +113,20 @@ public class MiniHomeBoardService {
 	//자유게시판 댓글 전체삭제
 	public void miniHomeDeleteAllFreeReple(int freeNo){
 		dao.miniHomeDeleteAllFreeReple(freeNo);
+	}
+
+	
+	// 토큰으로  userId 값 가져오기
+	public String getUserIdByToken(String token) {
+		String userId = null;
+		if(TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if(role.equals("ROLE_USER")){
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return userId;
 	}
 	
 	

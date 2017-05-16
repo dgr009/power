@@ -27,7 +27,7 @@ public class MainDao {
 		return tpl.selectList("api.dao.MainFreeBoardDao.mainFreeBoardList",map);
 	}
 	//자유게시판 상세보기 
-	public MainFreeBoard mainFreeBoardViw(int mainArticleNo){
+	public MainFreeBoard mainFreeBoardView(int mainArticleNo){
 		return tpl.selectOne("api.dao.MainFreeBoardDao.mainFreeBoardView",mainArticleNo);
 	}
 	//자유게시판 조회수 증가
@@ -113,9 +113,13 @@ public class MainDao {
 	public void mainNoticeBoardDelete(int mainNoticeArticleNo){
 		tpl.delete("api.dao.MainNoticeDao.mainFreeBoardDelete",mainNoticeArticleNo);
 	}	
+	//공지게시판 조회수 증가
+	public void mainNoticeBoardHitsCnt(int mainNoticeArticleNo){
+		tpl.update("api.dao.MainNoticeBoardDao.mainNoticeBoardHitsCnt",mainNoticeArticleNo);
+	}
 	/*-------------------------고객센터 게시판 ------------------------------*/
 	//고객센터 게시판 전체개수
-	public int mainServiceCenterCount(){
+	public int mainServiceCenterCnt(){
 		return tpl.selectOne("api.dao.MainServiceCenter.mainServiceCenterCount");
 	}
 	//고객센터 게시판 페이징

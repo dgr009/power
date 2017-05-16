@@ -45,7 +45,7 @@ public class MainService {
 	@Transactional
 	public MainFreeBoard mainFreeBoardView(int mainArticleNo){
 		dao.mainFreeBoardHitsCnt(mainArticleNo);
-		return dao.mainFreeBoardViw(mainArticleNo);
+		return dao.mainFreeBoardView(mainArticleNo);
 		
 	}
 	//메인 자유게시판 댓글하나 조회
@@ -58,9 +58,94 @@ public class MainService {
 		return dao.MainFreeRepleAllCnt(mainArticleNo);
 	}
 	//메인 자유게시판 댓글 생성
-	public void MainFreeRepleInsert(int mainArticleNo,MainFreeReple mainFreeReple){
-		dao.incrementFreeRepleCnt(mainArticleNo);
+	@Transactional
+	public void MainFreeRepleInsert(int mainFreeRepleNo,MainFreeReple mainFreeReple){
+		dao.incrementFreeRepleCnt(mainFreeRepleNo);
 		dao.mainFreeBoardRepleInsert(mainFreeReple);
 	}
+	//메인 자유게시판 댓글 수정
+	public void MainFreeRepleUpdate(MainFreeReple mainFreeReple){
+		dao.mainFreeBoardRepleUpdate(mainFreeReple);
+	}
+	//자유게시판 댓글 삭제
+	@Transactional
+	public void mainFreeRepleDelete(int mainArticleNo, int mainFreeRepleNo){
+		dao.decrementMainFreeRepleCnt(mainArticleNo);
+		dao.mainFreeBoardRepleDelete(mainFreeRepleNo);
+	}
+	//자유게시판 댓글 모두삭제
+	public void mainFreeRepleAllDelete(int mainArticleNo){
+		dao.mainFreeBoardRepleAllDelete(mainArticleNo);
+	}
+	
+	// 토큰으로  userId 값 가져오기
+	public String getUserIdByToken(String token) {
+		String userId = null;
+		if(TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if(role.equals("ROLE_USER")){
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return userId;
+	 }
+	
+	/*---------------------------공지 게시판 ------------------------------*/
+	
+	//메인 공지게시판 페이징
+	public HashMap<String, Object> MainNoticeBoardList(int pageNo){
+		int mainNoticeCnt = dao.mainNoticeCnt();
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, mainNoticeCnt);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.mainNoticeBoardList(pagination.getStartArticle(),pagination.getEndArticle()));
+		return map;
+	}
+	//메인 공지게시판 작성
+	public void mainNoticeInsert(MainNoticeBoard mainNoticeArticleBoard){
+		dao.mainNoticeBoardInsert(mainNoticeArticleBoard);
+	}
+	//메인 공지게시판 수정
+	public void mainNoticeBoardUpdate(MainNoticeBoard mainNoticeArticleBoard){
+		dao.mainNoticeBoardUpdate(mainNoticeArticleBoard);
+	}
+	//메인 공지게시판 삭제
+	public void mainNoticeBoardDalete(int mainNoticeArticleNo){
+		dao.mainNoticeBoardDelete(mainNoticeArticleNo);
+	}
+	//메인 공지게시판 뷰
+	@Transactional
+	public MainNoticeBoard mainNoticeBoardView(int mainNoticeArticleNo){
+		dao.mainNoticeBoardHitsCnt(mainNoticeArticleNo);
+		return dao.mainNoticeBoardView(mainNoticeArticleNo);
+			
+	}
+	/*-------------------------고객센터 게시판 ------------------------------*/
+	//메인 고객센터 게시판 페이징
+	public HashMap<String, Object> MainServiceCenterList(int pageNo){
+		int mainServiceCenterCnt = dao.mainServiceCenterCnt();
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, mainServiceCenterCnt);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.mainServiceCenterList(pagination.getStartArticle(),pagination.getEndArticle()));
+		return map;
+	}
+	//메인 고객센터 게시판 작성
+	public void mainServiceCenterInsert(ServiceCenter serviceCenter){
+		dao.mainServiceCenterInsert(serviceCenter);
+	}
+	//메인 고객센터 게시판 수정
+	public void mainServiceCenterUpdate(ServiceCenter serviceCenter){
+		dao.mainServiceCenterUpdate(serviceCenter);
+	}
+	//메인 고객센 게시판 삭제
+	public void mainServiceCenterDelete(int faqNo){
+		dao.mainServiceCenterDelete(faqNo);
+	}
+	//메인 고객센터 게시판 뷰
+	public ServiceCenter mainServiceCenterView(int faqNo){
+		return dao.mainServiceCenterView(faqNo);
+	}		
 	
 }

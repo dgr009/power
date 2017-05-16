@@ -44,6 +44,9 @@
 		,main_notice_article_content=#{mainNoticeArticleContent}
 		 where main_notice_article_no=#{mainNoticeArticleNo}
 	</update>	
-	
+	<!--공지게시판 조회수 증가 -->
+	<update id="mainNoticeBoardHitsCnt" parameterType="int">
+		select main_notice_board set main_notice_article_hits=main_notice_article_hits+1 where main_notice_article_no=#{mainNoticeArticleNo}
+	</update>
 	
 </mapper>
