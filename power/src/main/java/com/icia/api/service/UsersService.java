@@ -103,10 +103,17 @@ public class UsersService {
 	}
 
 	// 회원 충전 환급 내역 확인하기
-	public Map<String,Object> tradeList(String userId) {		
-		List<TradeStatement> list = dao.tradeList(userId);
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		return map;
+	public List<TradeStatement> tradeList(String userId) {		
+		return dao.tradeList(userId);
+	}
+
+	//회원 비활성화
+	public int deleteUser(String userId) {
+		return dao.userDelete(userId);
+	}
+
+	//회원 활성화
+	public int reverseUser(String userId) {
+		return dao.userReverse(userId);
 	}
 }

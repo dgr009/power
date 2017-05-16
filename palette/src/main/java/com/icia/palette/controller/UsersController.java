@@ -36,8 +36,14 @@ public class UsersController {
 	public String loginEnd(HttpSession session, @RequestParam String userId, @RequestParam String userPwd,
 			Model model) {
 		int result = service.login(userId, userPwd, session);
-		if (result == 1)
-			model.addAttribute("user", service.userInfo(session, userId));
+		if (result == 1) {
+			Users user = service.userInfo(session, userId);
+			model.addAttribute("user", user);
+			if (user.getEnabled().equals("0")) {
+				service.logout(session);
+				return "users/usersReverse";
+			}
+		}
 		return "maintest";
 	}
 
@@ -118,9 +124,29 @@ public class UsersController {
 	// 포인트 환급하기 페이지
 	@RequestMapping(value = "/tradeList", method = RequestMethod.GET)
 	public String tradeList(HttpSession session, Model model) {
-		String userId = service.getUserIdByToken(session);
-		model.addAttribute("tradeList", service.tradeList(userId));
+		model.addAttribute("tradeList", service.tradeList(session));
 		return "users/tradeList";
 	}
 
+	// 회원 비활성화(탈퇴) 페이지
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteStart() {
+		return "users/usersDelete";
+	}
+
+	// 회원 비활성화(탈퇴)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deleteEnd(HttpSession session) {
+		service.deleteUser(session);
+		service.logout(session);
+
+		return "maintest";
+	}
+
+	// 회원 비활성화(탈퇴)
+	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.POST)
+	public String deleteEnd(HttpSession session, @PathVariable String userId) {
+		service.reverseUser(userId);
+		return "maintest";
+	}
 }
