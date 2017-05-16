@@ -28,8 +28,8 @@
 		<![CDATA[
 			select b2.* from 
 			  (select rownum rnum, b.* from
-			    (select notice_article_no noticeArticleNo, notice_article_title noticeArticleTitle ,
-			    notice_article_date noticeArticleDate,user_id userId from notice_board where user_id=#{userId} 
+			    (select notice_article_no, notice_article_title,
+			    notice_article_date,user_id from notice_board where user_id=#{userId} 
 			    order by notice_article_no desc) b
 			  where rownum<=#{end}) b2
 			where rnum>=#{start}
@@ -53,7 +53,7 @@
 		<selectKey keyProperty="freeNo" resultType="int" order="BEFORE">
 			select seq_free.nextval from dual
 		</selectKey>
-		insert into free_board values(#{freeNo},#{freeTitle},#{freeName},0,#{freeContent},sysdate,#{userId})
+		insert into free_board values(#{freeNo},#{freeTitle},#{freeName},0,#{freeContent},sysdate,#{userId},0)
 	</insert>
 	
 	<!--  (개인)자유게시판 수정-->
@@ -71,8 +71,8 @@
 		<![CDATA[
 			select * from 
 			  (select rownum rnum, b.* from
-			    (select free_no freeNo,free_title freeTitle, free_name freeName, free_hits freeHits,
-			    free_content freeContent, free_date freeDate,user_id userId 
+			    (select free_no ,free_title , free_name , free_hits,
+			    free_content , free_date ,user_id , free_reple_cnt 
 			    from free_board where user_id=#{userId} order by free_no desc) b
 			  where rownum<=#{end}) 
 			where rnum>=#{start}
@@ -80,7 +80,8 @@
 	</select>
 	<!--  (개인)자유게시판 뷰-->
 	<select id="miniHomeSelectFreeView" parameterType="int" resultType="MiniHomeFree">
-		select free_no,free_title,free_name,free_hits,free_content,free_date,user_id from free_board where free_no=#{freeNo}
+		select free_no ,free_title ,free_name ,free_hits ,free_content ,
+		free_date ,user_id, free_reple_cnt from free_board where free_no=#{freeNo}
 	</select>
 	
 	<!--  (개인)자유게시판 총 게시글 수-->
@@ -100,6 +101,40 @@
 	<update id="miniHomeFreeIncreaseHits" parameterType="int">
 		update free_board set free_hits=free_hits+1 where free_no=#{freeNo}
 	</update>
+	
+	<!-- 자유게시판 댓글 작성 -->
+	<insert id="miniHomeRegisterFreeReple" parameterType="MiniHomeFreeReple">
+		<selectKey keyProperty="freeRepleNo" resultType="int" order="BEFORE">
+			select seq_free_reple.nextval from dual
+		</selectKey>
+		insert into free_reple values(#{freeRepleNo},#{freeRepleName},#{freeRepleContent},sysdate,#{freeNo})
+	</insert>
+	
+	<!-- 자유게시판 댓글 수정 -->
+	<update id="miniHomeUpdateFreeReple" parameterType="MiniHomeFreeReple">
+		update free_reple set free_reple_content=#{freeContent}, free_reple_date=sysdate
+		where free_reple_no=#{freeRepleNo}
+	</update>
+	
+	<!-- 자유게시판 댓글 삭제 -->
+	<delete id="miniHomeDeleteFreeReple" parameterType="int">
+		delete from free_reple where free_reple_no=#{freeRepleNo}
+	</delete>
+	
+	<!-- 자유게시판 댓글 전체삭제(글을 삭제하면 해당글의 댓글도 모두 삭제한다) -->
+	<delete id="miniHomeDeleteAllFreeReple" parameterType="int">
+		delete from free_reple where free_no=#{freeNo}
+	</delete>
+	
+	<!-- 댓글의 개수를 1 증가시킨다 -->
+	<update id="miniHomeIncreaseFreeRepleCnt" parameterType="int">
+		update free_board set free_reple_cnt=free_reple_cnt+1 where free_no=#{free_no}
+	</update>
+	
+	<!-- 댓글의 개수를 1 감소시킨다 -->
+	<update id="miniHomeDecreaseFreeRepleCnt" parameterType="int">
+		update free_board set free_reple_cnt=free_reple_cnt+1 where free_no=#{free_no}
+	</update>	
 	
 	
 </mapper>

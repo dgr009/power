@@ -15,4 +15,5 @@ public class MiniHome {
 	private Date homeOpne;
 	private int homeHits;
 	private String homeIntroduce;
+	
 }

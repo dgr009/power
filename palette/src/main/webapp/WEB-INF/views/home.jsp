@@ -9,6 +9,6 @@
 	Hello world!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<a href="http://localhost:8087/power/login">dd</a>
 </body>
 </html>

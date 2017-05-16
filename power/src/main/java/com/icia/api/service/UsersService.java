@@ -1,14 +1,13 @@
 package com.icia.api.service;
 
-import java.io.*;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
-import com.auth0.jwt.*;
-import com.auth0.jwt.algorithms.*;
+import com.google.gson.*;
 import com.icia.api.dao.*;
+import com.icia.api.util.*;
 import com.icia.api.vo.*;
 
 @Service
@@ -16,48 +15,65 @@ public class UsersService {
 
 	@Autowired
 	private UsersDao dao;
-	
-	public void insertUser(Users user){
-		dao.insertUser(user);
+
+	// 회원 가입
+	public int insertUser(Users user) {
+		return dao.insertUser(user);
 	}
-	public int hasUserId(String userId){
+
+	// 아이디 중복확인
+	public int hasUserId(String userId) {
 		return dao.hasUserId(userId);
 	}
-	public String FindId(String userName,String userMail){
-		return dao.findId(userName,userMail);
+
+	// 이메일 중복확인
+	public int hasUserMail(String userMail) {
+		return dao.hasUserMail(userMail);
 	}
-	public String FindPwd(String userId,String userName,String userMail){
-		return dao.findPwd(userId,userName,userMail);
+
+	// 아이디 찾기
+	public String findId(String userName, String userMail) {
+		return dao.findId(userName, userMail);
 	}
-	public String userLogin(String userId,String userPwd){
-		String token = "";
-		Users user = dao.userLogin(userId,userPwd);
-		if(user==null)
-			return token;
-		
-		//현재시간을 얻어 1시간을 더한다음 Date로 형변화
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR_OF_DAY) + 1);
-		Date date = new Date(cal.getTimeInMillis());
-		//암호화(인증) 알고리즘을 지정
-		Algorithm algorithm;
-		try {
-			algorithm = Algorithm.HMAC256("chs");
-			token = JWT.create().withIssuer("admin").withSubject(user.getUserId()).withExpiresAt(date).withClaim("issue", "icia").sign(algorithm);
-			
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+	// 비밀번호 찾기
+	public String findPwd(String userId, String userName, String userMail) {
+		return dao.findPwd(userId, userName, userMail);
+	}
+
+	// 로그인시 아이디와 비밀번호 토큰 발급해주기
+	public String userLogin(Users user) {
+		Users realUser = dao.userLogin(user);
+		// 로그인에 실패하면 null이 돌아와 바로 비교하면 Null Pointer Exception
+		if (realUser != null) {
+			return TokenUtils.getToken(realUser);
+		} else {
+			return null;
 		}
-		
-		return token;
 	}
-	
-	public void userLogout(){
-		
+
+	// 회원 토큰 권환 조회후 정보 주기
+	public Users read(String userId, String token) {
+		Users realUser = new Users();
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (!role.equals("ROLE_USER"))
+				realUser = new Users("권한 부족");
+			else
+				realUser = dao.userInfo(userId);
+		} else
+			realUser = new Users("토큰 인증 실패");
+		return realUser;
 	}
-	
+
+	//회원 정보 수정
+	public int updateUser(Users user){
+		return dao.userUpdate(user);
+	}
+
+	//회원 포인트 충전
+	public int chargePoint(Map<String, Object> map) {
+		return dao.chargePoint((String)map.get("userId"), (Integer)map.get("tradePoint"));
+	}
 }
