@@ -10,23 +10,21 @@
 <div class="col-lg-3 col-md-3 col-sm-3">
 
 							<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/update" class="btn btn-block btn-default">내 정보 수정</a>
+									<a href="/hooligan/employee/update" class="btn btn-block btn-default">홈페이지 설정</a>
 								</div>
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/productRegister" class="btn btn-block btn-default">상품 판매등록</a>
+									<a href="/palette/miniHome/{userid}/admin/register" class="btn btn-block btn-default">상품 판매등록</a>
 								</div>
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/productList" class="btn btn-block btn-default">내 상품조회</a>
+									<a href="/palette/miniHome/{userid}/admin/productList" class="btn btn-block btn-default">내 상품조회리스트</a>
 								</div>
-								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/refund" class="btn btn-block btn-default">포인트 환급하기</a>
+									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 결제</a>
 								</div>
-								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">회원 탈퇴</a>
+									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 폐쇄</a>
 								</div>
 
 							</div>

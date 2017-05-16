@@ -11,5 +11,7 @@ public class ItemImg {
  private int imgNo;
  private String imgName;
  private int itemNO;
- 
+	public ItemImg(String imgname){
+		this.imgName=imgname;
+	}
 }
