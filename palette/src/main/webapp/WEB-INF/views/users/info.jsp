@@ -51,9 +51,10 @@
 		<tr><td>포인트</td><td>${user.userPoint}</td></tr>
 	</table>
 	
-	<button  id="update" onclick='location.href="http://localhost:8087/palette/users/update/${user.userId }"'>개인정보 수정하기</button>
-	<button  id="tradeList" onclick='location.href="http://localhost:8087/palette/users/tradeList/${user.userId }"'>포인트 거래내역 보기</button>
-	<button  id="chargePoint" onclick='location.href="http://localhost:8087/palette/users/chargePoint/${user.userId }"'>포인트 충전하기</button>
+	<button  id="update" onclick='location.href="http://localhost:8087/palette/users/update"'>개인정보 수정하기</button>
+	<button  id="tradeList" onclick='location.href="http://localhost:8087/palette/users/tradeList"'>포인트 거래내역 보기</button>
+	<button  id="chargePoint" onclick='location.href="http://localhost:8087/palette/users/chargePoint"'>포인트 충전하기</button>
+	<button  id="refundPoint" onclick='location.href="http://localhost:8087/palette/users/refundPoint"'>포인트 환급하기</button>
 	
 </body>
 </html>

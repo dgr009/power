@@ -117,7 +117,7 @@ public class UsersController {
 	// 회원 포인트 충전
 	@RequestMapping(value = "/refundPoint", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public ResponseEntity<String> refundPointEnd(@RequestBody Map<String, Object> map) throws BindException {
-		int result = service.chargePoint(map);
+		int result = service.refundPoint(map);
 		if (result == 1)
 			return new ResponseEntity<String>("충전 성공", HttpStatus.OK);
 		else

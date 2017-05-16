@@ -73,8 +73,9 @@ public class UsersController {
 		return "users/findPwd";
 	}
 	
-	@RequestMapping(value="/update/{userId}",method = RequestMethod.GET)
-	public String updateStart(HttpSession session,@PathVariable String userId,Model model){
+	@RequestMapping(value="/update",method = RequestMethod.GET)
+	public String updateStart(HttpSession session,Model model){
+		String userId = service.getUserIdByToken(session);
 		model.addAttribute("user", service.userInfo(session,userId));
 		return "users/update";
 	}
@@ -85,9 +86,8 @@ public class UsersController {
 	}
 
 	//포인트 충전하기 페이지
-	@RequestMapping(value="/chargePoint/{userId}",method = RequestMethod.GET)
-	public String chargePointStart(HttpSession session,@PathVariable String userId,Model model){
-		model.addAttribute("userId", userId);
+	@RequestMapping(value="/chargePoint",method = RequestMethod.GET)
+	public String chargePointStart(HttpSession session){
 		return "users/chargePoint";
 	}
 	
@@ -100,18 +100,24 @@ public class UsersController {
 	}
 	
 	//포인트 환급하기 페이지
-	@RequestMapping(value="/refundPoint/{userId}",method = RequestMethod.GET)
-	public String refundPointStart(HttpSession session,@PathVariable String userId,Model model){
-		model.addAttribute("userId", userId);
+	@RequestMapping(value="/refundPoint",method = RequestMethod.GET)
+	public String refundPointStart(HttpSession session){
 		return "users/refundPoint";
 	}
 	
 	//포인트 환급하기
-	@RequestMapping(value="/refundchargePoint",method = RequestMethod.POST)
+	@RequestMapping(value="/refundPoint",method = RequestMethod.POST)
 	public String refundPointEnd(HttpSession session,@RequestParam int tradePoint){
 		String userId = service.getUserIdByToken(session);
-		service.chargePoint(session,userId,tradePoint);
+		service.refundPoint(session,userId,tradePoint);
 		return "maintest";
 	}
+	//포인트 환급하기 페이지
+		@RequestMapping(value="/tradeList",method = RequestMethod.GET)
+		public String tradeList(HttpSession session,Model model){
+			String userId = service.getUserIdByToken(session);
+			model.addAttribute("tradeList", service.tradeList(userId));
+			return "users/tradeList";
+		}
 	
 }
