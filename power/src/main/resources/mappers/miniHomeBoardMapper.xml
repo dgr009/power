@@ -58,7 +58,7 @@
 	
 	<!--  (개인)자유게시판 수정-->
 	<update id="miniHomeUpdateFree" parameterType="MiniHomeFree">
-		update free_board set title=#{freeTitle}, content=#{freeContent} where free_no=#{freeNo}
+		update free_board set free_title=#{freeTitle}, free_content=#{freeContent} where free_no=#{freeNo}
 	</update>
 	
 	<!--  (개인)자유게시판 삭제-->
@@ -86,7 +86,7 @@
 	
 	<!--  (개인)자유게시판 총 게시글 수-->
 	<select id="miniHomeNumberOfFree" resultType="int" parameterType="string">
-		select count(*) from notice_board where user_id=#{userId}
+		select count(*) from free_board where user_id=#{userId}
 	</select>
 	
 	<!-- 자유게시판 댓글 하나 조회 -->
