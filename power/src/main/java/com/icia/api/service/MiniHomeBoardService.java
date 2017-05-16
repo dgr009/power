@@ -60,8 +60,8 @@ public class MiniHomeBoardService {
 	}
 	
 	//(개인)자유게시판 삭제
-	public void miniHomeDeleteFree(int freeNo){
-		dao.miniHomeDeleteFree(freeNo);
+	public int miniHomeDeleteFree(int freeNo){
+		return dao.miniHomeDeleteFree(freeNo);
 	}
 	
 	//(개인)자유게시판 리스트 
