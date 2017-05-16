@@ -56,8 +56,8 @@ public class MiniHomeBoardService {
 	}
 	
 	//(개인)자유게시판 수정
-	public void miniHomeUpdateFree(MiniHomeFree free){
-		dao.miniHomeUpdateFree(free);
+	public int miniHomeUpdateFree(MiniHomeFree free){
+		return dao.miniHomeUpdateFree(free);
 	}
 	
 	//(개인)자유게시판 삭제
@@ -69,6 +69,7 @@ public class MiniHomeBoardService {
 	public HashMap<String,Object> miniHomeSelectFreeList(String userId, int pageNo){
 		int cnt = dao.miniHomeNumberOfFree(userId);//자유게시판 총 게시글 수
 		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		System.out.println("----------ㅇㅇㅇ--------"+pagination);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.miniHomeSelectFreeList(pagination.getStartArticle(), pagination.getEndArticle(), userId));

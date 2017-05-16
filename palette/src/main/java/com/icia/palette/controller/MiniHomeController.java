@@ -25,10 +25,9 @@ public class MiniHomeController {
 		return "mini/info";
 	}
 	
-	@RequestMapping(value="/{userId}/freeList/{pageNo}",method = RequestMethod.GET)
-	public String userInfo(HttpSession session,@PathVariable String userId,@PathVariable int pageNo,Model model){
-		model.addAttribute("mini2", service.miniHomeSelectFreeList(session, pageNo,userId));
-		System.out.println("=================="+service.miniHomeSelectFreeList(session, pageNo,userId));
+	@RequestMapping(value="/{userId}/freeList",method = RequestMethod.GET)
+	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
+		model.addAttribute("mini2", service.miniHomeSelectFreeList(session,userId,pageNo));
 		return "mini/info2";
 	}
 	
@@ -43,6 +42,39 @@ public class MiniHomeController {
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.POST)
 	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free){
 		service.miniHomeRegisterFree(session, free);
-		return "mini/info2";
+		return "redirect:freeList?pageNo=1";
 	}
+	//업데이트 뷰
+	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}",method = RequestMethod.GET)
+	public String updateStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
+		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo, userId));
+		return "mini/update";
+	}
+	
+	//업데이트 처리
+	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}",method = RequestMethod.POST)
+	public String updateEnd(HttpSession session,@ModelAttribute MiniHomeFree free, @PathVariable int freeNo){
+		service.miniHomeUpdateFree(session, free);
+		return "redirect:freeView/"+freeNo;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -54,8 +54,8 @@ public class MiniHomeBoardDao {
 	}
 	
 	//(개인)자유게시판 수정
-	public void miniHomeUpdateFree(MiniHomeFree free){
-		tpl.insert("api.dao.MiniHomeBoardDao.miniHomeUpdateFree",free);
+	public int miniHomeUpdateFree(MiniHomeFree free){
+		return tpl.insert("api.dao.MiniHomeBoardDao.miniHomeUpdateFree",free);
 	} 
 	
 	//(개인)자유게시판 삭제
