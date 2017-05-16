@@ -104,7 +104,7 @@ public class UsersService {
 
 	// 회원 충전 환급 내역 확인하기
 	public Map<String,Object> tradeList(String userId) {		
-		List<PointStatement> list = dao.tradeList(userId);
+		List<TradeStatement> list = dao.tradeList(userId);
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		return map;

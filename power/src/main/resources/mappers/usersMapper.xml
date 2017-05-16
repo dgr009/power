@@ -76,7 +76,7 @@
 		insert into point_statement values(sysdate,#{userId},#{tradePoint}*(-1),'환급') 
 	</insert>
 	<!-- 포인트 내역확인 -->
-	<select id="usersTradeList" parameterType="string" resultType="PointStatement">
+	<select id="usersTradeList" parameterType="string" resultType="TradeStatement" >
 		select * from point_statement where user_id=#{userId}
 	</select>	
 	<!-- 개인 회원 정보 보기 -->
