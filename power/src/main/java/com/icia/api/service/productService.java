@@ -21,23 +21,27 @@ public class productService {
 	}
 	//상품등록하기
 	@Transactional
-	public void productRegister(Item i,ArrayList<ItemOption> optionList,ArrayList<ItemImg> imgList){
+	public void productRegister(Item i){
+		ArrayList<ItemImg> imgList=(ArrayList)i.getItemImgList();
 		dao.insertItem(i);
+		int result=i.getItemNo();
 		for (ItemImg itemImg : imgList) {
-			itemImg.setItemNO(i.getItemNo());
+			itemImg.setItemNo(result);
+			System.out.println("몬소리냐"+i.getItemNo());
+			
 			dao.insertItemImg(itemImg);
 		}
-		for (ItemOption itemOption : optionList) {
+		/*for (ItemOption itemOption : optionList) {
 			itemOption.setItemNo(i.getItemNo());
 			dao.insertOption(itemOption);
-		}
+		}*/
 	}
 	//등록상품변경
 	@Transactional
 	public void productUpdate(Item i,ArrayList<ItemOption> optionList,ArrayList<ItemImg> imgList){
 		dao.updateItem(i);
 		for (ItemImg itemImg : imgList) {
-			itemImg.setItemNO(i.getItemNo());
+			itemImg.setItemNo(i.getItemNo());
 			dao.updateItemImg(itemImg);
 		}
 		for (ItemOption itemOption : optionList) {

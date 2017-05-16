@@ -36,11 +36,11 @@ public class ProductController {
 		return new Gson().toJson(service.productRegisterReady(userid));
 	}
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
-	public ResponseEntity<String>  productRegisterEnd(@ModelAttribute Item item){
+	public ResponseEntity<String>  productRegisterEnd(@RequestBody Item item){
 		System.out.println("시발년아");
 		System.out.println("아이템"+item.getItemName());
-
-		//service.productRegister(item, null, list);
+		
+		service.productRegister(item);
 		 
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}

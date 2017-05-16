@@ -12,11 +12,8 @@ import java.util.Iterator;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,7 +23,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.icia.palette.service.*;
 import com.icia.palette.vo.Item;
-import com.icia.palette.vo.Users;
 
 @Controller
 @RequestMapping(value="/miniHome")
@@ -48,7 +44,7 @@ public class ProductController {
 		return "products/ProductUpdate";
 	}
 	@RequestMapping(value = "/dd/admin/register", method = RequestMethod.POST)
-	public String productRegister(@ModelAttribute Item item,MultipartHttpServletRequest req) throws IOException {
+	public String productRegister(@ModelAttribute Item item, MultipartHttpServletRequest req) throws IOException {
 		System.out.println("아이템이름은"+item.getItemName());
 		
 		 ArrayList<com.icia.palette.vo.ItemImg> list=new ArrayList<com.icia.palette.vo.ItemImg>();
@@ -60,8 +56,9 @@ public class ProductController {
 		System.out.println("파일네임들"+fileName);
 		 list.add(new com.icia.palette.vo.ItemImg(fileName));
 		 }
-		//service.productRegister(user,req);
-		return "/dd/admin/register";
+		item.setItemImgList(list);
+		service.productRegister(item);
+		return "users/maintest";
 	}
 	
 }
