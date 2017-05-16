@@ -126,7 +126,7 @@ public class UsersDao {
 	}
 
 	// 포인트 내역확인
-	public List<PointStatement> tradeList(String userId) {
+	public List<TradeStatement> tradeList(String userId) {
 		return tpl.selectList("api.dao.UsersDao.usersTradeList", userId);
 	}
 

@@ -10,7 +10,7 @@
 	<form action="/palette/main/freeboard/register" method="post">
 		<h2>게시글 등록</h2>
 		<input type="text" name="mainArticleTitle" placeholder="제목"><br>
-		<input type="hidden" name="mainArticleName" value="금명짜응"><br>
+		<input type="text" name="mainArticleName" value="금명짜응"><br>
 
 		<input type="text" name="mainArticleContent" placeholder="내용"><br>
 		<input type="hidden" name="userId" value="${userId }"><br>
