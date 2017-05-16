@@ -171,4 +171,68 @@ public class UsersController {
 
 	}
 
+	// 회원 주문 내역 보기
+	@RequestMapping(value = "/orderList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String orderList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
+		String userId = service.getUserIdByToken(token);
+		Map<String, Object> map = service.userOrderList(userId, pageNo);
+		return new Gson().toJson(map);
+	}
+
+	// 회원 주문 내역에서 주문 취소하기
+	@RequestMapping(value = "/orderDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> orderDelete(@RequestParam int orderNo) {
+		int result = service.userOrderDelete(orderNo);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+	}
+
+	// 회원 즐겨찾기 보기
+	@RequestMapping(value = "/bookmarkList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String bookmarkList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
+		String userId = service.getUserIdByToken(token);
+		Map<String, Object> map = service.userBookmarkList(userId, pageNo);
+		return new Gson().toJson(map);
+	}
+
+	// 회원 즐겨찾기 추가
+	@RequestMapping(value = "/bookmark", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String bookmark(@RequestParam String orderId, @RequestParam String ownerId) {
+		int result = service.bookmark(orderId, ownerId);
+		if (result == 1)
+			return result + "";
+		else
+			return result + "";
+	}
+
+	// 회원 즐겨찾기 삭제
+	@RequestMapping(value = "/bookmarkDelete", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String bookmarkDelete(@RequestParam String orderId, @RequestParam String ownerId) {
+		int result = service.bookmarkDelete(orderId, ownerId);
+		if (result == 1)
+			return result + "";
+		else
+			return result + "";
+	}
+
+	// 회원 장바구니 보기
+	@RequestMapping(value = "/basketList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String basketList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
+		String userId = service.getUserIdByToken(token);
+		Map<String, Object> map = service.userBasketList(userId, pageNo);
+		return new Gson().toJson(map);
+	}
+	
+	// 회원 장바구니 취소하기
+		@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
+		public ResponseEntity<String> basketDelete(@RequestHeader("token") String token,@RequestParam int itemNo) {
+			String userId = service.getUserIdByToken(token);
+			int result = service.userBasketDelete(userId,itemNo);
+			if (result == 1)
+				return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+			else
+				return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+		}
 }

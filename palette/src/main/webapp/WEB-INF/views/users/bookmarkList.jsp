@@ -15,32 +15,35 @@
 </script>
 </head>
 <body>
-<h1>회원 포인트 전환 내역</h1>
+<h1>즐겨찾기</h1>
 	<table border='1' width='1000'>
 		<tr>
 			<td>번호</td>
-			<td>거래날짜</td>
-			<td>거래금액</td>
-			<td>거래내용</td>
+			<td>홈페이지 이름</td>
+			<td>주인명</td>
 		</tr>
-		<c:forEach items="${tradeList }" var="trade"  varStatus="index">
+		<c:forEach items="${result.list }" var="book"  varStatus="index">
 		<tr>			
 			<td>
 				${index.count }
 			</td>
 			<td>
-				${trade.tradeDate }
+				${book.ownerId }
 			</td>
 			<td>
-				${trade.tradePoint.intValue() }
-			</td>
-			<td>
-				${trade.tradeContent}
+				<a href="#">${book.homeTitle}</a>
 			</td>
 		</tr>
 		</c:forEach>
 </table>
+			<c:if test="${result.pagination.prev>0 }"><a href="/palette/users/bookmarkList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
 			
+			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+				<a href="/palette/users/bookmarkList?pageNo=${i}">${i} </a>
+			</c:forEach>
+			
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/users/bookmarkList?pageNo=${result.pagination.next}">다음으로</a></c:if>
+		<br><br>
 	<button onclick="location.href='/palette/users/home'">홈으로</button>
 </body>
 </html>

@@ -49,5 +49,6 @@
 	<button id="find">아이디찾기</button>
 	
 	<p id="target"></p>
+	<button onclick="location.href='/palette/users/home'">홈으로</button>
 </body>
 </html>
