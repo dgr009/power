@@ -61,38 +61,7 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-$(function() {
-	$("#upload").on("click", function() {
-		var data = new FormData();
-		data.append("itemName",$("#itemName").val());
-		data.append("itemSize",$("#itemSize").val());
-		data.append("itemPrice",$("#itemPrice").val());
-		data.append("itemContent",$("#itemContent").val());
-		var cnt = $("#imgName")[0].files.length;
-		for (var i = 0; i < cnt; i++) {
-			data.append("imgName" + i, $("#imgName")[0].files[i]);
-			console.log($("#imgName")[0].files[i]);
-		}
-		$.ajax({
-			url:"/api/miniHome/admin/productRegister",
-			headers: { 'content-type': 'application/json' },
-			type:"post",
-			data:JSON.stringify(data),
-			dataType:"JSON",
-			
-			success:function(result){
-				console.log(result);
-			},
-		error:function(request,status,error){
-			console.log("코드:"+request.status+",메시지:"+request.responseText+",에러:"+error);
-		},
-		contentType:false,
-		processData:false
-		})
-	})
-})
-</script>
+
 	
 
 </head>
@@ -135,7 +104,7 @@ $(function() {
             </div>
              </section>
             
- 
+
            
             <div class="col-lg-12 col-md-12 col-sm-12">
             <br><br>
@@ -145,7 +114,7 @@ $(function() {
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
 							
-							
+							<form action="/palette/miniHome/dd/admin/register" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
@@ -191,11 +160,12 @@ $(function() {
 										</tbody>
 								</table>
 								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="button" id="upload" value="상품등록하기"> 
-							<i class="fa fa-rocket"></i>
+								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
+							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+							
 							</div>
                             
-						
+						</form>
 							
 									
 							</div>

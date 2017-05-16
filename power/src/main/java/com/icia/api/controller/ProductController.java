@@ -39,17 +39,9 @@ public class ProductController {
 	public ResponseEntity<String>  productRegisterEnd(@ModelAttribute Item item){
 		System.out.println("시발년아");
 		System.out.println("아이템"+item.getItemName());
-		/*
-		 ArrayList<ItemImg> list=new ArrayList<ItemImg>();
-		 Iterator<String> it=req.getFileNames();
-		 while(it.hasNext()){
-		 String fileName=it.next();
-		 MultipartFile mf=req.getFile(fileName);
-		fileName= UploadUtils2.storeAndGetFileName(mf, ctx ,path);
-		 list.add(new ItemImg(fileName));
-		 }
-		service.productRegister(item, null, list);
-		 */
+
+		//service.productRegister(item, null, list);
+		 
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}
 }
