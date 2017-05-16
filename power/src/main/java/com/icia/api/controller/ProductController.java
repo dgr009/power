@@ -32,6 +32,7 @@ public class ProductController {
 	}
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String>  productRegisterEnd(@ModelAttribute Item item,MultipartHttpServletRequest req){
+		System.out.println("야야야야");
 		 ArrayList<ItemImg> list=new ArrayList<ItemImg>();
 		 Iterator<String> it=req.getFileNames();
 		 while(it.hasNext()){

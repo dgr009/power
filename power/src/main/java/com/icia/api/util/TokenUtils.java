@@ -56,7 +56,7 @@ public class TokenUtils {
 	}
 	public static String get(String token, String key) {
 		DecodedJWT jwt = JWT.decode(token);
-		Claim claim = jwt.getClaim("userPwd");
+		Claim claim = jwt.getClaim(key);
 		return claim.asString();
 	}
 	
