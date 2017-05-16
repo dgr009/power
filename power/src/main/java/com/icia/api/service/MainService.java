@@ -146,6 +146,17 @@ public class MainService {
 	//메인 고객센터 게시판 뷰
 	public ServiceCenter mainServiceCenterView(int faqNo){
 		return dao.mainServiceCenterView(faqNo);
-	}		
+	}	
+	/*-------------------------메인 기능 ------------------------------*/
+	
+	//검색창에 상품이름으로 검색해서 상품보기
+	public HashMap<String, Object> mainSearchItem(int pageNo,String itemName){
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, mainServiceCenterCnt);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.mainSeartchItem(pagination.getStartArticle(),itemName));
+		return map;
+	}
 	
 }
