@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PointStateMent {
+public class TradeStatement {
 	private Date tradeDate;
 	private String userId;
 	private int tradePoint;
