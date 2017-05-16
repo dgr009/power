@@ -1,7 +1,10 @@
 package com.icia.api.service;
 
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 import com.google.gson.*;
 import com.icia.api.dao.*;
@@ -65,8 +68,52 @@ public class UsersService {
 		return realUser;
 	}
 
-	//회원 정보 수정
-	public int updateUser(Users user){
+	// 회원 정보 수정
+	public int updateUser(Users user) {
 		return dao.userUpdate(user);
+	}
+
+	// 회원 포인트 충전
+	@Transactional
+	public int chargePoint(Map<String, Object> map) {
+		int result = dao.chargePoint((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		dao.chargePointState((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		return result;
+	}
+
+	// 회원 포인트 환급
+	@Transactional
+	public int refundPoint(Map<String, Object> map) {
+		int result = dao.refundPoint((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		dao.refundPointState((String) map.get("userId"), (Integer) map.get("tradePoint"));
+		return result;
+	}
+
+	// 토큰으로 userId 값 가져오기
+	public String getUserIdByToken(String token) {
+		String userId = null;
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_USER")) {
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return userId;
+	}
+
+	// 회원 충전 환급 내역 확인하기
+	public List<TradeStatement> tradeList(String userId) {		
+		return dao.tradeList(userId);
+	}
+
+	//회원 비활성화
+	public int deleteUser(String userId) {
+		return dao.userDelete(userId);
+	}
+
+	//회원 활성화
+	public int reverseUser(String userId) {
+		return dao.userReverse(userId);
 	}
 }

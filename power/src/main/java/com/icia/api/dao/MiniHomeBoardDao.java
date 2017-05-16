@@ -49,8 +49,8 @@ public class MiniHomeBoardDao {
 	}
 	
 	//(개인)자유게시판 작성
-	public void miniHomeRegisterFree(MiniHomeFree free){
-		tpl.insert("api.dao.MiniHomeBoardDao.miniHomeRegisterFree",free);
+	public int miniHomeRegisterFree(MiniHomeFree free){
+		  return tpl.insert("api.dao.MiniHomeBoardDao.miniHomeRegisterFree",free);
 	}
 	
 	//(개인)자유게시판 수정

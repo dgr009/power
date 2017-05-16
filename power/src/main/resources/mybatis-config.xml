@@ -17,6 +17,7 @@
     </settings>
 	<typeAliases>
 		<package name="com.icia.api.vo"/>
+		
 	</typeAliases>
 
 </configuration>
