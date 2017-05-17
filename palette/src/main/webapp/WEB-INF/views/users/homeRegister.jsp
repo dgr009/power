@@ -140,7 +140,7 @@
               <h1>홈페이지 만들기</h1>
           </div>
           <div class="col-md-6 col-md-offset-3">
-              <form  id='registerform' action="/palette/users/insert" method="post">
+              <form  id='registerform' action="/palette/users/homeRegister" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                       <label for="InputEmail">홈페이지 제목</label>
                       <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title">
@@ -148,7 +148,7 @@
                   <p id="idchecked"></p>
                   <div class="form-group">
                       <label for="InputPassword1">홈페이지 이미지</label>
-                      <input type="password" class="form-control" name="userPwd" placeholder="비밀번호" name="password" id="pwd">
+                      <input type="file" class="form-control" name="userPwd" placeholder="비밀번호" name="password" id="pwd">
                   </div>
                   <p id="pwdcheck"></p>
                   <div class="form-group">
