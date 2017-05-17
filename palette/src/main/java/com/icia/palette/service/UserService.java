@@ -24,6 +24,7 @@ public class UserService {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
+		System.out.println("회원 로그인 api가기 직전"+requestEntity);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/login", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
