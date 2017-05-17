@@ -163,7 +163,15 @@ public class UsersService {
 		return map;
 	}
 
+	//장바구니 삭제하기
 	public int userBasketDelete(String userId,int itemNo) {
 		return dao.basketDelete(userId,itemNo);
+	}
+	
+	//홈페이지 만들기
+	@Transactional
+	public int homeRegister(MiniHome home) {
+		dao.userIsHomeOk(home.getUserId());
+		return dao.homeRegister(home);
 	}
 }

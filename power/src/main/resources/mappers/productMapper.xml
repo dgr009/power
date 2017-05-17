@@ -12,7 +12,7 @@ select small_kind  smallKind from small_kind where user_id=#{userId}
 <selectKey keyProperty="itemNo" resultType="int" order="BEFORE">
 select itemno_seq.nextval from dual
 </selectKey>
-insert into item values(itemno_seq.nextval,#{itemName},#{itemContent},#{itemPrice},#{itemSize},#{itemSize},sysdate,#{userId},#{smallKind})
+insert into item values(#{itemNo},#{itemName},#{itemContent},#{itemPrice},#{itemSize},#{itemSize},sysdate,#{userId},#{smallKind})
 </insert>
 <!-- 옵션추가하기 -->
 <insert id="insertOption" parameterType="ItemOption">

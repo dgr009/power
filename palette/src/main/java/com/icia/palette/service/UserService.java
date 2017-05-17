@@ -220,6 +220,7 @@ public class UserService {
 		return map;
 	}
 
+	//장바구니 취소하기
 	public String deleteBasket(HttpSession session,int itemNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
@@ -228,6 +229,19 @@ public class UserService {
 		String result = tpl.exchange("http://localhost:8087/api/users/basketDelete?itemNo="+itemNo, HttpMethod.DELETE, requestEntity, String.class).getBody();
 		return result;
 		
+	}
+
+	//홈페이지 만들기
+	public void homeRegister(MiniHome home) {
+		RestTemplate tpl = new RestTemplate();
+		System.out.println("Service User" + home);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(home), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/users/homeRegister", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		System.out.println(result);
 	}
 
 }
