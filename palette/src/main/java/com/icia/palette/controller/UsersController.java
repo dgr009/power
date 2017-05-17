@@ -38,7 +38,7 @@ public class UsersController {
 	// 로그인페이지로
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginStart() {
-		return "users/login";
+		return "users/usersLogin";
 	}
 
 	// 로그인

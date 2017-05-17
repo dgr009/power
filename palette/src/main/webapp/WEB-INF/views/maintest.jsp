@@ -25,7 +25,8 @@
 	<%} %>
 	<a href="http://localhost:8087/palette/miniHome/${user.userId}/admin/register"> 상품등록하기</a><br>
 	<%} else{ %>
-	<a href='http://localhost:8087/palette/users/login'>로그인</a><br><br>
+	<a href='http://localhost:8087/palette/users/login'>로그인</a><br>
+	<a href='http://localhost:8087/palette/users/insert'>회원가입</a><br>
 	<%} %>
 
 </body>
