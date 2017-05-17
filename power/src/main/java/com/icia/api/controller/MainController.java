@@ -45,9 +45,9 @@ public class MainController {
 	
 	// 회원 토큰으로 정보 얻기
 	@RequestMapping(value = "/freeboard/view/{mainArticleNo}", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String read(@PathVariable int mainArticleNo) {
+	public String mainArticleView(@PathVariable String userId, @PathVariable int mainArticleNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		MainFreeBoard result = service.mainFreeBoardView(mainArticleNo);
+		MainFreeBoard result= service.mainFreeBoardView(mainArticleNo);
 		return new Gson().toJson(result);
 	}
 

@@ -68,7 +68,6 @@ public class UserDaoTest {
 	
 	//Test
 	public void orderListTest(){
-		System.out.println(dao.orderList("1", 1, 5).toString());
 	}
 	
 	

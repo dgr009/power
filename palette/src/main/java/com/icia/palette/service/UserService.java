@@ -177,4 +177,56 @@ public class UserService {
 		return result;
 	}
 
+	//회원 주문내역 조회
+	public Map<String,Object> userOrderList(HttpSession session, int pageNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result=tpl.exchange("http://localhost:8087/api/users/orderList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
+	}
+
+	//주문내역에서 주문 취소하기
+	public String deleteOrder(int orderNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/orderDelete?orderNo="+orderNo, HttpMethod.DELETE, requestEntity, String.class).getBody();
+		return result;
+	}
+
+	//즐겨찾기 조회
+	public Map<String,Object> userBookmarkList(HttpSession session, int pageNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result=tpl.exchange("http://localhost:8087/api/users/bookmarkList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
+	}
+
+	//장바구니 리스트
+	public Map<String,Object> userBasketList(HttpSession session, int pageNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result=tpl.exchange("http://localhost:8087/api/users/basketList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
+	}
+
+	public String deleteBasket(HttpSession session,int itemNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/basketDelete?itemNo="+itemNo, HttpMethod.DELETE, requestEntity, String.class).getBody();
+		return result;
+		
+	}
+
 }

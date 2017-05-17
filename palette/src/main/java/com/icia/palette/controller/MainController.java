@@ -32,8 +32,8 @@ public class MainController {
 	}
 	//자유게시판 뷰
 	@RequestMapping(value="/freeboard/view/{mainArticleNo}",method = RequestMethod.GET)
-	public String userInfoStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
-		model.addAttribute("main", service.mainFreeBoardView(session, mainArticleNo));
+	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int mainArticleNo,Model model){
+		model.addAttribute("main", service.mainFreeBoardView(session,userId, mainArticleNo));
 		return "main/mainFreeBoardView";
 	}
 	/*업데이트 작성페이지로

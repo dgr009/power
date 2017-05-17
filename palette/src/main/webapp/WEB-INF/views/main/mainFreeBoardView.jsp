@@ -16,7 +16,7 @@
 			<tr><td>조회수</td><td>${main.mainArticleHits}</td></tr>
 			<tr><td>내용</td><td>${main.mainArticleContent}</td></tr>
 			<tr><td>아이디</td><td>${main.userId}</td></tr>
-			<tr><td>댓글 수</td><td>${main.ArticleRepleCnt}</td></tr>
+			<tr><td>댓글 수</td><td>${main.articleRepleCnt}</td></tr>
 		</table>
 		<input type="submit" value="수정">
 	</form>

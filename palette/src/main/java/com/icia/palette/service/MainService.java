@@ -28,31 +28,22 @@ public class MainService {
 		String result=tpl.exchange("http://localhost:8087/api/main/freeboard/register", HttpMethod.POST, requestEntity, String.class).getBody();
 		return result;
 	}
-	
-	//자유게시판 수정
-		public void miniHomeUpdateFree(MainFreeBoard free) {
-			RestTemplate tpl = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_JSON);
-			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
-			String result = tpl
-					.exchange("http://localhost:8087/api/", HttpMethod.PUT, requestEntity, String.class)
-					.getBody();
-
-			System.out.println(result);
-			//if (!result.equals("수정 실패"))
-			//	session.removeAttribute("token");
+	//자유게시판 뷰
+	public MainFreeBoard mainFreeBoardView(HttpSession session,String userId,int mainArticleNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/main/{userId}/freeboard/view/{mainArticleNo}", HttpMethod.GET, requestEntity, String.class,userId,mainArticleNo).getBody();
+		MainFreeBoard free = new Gson().fromJson(result, MainFreeBoard.class);
+		return free;
 		}
-		//자유게시판 뷰
-		public MainFreeBoard mainFreeBoardView(HttpSession session,int mainArticleNo) {
-			RestTemplate tpl = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			HttpEntity requestEntity = new HttpEntity(headers);
-			System.out.println(requestEntity);
-			String result = tpl.exchange("http://localhost:8087/api/main/freeboard/view/{mainArticleNo}", HttpMethod.GET, requestEntity, String.class,mainArticleNo).getBody();
-			MainFreeBoard free = new Gson().fromJson(result, MainFreeBoard.class);
-			System.out.println(free);
-			
-			return free;
-		}
+		//자유게시판 수정
+	public void miniHomeUpdateFree(MainFreeBoard free) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
+		String result = tpl.exchange("http://localhost:8087/api/", HttpMethod.PUT, requestEntity, String.class).getBody();
+		System.out.println(result);
+	}
 }
