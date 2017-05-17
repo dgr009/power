@@ -3,8 +3,8 @@
 
 <mapper namespace="api.dao.ProductDao">
 <!-- 상품등록 제품종류 -->
-<select id="productRegisterReady" parameterType="String" resultType="String">
-select small_kind  smallKind from small_kind where user_id=#{userId}
+<select id="productRegisterReady" parameterType="String" resultType="SmallKind">
+select * from small_kind where user_id=#{userId}
 </select>
 
 <!-- 상품등록하기 -->

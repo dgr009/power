@@ -1,11 +1,8 @@
-<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%Users users=(Users)session.getAttribute("user"); %>
-
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -62,15 +59,14 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+<script>
 	
-
+</script>
 </head>
 <body>
 	<!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
-		</header>
+<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -83,14 +79,10 @@
 							</h1>
 						</div>
 					</div>
-					
-					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+                     <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
-		</div>
-		</div>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -105,74 +97,50 @@
             </div>
              </section>
             
-
+ 
            
             <div class="col-lg-12 col-md-12 col-sm-12">
             <br><br>
-					
-							<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
+					<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
+							
 							<div class="col-lg-9 col-md-9 col-sm-9">
-							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
+							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;"><h3><i class="fa fa-leaf"></i>    내 등록상품 조회</h3>
 						
+							<form action="update" method="get">
 							
-							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-								<tbody>
-									
-									<tr><td>상품명</td></tr>	
-									<tr><td>상품 종류</td></tr>
-									<tr><td>상품 수량</td></tr>
-									<tr><td>판매 가격</td></tr>
-									<tr><td>상품 옵션</td></tr>
-									
-								</tbody>
-							</table>
-							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12">
 							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table >
-									<tbody >
-										<tr><td><input type="text"  name="itemName"></td></tr>
-												<c:forEach items="${result.kind }" var="free">
-		<tr>			
-			<td>
-				${free.smallKind}
-			</td>
-		</tr>
-		</c:forEach>
-										<tr><td><input type="text"  name="itemSize"></td></tr>
-										<tr><td><input type="text"  name="itemPrice"></td></tr>
-										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>
-										<td><a href="#fakelink" class="btn btn-sm btn-social-facebook" id="addOption">추가</a></td></tr >
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-									<tbody>
+							
+							
+							<table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>등록일</th>
+						<th>상품명</th>
+						<th>주문 상태</th>
+						<th>마감 종료일</th>
+						<th></th>
+                    </tr>
+                    </thead>
+                    <tbody id=productList>
 
-										<tr><td>상품 이미지</td></tr>
-										<tr><td>상품 내용</td></tr>
-
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="file" name="imgName" id="imgName" multiple></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:200px;" name="itemContent" id="itemContent"></textarea></td></tr>
-										</tbody>
-								</table>
-								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+                    </tbody>
+                </table>
+                 <!--페이징 시작 -->
+                <div class="col-sm-12 text-center"  id="pagination" >
+                   
+                </div>
+            </div> <!--페이징 끝 -->
+							
+							
+							
+							
 							
 							</div>
+							
+							
                             
-						</form>
+							</form>
 							
 									
 							</div>
@@ -180,33 +148,72 @@
 							
 							</div>
 							
-							</div></div>
+							
 					
 
            
 			
 
 
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
+					<script type="text/javascript" src="/hooligan/js/jquery-1.10.2.min.js"></script>
+					<script src="/hooligan/js/bootstrap.min.js"></script>
+					<script src="/hooligan/js/jquery.easing.1.3.js"></script>
+					<script src="/hooligan/js/retina-1.1.0.min.js"></script>
+					<script type="text/javascript" src="/hooligan/js/jquery.cookie.js"></script>
 					<!-- jQuery cookie -->
-					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
+					<script type="text/javascript" src="/hooligan/js/styleswitch.js"></script>
 					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
+					<script type="text/javascript" src="/hooligan/js/jquery.smartmenus.min.js"></script>
 					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
+						src="/hooligan/js/jquery.smartmenus.bootstrap.min.js"></script>
+					<script type="text/javascript" src="/hooligan/js/jquery.jcarousel.js"></script>
+					<script type="text/javascript" src="/hooligan/js/jflickrfeed.js"></script>
 					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
+						src="/hooligan/js/jquery.magnific-popup.min.js"></script>
+					<script type="text/javascript" src="/hooligan/js/jquery.isotope.min.js"></script>
+					<script type="text/javascript" src="/hooligan/js/swipe.js"></script>
+					<script type="text/javascript" src="/hooligan/js/jquery-scrolltofixed-min.js"></script>
+<script type="text/javascript">
 
-
+$(document).ready(function() {
+	var result= <%= request.getAttribute("result") %>
+	var list=result.list;
+	var pagination=result.pagination;
+	$.each(list, function(index, p) {
+		if(p.orderState==0)	p.orderState="주문중";
+		if(p.orderState==1)   p.orderState="주문성공";
+		if(p.orderState==2)   p.orderState="주문완료"
+		if(p.orderState==3)   p.orderState="주문실패"
+		var a=$('<tr></tr>');
+		var productName1=$('<td></td>');
+		var productName2=$("<a href='/hooligan/product/productDetail?productNo="+p.productNo+"'>"+p.productName+"</a>")
+		productName1.append(productName2);
+		var date1=p.closingDate;
+		var date=$('<td></td>');
+		date.append(date1);
+		var regidate=p.registrationDate;
+		var regidate1=$('<td></td>');
+		regidate1.append(regidate);
+		var order1=p.orderState;
+		var orderState=$('<td></td>');
+		orderState.append(order1);
+		var orderFirst=$('<td></td>');
+		var orderList=$("<a href='/hooligan/employee/productOrderList?productNo="+p.productNo+"'>주문회원리스트</a>");
+		orderFirst.append(orderList);
+		a.append(regidate1).append(productName1).append(orderState).append(date);
+		$("#productList").append(a);
+	});
+	$("#pagination").append("<ul class='pagination'></ul>");
+	var p = $("#pagination ul");
+	if (pagination.prev > -1)
+		p.append("<li><a href='productList?pageNo=" + pagination.prev + "'>이전으로</a></li>");
+	for (var i = pagination.startPage; i <= pagination.endPage; i++)
+		p.append("<li><a href='productList?pageNo=" + i + "'>" + i + "</a></li>");
+	if (pagination.next > -1)
+		p.append("<li><a href='productList?pageNo=" + pagination.next + "'>다음으로</a></li>");
+	
+});
+</script>
 					<script type="text/javascript">
 						$(document)
 								.ready(
@@ -456,20 +463,6 @@
 													});
 										});
 					</script>
-					<script>
-	$(function(){
-		var i = 1;
-
-		$("#addOption").on("click", function(){
-			if( i<4){
-				i= i+1;
-				$("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
-			}
-			
-		})
-	})
-	
-</script>
-					<script src="<c:url value="/resources/js/main.js"/>"></script>
+				<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>

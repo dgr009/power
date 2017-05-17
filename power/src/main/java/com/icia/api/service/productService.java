@@ -16,8 +16,11 @@ public class productService {
 	@Autowired
 	private ProductDao dao;
 	//제품등록시 종류가져오기
-	public List<String> productRegisterReady(String userid) {
-		return dao.productRegisterReady(userid);
+	public String productRegisterReady(String userid) {
+		HashMap<String,Object> result=new HashMap<String, Object>();
+		System.out.println("api서버 서비스");
+		result.put("kind", dao.productRegisterReady(userid));
+		return new Gson().toJson(result);
 	}
 	//상품등록하기
 	@Transactional
@@ -31,10 +34,12 @@ public class productService {
 			
 			dao.insertItemImg(itemImg);
 		}
-		/*for (ItemOption itemOption : optionList) {
-			itemOption.setItemNo(i.getItemNo());
-			dao.insertOption(itemOption);
-		}*/
+		for (String itemOption:i.getOptionName()) {
+			ItemOption o=new ItemOption();
+			o.setItemNo(i.getItemNo());
+			o.setOptionName(itemOption);
+			dao.insertOption(o);
+		}
 	}
 	//등록상품변경
 	@Transactional
