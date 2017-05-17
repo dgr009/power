@@ -46,4 +46,11 @@ public class ProductController {
 	service.productRegister(item);
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}
+	@RequestMapping(value="/admin/productList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productList(@RequestBody Map<String, Object> map){
+		int pageNo=(Integer) map.get("pageNo");
+		String userId=(String) map.get("userId");
+		 return service.selectItemListByKind(pageNo, userId);
+	}
+	
 }

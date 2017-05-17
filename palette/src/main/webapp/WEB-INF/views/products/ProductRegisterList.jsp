@@ -1,7 +1,7 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
@@ -117,13 +117,14 @@
                     <tr>
                         <th>등록일</th>
 						<th>상품명</th>
-						<th>주문 상태</th>
-						<th>마감 종료일</th>
+						<th>재고 개수</th>
 						<th></th>
                     </tr>
                     </thead>
                     <tbody id=productList>
-
+						<c:forEach items="${result.result}" var="free">
+						<tr><td>${free.itemDate}</td><td>${free.itemName}</td><td>${free.itemInven}</td></tr>
+						</c:forEach>
                     </tbody>
                 </table>
                  <!--페이징 시작 -->
@@ -173,47 +174,7 @@
 					<script type="text/javascript" src="/hooligan/js/jquery.isotope.min.js"></script>
 					<script type="text/javascript" src="/hooligan/js/swipe.js"></script>
 					<script type="text/javascript" src="/hooligan/js/jquery-scrolltofixed-min.js"></script>
-<script type="text/javascript">
 
-$(document).ready(function() {
-	var result= <%= request.getAttribute("result") %>
-	var list=result.list;
-	var pagination=result.pagination;
-	$.each(list, function(index, p) {
-		if(p.orderState==0)	p.orderState="주문중";
-		if(p.orderState==1)   p.orderState="주문성공";
-		if(p.orderState==2)   p.orderState="주문완료"
-		if(p.orderState==3)   p.orderState="주문실패"
-		var a=$('<tr></tr>');
-		var productName1=$('<td></td>');
-		var productName2=$("<a href='/hooligan/product/productDetail?productNo="+p.productNo+"'>"+p.productName+"</a>")
-		productName1.append(productName2);
-		var date1=p.closingDate;
-		var date=$('<td></td>');
-		date.append(date1);
-		var regidate=p.registrationDate;
-		var regidate1=$('<td></td>');
-		regidate1.append(regidate);
-		var order1=p.orderState;
-		var orderState=$('<td></td>');
-		orderState.append(order1);
-		var orderFirst=$('<td></td>');
-		var orderList=$("<a href='/hooligan/employee/productOrderList?productNo="+p.productNo+"'>주문회원리스트</a>");
-		orderFirst.append(orderList);
-		a.append(regidate1).append(productName1).append(orderState).append(date);
-		$("#productList").append(a);
-	});
-	$("#pagination").append("<ul class='pagination'></ul>");
-	var p = $("#pagination ul");
-	if (pagination.prev > -1)
-		p.append("<li><a href='productList?pageNo=" + pagination.prev + "'>이전으로</a></li>");
-	for (var i = pagination.startPage; i <= pagination.endPage; i++)
-		p.append("<li><a href='productList?pageNo=" + i + "'>" + i + "</a></li>");
-	if (pagination.next > -1)
-		p.append("<li><a href='productList?pageNo=" + pagination.next + "'>다음으로</a></li>");
-	
-});
-</script>
 					<script type="text/javascript">
 						$(document)
 								.ready(

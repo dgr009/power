@@ -58,12 +58,14 @@ public class ProductController {
 		item.setItemImgList(list);
 		System.out.println("메인에서 이름"+item.getItemName());
 		service.productRegister(item);
-		return "redirect:/miniHome/dd/admin/registerList";
+		String a="redirect:/miniHome/"+userId+"admin/registerList";
+		return a;
 	}
 	
-	@RequestMapping(value = "/dd/admin/registerList", method = RequestMethod.GET)
-	public String productRegisterList() {
-	
+	@RequestMapping(value = "/{userId}/admin/registerList", method = RequestMethod.GET)
+	public String productRegisterList(@PathVariable String userId,@RequestParam(defaultValue = "1") int pageNo,Model model) {
+		model.addAttribute("result", service.productRegisterList(userId,pageNo));
+		
 		return "products/ProductRegisterList";
 	}
 	

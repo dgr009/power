@@ -213,20 +213,19 @@ public class productService {
 		map2.put("orderSize",o.getOrderSize());
 		dao.updateItemInven(map2);
 	}
-	//카테고리별 상품조회(리스트)
-	public String selectItemListByKind(int pageNo,String userId,String smallKind){
+	//등록상품조회(리스트)
+	public String selectItemListByKind(int pageNo,String userId){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		HashMap<String, Object> map1=new HashMap<String, Object>();
 		map.put("userId", userId);
-		map.put("smallKind", smallKind);
 		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectItemListByKindCnt(map));
 		map1.put("start", p.getStartArticle());
 		map1.put("end", p.getEndArticle());
 		map1.put("userId", userId);
-		map1.put("smallKind", smallKind);
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		result.put("result", dao.selectItemListByKind(map1));
 		result.put("pagination", p);
+		System.out.println("api서버"+result);
 		return new Gson().toJson(result);	
 	}
 	//미니홈메인 상품등록순9개

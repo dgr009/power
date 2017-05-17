@@ -41,17 +41,17 @@ update item_option set(option_name={optionName}) where option_no=#{optionNo}
 <update id="updateItemImg" parameterType="ItemImg">
 update item_img set img_name=#{imgName} where img_no=#{imgNo}
 </update>
-<!-- 카테고리별 상품조회 개수 -->
+<!-- 등록 상품조회 개수 -->
 <select id="selectItemListByKindCnt" parameterType="hashmap" resultType="int">
-select count(*) from item  where  user_id=#{userId}  and small_kind=#{smallKind}
+select count(*) from item  where  user_id=#{userId}
 </select>
-<!-- 카테고리별 상품조회(리스트 )-->
+<!-- 등록 상품조회(리스트 )-->
 <select id="selectItemListByKind" parameterType="hashmap" resultType="ItemList">
 <![CDATA[
 select * from
 (select rownum rnum,b.* from 
-(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven
-from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) and i.small_kind=#{smallKind}) b
+(select i.item_no,i.item_date,i.item_price,item_name,m.img_name,i.item_inven
+from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no)) b
 where rownum<=#{end}) where rnum>=#{start}
 ]]>
 
