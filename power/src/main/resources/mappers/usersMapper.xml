@@ -39,23 +39,34 @@
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select b.owner_id ownerId,h.home_title homeTitle,h.home from bookmark b,
+					(select b.owner_id ownerId,h.home_title homeTitle from bookmark b,
 					home h where b.owner_id=h.user_id and b.order_id=#{orderId}) a 
       			where rownum<=#{end}) 
  			where rnum>=#{start}
 		]]>
+	</select>
+	<!-- 즐겨찾기 총개수 -->
+	<select id="usersBookmarkListCnt" parameterType="string" resultType="int">
+		select count(*) from bookmark where order_id=#{userId}
 	</select>
 	<!-- 주문내역보기 -->
 	<select id="usersOrderList" parameterType="hashmap" resultType="OrderList">
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_price orderPrice,i.item_name itemName from order_statement o,
-					users u,item i where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId}) a 
+					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_date orderDate,
+					o.order_price orderPrice,i.item_name itemName, o.option_name optionName,o.item_no itemNo
+					 from order_statement o,users u,item i 
+					 where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId}) a 
       			where rownum<=#{end})
  			where rnum>=#{start}
 		]]>
 	</select>
+	<!-- 주문내역 총개수 -->
+	<select id="usersOrderListCnt" parameterType="string" resultType="int">
+		select count(*) from order_statement where user_id=#{userId}
+	</select>
+	
 	<!-- 주문취소하기 -->
 	<delete id="usersOrderDelete" parameterType="int">
 		delete from order_statement where order_no=#{orderNo}
@@ -76,13 +87,13 @@
 		insert into point_statement values(sysdate,#{userId},#{tradePoint}*(-1),'환급') 
 	</insert>
 	<!-- 포인트 내역확인 -->
-	<select id="usersTradeList" parameterType="string" resultType="PointStatement">
+	<select id="usersTradeList" parameterType="string" resultType="TradeStatement" >
 		select * from point_statement where user_id=#{userId}
 	</select>	
 	<!-- 개인 회원 정보 보기 -->
 	<select id="usersInfo" parameterType="string" resultType="Users">
 		select user_name,user_id,user_address,user_post,
-			user_mail,user_phone,user_point,user_ishome,user_grade 
+			user_mail,user_phone,user_point,user_ishome,enabled,user_grade 
 		from users where user_id=#{userId}
 	</select>
 	<!-- 개인 회원 정보 변경 -->
@@ -103,16 +114,20 @@
 		<![CDATA[
 		select * from  
 				(select rownum rnum,a.* from
-		  			(select m.img_name imgName, i.item_name itemName,i.ITEM_PRICE itemPrice,i.ITEM_INVEN itemInven 
+		  			(select m.img_name imgName, i.item_name itemName,i.item_no itemNo,i.ITEM_PRICE itemPrice,i.ITEM_INVEN itemInven 
 					from basket b,item i,item_img m 
 					where m.img_no in(select min(img_no) from item_img group by item_no)
-						and b.item_no=i.item_no and b.user_id=#{userId}) a
+						and b.item_no=i.item_no and m.item_no=i.item_no and b.user_id=#{userId}) a
 					where rownum<=#{end}) a2 
  			where rnum>=#{start}
 		]]>
 	</select>
+	<!-- 장바구니 총개수 -->
+	<select id="usersBasketListCnt" parameterType="string" resultType="int">
+		select count(*) from basket where user_id=#{userId}
+	</select>
 	<!-- 장바구니 상품 삭제하기 -->
-	<delete id="usersBasketDelete" parameterType="string">
-		delete from basket where user_id=#{userId}
+	<delete id="usersBasketDelete" parameterType="hashmap">
+		delete from basket where user_id=#{userId} and item_no=#{itemNo}
 	</delete>
 </mapper>

@@ -58,7 +58,13 @@ public class ProductController {
 		 }
 		item.setItemImgList(list);
 		service.productRegister(item);
-		return "users/maintest";
+		return "redirect:/miniHome/dd/admin/registerList";
 	}
+	@RequestMapping(value = "/dd/admin/registerList", method = RequestMethod.GET)
+	public String productRegisterList() {
+		
+		return "products/ProductRegisterList";
+	}
+	
 	
 }

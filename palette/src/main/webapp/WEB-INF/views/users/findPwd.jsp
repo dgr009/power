@@ -45,5 +45,7 @@
 	이메일 : <input type="text" id='userMail' name="userMail"><br>
 	<button id="find">비밀번호찾기</button>
 	<p id="target"></p>
+	
+	<button onclick="location.href='/palette/users/home'">홈으로</button>
 </body>
 </html>

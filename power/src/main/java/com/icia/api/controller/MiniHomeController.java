@@ -30,8 +30,8 @@ public class MiniHomeController {
 	}
 	
 	//자유게시판 리스트
-	@RequestMapping(value="/{userId}/freeList/{pageNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
-	public String list(@RequestHeader("token") String token, @PathVariable String userId, @PathVariable int pageNo) {
+	@RequestMapping(value="/{userId}/freeList", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String list(@RequestHeader("token") String token, @PathVariable String userId, @RequestParam int pageNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
 		Map<String,Object> free = service.miniHomeSelectFreeList(userId, pageNo);
 		return new Gson().toJson(free);
@@ -51,14 +51,42 @@ public class MiniHomeController {
 	}
 	
 	//회원 토큰으로 정보 얻기
-		@RequestMapping(value="/getUserInfo", method=RequestMethod.POST, produces="text/html;charset=utf-8")
-		public String getUserIdByToken(@RequestHeader("token") String token) {
-			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-			System.out.println("Power Controller Token : " + token);
-			String userId = service.getUserIdByToken(token);
-			return new Gson().toJson(userId);
-		}
+	@RequestMapping(value="/getUserInfo", method=RequestMethod.POST, produces="text/html;charset=utf-8")
+	public String getUserIdByToken(@RequestHeader("token") String token) {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		System.out.println("Power Controller Token : " + token);
+		String userId = service.getUserIdByToken(token);
+		return new Gson().toJson(userId);
+	}
 	
+	//수정
+	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}", method=RequestMethod.PUT, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> update(@RequestHeader("token") String token, @RequestBody MiniHomeFree free) throws BindException {
+		System.out.println("-=-==-=-=-=-=-=-=-=--=--=="+free.toString());
+		int result = service.miniHomeUpdateFree(free);
+			
+		if(result==1){
+			return new ResponseEntity<String>(free.toString(),HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("수정 실패",HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	//자유게시판 삭제
+	@RequestMapping(value="/{userId}/freeDelete/{freeNo}", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> delete(@RequestHeader("token") String token, @PathVariable int freeNo, @PathVariable String userId) throws BindException {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		int result = service.miniHomeDeleteFree(freeNo);
+			
+		if(result==1){
+			return new ResponseEntity<String>(HttpStatus.OK);
+			
+		}else{
+			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
+			
+		}
+		}
+
 	
 	
 	

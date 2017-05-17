@@ -80,7 +80,7 @@ public class UsersDao {
 	}
 
 	// 주문내역보기
-	public List<OrderList> orderList(String orderId, int start, int end) {
+	public List<OrderList> orderList( int start, int end,String orderId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
@@ -126,7 +126,7 @@ public class UsersDao {
 	}
 
 	// 포인트 내역확인
-	public List<PointStatement> tradeList(String userId) {
+	public List<TradeStatement> tradeList(String userId) {
 		return tpl.selectList("api.dao.UsersDao.usersTradeList", userId);
 	}
 
@@ -160,8 +160,26 @@ public class UsersDao {
 	}
 
 	// 장바구니 상품 삭제하기
-	public int basketDelete(String userId) {
-		return tpl.delete("api.dao.UsersDao.usersBasketDelete", userId);
+	public int basketDelete(String userId, int itemNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("itemNo", itemNo);
+		return tpl.delete("api.dao.UsersDao.usersBasketDelete", map);
+	}
+
+	//회원 주문 내역 총 개수
+	public int orderListCnt(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.usersOrderListCnt",userId);
+	}
+
+	//회원 즐겨찾기 총 개수
+	public int bookmarkListCnt(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.usersBookmarkListCnt",userId);
+	}
+
+	//장바구니 총 개수
+	public int basketListCnt(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.usersBasketListCnt",userId);
 	}
 
 }
