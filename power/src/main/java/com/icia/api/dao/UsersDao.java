@@ -182,4 +182,13 @@ public class UsersDao {
 		return tpl.selectOne("api.dao.UsersDao.usersBasketListCnt",userId);
 	}
 
+	//홈페이지 개설
+	public int homeRegister(MiniHome home){
+		return tpl.insert("api.dao.UsersDao.usersHomeRegister",home);
+	}
+	
+	//회원 홈페이지 개설함 업데이트
+	public int userIsHomeOk(String userId){
+		return tpl.update("api.dao.UsersDao.usersIsHomeOk",userId);
+	}
 }

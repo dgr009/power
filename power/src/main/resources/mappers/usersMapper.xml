@@ -130,4 +130,14 @@
 	<delete id="usersBasketDelete" parameterType="hashmap">
 		delete from basket where user_id=#{userId} and item_no=#{itemNo}
 	</delete>
+	
+	<!-- 홈페이지 개설 -->
+	<!-- 회원 홈페이지 생성 -->
+	<insert id="usersHomeRegister" parameterType="MiniHome">
+		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce})
+	</insert>
+	<!-- 회원 홈페이지 개설여부 -->
+	<update id="usersIsHomeOk" parameterType="string">
+		update users set user_ishome=1 where user_id=#{userId}
+	</update>
 </mapper>

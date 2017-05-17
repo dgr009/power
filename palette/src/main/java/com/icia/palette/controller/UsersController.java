@@ -206,4 +206,11 @@ public class UsersController {
 		model.addAttribute("result", service.userBasketList(session, pageNo));
 		return "users/basketList";
 	}
+	
+	// 회원 미니홈페이지 개설하기 페이지로
+	@RequestMapping(value = "/homeRegister", method = RequestMethod.GET)
+	public String homeRegisterStart() {
+		return "users/homeRegister";
+	}
+	
 }

@@ -158,7 +158,7 @@ public class UsersController {
 
 	}
 
-	// 회원 탈퇴 비활성화
+	// 회원 탈퇴 활성화
 	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.PUT, produces = "text/html;charset=utf-8")
 	public ResponseEntity<String> usersReverseEnd(@PathVariable String userId) {
 		System.out.println("활성화 아이디 :  " + userId);
