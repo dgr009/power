@@ -34,8 +34,8 @@ public class ProductController {
 	private String path;
 	@Autowired
 	private ProductService service;
-	@RequestMapping(value="/dd/admin/register",method=RequestMethod.GET)
-	public String productRegister(){
+	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
+	public String productRegister(@PathVariable String userId){
 		
 		return "products/ProductRegister";
 	}
@@ -43,10 +43,10 @@ public class ProductController {
 	public String productUpdate(@PathVariable String userid){
 		return "products/ProductUpdate";
 	}
-	@RequestMapping(value = "/dd/admin/register", method = RequestMethod.POST)
-	public String productRegister(@ModelAttribute Item item, MultipartHttpServletRequest req) throws IOException {
+	@RequestMapping(value = "/{userId}/admin/register", method = RequestMethod.POST)
+	public String productRegister(@ModelAttribute Item item,@PathVariable String userId, MultipartHttpServletRequest req) throws IOException {
 		System.out.println("아이템이름은"+item.getItemName());
-		
+		item.setUserId(userId);
 		 ArrayList<com.icia.palette.vo.ItemImg> list=new ArrayList<com.icia.palette.vo.ItemImg>();
 		 java.util.List<MultipartFile> mw=req.getFiles("imgName");
 		

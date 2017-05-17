@@ -12,7 +12,7 @@ import com.google.gson.*;
 import com.icia.api.service.*;
 import com.icia.api.vo.*;
 
-//@RestController
+@RestController
 @RequestMapping("/users")
 public class UsersController {
 	private static final Logger logger = LoggerFactory.getLogger(UsersController.class);

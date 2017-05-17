@@ -1,9 +1,10 @@
+<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-
+<%Users users=(Users)session.getAttribute("user"); %>
 
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
@@ -114,7 +115,7 @@
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
 							
-							<form action="/palette/miniHome/dd/admin/register" method="POST" enctype="multipart/form-data">
+							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
@@ -130,14 +131,16 @@
 							</div>
 							
 							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
+								<table >
+									<tbody id="space" >
 										<tr><td><input type="text"  name="itemName"></td></tr>
 										<tr><td><select name="typeName" id="typeName">
 									<option value="1">이수민</option>
 										</select></td></tr>
 										<tr><td><input type="text"  name="itemSize"></td></tr>
 										<tr><td><input type="text"  name="itemPrice"></td></tr>
+										<tr><td><input type="text"  name="optionName" id="optionName"></td>
+										<td><a href="#fakelink" class="btn btn-sm btn-social-facebook" id="addOption">추가</a></td></tr >
 										
 									</tbody>
 								</table>
@@ -449,6 +452,20 @@
 													});
 										});
 					</script>
+					<script>
+	$(function(){
+		var i = 1;
+
+		$("#addOption").on("click", function(){
+			if( i<4){
+				i= i+1;
+				$("#space").after('<tr><td><input type="text" id="optionName" name="optionName" class="form-control"></td></tr>');
+			}
+			
+		})
+	})
+	
+</script>
 					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>
