@@ -78,9 +78,12 @@ public class MiniHomeBoardService {
 	
 	//(개인)자유게시판 뷰
 	@Transactional
-	public MiniHomeFree miniHomeSelectFreeView(int freeNo){
-		dao.miniHomeFreeIncreaseHits(freeNo);//(개인)자유게시판 조회수 증가
-		return dao.miniHomeSelectFreeView(freeNo);
+	public HashMap<String,Object> miniHomeSelectFreeView(int freeNo){
+		dao.miniHomeFreeIncreaseHits(freeNo);//(개인)자유게시판 조회수 증가	
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(freeNo));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
+		return map;
 	}
 	
 	//(개인)자유게시판 댓글 하나 조회
