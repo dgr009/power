@@ -61,9 +61,9 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
+
 	
-</script>
+
 </head>
 <body>
 	<!--Start Header-->
@@ -78,7 +78,7 @@
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
+							
 							</h1>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
             </div>
              </section>
             
- 
+
            
             <div class="col-lg-12 col-md-12 col-sm-12">
             <br><br>
@@ -113,19 +113,17 @@
 							<div class="col-lg-9 col-md-9 col-sm-9">
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
-							<form action="/hooligan/employee/productRegister" method="POST" enctype="multipart/form-data">
 							
+							<form action="/palette/miniHome/dd/admin/register" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
 									
 									<tr><td>상품명</td></tr>	
 									<tr><td>상품 종류</td></tr>
-									<tr><td>최소수량</td></tr>
-									<tr><td>최대수량</td></tr>
+									<tr><td>상품 수량</td></tr>
 									<tr><td>판매 가격</td></tr>
-									<tr><td>마감일</td></tr>
-									<tr><td>상품 내용</td></tr>
+									<tr><td>상품 옵션</td></tr>
 									
 								</tbody>
 							</table>
@@ -134,14 +132,13 @@
 							<div class="col-lg-3 col-md-3 col-sm-3">
 								<table>
 									<tbody>
-										<tr><td><input type="text"  name="product_name"></td></tr>
-										<tr><td><select name="type_no">
+										<tr><td><input type="text"  name="itemName"></td></tr>
+										<tr><td><select name="typeName" id="typeName">
 									<option value="1">이수민</option>
 										</select></td></tr>
-										<tr><td><input type="text"  name="minimum_size"></td></tr>
-										<tr><td><input type="text"  name="price"></td></tr>
-										<tr><td><input type="date" name="closing_date" ></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:180px;" name="product_content"></textarea></td></tr>	
+										<tr><td><input type="text"  name="itemSize"></td></tr>
+										<tr><td><input type="text"  name="itemPrice"></td></tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -150,8 +147,7 @@
 									<tbody>
 
 										<tr><td>상품 이미지</td></tr>
-										<tr><td>제품 상세 이미지</td></tr>
-										<tr><td>제품 상세 내용</td></tr>
+										<tr><td>상품 내용</td></tr>
 
 									</tbody>
 								</table>
@@ -159,17 +155,17 @@
 							<div class="col-lg-3 col-md-3 col-sm-3">
 								<table>
 									<tbody>
-										<tr><td><input type="file" name="main_image_path" ></td></tr>
-										<tr><td><input type="file"  name="image_path"></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:180px;" name="detailcontent"></textarea></td></tr>
+										<tr><td><input type="file" name="imgName" id="imgName" multiple></td></tr>
+										<tr><td><textarea rows="4" cols="3" style="width:200px;" name="itemContent" id="itemContent"></textarea></td></tr>
 										</tbody>
 								</table>
 								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<button class="btn btn-default btn-lg btn-block" type="submit"> 
+								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
 							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+							
 							</div>
                             
-							</form>
+						</form>
 							
 									
 							</div>
