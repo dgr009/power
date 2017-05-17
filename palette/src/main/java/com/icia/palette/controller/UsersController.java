@@ -47,40 +47,40 @@ public class UsersController {
 			Model model) {
 		int result = service.login(userId, userPwd, session);
 		if (result == 1) {
-			Users user = service.userInfo(session, userId);
+			Users user = service.userInfo(session);
 			model.addAttribute("user", user);
 			if (user.getEnabled().equals("0")) {
 				service.logout(session);
 				return "users/usersReverse";
 			}
 		}
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		service.logout(session);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 회원가입페이지로
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
 	public String insertStart() {
-		return "users/insert";
+		return "users/usersRegister";
 	}
 
 	// 회원가입완료
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertEnd(@ModelAttribute Users user) {
 		service.insert(user);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 회원 정보 보기
-	@RequestMapping(value = "/info/{userId}", method = RequestMethod.GET)
-	public String userInfoStart(HttpSession session, @PathVariable String userId, Model model) {
-		model.addAttribute("user", service.userInfo(session, userId));
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String userInfoStart(HttpSession session, Model model) {
+		model.addAttribute("user", service.userInfo(session));
 		return "users/info";
 	}
 
@@ -100,15 +100,15 @@ public class UsersController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String updateStart(HttpSession session, Model model) {
 		String userId = service.getUserIdByToken(session);
-		model.addAttribute("user", service.userInfo(session, userId));
-		return "users/update";
+		model.addAttribute("user", service.userInfo(session));
+		return "users/usersUpdate";
 	}
 
 	// 회원 정보수정하기
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateEnd(HttpSession session, @ModelAttribute Users user) {
 		service.updateUser(session, user);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 포인트 충전하기 페이지
@@ -122,7 +122,7 @@ public class UsersController {
 	public String chargePointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.chargePoint(session, userId, tradePoint);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 포인트 환급하기 페이지
@@ -136,7 +136,7 @@ public class UsersController {
 	public String refundPointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.refundPoint(session, userId, tradePoint);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 포인트 충전 환급 조회
@@ -158,14 +158,14 @@ public class UsersController {
 		service.deleteUser(session);
 		service.logout(session);
 
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 회원 활성화
 	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.POST)
 	public String deleteEnd(HttpSession session, @PathVariable String userId) {
 		service.reverseUser(userId);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 	// 회원 주문내역 조회 페이지
@@ -222,11 +222,10 @@ public class UsersController {
 	// 회원 미니홈페이지 개설하기
 	@RequestMapping(value = "/homeRegister", method = RequestMethod.POST)
 	public String homeRegisterEnd(@ModelAttribute MiniHome home,MultipartFile file) throws IOException {
-		System.out.println(file.getOriginalFilename());
 		String fileName = UploadUtils2.storeAndGetFileName(file, ctx, path);
 		home.setHomeImg(fileName);
 		service.homeRegister(home);
-		return "maintest";
+		return "redirect:/users/home";
 	}
 
 }

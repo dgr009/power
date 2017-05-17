@@ -22,7 +22,7 @@ public class UserService {
 		map.put("userId", userId);
 		map.put("userPwd", userPwd);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
 		System.out.println("회원 로그인 api가기 직전"+requestEntity);
 		String result = tpl
@@ -34,7 +34,7 @@ public class UserService {
 			return 0;
 		} else {
 			session.setAttribute("token", result);
-			Users user = userInfo(session, userId);
+			Users user = userInfo(session);
 			session.setAttribute("user", user);
 			return 1;
 		}
@@ -52,7 +52,7 @@ public class UserService {
 		RestTemplate tpl = new RestTemplate();
 		System.out.println("Service User" + user);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/register", HttpMethod.POST, requestEntity, String.class)
@@ -62,14 +62,14 @@ public class UserService {
 	}
 
 	// 회원 정보보기
-	public Users userInfo(HttpSession session, String userId) {
+	public Users userInfo(HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String) session.getAttribute("token"));
 		HttpEntity requestEntity = new HttpEntity(headers);
 		System.out.println(requestEntity);
-		String result = tpl.exchange("http://localhost:8087/api/users/info/{userId}", HttpMethod.GET, requestEntity,
-				String.class, userId).getBody();
+		String result = tpl.exchange("http://localhost:8087/api/users/info", HttpMethod.GET, requestEntity,
+				String.class).getBody();
 		Users user = new Gson().fromJson(result, Users.class);
 		System.out.println("userInfo : " + user);
 
@@ -82,7 +82,7 @@ public class UserService {
 		System.out.println("Service User" + user);
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String) session.getAttribute("token"));
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/update", HttpMethod.PUT, requestEntity, String.class)
@@ -102,7 +102,7 @@ public class UserService {
 		map.put("tradePoint", tradePoint);
 		System.out.println("Service Map : " + map);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/chargePoint", HttpMethod.POST, requestEntity, String.class)
@@ -120,7 +120,7 @@ public class UserService {
 		map.put("tradePoint", tradePoint);
 		System.out.println("Service Map : " + map);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/refundPoint", HttpMethod.POST, requestEntity, String.class)
@@ -236,8 +236,9 @@ public class UserService {
 		RestTemplate tpl = new RestTemplate();
 		System.out.println("Service User" + home);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(home), headers);
+		System.out.println("홈페이지 만들기 api가기 직전"+requestEntity + "홈 : "+home);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/homeRegister", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
