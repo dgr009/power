@@ -38,7 +38,6 @@ public class ProductController {
 	@RequestMapping(value="/admin/kindList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  productRegisterEnd(@RequestBody String userId){
 		System.out.println("여기까지는오냐?");
-			
 		 return 	service.productRegisterReady(userId);
 	}
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")

@@ -134,9 +134,13 @@
 								<table >
 									<tbody >
 										<tr><td><input type="text"  name="itemName"></td></tr>
-										<tr><td><select name="typeName" id="typeName">
-									<option value="1">${kind.smallKind}</option>
-										</select></td></tr>
+												<c:forEach items="${result.kind }" var="free">
+		<tr>			
+			<td>
+				${free.smallKind}
+			</td>
+		</tr>
+		</c:forEach>
 										<tr><td><input type="text"  name="itemSize"></td></tr>
 										<tr><td><input type="text"  name="itemPrice"></td></tr>
 										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>

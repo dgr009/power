@@ -13,9 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.Gson;
 import com.icia.palette.dao.*;
-import com.icia.palette.vo.Item;
-import com.icia.palette.vo.ItemImg;
-import com.icia.palette.vo.Users;
+import com.icia.palette.vo.*;
 
 @Service
 public class ProductService {
@@ -34,7 +32,7 @@ public class ProductService {
 
 	}
 
-	public String productRegisterReady(String userId) {
+	public Map<String, Object> productRegisterReady(String userId) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -42,7 +40,8 @@ public class ProductService {
 		String result = tpl
 				.exchange("http://localhost:8087/api/miniHome/admin/kindList", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
-		return result;
+		Map<String, Object> s=new Gson().fromJson(result, Map.class);
+		return s;
 	}
 	
 }
