@@ -13,8 +13,10 @@ public class ProductDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 //제품등록에서 제품종류가져오기
-	public List<String> productRegisterReady(String userid) {
-		return tpl.selectList("api.dao.ProductDao.", userid);
+	public List<SmallKind> productRegisterReady(String id) {
+		int a=id.length();
+		String userid=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.productRegisterReady", userid);
 	}
 	//제품등록하기
 	public void insertItem(Item item){

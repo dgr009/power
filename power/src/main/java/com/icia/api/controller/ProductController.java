@@ -35,13 +35,15 @@ public class ProductController {
 	public String productRegisterReady(@PathVariable String userid){
 		return new Gson().toJson(service.productRegisterReady(userid));
 	}
+	@RequestMapping(value="/admin/kindList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productRegisterEnd(@RequestBody String userId){
+		System.out.println("여기까지는오냐?");
+			
+		 return 	service.productRegisterReady(userId);
+	}
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String>  productRegisterEnd(@RequestBody Item item){
-		System.out.println("시발년아");
-		System.out.println("아이템"+item.getItemName());
-		
-		service.productRegister(item);
-		 
+	service.productRegister(item);
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}
 }

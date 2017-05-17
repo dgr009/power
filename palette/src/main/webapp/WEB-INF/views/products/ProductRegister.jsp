@@ -132,14 +132,14 @@
 							
 							<div class="col-lg-3 col-md-3 col-sm-3">
 								<table >
-									<tbody id="space" >
+									<tbody >
 										<tr><td><input type="text"  name="itemName"></td></tr>
 										<tr><td><select name="typeName" id="typeName">
-									<option value="1">이수민</option>
+									<option value="1">${kind.smallKind}</option>
 										</select></td></tr>
 										<tr><td><input type="text"  name="itemSize"></td></tr>
 										<tr><td><input type="text"  name="itemPrice"></td></tr>
-										<tr><td><input type="text"  name="optionName" id="optionName"></td>
+										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>
 										<td><a href="#fakelink" class="btn btn-sm btn-social-facebook" id="addOption">추가</a></td></tr >
 										
 									</tbody>
@@ -459,7 +459,7 @@
 		$("#addOption").on("click", function(){
 			if( i<4){
 				i= i+1;
-				$("#space").after('<tr><td><input type="text" id="optionName" name="optionName" class="form-control"></td></tr>');
+				$("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
 			}
 			
 		})

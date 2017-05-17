@@ -1,6 +1,6 @@
 package com.icia.palette.service;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpEntity;
@@ -32,6 +32,17 @@ public class ProductService {
 				.exchange("http://localhost:8087/api/miniHome/admin/productRegister", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
 
+	}
+
+	public String productRegisterReady(String userId) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/admin/kindList", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		return result;
 	}
 	
 }
