@@ -224,15 +224,27 @@ public class UsersController {
 		Map<String, Object> map = service.userBasketList(userId, pageNo);
 		return new Gson().toJson(map);
 	}
-	
+
 	// 회원 장바구니 취소하기
-		@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
-		public ResponseEntity<String> basketDelete(@RequestHeader("token") String token,@RequestParam int itemNo) {
-			String userId = service.getUserIdByToken(token);
-			int result = service.userBasketDelete(userId,itemNo);
-			if (result == 1)
-				return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
-			else
-				return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
-		}
+	@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> basketDelete(@RequestHeader("token") String token, @RequestParam int itemNo) {
+		String userId = service.getUserIdByToken(token);
+		int result = service.userBasketDelete(userId, itemNo);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+	}
+
+	// 홈페이지 만들기
+	@RequestMapping(value = "/homeRegister", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersHomeRegisterEnd(@RequestBody MiniHome home) throws BindException {
+		logger.info(home.toString());
+		int result = service.homeRegister(home);
+		if (result == 1)
+			return new ResponseEntity<String>(home.toString(), HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("가입 실패", HttpStatus.BAD_REQUEST);
+
+	}
 }

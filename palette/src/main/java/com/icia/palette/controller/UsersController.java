@@ -1,18 +1,20 @@
 package com.icia.palette.controller;
 
+import java.io.*;
+
+import javax.annotation.*;
+import javax.servlet.*;
 import javax.servlet.http.*;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.*;
+import org.springframework.web.multipart.*;
 
-import com.google.gson.*;
 import com.icia.palette.service.*;
+import com.icia.palette.util.*;
 import com.icia.palette.vo.*;
 
 @Controller
@@ -20,6 +22,10 @@ import com.icia.palette.vo.*;
 public class UsersController {
 	private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
 
+	@Autowired
+	private ServletContext ctx;
+	@Resource(name="homePath")
+	private String path;
 	@Autowired
 	private UserService service;
 
@@ -32,7 +38,7 @@ public class UsersController {
 	// 로그인페이지로
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginStart() {
-		return "users/login";
+		return "users/usersLogin";
 	}
 
 	// 로그인
@@ -202,15 +208,25 @@ public class UsersController {
 	@RequestMapping(value = "/basketDelete", method = RequestMethod.GET)
 	public String basketDelete(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo,
 			@RequestParam int itemNo) {
-		service.deleteBasket(session,itemNo);
+		service.deleteBasket(session, itemNo);
 		model.addAttribute("result", service.userBasketList(session, pageNo));
 		return "users/basketList";
 	}
-	
+
 	// 회원 미니홈페이지 개설하기 페이지로
 	@RequestMapping(value = "/homeRegister", method = RequestMethod.GET)
 	public String homeRegisterStart() {
 		return "users/homeRegister";
 	}
-	
+
+	// 회원 미니홈페이지 개설하기
+	@RequestMapping(value = "/homeRegister", method = RequestMethod.POST)
+	public String homeRegisterEnd(@ModelAttribute MiniHome home,MultipartFile file) throws IOException {
+		System.out.println(file.getOriginalFilename());
+		String fileName = UploadUtils2.storeAndGetFileName(file, ctx, path);
+		home.setHomeImg(fileName);
+		service.homeRegister(home);
+		return "maintest";
+	}
+
 }

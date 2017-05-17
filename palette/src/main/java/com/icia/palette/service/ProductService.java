@@ -24,7 +24,7 @@ public class ProductService {
 		RestTemplate tpl=new RestTemplate();
 		System.out.println("item"+item.getItemContent());
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(item), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/miniHome/admin/productRegister", HttpMethod.POST, requestEntity, String.class)
@@ -35,7 +35,7 @@ public class ProductService {
 	public Map<String, Object> productRegisterReady(String userId) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/miniHome/admin/kindList", HttpMethod.POST, requestEntity, String.class)

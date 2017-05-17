@@ -42,6 +42,7 @@ public class ProductController {
 	}
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String>  productRegisterEnd(@RequestBody Item item){
+		System.out.println("아이템이름"+item.getItemName());
 	service.productRegister(item);
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}

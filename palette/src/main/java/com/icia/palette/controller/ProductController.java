@@ -56,6 +56,7 @@ public class ProductController {
 		 list.add(new com.icia.palette.vo.ItemImg(fileName));
 		 }
 		item.setItemImgList(list);
+		System.out.println("메인에서 이름"+item.getItemName());
 		service.productRegister(item);
 		return "redirect:/miniHome/dd/admin/registerList";
 	}
