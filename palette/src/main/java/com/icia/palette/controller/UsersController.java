@@ -54,14 +54,14 @@ public class UsersController {
 				return "users/usersReverse";
 			}
 		}
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		service.logout(session);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 회원가입페이지로
@@ -74,7 +74,7 @@ public class UsersController {
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public String insertEnd(@ModelAttribute Users user) {
 		service.insert(user);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 회원 정보 보기
@@ -108,7 +108,7 @@ public class UsersController {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateEnd(HttpSession session, @ModelAttribute Users user) {
 		service.updateUser(session, user);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 포인트 충전하기 페이지
@@ -122,7 +122,7 @@ public class UsersController {
 	public String chargePointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.chargePoint(session, userId, tradePoint);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 포인트 환급하기 페이지
@@ -136,7 +136,7 @@ public class UsersController {
 	public String refundPointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.refundPoint(session, userId, tradePoint);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 포인트 충전 환급 조회
@@ -158,14 +158,14 @@ public class UsersController {
 		service.deleteUser(session);
 		service.logout(session);
 
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 회원 활성화
 	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.POST)
 	public String deleteEnd(HttpSession session, @PathVariable String userId) {
 		service.reverseUser(userId);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
 
 	// 회원 주문내역 조회 페이지
@@ -225,7 +225,13 @@ public class UsersController {
 		String fileName = UploadUtils2.storeAndGetFileName(file, ctx, path);
 		home.setHomeImg(fileName);
 		service.homeRegister(home,session);
-		return "redirect:/users/home";
+		return "redirect:/users/main";
 	}
+	
+		//메인으로
+		@RequestMapping(value = "/main", method = RequestMethod.GET)
+		public String ma() {
+			return "main/main";
+		}
 
 }

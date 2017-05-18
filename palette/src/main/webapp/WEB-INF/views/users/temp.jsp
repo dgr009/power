@@ -36,3 +36,110 @@
 		충전하실 금액 : <input type="text" name="tradePoint">
 		<button>충전 하기</button>
 	</form>				
+	
+	/////////-----------------위쪽
+	<!-- CSS FILES -->
+<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
+<link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
+	media="screen" />
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+
+.name {
+	text-align: center;
+	padding-left: 200px;
+	padding-right: 200px;
+}
+
+.well {
+    min-height: 360px;
+    padding : 0;
+    padding-left: 50px;
+    }
+    tr{
+    	font-size: 1.1em;
+    	height: 28px;
+    	line-height: 28px;
+    }
+    
+    .form-control{
+    height: 20px;
+    	line-height: 20px;
+    	
+    }
+       footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+	
+</script>
+</head>
+<body>
+<!-- 헤더 -->
+<header id="header">
+ <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+</header>
+<br><br><br><br><br><br>
+<!-- 헤더 끝 -->
+<div class="container text-center">    
+  <div class="row">
+  	<!-- 랭킹 -->
+    <%@ include file="/WEB-INF/views/side/RankSide.jsp" %>
+    <!-- 랭킹 끝 -->
+    
+	////////////--------- 아래쪽
+					 <!-- 광고 사이드 오른쪽-->
+    <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
+    <!-- 광고 사이드 오른쪽 끝 -->
+  </div>
+</div>
+<br><br><br><br>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+	
+	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+			<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
+			<!-- jQuery cookie -->
+			<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
+			<!-- Style Colors Switcher -->
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
+			<script type="text/javascript"
+				src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
+			<script type="text/javascript"
+				src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
+</html>
+////////////////// 아래쪽 끝		
+
+//////////// 가운데
+<div class="col-lg-9 col-md-9 col-sm-9">
+이거 
+ <div class="col-sm-8"> 
+ 로 수정
+ 
+

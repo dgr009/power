@@ -34,11 +34,10 @@
                 <div class="row">
                     <div class="hidden-xs col-lg-7 col-sm-5 top-info">
                         
-               			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</a></span>
-               			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</a></span>
-               			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P </a></span>
-                       
-                          <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
+               			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</span>
+               			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</span>
+               			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
+                       	  <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         
                     </div>
