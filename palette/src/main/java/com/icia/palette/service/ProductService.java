@@ -1,13 +1,10 @@
 package com.icia.palette.service;
 
-<<<<<<< HEAD
 import javax.servlet.http.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
-=======
 import java.util.ArrayList;
->>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpEntity;
@@ -29,11 +26,10 @@ public class ProductService {
 	@Autowired
 	private ProductDao dao;
 
-<<<<<<< HEAD
-=======
 	public void productRegister(Item item) {
 		RestTemplate tpl=new RestTemplate();
-		System.out.println("item"+item.getItemContent());
+		System.
+		out.println("item"+item.getItemContent());
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(item), headers);
@@ -42,6 +38,5 @@ public class ProductService {
 				.getBody();
 
 	}
->>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
 	
 }

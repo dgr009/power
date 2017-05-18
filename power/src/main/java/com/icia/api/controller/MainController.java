@@ -1,5 +1,7 @@
 package com.icia.api.controller;
 
+import java.util.*;
+
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -43,12 +45,17 @@ public class MainController {
 
 	}
 	
-	// 회원 토큰으로 정보 얻기
+	// 자유게시판 상세 보기
 	@RequestMapping(value = "/freeboard/view/{mainArticleNo}", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String mainArticleView(@PathVariable String userId, @PathVariable int mainArticleNo) {
-		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+	public String mainArticleView(@PathVariable int mainArticleNo) {
 		MainFreeBoard result= service.mainFreeBoardView(mainArticleNo);
 		return new Gson().toJson(result);
 	}
-
+	//자유게시판 리스트
+	@RequestMapping(value="/{userId}/freeList", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String list(@RequestHeader("token") String token, @PathVariable String userId, @RequestParam int pageNo) {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		Map<String,Object> free = service.MainFreeBoardList(pageNo);
+		return new Gson().toJson(free);
+	}
 }

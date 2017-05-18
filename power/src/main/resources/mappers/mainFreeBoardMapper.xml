@@ -51,7 +51,7 @@
 	
 	<!--자유게시판 조회수 증가 -->
 	<update id="mainFreeBoardHitsCnt" parameterType="int">
-		select main_free_board set main_article_hits=main_article_hits+1 where main_article_no=#{mainArticleNo}
+		update  main_free_board set main_article_hits=main_article_hits+1 where main_article_no=#{mainArticleNo}
 	</update>
 	
 	<!-- 댓글 생성 -->

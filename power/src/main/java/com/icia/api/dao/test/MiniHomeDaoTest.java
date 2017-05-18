@@ -104,6 +104,11 @@ public class MiniHomeDaoTest {
 		System.out.println(dao2.miniHomeSelectSellerInformation("qhrals8"));
 	}
 	
+	@Test
+	public void selectAllReple(){
+		System.out.println(dao.miniHomeSelectAllFreeReple(2));
+	}
+	
 	
 	
 	

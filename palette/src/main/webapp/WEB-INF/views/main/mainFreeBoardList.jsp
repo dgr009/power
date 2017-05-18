@@ -11,8 +11,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	
-<script type="text/javascript">
-	
+
 </script>
 </head>
 <body>
@@ -23,43 +22,46 @@
 			<td>제목</td>
 			<td>이름</td>
 			<td>조회수</td>
+			<td>내용</td>
 			<td>게시시간</td>
-			<td>아이디</td>
 			<td>댓글 수</td>
 		</tr>
-		<c:forEach items="${mini2.list }" var="free">
+		<c:forEach items="${main.list }" var="free">
 		<tr>			
 			<td>
-				${free.freeNo }
+				${main.mainArticle }
 			</td>
 			<td>
-				<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}">${free.freeTitle }</a>
+				<a href="/palette/main/freeboard/view/${main.mainArticle}">${main.mainArticleTitle }</a>
 			</td>
 			<td>
-				${free.freeName }
+				${main.mainArticleName }
 			</td>
 			<td>
-				${free.freeHits.intValue() }
+				${main.mainArticleHits }
 			</td>
 			<td>
-				${free.freeDate }
+				${main.mainArticleContent }
 			</td>
 			<td>
-				${free.userId }
+				${main.mainArticleDate }
 			</td>
 			<td>
-				${free.freeRepleCnt.intValue() }
+				${main.mainArticleRepleCnt }
+			</td>
+			<td>
+				${main.mainfreeRepleCnt }
 			</td>	
 		</tr>
 		</c:forEach>
 
-			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
+			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/main/freeboard/list?pageNo=${main.pagination.prev}">이전으로</a></c:if>
 			
-			<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
-				<a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a>
+			<c:forEach var="i" begin="${main.pagination.startPage}" end="${main.pagination.endPage}">
+				<a href="/palette/main/freeboard/list?pageNo=${i}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음으로</a></c:if>
+		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/main/freeboard/list?pageNo=${main.pagination.next}">다음으로</a></c:if>
 		
 		<form>
 		<input type="button" value="게시글 작성" 

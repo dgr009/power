@@ -32,10 +32,19 @@ public class MainController {
 	}
 	//자유게시판 뷰
 	@RequestMapping(value="/freeboard/view/{mainArticleNo}",method = RequestMethod.GET)
-	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int mainArticleNo,Model model){
-		model.addAttribute("main", service.mainFreeBoardView(session,userId, mainArticleNo));
+	public String userInfoStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
+		model.addAttribute("main", service.mainFreeBoardView(session, mainArticleNo));
 		return "main/mainFreeBoardView";
 	}
+	//자유게시판 리스트
+	@RequestMapping(value="/freeboard/List",method = RequestMethod.GET)
+	public String userInfo(HttpSession session,Model model,@RequestParam int pageNo){
+		model.addAttribute("main", service.mainFreeBoardList(session, pageNo));
+		return "main/list";
+	}
+	//팔레컨 - 팔레서 - 파워컨 - 파워서 -파워디에 - 파워서 - 파워 컨 - 팔레서- 팔레 컨 - 뷰
+	
+	
 	/*업데이트 작성페이지로
 	@RequestMapping(value="/freeboard/update{",method = RequestMethod.GET)
 	public String freeBoardUpdateStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
