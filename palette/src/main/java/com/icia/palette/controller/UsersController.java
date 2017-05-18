@@ -221,10 +221,10 @@ public class UsersController {
 
 	// 회원 미니홈페이지 개설하기
 	@RequestMapping(value = "/homeRegister", method = RequestMethod.POST)
-	public String homeRegisterEnd(@ModelAttribute MiniHome home,MultipartFile file) throws IOException {
+	public String homeRegisterEnd(HttpSession session,@ModelAttribute MiniHome home,MultipartFile file) throws IOException {
 		String fileName = UploadUtils2.storeAndGetFileName(file, ctx, path);
 		home.setHomeImg(fileName);
-		service.homeRegister(home);
+		service.homeRegister(home,session);
 		return "redirect:/users/home";
 	}
 

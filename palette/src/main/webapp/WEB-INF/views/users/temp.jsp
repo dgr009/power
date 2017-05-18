@@ -29,4 +29,10 @@
 	<button  id="chargePoint" onclick='location.href="http://localhost:8087/palette/users/chargePoint"'>포인트 충전하기</button>
 	<button  id="refundPoint" onclick='location.href="http://localhost:8087/palette/users/refundPoint"'>포인트 환급하기</button>
 	<button  id="deleteuser" onclick='location.href="http://localhost:8087/palette/users/delete"'>개인회원 비활성화</button>
-						
+		
+		
+		<h1>충전 페이지</h1>
+	<form action="/palette/users/chargePoint" method="post">
+		충전하실 금액 : <input type="text" name="tradePoint">
+		<button>충전 하기</button>
+	</form>				

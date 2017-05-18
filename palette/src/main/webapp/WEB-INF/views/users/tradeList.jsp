@@ -59,7 +59,7 @@
 						<div id="logo">
 							<h1>
 								<a href="/palette/users/home"><img
-									src="/hooligan/images/logo.png" alt="" /></a>
+									src="/palette/resources/images/logo.png" alt="" /></a>
 							</h1>
 						</div>
 					</div>
@@ -108,7 +108,7 @@
 
 					</div>
 	<div class="col-lg-9 col-md-9 col-sm-9">
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 500px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i>장바구니 목록</h3>
+		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 500px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i>포인트 거래 목록</h3>
 	<table width="90%" style="text-align: center;">
 		<thead>
 		<tr>

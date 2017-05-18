@@ -59,7 +59,7 @@
 						<div id="logo">
 							<h1>
 								<a href="/palette/users/home"><img
-									src="/hooligan/images/logo.png" alt="" /></a>
+									src="/palette/resources/images/logo.png" alt="" /></a>
 							</h1>
 						</div>
 					</div>
