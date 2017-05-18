@@ -126,8 +126,12 @@ public class UsersDao {
 	}
 
 	// 포인트 내역확인
-	public List<TradeStatement> tradeList(String userId) {
-		return tpl.selectList("api.dao.UsersDao.usersTradeList", userId);
+	public List<TradeStatement> tradeList(int start,int end,String userId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("userId", userId);
+		return tpl.selectList("api.dao.UsersDao.usersTradeList", map);
 	}
 
 	// 개인 회원 정보 보기
@@ -182,4 +186,18 @@ public class UsersDao {
 		return tpl.selectOne("api.dao.UsersDao.usersBasketListCnt",userId);
 	}
 
+	//홈페이지 개설
+	public int homeRegister(MiniHome home){
+		return tpl.insert("api.dao.UsersDao.usersHomeRegister",home);
+	}
+	
+	//회원 홈페이지 개설함 업데이트
+	public int userIsHomeOk(String userId){
+		return tpl.update("api.dao.UsersDao.usersIsHomeOk",userId);
+	}
+
+	//충전환급내역 총 개수
+	public int tradeListCnt(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt",userId);
+	}
 }

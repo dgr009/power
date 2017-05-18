@@ -29,7 +29,10 @@
 	<beans:bean id="path" class="java.lang.String">
 		<beans:constructor-arg value="/productImg" />
 	</beans:bean>
-	<resources mapping="/resources/**" location="/resources/" />
+	<beans:bean id="homePath" class="java.lang.String">
+		<beans:constructor-arg value="/homeimg" />
+	</beans:bean>
+	<resources mapping="/resources/**" location="/resources/static/" />
 
 
 	

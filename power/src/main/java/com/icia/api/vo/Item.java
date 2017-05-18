@@ -20,4 +20,5 @@ public class Item {
 	private String userId;
 	private String smallKind;
 	private ArrayList<ItemImg> itemImgList;
+	private ArrayList<String> optionName;
 }

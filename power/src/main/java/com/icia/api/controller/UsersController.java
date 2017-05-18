@@ -12,7 +12,7 @@ import com.google.gson.*;
 import com.icia.api.service.*;
 import com.icia.api.vo.*;
 
-//@RestController
+@RestController
 @RequestMapping("/users")
 public class UsersController {
 	private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
@@ -62,9 +62,10 @@ public class UsersController {
 	}
 
 	// 회원 토큰으로 정보 얻기
-	@RequestMapping(value = "/info/{userId}", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String read(@RequestHeader("token") String token, @PathVariable String userId) {
+	@RequestMapping(value = "/info", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String read(@RequestHeader("token") String token) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		String userId = service.getUserIdByToken(token);
 		Users user = service.read(userId, token);
 		return new Gson().toJson(user);
 	}
@@ -93,11 +94,9 @@ public class UsersController {
 	// 회원 정보 수정
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public ResponseEntity<String> usersUpdateEnd(@RequestBody Users user) throws BindException {
-		logger.info(user.toString());
-		;
 		int result = service.updateUser(user);
 		if (result == 1)
-			return new ResponseEntity<String>("수정 성공 : " + user.toString(), HttpStatus.OK);
+			return new ResponseEntity<String>("수정 성공 ", HttpStatus.OK);
 		else
 			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
 
@@ -114,7 +113,7 @@ public class UsersController {
 
 	}
 
-	// 회원 포인트 충전
+	// 회원 포인트 환급
 	@RequestMapping(value = "/refundPoint", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public ResponseEntity<String> refundPointEnd(@RequestBody Map<String, Object> map) throws BindException {
 		int result = service.refundPoint(map);
@@ -135,12 +134,12 @@ public class UsersController {
 	}
 
 	// 회원 포인트 충전 환급 내역 보기
-	@RequestMapping(value = "/tradeList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public String tradeList(@RequestHeader("token") String token) {
+	@RequestMapping(value = "/tradeList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String tradeList(@RequestHeader("token") String token,@RequestParam int pageNo) {
 		String userId = service.getUserIdByToken(token);
-		System.out.println("포인트 내역 " + userId);
-		List<TradeStatement> list = service.tradeList(userId);
-		return new Gson().toJson(list);
+		Map<String,Object> map = service.tradeList(userId,pageNo);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(map);
 
 	}
 
@@ -158,7 +157,7 @@ public class UsersController {
 
 	}
 
-	// 회원 탈퇴 비활성화
+	// 회원 탈퇴 활성화
 	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.PUT, produces = "text/html;charset=utf-8")
 	public ResponseEntity<String> usersReverseEnd(@PathVariable String userId) {
 		System.out.println("활성화 아이디 :  " + userId);
@@ -224,15 +223,27 @@ public class UsersController {
 		Map<String, Object> map = service.userBasketList(userId, pageNo);
 		return new Gson().toJson(map);
 	}
-	
+
 	// 회원 장바구니 취소하기
-		@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
-		public ResponseEntity<String> basketDelete(@RequestHeader("token") String token,@RequestParam int itemNo) {
-			String userId = service.getUserIdByToken(token);
-			int result = service.userBasketDelete(userId,itemNo);
-			if (result == 1)
-				return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
-			else
-				return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
-		}
+	@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> basketDelete(@RequestHeader("token") String token, @RequestParam int itemNo) {
+		String userId = service.getUserIdByToken(token);
+		int result = service.userBasketDelete(userId, itemNo);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+	}
+
+	// 홈페이지 만들기
+	@RequestMapping(value = "/homeRegister", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersHomeRegisterEnd(@RequestBody MiniHome home) throws BindException {
+		logger.info(home.toString());
+		int result = service.homeRegister(home);
+		if (result == 1)
+			return new ResponseEntity<String>(home.toString(), HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("가입 실패", HttpStatus.BAD_REQUEST);
+
+	}
 }

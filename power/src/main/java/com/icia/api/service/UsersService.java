@@ -103,8 +103,13 @@ public class UsersService {
 	}
 
 	// 회원 충전 환급 내역 확인하기
-	public List<TradeStatement> tradeList(String userId) {		
-		return dao.tradeList(userId);
+	public Map<String,Object> tradeList(String userId,int pageNo) {		
+		int cnt = dao.tradeListCnt(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("tradeList", dao.tradeList(pagination.getStartArticle(), pagination.getEndArticle(), userId));
+		return map;
 	}
 
 	//회원 비활성화
@@ -156,14 +161,22 @@ public class UsersService {
 	//장바구니 조회하기
 	public Map<String, Object> userBasketList(String userId, int pageNo) {
 		int cnt = dao.basketListCnt(userId);
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil3.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.basketList(userId,pagination.getStartArticle(), pagination.getEndArticle()));
 		return map;
 	}
 
+	//장바구니 삭제하기
 	public int userBasketDelete(String userId,int itemNo) {
 		return dao.basketDelete(userId,itemNo);
+	}
+	
+	//홈페이지 만들기
+	@Transactional
+	public int homeRegister(MiniHome home) {
+		dao.userIsHomeOk(home.getUserId());
+		return dao.homeRegister(home);
 	}
 }

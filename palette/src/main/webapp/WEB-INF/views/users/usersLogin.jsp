@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>아이디 찾기</title>
+<title>로그인 페이지</title>
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -58,26 +58,7 @@
     }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#find").on("click",function(){
-			$.ajax({
-				url:"/api/users/findId",
-				type:"post",
-				data : {"userName":$("#userName").val(), "userMail":$("#userMail").val() },
-				dataType: 'JSON',
-				success: function(result) {
-					alert("정보와 일치하는 아이디를 찾을 수 없습니다.");
-				},
-				error:function(request){
-			      alert("아이디 : "+request.responseText);
-			     }
 
-			})
-			
-		})
-	})
-</script>
 </head>
 <body>
 	<!--Start Header-->
@@ -105,13 +86,13 @@
 		</div>
 		</div>
 		<!--start wrapper-->
-	 <section class="wrapper">
+		 <section class="wrapper">
             <section class="page_head">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="page_title">
-                                <h2>회원 아이디 찾기</h2>
+                                <h2>로그인</h2>
                             </div>
                         </div>
                     </div>
@@ -123,34 +104,34 @@
 
                 <div class="col-lg-4 col-md-4 col-sm-4">
                     <div class="dividerHeading">
-                        <h4><span>아이디 찾기</span></h4>
-                        
+                        <h4><span>로그인</span></h4>
                     </div>
-                    
+                    <form  action="/palette/users/login"  novalidate="novalidate" method="post">
                         <div class="row">
                             <div class="form-group">
-                            		 <input type="text" id="userName" name="userName" class="form-control" maxlength="100"   placeholder="이름">
-                            		 <input type="text" id="userMail" name="userMail" class="form-control" maxlength="100"  placeholder="이메일">
-                               
+                                <input type="text" id="id" name="userId" class="form-control" maxlength="100" data-msg-required="아이디를 입력해주세요" value="" placeholder="아이디">
+                                <input type="password" id="password" name="userPwd" class="form-control" maxlength="100" data-msg-required="비밀번호를 입력해주세요" value="" placeholder="비밀번호">
+                            	 <div class="col-lg-4 col-md-4 col-sm-4">
                                 
-                                 <div class="col-lg-4 col-md-4 col-sm-4">
-                                 </div>
-                                <br>
-                               <div class="col-lg-8 col-md-8 col-sm-8">
-                               <input type="submit" id="find" data-loading-text="Loading..."   style="text-align: left;" class="btn btn-default btn-lg"  value="아이디찾기">
-                               <input type="button" class="btn btn-default btn-lg"   style="color:white; text-align:right;" onclick="location.href='/palette/users/home'" value="홈으로">
-                               </div>
+                                <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="로그인" style="text-align:left;">
                                 
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8" style="text-align: right;">
+                                
+                                <a href="/palette/users/findId"><input type="button" class="btn btn-default btn-lg" value="아이디 찾기" style="color:white;"></a>
+                                <a href="/palette/users/findPwd"><input type="button" class="btn btn-default btn-lg" value="비밀번호 찾기"style="color:white;"></a>
+                                
+                                </div>
+                            
                             </div>
                         </div>
-                 
+                    </form>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4">
                 </div>
             </div>
         </section>
-	
- <!--end wrapper-->
+         <!--end wrapper-->
 
 
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>

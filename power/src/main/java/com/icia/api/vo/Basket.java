@@ -11,4 +11,5 @@ public class Basket {
 	private String itemName;
 	private int itemPrice;
 	private int itemInven;
+	private String ownerId;
 }

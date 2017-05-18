@@ -1,4 +1,4 @@
-package com.icia.api.vo;
+package com.icia.palette.vo;
 
 import java.sql.*;
 
