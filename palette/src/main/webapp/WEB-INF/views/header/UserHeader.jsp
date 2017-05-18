@@ -38,8 +38,6 @@
                			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</a></span>
                			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P </a></span>
                        
-                         <span class="hidden-sm"><a href="/palette/users/chargePoint" style="color:white">충전하기</a></span>
-                         <span class="hidden-sm"><a href="/palette/users/refundPoint" style="color:white">환급하기</a></span>
                           <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         

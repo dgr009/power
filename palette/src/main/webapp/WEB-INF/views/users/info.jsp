@@ -58,7 +58,7 @@
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-								<a href="/hooligan/main/index"><img
+								<a href="/palette/users/home"><img
 									src="/hooligan/images/logo.png" alt="" /></a>
 							</h1>
 						</div>

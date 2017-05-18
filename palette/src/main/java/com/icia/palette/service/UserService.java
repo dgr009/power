@@ -143,14 +143,14 @@ public class UserService {
 	}
 
 	// 포인트 충전 환급 내역 보기
-	public List<TradeStatement> tradeList(HttpSession session) {
+	public Map<String,Object> tradeList(HttpSession session,int pageNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String) session.getAttribute("token"));
 		HttpEntity requestEntity = new HttpEntity(headers);
-		String result = tpl.exchange("http://localhost:8087/api/users/tradeList", HttpMethod.POST, requestEntity, String.class).getBody();
-		List<TradeStatement> list = new Gson().fromJson(result, List.class);
-		return list;
+		String result = tpl.exchange("http://localhost:8087/api/users/tradeList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 	}
 
 	//유저 비활성화(탈퇴)

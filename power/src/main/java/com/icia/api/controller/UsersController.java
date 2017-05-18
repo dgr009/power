@@ -134,12 +134,12 @@ public class UsersController {
 	}
 
 	// 회원 포인트 충전 환급 내역 보기
-	@RequestMapping(value = "/tradeList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public String tradeList(@RequestHeader("token") String token) {
+	@RequestMapping(value = "/tradeList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String tradeList(@RequestHeader("token") String token,@RequestParam int pageNo) {
 		String userId = service.getUserIdByToken(token);
-		System.out.println("포인트 내역 " + userId);
-		List<TradeStatement> list = service.tradeList(userId);
-		return new Gson().toJson(list);
+		Map<String,Object> map = service.tradeList(userId,pageNo);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(map);
 
 	}
 

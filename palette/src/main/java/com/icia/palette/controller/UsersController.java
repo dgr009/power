@@ -141,8 +141,8 @@ public class UsersController {
 
 	// 포인트 충전 환급 조회
 	@RequestMapping(value = "/tradeList", method = RequestMethod.GET)
-	public String tradeList(HttpSession session, Model model) {
-		model.addAttribute("tradeList", service.tradeList(session));
+	public String tradeList(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo) {
+		model.addAttribute("result", service.tradeList(session,pageNo));
 		return "users/tradeList";
 	}
 
