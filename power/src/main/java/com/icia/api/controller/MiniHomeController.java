@@ -25,7 +25,8 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String read(@RequestHeader("token") String token, @PathVariable String userId, @PathVariable int freeNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)	
-		return new Gson().toJson(service.miniHomeSelectFreeView(freeNo));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(service.miniHomeSelectFreeView(freeNo));
 	}
 	
 	//자유게시판 리스트
@@ -92,6 +93,25 @@ public class MiniHomeController {
 //		List<MiniHomeFreeReple> reple = service.miniHomeSelectAllFreeReple(freeNo);
 //		return new Gson().toJson(reple);
 //	}
+	
+	//자유 덧글 추가
+	@RequestMapping(value="/{userId}/freeRegister/{freeNo}", method=RequestMethod.POST)
+	public String insertReple(@ModelAttribute MiniHomeFreeReple reple,@PathVariable int freeNo){
+		reple.setFreeNo(freeNo);
+		reple.setFreeRepleName(reple.getFreeRepleName());
+		return service.miniHomeRegisterFreeReple(reple);
+	}
+	
+	//자유 덧글 삭제
+	@RequestMapping(value="/{userId}/freeDelete/{freeRepleNo}", method=RequestMethod.POST)
+	public String deleteReple(@RequestParam int freeNo,@PathVariable int freeRepleNo){
+		return service.miniHomeDeleteFreeReple(freeNo, freeRepleNo);
+	}
+	
+	
+	
+	
+
 	
 	
 	

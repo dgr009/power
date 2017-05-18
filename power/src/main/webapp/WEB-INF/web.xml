@@ -13,7 +13,19 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+<!-- UTF-8 필터 -->
+	<filter>
+		<filter-name>encoding</filter-name>		<!-- 필터 이름 설정 -->
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>		<!-- contextparam 웹 전체 초기화 init param 혼자 -->
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<url-pattern>/*</url-pattern>		<!-- encoding 필터의 경로 설정 -->
+	</filter-mapping>
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

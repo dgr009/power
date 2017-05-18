@@ -46,7 +46,7 @@ public class MiniHomeBoardService {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String)session.getAttribute("token"));
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(free), headers);
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeRegister", HttpMethod.POST, requestEntity, String.class,free.getUserId()).getBody();
 	
@@ -67,7 +67,7 @@ public class MiniHomeBoardService {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String) session.getAttribute("token"));
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
 		System.out.println(free);
 		String result = tpl
@@ -83,7 +83,7 @@ public class MiniHomeBoardService {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String)session.getAttribute("token"));
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (headers);
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeDelete/{freeNo}", HttpMethod.DELETE, requestEntity, String.class,userId,freeNo).getBody();
 		

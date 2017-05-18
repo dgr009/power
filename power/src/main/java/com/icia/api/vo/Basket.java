@@ -6,6 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Basket {
+	private int itemNo;
 	private String imgName;
 	private String itemName;
 	private int itemPrice;

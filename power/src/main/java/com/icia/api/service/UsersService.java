@@ -103,10 +103,67 @@ public class UsersService {
 	}
 
 	// 회원 충전 환급 내역 확인하기
-	public Map<String,Object> tradeList(String userId) {		
-		List<TradeStatement> list = dao.tradeList(userId);
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("list", list);
+	public List<TradeStatement> tradeList(String userId) {		
+		return dao.tradeList(userId);
+	}
+
+	//회원 비활성화
+	public int deleteUser(String userId) {
+		return dao.userDelete(userId);
+	}
+
+	//회원 활성화
+	public int reverseUser(String userId) {
+		return dao.userReverse(userId);
+	}
+
+	//회원 주문 내역 보기
+	public Map<String, Object> userOrderList(String userId, int pageNo) {
+		int cnt = dao.orderListCnt(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.orderList(pagination.getStartArticle(), pagination.getEndArticle(), userId));
 		return map;
+	}
+
+	//회원 주문 내역에서 주문 취소하기
+	public int userOrderDelete(int orderNo) {
+		return dao.orderDelete(orderNo);
+		
+	}
+
+	//회원 즐겨찾기 보기
+	public Map<String, Object> userBookmarkList(String userId, int pageNo) {
+		int cnt = dao.bookmarkListCnt(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.bookmarkList(userId,pagination.getStartArticle(), pagination.getEndArticle()));
+		return map;
+	}
+
+	//회원 즐겨찾기 추가
+	public int bookmark(String orderId, String ownerId) {
+		return dao.bookmark(orderId, ownerId);
+	}
+
+	//회원 즐겨찾기 제거
+	public int bookmarkDelete(String orderId, String ownerId) {
+		return dao.bookmarkDelete(orderId, ownerId);
+	}
+
+	//장바구니 조회하기
+	public Map<String, Object> userBasketList(String userId, int pageNo) {
+		int cnt = dao.basketListCnt(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.basketList(userId,pagination.getStartArticle(), pagination.getEndArticle()));
+		return map;
+	}
+
+	public int userBasketDelete(String userId,int itemNo) {
+		return dao.basketDelete(userId,itemNo);
 	}
 }

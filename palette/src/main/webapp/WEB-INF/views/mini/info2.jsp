@@ -33,13 +33,13 @@
 				${free.freeNo }
 			</td>
 			<td>
-				<a href="/palette/miniHome/${userId }/freeView/${free.freeNo}">${free.freeTitle }</a>
+				<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}">${free.freeTitle }</a>
 			</td>
 			<td>
 				${free.freeName }
 			</td>
 			<td>
-				${free.freeHits }
+				${free.freeHits.intValue() }
 			</td>
 			<td>
 				${free.freeDate }
@@ -48,18 +48,18 @@
 				${free.userId }
 			</td>
 			<td>
-				${free.freeRepleCnt }
+				${free.freeRepleCnt.intValue() }
 			</td>	
 		</tr>
 		</c:forEach>
 
-			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.prev}">이전으로</a></c:if>
+			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
 				<a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next}">다음으로</a></c:if>
+		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음으로</a></c:if>
 		
 		<form>
 		<input type="button" value="게시글 작성" 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
+import com.google.gson.*;
 import com.icia.api.dao.*;
 import com.icia.api.util.*;
 import com.icia.api.vo.*;
@@ -83,6 +84,7 @@ public class MiniHomeBoardService {
 		HashMap<String,Object> map = new HashMap<String, Object>();
 		map.put("free", dao.miniHomeSelectFreeView(freeNo));
 		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
+		
 		return map;
 	}
 	
@@ -98,9 +100,13 @@ public class MiniHomeBoardService {
 	
 	//자유게시판 댓글 추가
 	@Transactional
-	public void miniHomeRegisterFreeReple(int freeNo, MiniHomeFreeReple reple){	
-		dao.miniHomeIncreaseFreeRepleCnt(freeNo);//자유게시판 댓글 수 증가
+	public String miniHomeRegisterFreeReple(MiniHomeFreeReple reple){	
+		dao.miniHomeIncreaseFreeRepleCnt(reple.getFreeNo());//자유게시판 댓글 수 증가
 		dao.miniHomeRegisterFreeReple(reple);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(reple.getFreeNo()));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(reple.getFreeNo()));
+		return new Gson().toJson(map);
 	}
 	
 	//자유게시판 댓글 수정
@@ -110,9 +116,14 @@ public class MiniHomeBoardService {
 	
 	//자유게시판 댓글 삭제
 	@Transactional
-	public void miniHomeDeleteFreeReple(int freeNo, int freeRepleNo){
+	public String miniHomeDeleteFreeReple(int freeNo, int freeRepleNo){
 		dao.miniHomeDecreaseFreeRepleCnt(freeNo);//자유게시판 댓글 수 감소
 		dao.miniHomeDeleteFreeReple(freeRepleNo);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(freeNo));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(map);
 	}
 
 	//자유게시판 댓글 전체삭제
