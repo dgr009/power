@@ -62,9 +62,10 @@ public class UsersController {
 	}
 
 	// 회원 토큰으로 정보 얻기
-	@RequestMapping(value = "/info/{userId}", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String read(@RequestHeader("token") String token, @PathVariable String userId) {
+	@RequestMapping(value = "/info", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String read(@RequestHeader("token") String token) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		String userId = service.getUserIdByToken(token);
 		Users user = service.read(userId, token);
 		return new Gson().toJson(user);
 	}
@@ -93,11 +94,9 @@ public class UsersController {
 	// 회원 정보 수정
 	@RequestMapping(value = "/update", method = RequestMethod.PUT, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public ResponseEntity<String> usersUpdateEnd(@RequestBody Users user) throws BindException {
-		logger.info(user.toString());
-		;
 		int result = service.updateUser(user);
 		if (result == 1)
-			return new ResponseEntity<String>("수정 성공 : " + user.toString(), HttpStatus.OK);
+			return new ResponseEntity<String>("수정 성공 ", HttpStatus.OK);
 		else
 			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
 
