@@ -39,8 +39,5 @@ public class ProductDaoTest {
 		 dao.insertOption(i);
 	
 	}
-	@Test
-	public void orderList(){
-		System.out.println(dao.orderList(1));
-	}
+
 }

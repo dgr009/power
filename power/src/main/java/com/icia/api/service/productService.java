@@ -82,8 +82,37 @@ public class productService {
 		
 	//
 	//상품신청리스트
-		public List<ApplicantList> orderList(int itemNo){
-			return dao.orderList(itemNo);
+	@Transactional
+		public String orderList(int itemNo,int pageNo){
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("itemNo", itemNo);
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectOrderListCnt(itemNo));
+			map.put("start", p.getStartArticle());
+			map.put("end", p.getEndArticle());
+			List<ApplicantList> r=dao.orderList(map);
+			HashMap<String, Object> result=new HashMap<String, Object>();
+			result.put("result", r);
+			result.put("pagination", p);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		//등록상품조회(리스트)
+		@Transactional
+		public String selectItemListByKind(int pageNo,String userId){
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			HashMap<String, Object> map1=new HashMap<String, Object>();
+			map.put("userId", userId);
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectItemListByKindCnt(map));
+			map1.put("start", p.getStartArticle());
+			map1.put("end", p.getEndArticle());
+			map1.put("userId", userId);
+			HashMap<String, Object> result=new HashMap<String, Object>();
+			List<ItemList> r=dao.selectItemListByKind(map1);
+			result.put("result", r);
+			result.put("pagination", p);
+			System.out.println("api서버"+result);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
 		}
 	//제품상세정보보기
 		@Transactional
@@ -215,23 +244,7 @@ public class productService {
 		map2.put("orderSize",o.getOrderSize());
 		dao.updateItemInven(map2);
 	}
-	//등록상품조회(리스트)
-	public String selectItemListByKind(int pageNo,String userId){
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		HashMap<String, Object> map1=new HashMap<String, Object>();
-		map.put("userId", userId);
-		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectItemListByKindCnt(map));
-		map1.put("start", p.getStartArticle());
-		map1.put("end", p.getEndArticle());
-		map1.put("userId", userId);
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		List<ItemList> r=dao.selectItemListByKind(map1);
-		result.put("result", r);
-		result.put("pagination", p);
-		System.out.println("api서버"+result);
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
-		return gson.toJson(result);	
-	}
+
 	//미니홈메인 상품등록순9개
 	public String selectItemListOrderByDate(String userId){
 		HashMap<String, Object> result=new HashMap<String, Object>();

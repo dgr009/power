@@ -51,5 +51,16 @@ public class ProductController {
 		System.out.println("여기한번찍어봐라"+service.selectItemListByKind(pageNo, userId));
 		 return service.selectItemListByKind(pageNo, userId);
 	}
+	@RequestMapping(value="/admin/productDelete", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productDelete(@RequestBody int itemNo){
+		 service.deleteItem(itemNo);
+		 return null;
+	}
+	@RequestMapping(value="/admin/productOrderList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productOrderList(@RequestBody Map<String, Object> map){
+		int pageNo=(Integer) map.get("pageNo");
+		int itemNo=(Integer)map.get("itemNo");
+		 return service.orderList(itemNo,pageNo);
+	}
 	
 }

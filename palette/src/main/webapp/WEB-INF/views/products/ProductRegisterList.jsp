@@ -1,8 +1,10 @@
+<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%Users users=(Users)session.getAttribute("user"); %>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -66,7 +68,8 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
-<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -106,7 +109,6 @@
 							<div class="col-lg-9 col-md-9 col-sm-9">
 							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;"><h3><i class="fa fa-leaf"></i>    내 등록상품 조회</h3>
 						
-							<form action="update" method="get">
 							
 							<div class="col-lg-12 col-md-12 col-sm-12">
 							
@@ -123,13 +125,23 @@
                     </thead>
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
-						<tr><td>${free.itemDate}</td><td>${free.itemName}</td><td>${free.itemInven.intValue()}</td></tr>
+						<tr><td>${free.itemDate}</td><td>${free.itemName}</td><td>${free.itemInven.intValue()}</td>
+						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productDelete?itemNo=${free.itemNo.intValue()}'">상품삭제</button></td>
+						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">구매자목록</button></td>
+						</tr>
 						</c:forEach>
+						
                     </tbody>
                 </table>
                  <!--페이징 시작 -->
                 <div class="col-sm-12 text-center"  id="pagination" >
-                   
+                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
+			
+			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${i}">${i} </a>
+			</c:forEach>
+			
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${result.pagination.next}">다음으로</a></c:if>
                 </div>
             </div> <!--페이징 끝 -->
 							
@@ -141,7 +153,6 @@
 							
 							
                             
-							</form>
 							
 									
 							</div>

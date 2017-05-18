@@ -35,6 +35,10 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	//제품등록전 제품종류가져오기
+	@RequestMapping(value="/{userId}/main",method=RequestMethod.GET)
+	public String miniMain(@PathVariable String userId){
+		return "products/homepageMain";
+	}
 	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
 	public String productRegister(@PathVariable String userId,Model model){
 		model.addAttribute("result",service.productRegisterReady(userId));
@@ -58,16 +62,29 @@ public class ProductController {
 		item.setItemImgList(list);
 		System.out.println("메인에서 이름"+item.getItemName());
 		service.productRegister(item);
-		String a="redirect:/miniHome/"+userId+"admin/registerList";
+		String a="redirect:/miniHome/"+userId+"/admin/registerList";
 		return a;
 	}
 	
 	@RequestMapping(value = "/{userId}/admin/registerList", method = RequestMethod.GET)
 	public String productRegisterList(@PathVariable String userId,@RequestParam(defaultValue = "1") int pageNo,Model model) {
 		model.addAttribute("result", service.productRegisterList(userId,pageNo));
-		
+		model.addAttribute("userId", userId);
 		return "products/ProductRegisterList";
 	}
+	@RequestMapping(value = "/{userId}/admin/productDelete", method = RequestMethod.GET)
+	public String productDelete(@RequestParam int itemNo,@PathVariable String userId) {
+		service.productDelete(itemNo);
+		String a="redirect:/miniHome/"+userId+"/admin/registerList";
+		return a;
+	}
+	@RequestMapping(value = "/{userId}/admin/productOrderList", method = RequestMethod.GET)
+	public String productOrderList(@PathVariable String userId,Model model,@RequestParam int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
+		model.addAttribute("result", service.productOrderList(itemNo,pageNo));
+		model.addAttribute("itemNo",itemNo);
+		return "products/ProductOrderList";
+	}
+	
 	
 	
 }

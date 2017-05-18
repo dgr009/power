@@ -59,6 +59,31 @@ public class ProductService {
 		
 		Map<String, Object> s=new Gson().fromJson(result, Map.class);
 		System.out.println("모냐값들이"+s.toString());
+		
+		return s;
+	}
+	public void productDelete(int itemNo) {
+		RestTemplate tpl=new RestTemplate();
+		Map<String, Object> map=new HashMap<String, Object>();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(itemNo), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/admin/productDelete", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
+	public Map<String, Object> productOrderList(int itemNo,int pageNo) {
+		RestTemplate tpl=new RestTemplate();
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("itemNo", itemNo);
+		map.put("pageNo", pageNo);
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/admin/productOrderList", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		
+		Map<String, Object> s=new Gson().fromJson(result, Map.class);
+		System.out.println("주문리스트한번뿌려봐"+s);
 		return s;
 	}
 	
