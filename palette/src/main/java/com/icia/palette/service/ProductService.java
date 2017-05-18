@@ -56,7 +56,7 @@ public class ProductService {
 		String result = tpl
 				.exchange("http://localhost:8087/api/miniHome/admin/productList", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
-		System.out.println(result);
+		
 		Map<String, Object> s=new Gson().fromJson(result, Map.class);
 		System.out.println("모냐값들이"+s.toString());
 		return s;

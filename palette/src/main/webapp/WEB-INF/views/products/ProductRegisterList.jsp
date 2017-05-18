@@ -1,8 +1,8 @@
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -123,7 +123,7 @@
                     </thead>
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
-						<tr><td>${free.itemDate}</td><td>${free.itemName}</td><td>${free.itemInven}</td></tr>
+						<tr><td>${free.itemDate}</td><td>${free.itemName}</td><td>${free.itemInven.intValue()}</td></tr>
 						</c:forEach>
                     </tbody>
                 </table>
@@ -156,24 +156,24 @@
 			
 
 
-					<script type="text/javascript" src="/hooligan/js/jquery-1.10.2.min.js"></script>
-					<script src="/hooligan/js/bootstrap.min.js"></script>
-					<script src="/hooligan/js/jquery.easing.1.3.js"></script>
-					<script src="/hooligan/js/retina-1.1.0.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery.cookie.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
 					<!-- jQuery cookie -->
-					<script type="text/javascript" src="/hooligan/js/styleswitch.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
 					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="/hooligan/js/jquery.smartmenus.min.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
 					<script type="text/javascript"
-						src="/hooligan/js/jquery.smartmenus.bootstrap.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery.jcarousel.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jflickrfeed.js"></script>
+						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
 					<script type="text/javascript"
-						src="/hooligan/js/jquery.magnific-popup.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery.isotope.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/swipe.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery-scrolltofixed-min.js"></script>
+						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 
 					<script type="text/javascript">
 						$(document)

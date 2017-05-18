@@ -1,5 +1,7 @@
 package com.icia.api.service;
 
+import java.sql.Date;
+import java.text.*;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -223,10 +225,12 @@ public class productService {
 		map1.put("end", p.getEndArticle());
 		map1.put("userId", userId);
 		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListByKind(map1));
+		List<ItemList> r=dao.selectItemListByKind(map1);
+		result.put("result", r);
 		result.put("pagination", p);
 		System.out.println("api서버"+result);
-		return new Gson().toJson(result);	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(result);	
 	}
 	//미니홈메인 상품등록순9개
 	public String selectItemListOrderByDate(String userId){

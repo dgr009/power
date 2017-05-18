@@ -16,4 +16,5 @@ private int itemPrice;
 private int itemInven;
 private String imgName;
 private Date itemDate;
+private String userId;
 }
