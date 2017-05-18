@@ -73,23 +73,23 @@
     
  
 			 <div class="col-sm-8">
-				<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 285px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 내 정보보기</h3>
+				<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 400px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 내 정보보기</h3>
 						
 					<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
+							<table class="table table-striped table-hover">
 								<tbody>
 									
-									<tr><td>이름</td></tr>
-									<tr><td>아이디</td></tr>
-									<tr><td>이메일</td></tr>
-									<tr><td>핸드폰</td></tr>
+									<tr><th>이름</th></tr>
+									<tr><th>아이디</th></tr>
+									<tr><th>이메일</th></tr>
+									<tr><th>핸드폰</th></tr>
 									
 								</tbody>
 							</table>
 							</div>
 							
 							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
+								<table class="table table-striped table-hover">
 									<tbody>
 										<tr><td>${user.userName } </td></tr>
 										<tr><td>${user.userId}</td></tr>
@@ -99,17 +99,17 @@
 								</table>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
+								<table class="table table-striped table-hover">
 								<tbody>
-									<tr><td>보유 포인트</td></tr>
-									<tr><td>우편번호</td></tr>
-									<tr><td>상세 주소</td></tr>
+									<tr><th>보유 포인트</th></tr>
+									<tr><th>우편번호</th></tr>
+									<tr><th>상세 주소</th></tr>
 								</tbody>
 							</table>
 							</div>
 
 							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
+								<table class="table table-striped table-hover">
 									<tbody>
 										<tr><td>${user.userPoint}</td></tr>
 										<tr><td>${user.userPost}</td></tr>
@@ -117,10 +117,10 @@
 									</tbody>
 								</table>
 							
-							<br><br><br>
-							<button class="btn btn-default btn-lg btn-block" type="button" onclick='location.href="http://localhost:8087/palette/users/update"'> 
+							<br><br><br> </div>
+							<button class="btn btn-default btn-lg btn-block"  type="button" onclick='location.href="http://localhost:8087/palette/users/update"'> 
 							<i class="fa fa-rocket" ></i> 수정하기</button>
-                            </div>
+                           
 		</div>
 </div>
 					 <!-- 광고 사이드 오른쪽-->

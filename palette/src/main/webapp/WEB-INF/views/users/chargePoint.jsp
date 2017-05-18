@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>장바구니</title>
+<title>충전하기</title>
 	<!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -104,39 +104,39 @@
                     <tbody style="text-align: center;">
                     
                     <tr>
-										<td><input type="radio" value="4500"  name="tradePoint"></td>
+										<td><input type="radio" value="5250"  name="tradePoint"></td>
 										<td>5000</td>
-										<td>4500</td>
+										<td>5250</td>
 										<td>5% 추가 적립 +250P</td>
 								       
 									</tr>
 									
 									<tr>
-										<td><input type="radio"  value="9000"  name="tradePoint"></td>
+										<td><input type="radio"  value="10500"  name="tradePoint"></td>
 										<td>10000</td>
-										<td>9000</td>
+										<td>10500</td>
 										<td>5% 추가 적립 +500P</td>
 								       
 									</tr>
 									<tr>
-										<td><input type="radio" value="18000" name="tradePoint"></td>
+										<td><input type="radio" value="21000" name="tradePoint"></td>
 										<td>20000</td>
-										<td>18000</td>
+										<td>21000</td>
 										<td>5% 추가 적립 +1000P</td>
 								       
 									</tr>
 									<tr>
-										<td><input type="radio" value="27000" name="tradePoint"></td>
+										<td><input type="radio" value="33000" name="tradePoint"></td>
 										<td>30000</td>
-										<td>27000</td>
-										<td>5% 추가 적립 +1500P</td>
+										<td>33000</td>
+										<td>10% 추가 적립 +3000P</td>
 								       
 									</tr>
 									<tr>
-										<td><input type="radio" value="45000" name="tradePoint"></td>
+										<td><input type="radio" value="53000" name="tradePoint"></td>
 										<td>50000</td>
-										<td>45000</td>
-										<td>5% 추가 적립 +2500P</td>
+										<td>55000</td>
+										<td>10% 추가 적립 +5000P</td>
 								       
 									</tr>
                     <tr>

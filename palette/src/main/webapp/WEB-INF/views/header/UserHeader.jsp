@@ -41,18 +41,7 @@
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         
                     </div>
-                    <div class="col-lg-5 col-sm-7 top-info clearfix">
-                        <ul>
-                            <li>
-                                <form class="search-bar">
-                                    <label for="search" class="search-label">
-                                        <button class="search-button"><i class="fa fa-search"></i></button><!-- Fix the break-row-bug
-                                        --><input type="text" id="search" class="search-input" />
-                                    </label>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
 
             </div>

@@ -52,7 +52,7 @@
     }
     
     .form-control{
-    height: 20px;
+    height: 35px;
     	line-height: 20px;
     	
     }
@@ -80,7 +80,6 @@
   	<!-- 랭킹 -->
     <%@ include file="/WEB-INF/views/side/RankSide.jsp" %>
     <!-- 랭킹 끝 -->
-    
     <!-- 메인 가운데 광고 -->
     <div class="col-sm-8">
     

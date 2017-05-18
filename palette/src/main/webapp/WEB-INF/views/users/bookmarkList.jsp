@@ -72,13 +72,13 @@
     <!-- 랭킹 끝 -->
     
 	 <div class="col-sm-8"> 
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 500px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 즐겨찾기 목록</h3>
-	<table width="80%">
+		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 600px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 즐겨찾기 목록</h3>
+	<table width="80%" class="table table-striped table-hover" >
 		<thead>
-			<tr>
-				<td>번호</td>
-				<td>홈페이지 이름</td>
-				<td>주인명</td>
+			<tr >
+				<th style="text-align: center;">번호</th>
+				<th style="text-align: center;">홈페이지 이름</th>
+				<th style="text-align: center;">주인명</th>
 			</tr>
 		</thead>
 		<tbody>
