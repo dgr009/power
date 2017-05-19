@@ -19,6 +19,7 @@
 	<a href="http://localhost:8087/palette/miniHome/qhrals8/freeList?pageNo=1">'qhrals8'의 자유게시판으로 가기</a><br>
 	<% if(user.getUserIsHome().equals("0")){ %>
 	<a href="http://localhost:8087/palette/users/homeRegister">홈페이지 만들기</a><br>
+	<a href="http://localhost:8087/palette/miniHome/qhrals8/noticeList?pageNo=1">'qhrals8'의 공지게시판으로 가기</a><br>
 	<%} else{ %>
 	<a href="#">내 홈페이지가 있습니다.</a><br>
 	<%} %>

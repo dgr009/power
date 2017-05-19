@@ -24,30 +24,13 @@ public class MiniHomeBoardService {
 		Users user=(Users)session.getAttribute("userId");
 		dao.miniHomeRegisterNotice(notice);
 	}
+		public int miniHomeRegisterNotice(MiniHomeNotice notice){
+		 return dao.miniHomeRegisterNotice(notice);
+	}
 	
 	//(개인)공지게시판 수정
-	public void miniHomeUpdateNotice(MiniHomeNotice notice){
-		dao.miniHomeUpdateNotice(notice);	
-	}
-	
-	//(개인)공지게시판 삭제
-	public void miniHomeDeleteNotice(int noticeArticleNo){
-		dao.miniHomeDeleteNotice(noticeArticleNo);	
-	}
-	
-	//(개인)공지게시판 리스트
-	public HashMap<String,Object> getBoardList(String userId,int pageNo) {
-		int cnt = dao.miniHomeNumberOfNotice(userId);
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("pagination", pagination);
-		map.put("list", dao.miniHomeSelectNoticeList(userId, pagination.getEndArticle(), pagination.getStartArticle()));
-		return map;
-	}	
-
-	//(개인)공지게시판 뷰
-	public MiniHomeNotice miniHomeSelectNoticeView(int noticeArticleNo){
-		return dao.miniHomeSelectNoticeView(noticeArticleNo);
+	public int miniHomeUpdateNotice(MiniHomeNotice notice){
+		return dao.miniHomeUpdateNotice(notice);	
 	}
 	
 	//(개인)자유게시판 작성
@@ -64,6 +47,10 @@ public class MiniHomeBoardService {
 	public int miniHomeDeleteFree(int freeNo){
 		return dao.miniHomeDeleteFree(freeNo);
 	}
+	//(개인)공지게시판 삭제
+	public int miniHomeDeleteNotice(int noticeArticleNo){
+		return dao.miniHomeDeleteNotice(noticeArticleNo);
+	}
 	
 	//(개인)자유게시판 리스트 
 	public HashMap<String,Object> miniHomeSelectFreeList(String userId, int pageNo){
@@ -76,6 +63,16 @@ public class MiniHomeBoardService {
 		return map;
 	}
 	
+	//(개인)공지게시판 리스트
+	public HashMap<String,Object> miniHomeSelectNoticeList(String userId,int pageNo) {
+		int cnt = dao.miniHomeNumberOfNotice(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.miniHomeSelectNoticeList(userId, pagination.getEndArticle(), pagination.getStartArticle()));
+		return map;
+	}	
+	
 	//(개인)자유게시판 뷰
 	@Transactional
 	public HashMap<String,Object> miniHomeSelectFreeView(int freeNo){
@@ -85,6 +82,10 @@ public class MiniHomeBoardService {
 		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
 		
 		return map;
+	}
+	//(개인)공지게시판 뷰
+	public MiniHomeNotice miniHomeSelectNoticeView(int noticeArticleNo){
+		return dao.miniHomeSelectNoticeView(noticeArticleNo);
 	}
 	
 	//(개인)자유게시판 댓글 하나 조회
