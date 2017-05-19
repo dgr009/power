@@ -144,7 +144,7 @@
 	<!-- 홈페이지 개설 -->
 	<!-- 회원 홈페이지 생성 -->
 	<insert id="usersHomeRegister" parameterType="MiniHome">
-		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce})
+		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce},0)
 	</insert>
 	<!-- 회원 홈페이지 개설여부 -->
 	<update id="usersIsHomeOk" parameterType="string">
