@@ -68,7 +68,7 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
-<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 </header>
 	<!-- End Header -->
 		<div id="menu-bar">
@@ -125,7 +125,7 @@
                     </thead>
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
-						<tr><td>${free.itemDate}</td><td>${free.itemName}</td><td>${free.itemInven.intValue()}</td>
+						<tr><td>${free.itemDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productMain?itemNo=${free.itemNo.intValue()}">${free.itemName}</a></td><td>${free.itemInven.intValue()}</td>
 						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productDelete?itemNo=${free.itemNo.intValue()}'">상품삭제</button></td>
 						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">구매자목록</button></td>
 						</tr>

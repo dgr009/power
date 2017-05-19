@@ -145,8 +145,8 @@ public class ProductDao {
 		tpl.delete("api.dao.ProductDao.deleteReviewReple", reviewRepleNo);
 	}
 	//장바구니담기
-	public void insertBasket(HashMap<String, Object> map){
-	tpl.insert("api.dao.ProductDao.insertBasket", map);
+	public int insertBasket(HashMap<String, Object> map){
+	return tpl.insert("api.dao.ProductDao.insertBasket", map);
 	}
 	//배송리스트개수
 	public int selectDeliveryListCnt(String userId) {

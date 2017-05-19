@@ -233,7 +233,7 @@ delete item_review where review_reple_no=#{reviewRepleNo}
 </delete>
 <!-- 장바구니담기 -->
 <insert id="insertBasket" parameterType="hashmap">
-insert into basket values(item_no=#{itemNo},user_id=#{userId}
+insert into basket values(#{itemNo},#{userId})
 </insert>
 <!-- 배송리스트 개수 -->
 <select id="selectDeliveryCnt" parameterType="String">

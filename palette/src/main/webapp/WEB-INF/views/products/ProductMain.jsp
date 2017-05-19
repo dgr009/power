@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%Users user1=(Users)session.getAttribute("user");%>
 <!DOCTYPE html>
 
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
@@ -44,11 +45,12 @@
     }
     </style>
 </head>
+
 <body>
 	<!--Start Header-->
 	<!--Start Header-->
 	<header id="header">
-<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 		<!--end Header-->
 		<div id="menu-bar">
 			<div class="container">
@@ -114,7 +116,7 @@
 							<h1>상품 이름:${result.item.itemName}</h1>
 							<p>상품 내용</p>
 							<p style="height: 150px;" id="productC">${result.item.itemContent}</p>
-							
+							<input type="hidden"  id="itemNo" name="itemNo" value="${result.item.itemNo.intValue()}">
 							<p>상품 가격<span></span> :${result.item.itemPrice.intValue()}원
 							</p>
 							<p>상품 개수: <select name="itemSize">
@@ -144,14 +146,12 @@
 									<p></p> <!-- 즐겨찾기 주문하기 상품평가 상세보기 --> <br>
 									<div>
 										<div>
-											<a href="#"><input type="button"
+											<button type="button"
 												data-loading-text="Loading..." style="color: white;"
-												class="btn btn-default btn-lg" value="즐겨찾기"></a> <a
-												id="hool"
-												href="/hooligan/product/productOrder?product_no=&order_size=order_size.val()"><input
+												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
 												type="button" data-loading-text="Loading..."
 												style="color: white;" class="btn btn-default btn-lg"
-												value="주문하기"></a> <a
+												value="주문하기"> <a
 												href="/hooligan/product/evalutionList?product_no="><input
 												type="button" data-loading-text="Loading..."
 												style="color: white;" class="btn btn-default btn-lg"
@@ -463,7 +463,23 @@
 																		});
 													});
 								</script>
+<script type="text/javascript">
+	$(function(){
+		$("#basket").on("click",function(){
+			alert($("#itemNo").val() +" " + '<%=user1.getUserId()%>');
+			$.ajax({
+				url:"/api/miniHome/basket",
+				type:"post",
+				data : {"userId": '<%=user1.getUserId()%>', "itemNo" : $("#itemNo").val() },
+				dataType: 'JSON',
+				complete:function(r){
+					alert("성공 ????  " + r.responseText);
+				}
 
+			})
+		})
+	})
+</script>
 							
 								<!-- Start Style Switcher -->
 								<div class="switcher"></div>
