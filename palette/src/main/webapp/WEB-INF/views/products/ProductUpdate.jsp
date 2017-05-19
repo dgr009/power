@@ -67,7 +67,7 @@
 <body>
 	<!--Start Header-->
 <header id="header">
- <%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
  </header>
  <!--end Header-->
 	

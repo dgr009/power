@@ -32,7 +32,7 @@
 <body class="home">
 <!--Start Header-->
 <header id="header">
-  <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
  <!--end Header-->
  <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
