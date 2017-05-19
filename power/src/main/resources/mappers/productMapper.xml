@@ -138,6 +138,10 @@ select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_
 <select id="selectItemDetail" parameterType="int" resultType="Item">
 select *from item where item_no=#{itemNo}
 </select>
+<!-- 상품옵션가져오기-->
+<select id="selectProductOption" parameterType="int" resultType="itemOption">
+select *from item_option where item_no=#{itemNo}
+</select>
 <!-- 상품문의 작성 -->
 <insert id="InsertInquiry" parameterType="InquiryBoard">
 <selectKey keyProperty="inquiryNo" resultType="int" order="BEFORE">

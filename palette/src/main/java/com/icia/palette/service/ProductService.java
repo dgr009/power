@@ -86,5 +86,18 @@ public class ProductService {
 		System.out.println("주문리스트한번뿌려봐"+s);
 		return s;
 	}
+	//상품메인보기
+	public Map<String, Object> productMain(int itemNo) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(itemNo), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/productMain", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		Map<String, Object> s=new Gson().fromJson(result, Map.class);
+		System.out.println("주문리스트한번뿌려봐"+s);
+		return s;
+	}
 	
 }

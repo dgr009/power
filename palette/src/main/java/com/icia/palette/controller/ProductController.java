@@ -39,15 +39,18 @@ public class ProductController {
 	public String miniMain(@PathVariable String userId){
 		return "products/homepageMain";
 	}
+	//상품등록창으로
 	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
 	public String productRegister(@PathVariable String userId,Model model){
 		model.addAttribute("result",service.productRegisterReady(userId));
 		return "products/ProductRegister";
 	}
+	//상품수정하기
 	@RequestMapping(value="/{userid}/admin/productUpdate",method=RequestMethod.GET)
 	public String productUpdate(@PathVariable String userid){
 		return "products/ProductUpdate";
 	}
+	//상품등록하기
 	@RequestMapping(value = "/{userId}/admin/register", method = RequestMethod.POST)
 	public String productRegister(@ModelAttribute Item item,@PathVariable String userId, MultipartHttpServletRequest req) throws IOException {
 		item.setUserId(userId);
@@ -66,23 +69,33 @@ public class ProductController {
 		return a;
 	}
 	
+	//상품등록리스트
 	@RequestMapping(value = "/{userId}/admin/registerList", method = RequestMethod.GET)
 	public String productRegisterList(@PathVariable String userId,@RequestParam(defaultValue = "1") int pageNo,Model model) {
 		model.addAttribute("result", service.productRegisterList(userId,pageNo));
 		model.addAttribute("userId", userId);
 		return "products/ProductRegisterList";
 	}
+	//상품삭제하기
 	@RequestMapping(value = "/{userId}/admin/productDelete", method = RequestMethod.GET)
 	public String productDelete(@RequestParam int itemNo,@PathVariable String userId) {
 		service.productDelete(itemNo);
 		String a="redirect:/miniHome/"+userId+"/admin/registerList";
 		return a;
 	}
+	//상품주문자리스트
 	@RequestMapping(value = "/{userId}/admin/productOrderList", method = RequestMethod.GET)
 	public String productOrderList(@PathVariable String userId,Model model,@RequestParam int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
 		model.addAttribute("result", service.productOrderList(itemNo,pageNo));
 		model.addAttribute("itemNo",itemNo);
 		return "products/ProductOrderList";
+	}
+	//상품보기
+	@RequestMapping(value = "/{userId}/productMain", method = RequestMethod.GET)
+	public String productMain(@PathVariable String userId,Model model,@RequestParam int itemNo) {
+		
+		model.addAttribute("result", service.productMain(itemNo));
+		return "products/ProductMain";
 	}
 	
 	

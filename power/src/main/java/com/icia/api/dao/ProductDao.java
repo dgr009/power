@@ -202,6 +202,11 @@ public class ProductDao {
 	public List<ApplicantList> orderList(HashMap<String, Object> map){
 		return tpl.selectList("api.dao.ProductDao.orderList", map);
 	}
+	//상품옵션가져오기
+	public List<ItemOption> selectProductOption(int itemNo) {
+		return tpl.selectList("api.dao.ProductDao.selectProductOption", itemNo);
+	
+	}
 
 	
 	

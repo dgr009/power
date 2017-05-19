@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
@@ -54,52 +55,7 @@
 
 
         <!--=========================화면 가운데 슬라이드 시작=======================-->
-        <div class="slider_block">
-            <div class="flexslider top_slider">
-                <ul class="slides">
-                    <li class="slide1">
-                        <div class="container">
-                            <div class="flex_caption1">
-
-                                <p class="slide-heading FromTop">헛개수!!!</p><br/>
-
-                                <p class="sub-line FromBottom">그 다음날 갈증해소!!!헛!개!수!</p><br/>
-
-                                <a href="product.html" class="slider-read FromLeft">구매하기</a>
-                            </div>
-                            <div class="flex_caption2 FromRight"></div>
-                        </div>
-                    </li>
-
-                    <li class="slide2">
-                        <div class="container">
-                            <div class="slide flex_caption1">
-                                <p class="slide-heading FromTop">i7 7세대 하이엔드 PC</p><br/>
-
-                                <p class="sub-line FromRight">50%세일 2,990,000원</p><br/>
-
-                                <a href="product.html" class="slider-read FromLeft">구매하기</a>
-
-                            </div>
-                            <div class="flex_caption2 FromBottom"></div>
-                        </div>
-                    </li>
-                    <li class="slide3">
-                        <div class="container">
-                            <div class="slide flex_caption1">
-                                <p class="slide-heading FromTop">옵티머스 프라임</p><br/>
-
-                                <p class="sub-line FromRight">오토봇 대장 팔아요~</p><br/>
-
-                                <a href="product.html" class="slider-read FromLeft">구매하기</a>
-
-                            </div>
-                            <div class="flex_caption2 FromRight"></div>
-                        </div>
-                    </li>
-            </div>
-        </div>
-    </header>
+       
     <!--=========================화면 가운데 슬라이드 끝==================================-->
 
 
@@ -110,7 +66,53 @@
 <section class="wrapper">
 
     <!--=====================최신등록 상품 시작======================-->
+ <div class="slider_block">
+            <div class="flexslider top_slider">
+                <ul class="slides" >
+                    <li class="slide1">
+                        <div class="container">
+                            <div class="flex_caption1">
 
+                                <p class="slide-heading FromTop">아디다스 항공점퍼!!!</p><br/>
+
+                                <p class="sub-line FromBottom">특가 110000원!!!</p><br/>
+
+                                <a href="/hooligan/product/productMain?product_no=91" class="slider-read FromLeft">구매하기</a>
+                            </div>
+                            <div class="flex_caption2 FromRight"><img src="/hooligan/employees/productImg/images-271242409252415.jpg" style="width:350px; height:320px; " alt="Alternate Text" /></div>
+                        </div>
+                    </li>
+
+                    <li class="slide2">
+                        <div class="container">
+                            <div class="slide flex_caption1">
+                                <p class="slide-heading FromTop">트위드스타일기본롱가디건</p><br/>
+
+                                <p class="sub-line FromRight">20%세일 249,000원</p><br/>
+
+                                <a href="/hooligan/product/productMain?product_no=96"" class="slider-read FromLeft">구매하기</a>
+
+                            </div>
+                            <div class="flex_caption2 FromBottom"><img src="/hooligan/employees/productImg/1000014199835_i1_1200-271683130195246.jpg" style="width:350px; height:320px; " alt="Alternate Text" /></div>
+                        </div>
+                    </li>
+                    <li class="slide3">
+                        <div class="container">
+                            <div class="slide flex_caption1">
+                                <p class="slide-heading FromTop">시슬리 베이직심플정장팬츠</p><br/>
+
+                                <p class="sub-line FromRight">다리가 이뻐보이는 필요한 99,000원!!</p><br/>
+
+                                <a href="/hooligan/product/productMain?product_no=96" class="slider-read FromLeft">구매하기</a>
+
+                            </div>
+                            <div class="flex_caption2 FromRight"><img src="/hooligan/employees/productImg/1000003768148_i1_1200-267924535187609.jpg" style="width:350px; height:320px; " alt="Alternate Text" /></div>
+                        </div>
+                    </li>
+            </div>
+        </div>
+    </header>
+    <!-- 최신상품시작 -->
     <section class="latest_work">
         <div class="container">
             <div class="row sub_content">
@@ -180,7 +182,7 @@
         <div class="container">
             <!--<h2 class="center">Testimonials</h2>-->
 <!-- end : Parallax with Testimonial -->
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"/>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>

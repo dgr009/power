@@ -114,12 +114,19 @@ public class productService {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 			return gson.toJson(result);	
 		}
-	//제품상세정보보기
+		//제품상세정보보기
 		@Transactional
-		public Item selectItemDetail(int itemNo){
+		public String selectItemDetail(int itemNo){
 			Item item=dao.selectItemDetail(itemNo);
-			item.setItemImgList((ArrayList<ItemImg>) dao.selectItemImg(itemNo));
-			return item;
+			List<ItemImg> imgList=dao.selectItemImg(itemNo);
+			List<ItemOption> itemOption=dao.selectProductOption(itemNo);
+			HashMap<String,  Object> result=new HashMap<String, Object>();
+			result.put("item", item);
+			result.put("itemImg", imgList);
+			result.put("itemOption", itemOption);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			return gson.toJson(result);	
+			
 		}
 	//상품문의작성
 	public void insertInquiry(InquiryBoard i){

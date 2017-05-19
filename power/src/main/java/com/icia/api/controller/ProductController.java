@@ -62,5 +62,9 @@ public class ProductController {
 		int itemNo=(Integer)map.get("itemNo");
 		 return service.orderList(itemNo,pageNo);
 	}
+	@RequestMapping(value="/productMain", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  product(@RequestBody int itemNo){
+		 return service.selectItemDetail(itemNo);
+	}
 	
 }
