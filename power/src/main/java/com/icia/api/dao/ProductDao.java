@@ -63,10 +63,7 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectItemByName", map);
 	}
 	
-	//상품신청리스트
-	public List<ApplicantList> orderList(int itemNo){
-		return tpl.selectList("api.dao.ProductDao.orderList", itemNo);
-	}
+
 	//제품상세정보보기
 	public Item selectItemDetail(int itemNo){
 		return tpl.selectOne("api.dao.ProductDao.selectItemDetail", itemNo);
@@ -196,7 +193,20 @@ public class ProductDao {
 	public List<ItemList> selectItemListOrderByScore(String userId){
 		return tpl.selectList("api.dao.ProductDao.selectListOrderByScore", userId);
 	}
+	//주문회원리스트 개수
+	public int selectOrderListCnt(int itemNo) {
+		return tpl.selectOne("api.dao.ProductDao.selectOrderListCnt", itemNo);
+		
+	}
+	//상품신청리스트
+	public List<ApplicantList> orderList(HashMap<String, Object> map){
+		return tpl.selectList("api.dao.ProductDao.orderList", map);
+	}
+	//상품옵션가져오기
+	public List<ItemOption> selectProductOption(int itemNo) {
+		return tpl.selectList("api.dao.ProductDao.selectProductOption", itemNo);
 	
+	}
 
 	
 	

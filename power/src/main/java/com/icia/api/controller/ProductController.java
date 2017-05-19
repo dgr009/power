@@ -37,7 +37,6 @@ public class ProductController {
 	}
 	@RequestMapping(value="/admin/kindList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  productRegisterEnd(@RequestBody String userId){
-		System.out.println("여기까지는오냐?");
 		 return 	service.productRegisterReady(userId);
 	}
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
@@ -45,4 +44,27 @@ public class ProductController {
 	service.productRegister(item);
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}
+	@RequestMapping(value="/admin/productList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productList(@RequestBody Map<String, Object> map){
+		int pageNo=(Integer) map.get("pageNo");
+		String userId=(String) map.get("userId");
+		System.out.println("여기한번찍어봐라"+service.selectItemListByKind(pageNo, userId));
+		 return service.selectItemListByKind(pageNo, userId);
+	}
+	@RequestMapping(value="/admin/productDelete", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productDelete(@RequestBody int itemNo){
+		 service.deleteItem(itemNo);
+		 return null;
+	}
+	@RequestMapping(value="/admin/productOrderList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productOrderList(@RequestBody Map<String, Object> map){
+		int pageNo=(Integer) map.get("pageNo");
+		int itemNo=(Integer)map.get("itemNo");
+		 return service.orderList(itemNo,pageNo);
+	}
+	@RequestMapping(value="/productMain", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  product(@RequestBody int itemNo){
+		 return service.selectItemDetail(itemNo);
+	}
+	
 }

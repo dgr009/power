@@ -55,7 +55,7 @@ public class UserService {
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
 		String result = tpl
-				.exchange("http://localhost:8087/api/users/register", HttpMethod.POST, requestEntity, String.class)
+				.exchange("http://localhost:8087/api/users/register", HttpMethod.POST, requestEntity,String.class )
 				.getBody();
 
 		System.out.println(result);
