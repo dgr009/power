@@ -2,201 +2,101 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%Users users =(Users) session.getAttribute("user");%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% Users users = (Users) session.getAttribute("user"); %>
 <!DOCTYPE html>
-<html>
+<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<title>회원가입</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- CSS FILES -->
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>유앤미 메인 페이지</title>
+
+
+    <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>" media="screen" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <style>
-    .order_status{
-    	font-size:40px;
-    	height:50px;
-    	line-height:50px;
-    	text-align:center;
-    	color:white;
-    	background:#694fa8;
-    	border-radius: 5px;
-    	margin-bottom:30px;
-    	
-    }
-    </style>
- <script>
- $(function(){ 
-		$("#register").on("click",function(e){
-			e.preventDefault(); //기본 이벤트를 차단
-			var formData = new FormData();
-			formData.append("userId",$("#id").val())
-			formData.append("homeTitle",$("#title").val())
-			formData.append("homeIntroduce",$("#content").val())
-			formData.append("homeDesign",$("#design").val())
-			formData.append("file",$("#img")[0].files[0])
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
+	media="screen" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+ <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+	$(function(){
+		$("#insertTag").on("click",function(){
+			var tag = "<li><a href='#' id='bigKind'>새태그</a></li>";
+			$("#bigTag").append(tag);
+		})
+		
+		$(document).on("dblclick","#bigKind",function(){
+			var name = prompt("태그 이름 입력",$(this).html());
+			if(name!="")
+				$(this).html(name);
 			
-			$.ajax({
-				url:"/palette/users/homeRegister",
-				type:"post",
-				data: formData,
-				complete:function(result){
-					console.log(result)
-					location.href="/palette/users/home"
-				},
-				processData:false,
-				contentType:false
-				
-			})
 		})
 		
 	})
- 
+	
 </script>
-   
-  </head>
-<body>
-      <!--Start Header-->
-	<!--Start Header-->
-	<header id="header">
- <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-		<!--end Header-->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-							<!-- 이미지 --> 
-							</h1>
-						</div>
-					</div>
-					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
-  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-	<!-- =====================메인 메뉴(우측상단) 끝============================= -->
-	<!--End Header-->
+
+<body class="home">
+<!--Start Header-->
+<header id="header">
+  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+ <!--end Header-->
+
+<!--===========================헤더 끝========================================-->
+<form>
+        <div id="menu-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div id="logo">
+                      <input type="file" class="form-control" name="homeImg" id="img" value="홈페이지 로고">
+                      <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title">
+                        </div>
+                    </div>
+                    
+  <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+<%@include file="/WEB-INF/views/MenuRegister.jsp" %>
+        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 
 
-	<!--start wrapper-->
-	<section class="wrapper">
-		<section class="page_head">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<nav id="breadcrumbs">
-							<ul>
+        <!--=========================화면 가운데 슬라이드 시작=======================-->
+       
+    <!--=========================화면 가운데 슬라이드 끝==================================-->
 
-								<li><a href="index.html">Home</a></li>
-								<li>상품</li>
-							</ul>
-						</nav>
-
-						<div class="page_title">
-							<h2>상품 정보 보기</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="content portfolio_single">
-			<div class="container">
-				<div class="row sub_content">
-					<div class="col-lg-8 col-md-8 col-sm-8">
-						<!--Project Details Page-->
-						<div class="porDetCarousel">
-							<div class="carousel-content">
-							<c:forEach items="${result.itemImg }" var="img">
-							<img class="carousel-item" style="width:700px; height:500px;"
-									src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
-									</c:forEach>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-lg-4 col-md-4 col-sm-4">
-						<div class="project_description">
-							<div class="widget_title">
-								<h2 id="productN">
-									<span></span>
-							</div>
-							<h1>상품 이름:${result.item.itemName}</h1>
-							<p>상품 내용</p>
-							<p style="height: 150px;" id="productC">${result.item.itemContent}</p>
-							<input type="hidden"  id="itemNo" name="itemNo" value="${result.item.itemNo.intValue()}">
-							<p>상품 가격<span></span> :${result.item.itemPrice.intValue()}원
-							</p>
-							<p>상품 개수: <select name="itemSize">
-							<option value=1>1</option>
-							<option value=2>2</option>
-							<option value=3>3</option>
-							<option value=4>4</option>
-							<option value=5>5</option>
-							</select>
-							</p>
-							<p>상품 옵션: <select name="itemSize">
-							<c:forEach items="${result.itemOption}"   var="free">
-							<option value="${free.optionName}">${free.optionName}</option>
-							<</c:forEach></select></p>
-							<p>
-								등록일<span></span> :${result.item.itemDate}</p>
-
-							<p>
-								상품종류<span></span> :${result.item.smallKind}</p>
-							<p>
-								남은수량<span></span> :${result.item.itemInven.intValue()}개</p>
-							<ul class="progress-skill-bar mrg-0">
-
-							
-									
-									</div> <br>
-									<p></p> <!-- 즐겨찾기 주문하기 상품평가 상세보기 --> <br>
-									<div>
-										<div>
-											<button type="button"
-												data-loading-text="Loading..." style="color: white;"
-												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
-												type="button" data-loading-text="Loading..."
-												style="color: white;" class="btn btn-default btn-lg"
-												value="주문하기"> <a
-												href="/hooligan/product/evalutionList?product_no="><input
-												type="button" data-loading-text="Loading..."
-												style="color: white;" class="btn btn-default btn-lg"
-												value="상품평가"></a>
-
-											<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
-										</div>
-									</div></li>
-							</ul>
-						</div>
-					</div>
-					</form>
+</div>
+</div>
+</div>
+</form>
 
 
 
 
+<!--
+    밑에 꺼는 정확하게 어떤건지 모르니까 만지지 마시오...
+-->
 
+<!-- Parallax with Testimonial -->
+            <!--<h2 class="center">Testimonials</h2>-->
+<!-- end : Parallax with Testimonial -->
+</header>
 
-
-				</div>
-
-
-				<div class="row sub_content">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-
-
-
-									<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
@@ -214,6 +114,16 @@
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-      
+
+<script type="text/javascript">
+
+</script>
+<script src="<c:url value="/resources/js/main.js"/>"></script>
+    
+
+    <!-- WARNING: Wow.js doesn't work in IE 9 or less -->
+    <!--[if gte IE 9 | !IE ]><!-->
+        <script type="text/javascript" src="<c:url value="/resources/js/wow.min.js"/>"></script>
+       
 </body>
 </html>
