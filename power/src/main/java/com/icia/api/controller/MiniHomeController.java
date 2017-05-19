@@ -25,7 +25,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String read(@RequestHeader("token") String token, @PathVariable String userId, @PathVariable int freeNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)	
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		return gson.toJson(service.miniHomeSelectFreeView(freeNo));
 	}
 	
@@ -33,8 +33,9 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeList", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String list(@RequestHeader("token") String token, @PathVariable String userId, @RequestParam int pageNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		Map<String,Object> free = service.miniHomeSelectFreeList(userId, pageNo);
-		return new Gson().toJson(free);
+		Map<String,Object> free = service.miniHomeSelectFreeList(userId, pageNo);	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(free);
 	}
 	
 	//자유게시판 작성
@@ -95,7 +96,7 @@ public class MiniHomeController {
 //	}
 	
 	//자유 덧글 추가
-	@RequestMapping(value="/{userId}/freeRegister/{freeNo}", method=RequestMethod.POST)
+	@RequestMapping(value="/{userId}/freeRepleRegister/{freeNo}", method=RequestMethod.POST)
 	public String insertReple(@ModelAttribute MiniHomeFreeReple reple,@PathVariable int freeNo){
 		reple.setFreeNo(freeNo);
 		reple.setFreeRepleName(reple.getFreeRepleName());
@@ -103,9 +104,20 @@ public class MiniHomeController {
 	}
 	
 	//자유 덧글 삭제
-	@RequestMapping(value="/{userId}/freeDelete/{freeRepleNo}", method=RequestMethod.POST)
+	@RequestMapping(value="/{userId}/freeRepleDelete/{freeRepleNo}", method=RequestMethod.POST)
 	public String deleteReple(@RequestParam int freeNo,@PathVariable int freeRepleNo){
 		return service.miniHomeDeleteFreeReple(freeNo, freeRepleNo);
+	}
+	
+	//자유 덧글 수정
+	@RequestMapping(value="/{userId}/freeRepleUpdate/{freeRepleNo2}", method=RequestMethod.POST)
+	public String updateReple(@ModelAttribute MiniHomeFreeReple reple,@RequestParam String freeRepleContent,@PathVariable int freeRepleNo2, @RequestParam int freeNo){
+		System.out.println("=========================="+reple);
+		System.out.println("=========================="+freeRepleNo2);
+		System.out.println("=========================="+freeRepleContent);
+		System.out.println("=========================="+freeNo);
+		reple.setFreeRepleNo(freeRepleNo2);
+		return service.miniHomeUpdateFreeReple(reple);
 	}
 	
 	

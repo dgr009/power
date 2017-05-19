@@ -103,26 +103,36 @@ public class MiniHomeBoardService {
 	public String miniHomeRegisterFreeReple(MiniHomeFreeReple reple){	
 		dao.miniHomeIncreaseFreeRepleCnt(reple.getFreeNo());//자유게시판 댓글 수 증가
 		dao.miniHomeRegisterFreeReple(reple);
+		int result = dao.miniHomeRepleCnt(reple.getFreeNo());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("free", dao.miniHomeSelectFreeView(reple.getFreeNo()));
 		map.put("reple", dao.miniHomeSelectAllFreeReple(reple.getFreeNo()));
-		return new Gson().toJson(map);
+		map.put("cnt", result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
 	
 	//자유게시판 댓글 수정
-	public void miniHomeUpdateFreeReple(MiniHomeFreeReple reple){
+	public String miniHomeUpdateFreeReple(MiniHomeFreeReple reple){
 		dao.miniHomeUpdateFreeReple(reple);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(reple.getFreeNo()));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(reple.getFreeNo()));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
 	
 	//자유게시판 댓글 삭제
 	@Transactional
 	public String miniHomeDeleteFreeReple(int freeNo, int freeRepleNo){
 		dao.miniHomeDecreaseFreeRepleCnt(freeNo);//자유게시판 댓글 수 감소
-		dao.miniHomeDeleteFreeReple(freeRepleNo);
+		dao.miniHomeDeleteFreeReple(freeRepleNo);// 댓글 삭제
+		int result = dao.miniHomeRepleCnt(freeNo);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("free", dao.miniHomeSelectFreeView(freeNo));
 		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		map.put("cnt", result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		return gson.toJson(map);
 	}
 

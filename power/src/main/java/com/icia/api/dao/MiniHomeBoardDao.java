@@ -127,6 +127,11 @@ public class MiniHomeBoardDao {
 		tpl.update("api.dao.MiniHomeBoardDao.miniHomeDecreaseFreeRepleCnt",freeNo);
 	}
 	
+	//자유게시판 댓글 수 출력
+	public int miniHomeRepleCnt(int freeNo){
+		return tpl.selectOne("api.dao.MiniHomeBoardDao.miniHomeRepleCnt",freeNo);
+	}
+	
 	
 	
 	

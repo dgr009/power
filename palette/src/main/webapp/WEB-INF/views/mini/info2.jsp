@@ -53,7 +53,7 @@
 		</tr>
 		</c:forEach>
 
-			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
+			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
 				<a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a>
