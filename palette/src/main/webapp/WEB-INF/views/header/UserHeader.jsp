@@ -26,7 +26,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	<script type="text/javascript">
 	function openHome(){
-	    window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main", "미니홈페이지", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+		if(<%=user.getUserIsHome()%>==1)
+	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main", "미니홈페이지", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+		else{
+			window.location.href="http://localhost:8087/palette/users/homeRegister";
+			
+		}
 	}
 	</script>
 </head>

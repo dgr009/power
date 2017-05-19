@@ -19,7 +19,7 @@
     		var a =  /^[a-zA-Z0-9]{3,15}$/;	//아이디
     		var b =  /^[a-zA-Z0-9]{3,20}$/;// 비밀번호
     		var mailcheck = 0;
-    		var pwdcheck =0;
+    		var pwdcheck =1;
     		
     		$("#mail").on("blur",function(){
     			if(!$("#mail").val()==='<%=users.getUserMail()%>'){

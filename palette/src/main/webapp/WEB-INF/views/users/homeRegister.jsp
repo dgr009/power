@@ -20,7 +20,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
  <script>
- $(function(){
+ $(function(){ 
 		$("#register").on("click",function(e){
 			e.preventDefault(); //기본 이벤트를 차단
 			var formData = new FormData();
@@ -60,8 +60,11 @@
                       <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title">
                   </div>
                   <div class="form-group">
+                  <div style="display:inline; width:50%">
                       <label for="InputPassword1">홈페이지 이미지</label>
                       <input type="file" class="form-control" name="homeImg" id="img">
+                  </div>
+                  <div id="imagePreView"></div>
                   </div>
                   <div class="form-group">
                       <label for="InputPassword2">홈페이지 디자인 선택</label>
@@ -75,7 +78,7 @@
                   </div>
                  
                   <div class="form-group">
-                  
+                  		
                   </div>
                   <div class="form-group">
                   
