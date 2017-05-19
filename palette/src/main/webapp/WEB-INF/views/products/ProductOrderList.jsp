@@ -1,8 +1,10 @@
+<%@page import="com.icia.palette.vo.Users"%>
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
- 
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%Users users=(Users)session.getAttribute("user"); %>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -15,7 +17,6 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -66,11 +67,10 @@
 </head>
 <body>
 	<!--Start Header-->
-<header id="header">
-  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
- </header>
- <!--end Header-->
-	
+	<header id="header">
+ <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+</header>
+	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
@@ -78,16 +78,14 @@
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-							<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
+							
 							</h1>
 						</div>
 					</div>
-					
-				     <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                       <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+                     <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
-		</div></div>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -101,74 +99,69 @@
                 </div>
             </div>
              </section>
-                     <div class="col-lg-12 col-md-12 col-sm-12">
+            
+ 
+           
+            <div class="col-lg-12 col-md-12 col-sm-12">
             <br><br>
-            
-            
-       <%@include file="/WEB-INF/views/AdminMenu.jsp" %>
-           	<div class="col-lg-9 col-md-9 col-sm-9">
-							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
-
-							<form action="update" method="post">
+					<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
 							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-								<tbody>
-									
-									<tr><td>상품명</td></tr>	
-									<tr><td>가격</td></tr>
-									<tr><td>최소수량</td></tr>
-									<tr><td>최대수량</td></tr>
-									<tr><td>상품 내용</td></tr>
-
-									
-								</tbody>
-							</table>
+							<div class="col-lg-9 col-md-9 col-sm-9">
+							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;"><h3><i class="fa fa-leaf"></i>    내 등록상품 조회</h3>
+						
+							
+							<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							
+							
+							<table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                    	<th>회원ID</th>
+						<th>주문개수</th>
+						<th>주문금액</th>
+						  <th>주문일</th>
+                    </tr>
+                    </thead>
+                    <tbody id=productList>
+						<c:forEach items="${result.result}" var="free">
+						<tr><td>${free.userId}</td><td>${free.orderSize.intValue()}개</td><td>${free.orderPrice.intValue()}P</td><td>${free.orderDate}</td>
+						<td><c:if test="${free.orderState=='배송준비중'}"><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">배송</button></c:if>
+						<c:if test="${free.orderState=='배송중'}">배송중</c:if>
+						<c:if test="${free.orderState=='주문완료'}">주문완료</c:if>
+						</td>
+						
+						</tr>
+						</c:forEach>
+						
+                    </tbody>
+                </table>
+                 <!--페이징 시작 -->
+                <div class="col-sm-12 text-center"  id="pagination" >
+                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?pageNo=${result.pagination.prev}&itemNo=${itemNo}">이전으로</a></c:if>
+			
+			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?pageNo=${i}&itemNo=${itemNo}">${i} </a>
+			</c:forEach>
+			
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?pageNo=${result.pagination.next}&itemNo=${itemNo}">다음으로</a></c:if>
+                </div>
+            </div> <!--페이징 끝 -->
+							
+							
+							
+							
+							
 							</div>
 							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:180px;"></textarea></td></tr>
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2">
-							<table>
-									<tbody>
-
-										<tr><td>상품 이미지</td></tr>
-										<tr><td>제품 상세 이미지</td></tr>
-
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="file" ></td></tr>
-										<tr><td><input type="file" ></td></tr>
-										
-										</tbody>
-								</table>
-								<br><br><br><br><br><br><br><br>
-								<button class="btn btn-default btn-lg btn-block" type="button"> 
-							<i class="fa fa-rocket"></i> 상품 수정하기</button>
-							</div>
+							
                             
-							</form>
 							
 									
 							</div>
 							
 							
 							</div>
-							</div></div>
 							
 							
 					
@@ -195,7 +188,6 @@
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-
 
 					<script type="text/javascript">
 						$(document)

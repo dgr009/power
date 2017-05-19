@@ -41,17 +41,17 @@ update item_option set(option_name={optionName}) where option_no=#{optionNo}
 <update id="updateItemImg" parameterType="ItemImg">
 update item_img set img_name=#{imgName} where img_no=#{imgNo}
 </update>
-<!-- 카테고리별 상품조회 개수 -->
+<!-- 등록 상품조회 개수 -->
 <select id="selectItemListByKindCnt" parameterType="hashmap" resultType="int">
-select count(*) from item  where  user_id=#{userId}  and small_kind=#{smallKind}
+select count(*) from item  where  user_id=#{userId}
 </select>
-<!-- 카테고리별 상품조회(리스트 )-->
+<!-- 등록 상품조회(리스트 )-->
 <select id="selectItemListByKind" parameterType="hashmap" resultType="ItemList">
 <![CDATA[
 select * from
 (select rownum rnum,b.* from 
-(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven
-from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) and i.small_kind=#{smallKind}) b
+(select i.item_no,i.item_date,i.item_price,item_name,m.img_name,i.item_inven,user_id
+from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no)) b
 where rownum<=#{end}) where rnum>=#{start}
 ]]>
 
@@ -61,7 +61,7 @@ where rownum<=#{end}) where rnum>=#{start}
 <![CDATA[
 select * from
 (select rownum rnum,b.* from 
-(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven 
+(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
 from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
 where rownum<=9) where rnum>=1 
 ]]>
@@ -72,7 +72,7 @@ where rownum<=9) where rnum>=1
 <![CDATA[
 select * from
 (select rownum rnum,b.* from 
-(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven 
+(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
 from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven desc) b
 where rownum<=9) where rnum>=1 
 ]]>
@@ -82,7 +82,7 @@ where rownum<=9) where rnum>=1
 <![CDATA[
 select b2.* from
       (select rownum rnum,b.* from
-      (select i.item_no ,i.item_name ,m.img_name ,i.item_price,i.item_inven
+      (select i.item_no ,i.item_name ,m.img_name ,i.item_price,i.item_inven,i.user_id 
       from item i,item_review r,item_img m 
       where m.img_no in(select min(img_no) from item_img group by item_no) and i.item_no=r.item_no(+) and i.item_no=m.item_no
       group by i.item_no,i.item_name,m.img_name 
@@ -124,15 +124,23 @@ where rownum<=9) where rnum>=1;
 <select id="selectItemImg" parameterType="int" resultType="ItemImg">
 select *from Item_img where item_no=#{itemNo}
 </select>
+<!-- 상품신청리스트개수 -->
+<select id="selectOrderListCnt" parameterType="int" resultType="int">
+select count(*) from order_statement where  item_no=#{itemNo}
+</select>
 <!-- 상품신청리스트 -->
-<select id="orderList" parameterType="int" resultType="ApplicantList">
+<select id="orderList" parameterType="hashmap" resultType="ApplicantList">
 <![CDATA[
-select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_post,u.user_mail,u.user_phone from users u,order_statement o where u.user_id=o.user_id and o.item_no=#{itemNo} order by o.ORDER_DATE DESC)b where rownum<=10) where rnum>=1
+select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_post,u.user_mail,u.user_phone,o.order_date,o.order_price,o.order_size,o.item_no,o.order_state from users u,order_statement o where u.user_id=o.user_id and o.item_no=#{itemNo} order by o.ORDER_DATE DESC)b where rownum<=#{end}) where rnum>=#{start}
 ]]>
 </select>
 <!-- 상품상세조회 -->
 <select id="selectItemDetail" parameterType="int" resultType="Item">
 select *from item where item_no=#{itemNo}
+</select>
+<!-- 상품옵션가져오기-->
+<select id="selectProductOption" parameterType="int" resultType="itemOption">
+select *from item_option where item_no=#{itemNo}
 </select>
 <!-- 상품문의 작성 -->
 <insert id="InsertInquiry" parameterType="InquiryBoard">
@@ -225,7 +233,7 @@ delete item_review where review_reple_no=#{reviewRepleNo}
 </delete>
 <!-- 장바구니담기 -->
 <insert id="insertBasket" parameterType="hashmap">
-insert into basket values(item_no=#{itemNo},user_id=#{userId}
+insert into basket values(#{itemNo},#{userId})
 </insert>
 <!-- 배송리스트 개수 -->
 <select id="selectDeliveryCnt" parameterType="String">

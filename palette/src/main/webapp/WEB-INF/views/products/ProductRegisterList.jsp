@@ -1,8 +1,10 @@
+<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%Users users=(Users)session.getAttribute("user"); %>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -66,7 +68,8 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
-<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -106,7 +109,6 @@
 							<div class="col-lg-9 col-md-9 col-sm-9">
 							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;"><h3><i class="fa fa-leaf"></i>    내 등록상품 조회</h3>
 						
-							<form action="update" method="get">
 							
 							<div class="col-lg-12 col-md-12 col-sm-12">
 							
@@ -117,18 +119,29 @@
                     <tr>
                         <th>등록일</th>
 						<th>상품명</th>
-						<th>주문 상태</th>
-						<th>마감 종료일</th>
+						<th>재고 개수</th>
 						<th></th>
                     </tr>
                     </thead>
                     <tbody id=productList>
-
+						<c:forEach items="${result.result}" var="free">
+						<tr><td>${free.itemDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productMain?itemNo=${free.itemNo.intValue()}">${free.itemName}</a></td><td>${free.itemInven.intValue()}</td>
+						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productDelete?itemNo=${free.itemNo.intValue()}'">상품삭제</button></td>
+						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">구매자목록</button></td>
+						</tr>
+						</c:forEach>
+						
                     </tbody>
                 </table>
                  <!--페이징 시작 -->
                 <div class="col-sm-12 text-center"  id="pagination" >
-                   
+                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
+			
+			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${i}">${i} </a>
+			</c:forEach>
+			
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${result.pagination.next}">다음으로</a></c:if>
                 </div>
             </div> <!--페이징 끝 -->
 							
@@ -140,7 +153,6 @@
 							
 							
                             
-							</form>
 							
 									
 							</div>
@@ -155,65 +167,25 @@
 			
 
 
-					<script type="text/javascript" src="/hooligan/js/jquery-1.10.2.min.js"></script>
-					<script src="/hooligan/js/bootstrap.min.js"></script>
-					<script src="/hooligan/js/jquery.easing.1.3.js"></script>
-					<script src="/hooligan/js/retina-1.1.0.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery.cookie.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
 					<!-- jQuery cookie -->
-					<script type="text/javascript" src="/hooligan/js/styleswitch.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
 					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="/hooligan/js/jquery.smartmenus.min.js"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
 					<script type="text/javascript"
-						src="/hooligan/js/jquery.smartmenus.bootstrap.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery.jcarousel.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jflickrfeed.js"></script>
+						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
 					<script type="text/javascript"
-						src="/hooligan/js/jquery.magnific-popup.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery.isotope.min.js"></script>
-					<script type="text/javascript" src="/hooligan/js/swipe.js"></script>
-					<script type="text/javascript" src="/hooligan/js/jquery-scrolltofixed-min.js"></script>
-<script type="text/javascript">
+						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 
-$(document).ready(function() {
-	var result= <%= request.getAttribute("result") %>
-	var list=result.list;
-	var pagination=result.pagination;
-	$.each(list, function(index, p) {
-		if(p.orderState==0)	p.orderState="주문중";
-		if(p.orderState==1)   p.orderState="주문성공";
-		if(p.orderState==2)   p.orderState="주문완료"
-		if(p.orderState==3)   p.orderState="주문실패"
-		var a=$('<tr></tr>');
-		var productName1=$('<td></td>');
-		var productName2=$("<a href='/hooligan/product/productDetail?productNo="+p.productNo+"'>"+p.productName+"</a>")
-		productName1.append(productName2);
-		var date1=p.closingDate;
-		var date=$('<td></td>');
-		date.append(date1);
-		var regidate=p.registrationDate;
-		var regidate1=$('<td></td>');
-		regidate1.append(regidate);
-		var order1=p.orderState;
-		var orderState=$('<td></td>');
-		orderState.append(order1);
-		var orderFirst=$('<td></td>');
-		var orderList=$("<a href='/hooligan/employee/productOrderList?productNo="+p.productNo+"'>주문회원리스트</a>");
-		orderFirst.append(orderList);
-		a.append(regidate1).append(productName1).append(orderState).append(date);
-		$("#productList").append(a);
-	});
-	$("#pagination").append("<ul class='pagination'></ul>");
-	var p = $("#pagination ul");
-	if (pagination.prev > -1)
-		p.append("<li><a href='productList?pageNo=" + pagination.prev + "'>이전으로</a></li>");
-	for (var i = pagination.startPage; i <= pagination.endPage; i++)
-		p.append("<li><a href='productList?pageNo=" + i + "'>" + i + "</a></li>");
-	if (pagination.next > -1)
-		p.append("<li><a href='productList?pageNo=" + pagination.next + "'>다음으로</a></li>");
-	
-});
-</script>
 					<script type="text/javascript">
 						$(document)
 								.ready(

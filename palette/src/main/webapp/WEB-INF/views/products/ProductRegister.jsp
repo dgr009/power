@@ -69,7 +69,7 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 		</header>
 	<!-- End Header -->
 		<div id="menu-bar">
@@ -134,13 +134,13 @@
 								<table >
 									<tbody >
 										<tr><td><input type="text"  name="itemName"></td></tr>
-												<c:forEach items="${result.kind }" var="free">
-		<tr>			
-			<td>
-				${free.smallKind}
-			</td>
-		</tr>
-		</c:forEach>
+										<tr><td><select name="smallKind">
+										<c:forEach items="${result.kind}" var="free">
+										<option value="${free.smallKind}">${free.smallKind}</option>
+										</c:forEach>
+										
+										</select></td></tr>
+										
 										<tr><td><input type="text"  name="itemSize"></td></tr>
 										<tr><td><input type="text"  name="itemPrice"></td></tr>
 										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>

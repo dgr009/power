@@ -1,5 +1,7 @@
 package com.icia.api.service;
 
+import java.sql.Date;
+import java.text.*;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
@@ -80,15 +82,51 @@ public class productService {
 		
 	//
 	//상품신청리스트
-		public List<ApplicantList> orderList(int itemNo){
-			return dao.orderList(itemNo);
+	@Transactional
+		public String orderList(int itemNo,int pageNo){
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("itemNo", itemNo);
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectOrderListCnt(itemNo));
+			map.put("start", p.getStartArticle());
+			map.put("end", p.getEndArticle());
+			List<ApplicantList> r=dao.orderList(map);
+			HashMap<String, Object> result=new HashMap<String, Object>();
+			result.put("result", r);
+			result.put("pagination", p);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
 		}
-	//제품상세정보보기
+		//등록상품조회(리스트)
 		@Transactional
-		public Item selectItemDetail(int itemNo){
+		public String selectItemListByKind(int pageNo,String userId){
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			HashMap<String, Object> map1=new HashMap<String, Object>();
+			map.put("userId", userId);
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectItemListByKindCnt(map));
+			map1.put("start", p.getStartArticle());
+			map1.put("end", p.getEndArticle());
+			map1.put("userId", userId);
+			HashMap<String, Object> result=new HashMap<String, Object>();
+			List<ItemList> r=dao.selectItemListByKind(map1);
+			result.put("result", r);
+			result.put("pagination", p);
+			System.out.println("api서버"+result);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		//제품상세정보보기
+		@Transactional
+		public String selectItemDetail(int itemNo){
 			Item item=dao.selectItemDetail(itemNo);
-			item.setItemImgList((ArrayList<ItemImg>) dao.selectItemImg(itemNo));
-			return item;
+			List<ItemImg> imgList=dao.selectItemImg(itemNo);
+			List<ItemOption> itemOption=dao.selectProductOption(itemNo);
+			HashMap<String,  Object> result=new HashMap<String, Object>();
+			result.put("item", item);
+			result.put("itemImg", imgList);
+			result.put("itemOption", itemOption);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+			return gson.toJson(result);	
+			
 		}
 	//상품문의작성
 	public void insertInquiry(InquiryBoard i){
@@ -177,11 +215,11 @@ public class productService {
 		dao.deleteReviewReple(reviewRepleNo);
 	}
 	//장바구니담기
-	public void insertBasket(int itemNo,String userId){
+	public int insertBasket(int itemNo,String userId){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("itemNo", itemNo);
 		map.put("userId", userId);
-		dao.insertBasket(map);
+		return dao.insertBasket(map);
 	}
 	//배송리스트
 	@Transactional
@@ -213,22 +251,7 @@ public class productService {
 		map2.put("orderSize",o.getOrderSize());
 		dao.updateItemInven(map2);
 	}
-	//카테고리별 상품조회(리스트)
-	public String selectItemListByKind(int pageNo,String userId,String smallKind){
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		HashMap<String, Object> map1=new HashMap<String, Object>();
-		map.put("userId", userId);
-		map.put("smallKind", smallKind);
-		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectItemListByKindCnt(map));
-		map1.put("start", p.getStartArticle());
-		map1.put("end", p.getEndArticle());
-		map1.put("userId", userId);
-		map1.put("smallKind", smallKind);
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListByKind(map1));
-		result.put("pagination", p);
-		return new Gson().toJson(result);	
-	}
+
 	//미니홈메인 상품등록순9개
 	public String selectItemListOrderByDate(String userId){
 		HashMap<String, Object> result=new HashMap<String, Object>();

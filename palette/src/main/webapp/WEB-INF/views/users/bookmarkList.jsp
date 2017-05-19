@@ -9,112 +9,77 @@
 <meta charset="UTF-8">
 <title>즐겨찾기</title>
 <!-- CSS FILES -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
-
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
+
 .name {
 	text-align: center;
 	padding-left: 200px;
 	padding-right: 200px;
 }
+
 .well {
-    min-height: 290px;
+    min-height: 360px;
     padding : 0;
     padding-left: 50px;
     }
- tr{
+    tr{
     	font-size: 1.1em;
     	height: 28px;
     	line-height: 28px;
     }
-.form-control{
+    
+    .form-control{
     height: 20px;
-    	line-height: 20px;  	
+    	line-height: 20px;
+    	
+    }
+       footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
     }
 </style>
-<script type="text/javascript">
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+	
 </script>
 </head>
 <body>
-<!--Start Header-->
-
+<!-- 헤더 -->
 <header id="header">
-<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
- <!--end Header-->
- 
- <!-- 메뉴바 시작 -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-								<a href="/palette/users/home"><img
-									src="/palette/resources/images/logo.png" alt="" /></a>
-							</h1>
-						</div>
-					</div>
-					<!-- Navigation
-                    ================================================== -->
-    <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-		<!--End Header-->
-		<!--start wrapper-->
-		<section class="page_head">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                        <div class="page_title">
-                           <h2>회원 마이페이지</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-            
- 
-           
-            <div class="col-lg-12 col-md-12 col-sm-12">
-            <br><br>
-					<div class="col-lg-3 col-md-3 col-sm-3">
-
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/info" class="btn btn-block btn-default">내 정보보기</a>
-								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/bookmarkList"" class="btn btn-block btn-default">내 즐겨찾기</a>
-								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/basketList" class="btn btn-block btn-default">내 장바구니</a>
-								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/orderList" class="btn btn-block btn-default">주문 내역</a>
-								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/tradeList" class="btn btn-block btn-default">포인트 충전내역</a>
-								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/delete" class="btn btn-block btn-default">회원 탈퇴</a>
-								</div>
-
-					</div>
-	<div class="col-lg-9 col-md-9 col-sm-9">
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 500px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 즐겨찾기 목록</h3>
-	<table width="80%">
+ <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+</header>
+<br><br><br><br><br><br>
+<!-- 헤더 끝 -->
+<div class="container text-center">    
+  <div class="row">
+  	<!-- 랭킹 -->
+    <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
+    <!-- 랭킹 끝 -->
+    
+	 <div class="col-sm-8"> 
+		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 600px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 즐겨찾기 목록</h3>
+	<table width="80%" class="table table-striped table-hover" >
 		<thead>
-			<tr>
-				<td>번호</td>
-				<td>홈페이지 이름</td>
-				<td>주인명</td>
+			<tr >
+				<th style="text-align: center;">번호</th>
+				<th style="text-align: center;">홈페이지 이름</th>
+				<th style="text-align: center;">주인명</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -145,29 +110,36 @@
 							<i class="fa fa-rocket" ></i> 홈으로</button>
                             </div>
 		</div>
+
+						 <!-- 광고 사이드 오른쪽-->
+    <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
+    <!-- 광고 사이드 오른쪽 끝 -->
+  </div>
 </div>
-</div></div></div></header>
-	
+<br><br><br><br><br><br><br><br>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
 </body>
-
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
-					<!-- jQuery cookie -->
-					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
-					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-
-					<script src="<c:url value="/resources/js/main.js"/>"></script>
+	
+	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+			<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
+			<!-- jQuery cookie -->
+			<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
+			<!-- Style Colors Switcher -->
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
+			<script type="text/javascript"
+				src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
+			<script type="text/javascript"
+				src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 </html>

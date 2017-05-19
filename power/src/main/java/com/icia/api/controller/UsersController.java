@@ -175,7 +175,8 @@ public class UsersController {
 	public String orderList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
 		String userId = service.getUserIdByToken(token);
 		Map<String, Object> map = service.userOrderList(userId, pageNo);
-		return new Gson().toJson(map);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(map);
 	}
 
 	// 회원 주문 내역에서 주문 취소하기

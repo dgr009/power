@@ -1,5 +1,7 @@
 package com.icia.api.vo;
 
+import java.sql.*;
+
 import lombok.*;
 
 @Data
@@ -11,4 +13,9 @@ public class ApplicantList {
 	private String userPost;
 	private String userMail;
 	private String userPhone;
+	private Date orderDate;
+	private int orderPrice;
+	private int orderSize;
+	private int itemNo;
+	private String orderState;
 }
