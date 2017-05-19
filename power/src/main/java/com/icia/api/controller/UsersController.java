@@ -113,7 +113,7 @@ public class UsersController {
 
 	}
 
-	// 회원 포인트 충전
+	// 회원 포인트 환급
 	@RequestMapping(value = "/refundPoint", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public ResponseEntity<String> refundPointEnd(@RequestBody Map<String, Object> map) throws BindException {
 		int result = service.refundPoint(map);
@@ -134,12 +134,12 @@ public class UsersController {
 	}
 
 	// 회원 포인트 충전 환급 내역 보기
-	@RequestMapping(value = "/tradeList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public String tradeList(@RequestHeader("token") String token) {
+	@RequestMapping(value = "/tradeList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String tradeList(@RequestHeader("token") String token,@RequestParam int pageNo) {
 		String userId = service.getUserIdByToken(token);
-		System.out.println("포인트 내역 " + userId);
-		List<TradeStatement> list = service.tradeList(userId);
-		return new Gson().toJson(list);
+		Map<String,Object> map = service.tradeList(userId,pageNo);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(map);
 
 	}
 
@@ -175,7 +175,8 @@ public class UsersController {
 	public String orderList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
 		String userId = service.getUserIdByToken(token);
 		Map<String, Object> map = service.userOrderList(userId, pageNo);
-		return new Gson().toJson(map);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		return gson.toJson(map);
 	}
 
 	// 회원 주문 내역에서 주문 취소하기

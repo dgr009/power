@@ -19,6 +19,7 @@ public class MiniHomeController {
 	@Autowired
 	private MiniHomeBoardService service;
 	
+	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
 		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo, userId));
@@ -65,8 +66,17 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeDelete/{freeNo}",method = RequestMethod.POST)
 	public String delete(HttpSession session, @PathVariable int freeNo,@PathVariable String userId){
 		service.miniHomeDeleteFree(session, freeNo, userId);
-		return "redirect:/palette/miniHome/"+userId+"/freeList?pageNo=1";
+		return "redirect:/miniHome/"+userId+"/freeList?pageNo=1";
 	}
+	
+//	//자유게시판 댓글 조회
+//	@RequestMapping(value="/{userId}/freeReple/{freeNo}",method = RequestMethod.GET)
+//	public String repleAll(HttpSession session,@PathVariable String userId,Model model,@PathVariable int freeNo){
+//		model.addAttribute("mini2", service.miniHomeFreeAllReple(userId, freeNo));
+//		return "mini/reple";
+//	}
+	
+
 	
 	
 

@@ -89,8 +89,10 @@ public class UserService {
 				.getBody();
 
 		System.out.println(result);
-		if (!result.equals("수정 실패"))
+		if (!result.equals("수정 실패")){
 			session.removeAttribute("token");
+			session.removeAttribute("user");
+		}
 	}
 
 	// 포인트 충전하기
@@ -107,8 +109,10 @@ public class UserService {
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/chargePoint", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
-
 		System.out.println(result);
+		if(result.equals("충전 성공")){
+			session.setAttribute("user", userInfo(session));
+		}
 	}
 
 	// 포인트 환급하기
@@ -125,8 +129,10 @@ public class UserService {
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/refundPoint", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
-
 		System.out.println(result);
+		if(result.equals("충전 성공")){
+			session.setAttribute("user", userInfo(session));
+		}
 
 	}
 
@@ -143,14 +149,14 @@ public class UserService {
 	}
 
 	// 포인트 충전 환급 내역 보기
-	public List<TradeStatement> tradeList(HttpSession session) {
+	public Map<String,Object> tradeList(HttpSession session,int pageNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String) session.getAttribute("token"));
 		HttpEntity requestEntity = new HttpEntity(headers);
-		String result = tpl.exchange("http://localhost:8087/api/users/tradeList", HttpMethod.POST, requestEntity, String.class).getBody();
-		List<TradeStatement> list = new Gson().fromJson(result, List.class);
-		return list;
+		String result = tpl.exchange("http://localhost:8087/api/users/tradeList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 	}
 
 	//유저 비활성화(탈퇴)
@@ -232,17 +238,19 @@ public class UserService {
 	}
 
 	//홈페이지 만들기
-	public void homeRegister(MiniHome home) {
+	public void homeRegister(MiniHome home,HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
 		System.out.println("Service User" + home);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(home), headers);
-		System.out.println("홈페이지 만들기 api가기 직전"+requestEntity + "홈 : "+home);
 		String result = tpl
 				.exchange("http://localhost:8087/api/users/homeRegister", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
 		System.out.println(result);
+		if(!result.equals("가입 실패")){
+			session.setAttribute("user", userInfo(session));
+		}
 	}
 
 }

@@ -21,12 +21,11 @@ public class MiniHomeController {
 	private MiniHomeBoardService service;	
 	
 	
-	//회원 토큰으로 정보 얻기
+	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String read(@RequestHeader("token") String token, @PathVariable String userId, @PathVariable int freeNo) {
-		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		MiniHomeFree free = service.miniHomeSelectFreeView(freeNo);
-		return new Gson().toJson(free);
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)	
+		return new Gson().toJson(service.miniHomeSelectFreeView(freeNo));
 	}
 	
 	//자유게시판 리스트
@@ -86,7 +85,13 @@ public class MiniHomeController {
 			
 		}
 		}
-
+//	//자유게시판 댓글
+//	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+//	public String repleAll( @PathVariable String userId, @PathVariable int freeNo) {
+//		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+//		List<MiniHomeFreeReple> reple = service.miniHomeSelectAllFreeReple(freeNo);
+//		return new Gson().toJson(reple);
+//	}
 	
 	
 	

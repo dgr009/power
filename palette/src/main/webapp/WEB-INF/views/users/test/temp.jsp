@@ -1,14 +1,44 @@
-<%@page import="com.icia.palette.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>즐겨찾기</title>
-<!-- CSS FILES -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<script type="text/javascript">
+	$(function(){
+		$("#find").on("click",function(){
+			$("#target").html("");
+			$.ajax({
+				url:"/api/users/findPwd",
+				type:"post",
+				data : {"userId":$("#userId").val(),"userName":$("#userName").val(),"userMail":$("#userMail").val()},
+				dataType:"JSON",
+				success: function(result) {
+					$("#target").html("비밀번호를 찾을 수 없습니다.");
+					$("#target").css("color","red");
+				},
+				error:function(request){
+			        $("#target").html("비밀번호 : " +request.responseText);
+			    	$("#target").css("color","green");
+			     }
+			})
+		})
+	})
+</script>
+
+	<button  id="update" onclick='location.href="http://localhost:8087/palette/users/update"'>개인정보 수정하기</button>
+	<button  id="tradeList" onclick='location.href="http://localhost:8087/palette/users/tradeList"'>포인트 거래내역 보기</button>
+	<button  id="chargePoint" onclick='location.href="http://localhost:8087/palette/users/chargePoint"'>포인트 충전하기</button>
+	<button  id="refundPoint" onclick='location.href="http://localhost:8087/palette/users/refundPoint"'>포인트 환급하기</button>
+	<button  id="deleteuser" onclick='location.href="http://localhost:8087/palette/users/delete"'>개인회원 비활성화</button>
+		
+		
+		<h1>충전 페이지</h1>
+	<form action="/palette/users/chargePoint" method="post">
+		충전하실 금액 : <input type="text" name="tradePoint">
+		<button>충전 하기</button>
+	</form>				
+	
+	/////////-----------------위쪽
+	<!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
@@ -68,54 +98,16 @@
 <div class="container text-center">    
   <div class="row">
   	<!-- 랭킹 -->
-    <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
+    <%@ include file="/WEB-INF/views/side/RankSide.jsp" %>
     <!-- 랭킹 끝 -->
     
-	 <div class="col-sm-8"> 
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 600px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 즐겨찾기 목록</h3>
-	<table width="80%" class="table table-striped table-hover" >
-		<thead>
-			<tr >
-				<th style="text-align: center;">번호</th>
-				<th style="text-align: center;">홈페이지 이름</th>
-				<th style="text-align: center;">주인명</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${result.list }" var="book"  varStatus="index">
-			<tr>			
-				<td>
-					${index.count }
-				</td>
-				<td>
-					${book.ownerId }
-				</td>
-				<td>
-					<a href="#">${book.homeTitle}</a>
-				</td>
-			</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-			<c:if test="${result.pagination.prev>0 }"><a href="/palette/users/bookmarkList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
-			
-			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/users/bookmarkList?pageNo=${i}">${i} </a>
-			</c:forEach>
-			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/users/bookmarkList?pageNo=${result.pagination.next}">다음으로</a></c:if>
-		<br><br>
-	<button class="btn btn-default btn-lg btn-block" type="button" onclick="location.href='/palette/users/home'"> 
-							<i class="fa fa-rocket" ></i> 홈으로</button>
-                            </div>
-		</div>
-
-						 <!-- 광고 사이드 오른쪽-->
+	////////////--------- 아래쪽
+					 <!-- 광고 사이드 오른쪽-->
     <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
     <!-- 광고 사이드 오른쪽 끝 -->
   </div>
 </div>
-<br><br><br><br><br><br><br><br>
+<br><br><br><br>
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
@@ -142,3 +134,15 @@
 			<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 </html>
+////////////////// 아래쪽 끝		
+
+//////////// 가운데
+<div class="col-lg-9 col-md-9 col-sm-9">
+이거 
+ <div class="col-sm-8"> 
+ 로 수정
+ 
+
+<li>
+	<a href="/palette/users/delete" class="btn btn-block btn-default">회원 탈퇴</a>
+</li>

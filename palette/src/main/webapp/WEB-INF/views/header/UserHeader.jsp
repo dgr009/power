@@ -34,28 +34,14 @@
                 <div class="row">
                     <div class="hidden-xs col-lg-7 col-sm-5 top-info">
                         
-               			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</a></span>
-               			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</a></span>
-               			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P </a></span>
-                       
-                         <span class="hidden-sm"><a href="/palette/users/chargePoint" style="color:white">충전하기</a></span>
-                         <span class="hidden-sm"><a href="/palette/users/refundPoint" style="color:white">환급하기</a></span>
-                          <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
+               			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</span>
+               			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</span>
+               			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
+                       	  <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         
                     </div>
-                    <div class="col-lg-5 col-sm-7 top-info clearfix">
-                        <ul>
-                            <li>
-                                <form class="search-bar">
-                                    <label for="search" class="search-label">
-                                        <button class="search-button"><i class="fa fa-search"></i></button><!-- Fix the break-row-bug
-                                        --><input type="text" id="search" class="search-input" />
-                                    </label>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
 
             </div>
