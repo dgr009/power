@@ -59,121 +59,96 @@
       padding: 15px;
     }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#find").on("click",function(){
-			$.ajax({
-				url:"/api/users/findId",
-				type:"post",
-				data : {"userName":$("#userName").val(), "userMail":$("#userMail").val() },
-				dataType: 'JSON',
-				success: function(result) {
-					alert("정보와 일치하는 아이디를 찾을 수 없습니다.");
-				},
-				error:function(request){
-			      alert("아이디 : "+request.responseText);
-			     }
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$("#find").on("click",function(){
+		$.ajax({
+			url:"/api/users/findId",
+			type:"post",
+			data : {"userName":$("#userName").val(), "userMail":$("#userMail").val() },
+			dataType: 'JSON',
+			success: function(result) {
+				alert("정보와 일치하는 아이디를 찾을 수 없습니다.");
+			},
+			error:function(request){
+		      alert("아이디 : "+request.responseText);
+		     }
 
-			})
-			
 		})
+		
 	})
+})
 </script>
 </head>
 <body>
-	<!--Start Header-->
-	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
-		</header>
-	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-							
-							</h1>
-						</div>
-					</div>
-					
-					
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
-		<!--End Header-->
-		</div>
-		</div>
-		<!--start wrapper-->
-	 <section class="wrapper">
-            <section class="page_head">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="page_title">
-                                <h2>회원 아이디 찾기</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="row sub_content">
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="dividerHeading">
+<!-- 헤더 -->
+<header id="header">
+ <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+</header>
+<br><br><br><br><br><br>
+<!-- 헤더 끝 -->
+<div class="container text-center">    
+  <div class="row">
+  	<!-- 랭킹 -->
+    <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
+    <!-- 랭킹 끝 -->
+    <div class="col-sm-8" > 
+              
+                    <div class="dividerHeading"style="width:95%;">
                         <h4><span>아이디 찾기</span></h4>
                         
                     </div>
                     
                         <div class="row">
                             <div class="form-group">
-                            		 <input type="text" id="userName" name="userName" class="form-control" maxlength="100"   placeholder="이름">
-                            		 <input type="text" id="userMail" name="userMail" class="form-control" maxlength="100"  placeholder="이메일">
+                            		 <input type="text" style="width:95%;" id="userName" name="userName" class="form-control" maxlength="100"   placeholder="이름">
+                            		 <input type="text" style="width:95%;" id="userMail" name="userMail" class="form-control" maxlength="100"  placeholder="이메일">
                                
                                 
-                                 <div class="col-lg-4 col-md-4 col-sm-4">
+                                 <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:left;">
+                                 <input type="submit" id="find" data-loading-text="Loading..."   style="text-align: left;" class="btn btn-default btn-lg"  value="아이디찾기">
                                  </div>
                                 <br>
-                               <div class="col-lg-8 col-md-8 col-sm-8">
-                               <input type="submit" id="find" data-loading-text="Loading..."   style="text-align: left;" class="btn btn-default btn-lg"  value="아이디찾기">
+                               <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:right;">
                                <input type="button" class="btn btn-default btn-lg"   style="color:white; text-align:right;" onclick="location.href='/palette/users/home'" value="홈으로">
                                </div>
                                 
                             </div>
                         </div>
                  
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                </div>
+                
             </div>
-        </section>
-	
- <!--end wrapper-->
+	 <!-- 광고 사이드 오른쪽-->
+    <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
+    <!-- 광고 사이드 오른쪽 끝 -->
+  </div>
+</div>
+<br><br><br><br>
 
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
 
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
-					<!-- jQuery cookie -->
-					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
-					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-
-					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
+	
+	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+			<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+			<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
+			<!-- jQuery cookie -->
+			<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
+			<!-- Style Colors Switcher -->
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
+			<script type="text/javascript"
+				src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
+			<script type="text/javascript"
+				src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
+			<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 </html>

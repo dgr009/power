@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% Users mainUser =(Users) session.getAttribute("user");%>
+<script>
+function openHome(){  
+	//
+	
+    window.open("http://localhost:8087/palette/miniHome/<%=mainUser.getUserId()%>/main", 
+    		"미니홈페이지", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+}  
+
+</script>
 
 <%if(session.getAttribute("user")!=null){ %>
 <%@ include file="/WEB-INF/views/header/UserHeader.jsp" %>
@@ -123,10 +134,11 @@
                                         <li><a href="columns.html"> 문의 게시판</a></li>
                                         <li><a href="typography.html">공지 사항</a></li>
             							</ul>
-            							
+            						<%if(session.getAttribute("user")!=null){ %>
                                		 </li>
-                               		   <li><a href="#">회원 홈페이지</a>
+                               		   <li><a href="#" onclick=openHome()>회원 홈페이지</a>
                                     </li>
+                                    <%} %>
                             </ul>
                             
                         </div>

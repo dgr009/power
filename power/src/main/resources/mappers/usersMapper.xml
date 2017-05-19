@@ -57,7 +57,7 @@
 					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_date orderDate,
 					o.order_price orderPrice,i.item_name itemName, o.option_name optionName,o.item_no itemNo
 					 from order_statement o,users u,item i 
-					 where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId}) a 
+					 where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId} order by o.order_date) a 
       			where rownum<=#{end})
  			where rnum>=#{start}
 		]]>
@@ -91,7 +91,7 @@
 		<![CDATA[
 		select * from
 			(select rownum rnum,a.* from
-				(select * from point_statement where user_id=#{userId}) a
+				(select * from point_statement where user_id=#{userId} order by trade_date desc) a
 			where rownum<=#{end})
  		where rnum>=#{start}
  		]]>

@@ -143,3 +143,6 @@
  로 수정
  
 
+<li>
+	<a href="/palette/users/delete" class="btn btn-block btn-default">회원 탈퇴</a>
+</li>

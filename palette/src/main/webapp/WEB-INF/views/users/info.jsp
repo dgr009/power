@@ -118,8 +118,12 @@
 								</table>
 							
 							<br><br><br> </div>
-							<button class="btn btn-default btn-lg btn-block"  type="button" onclick='location.href="http://localhost:8087/palette/users/update"'> 
+							<button class="btn btn-default btn-lg btn-block"  type="button" data-toggle="modal" data-target="#updateModal" > 
 							<i class="fa fa-rocket" ></i> 수정하기</button>
+							<button class="btn btn-default btn-lg btn-block"  type="button" data-toggle="modal" data-target="#deleteModal" > 
+							<i class="fa fa-rocket" ></i> 탈퇴하기</button>
+							<%@include file="/WEB-INF/views/users/update.jsp" %>
+							<%@include file="/WEB-INF/views/users/usersDelete.jsp" %>
                            
 		</div>
 </div>

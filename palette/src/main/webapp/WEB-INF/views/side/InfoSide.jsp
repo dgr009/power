@@ -25,9 +25,7 @@
 											<li>
 												<a href="/palette/users/tradeList" class="btn btn-block btn-default">포인트 충전내역</a>
 											</li>
-											<li>
-												<a href="/palette/users/delete" class="btn btn-block btn-default">회원 탈퇴</a>
-											</li>
+											
 										</ul>
 								</div><!-- /  CONTENT BOX-->
 
