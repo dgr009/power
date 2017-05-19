@@ -72,12 +72,43 @@ public class MainService {
 	}
 	//------------------------------------------------------------------------------------
 	//공지게시판 생성
-		public String mainNoticeBoardRegister(MainNoticeBoard notice) {
+	public String mainNoticeBoardRegister(MainNoticeBoard notice) {
 			RestTemplate tpl = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_JSON);
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 			HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(notice), headers);
 			String result=tpl.exchange("http://localhost:8087/api/main/noticeboard/register", HttpMethod.POST, requestEntity, String.class).getBody();
 			return result;
+	}
+	//공지게시판 뷰
+	public MainNoticeBoard mainNoticeBoardView(int mainNoticeArticleNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/main/noticeboard/view/{mainNoticeArticleNo}", HttpMethod.GET, requestEntity, String.class,mainNoticeArticleNo).getBody();
+		MainNoticeBoard free = new Gson().fromJson(result, MainNoticeBoard.class);
+		return free;
 		}
+
+	
+	//공지게시판 리스트
+	public Map<String,Object> mainNoticeBoardList(int pageNo){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result=tpl.exchange("http://localhost:8087/api/main/noticeboard/list?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;		
+	}
+	//공지게시판 삭제
+	public void mainNoticeBoardDelete(int mainNoticeArticleNo){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity =  new  HttpEntity (headers);
+		String result=tpl.exchange("http://localhost:8087/api/main/noticeboard/delete?mainNoticeArticleNo="+mainNoticeArticleNo, HttpMethod.DELETE, requestEntity, String.class).getBody();
+		
+	}
+	
+		
 }

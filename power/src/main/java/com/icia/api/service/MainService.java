@@ -109,8 +109,8 @@ public class MainService {
 		dao.mainNoticeBoardUpdate(mainNoticeArticleBoard);
 	}
 	//메인 공지게시판 삭제
-	public void mainNoticeBoardDalete(int mainNoticeArticleNo){
-		dao.mainNoticeBoardDelete(mainNoticeArticleNo);
+	public int mainNoticeBoardDalete(int mainNoticeArticleNo){
+	 return	dao.mainNoticeBoardDelete(mainNoticeArticleNo);
 	}
 	//메인 공지게시판 뷰
 	@Transactional

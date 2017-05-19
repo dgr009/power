@@ -103,15 +103,15 @@ public class MainDao {
 	}
 	//공지게시판 생성하기
 	public int mainNoticeBoardInsert(MainNoticeBoard mainNoticeBoard){
-		 return tpl.insert("api.dao.MainNoticeDao.mainFreeBoardInsert",mainNoticeBoard);
+		 return tpl.insert("api.dao.MainNoticeDao.mainNoticeBoardInsert",mainNoticeBoard);
 	}
 	//공지게시판 수정하기
 	public void mainNoticeBoardUpdate(MainNoticeBoard mainNoticeBoard){
 		tpl.update("api.dao.MainNoticeDao.mainFreeBoardUpdate",mainNoticeBoard);
 	}
 	//공지게시판 삭제하기
-	public void mainNoticeBoardDelete(int mainNoticeArticleNo){
-		tpl.delete("api.dao.MainNoticeDao.mainFreeBoardDelete",mainNoticeArticleNo);
+	public int mainNoticeBoardDelete(int mainNoticeArticleNo){
+		return tpl.delete("api.dao.MainNoticeDao.mainFreeBoardDelete",mainNoticeArticleNo);
 	}	
 	//공지게시판 조회수 증가
 	public void mainNoticeBoardHitsCnt(int mainNoticeArticleNo){

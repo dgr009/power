@@ -70,7 +70,7 @@ public class MainController {
 	//공지게시판 작성페이지로
 	@RequestMapping(value="/noticeboard/register",method=RequestMethod.GET)
 	public String noticeBoardRegisterStart(){
-		return "main/mainFreeBoardRegister";	
+		return "main/mainNoticeBoardRegister";	
 	}
 	//공지게시판 작성
 	@RequestMapping(value="/noticeboard/register",method=RequestMethod.POST)
@@ -78,5 +78,24 @@ public class MainController {
 		String result = service.mainNoticeBoardRegister(notice);
 		System.out.println(result);
 		return "main/mainNoticeBoardRegister";	
-	}	
+	}
+	/*/삭제
+	@RequestMapping(value="/noticeboard/delete/{mainNoticeArticleNo}",method = RequestMethod.POST)
+	public String noticeDelete(@PathVariable int mainArticleNo){
+		service.mainNoticeBoardDelete(mainArticleNo);
+		return "redirect:/main/mainNoticeBoardList?pageNo=1";
+	}*/
+	//자유게시판 뷰
+	@RequestMapping(value="/noticeboard/view/{mainNoticeArticleNo}",method = RequestMethod.GET)
+	public String noticeView(@PathVariable int mainArticleNo,Model model){
+		model.addAttribute("main", service.mainNoticeBoardView( mainArticleNo));
+		return "main/mainNoticeBoardView";
+	}
+	//자유게시판 리스트
+	@RequestMapping(value="/noticeboard/list",method = RequestMethod.GET)
+	public String noticeList(Model model,@RequestParam int pageNo){
+		model.addAttribute("main", service.mainNoticeBoardList(pageNo));
+		return "main/mainNoticeBoardList";
+	}
+	
 }

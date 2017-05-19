@@ -13,7 +13,7 @@
 </head>
 <body>
 	<h1>회원 정보</h1>
-	<form action="/palette/main/mainfreeboard/view/${main.mainArticleNo}" method="get">
+	<form action="/palette/main/freeboard/view/${main.mainArticleNo}" method="get">
 		<table border="1">
 			<tr><td>게시글번호</td><td>${main.mainArticleNo} </td></tr>
 			<tr><td>제목</td><td>${main.mainArticleTitle}</td></tr>
