@@ -25,15 +25,32 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String read(@RequestHeader("token") String token, @PathVariable String userId, @PathVariable int freeNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)	
-		return new Gson().toJson(service.miniHomeSelectFreeView(freeNo));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(service.miniHomeSelectFreeView(freeNo));
+	}
+	
+	//공지게시판 뷰
+	@RequestMapping(value="/{userId}/noticeView/{noticeArticleNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String readNotice(@RequestHeader("token") String token, @PathVariable String userId, @PathVariable int noticeArticleNo) {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(service.miniHomeSelectNoticeView(noticeArticleNo));
 	}
 	
 	//자유게시판 리스트
 	@RequestMapping(value="/{userId}/freeList", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 	public String list(@RequestHeader("token") String token, @PathVariable String userId, @RequestParam int pageNo) {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		Map<String,Object> free = service.miniHomeSelectFreeList(userId, pageNo);
-		return new Gson().toJson(free);
+		Map<String,Object> free = service.miniHomeSelectFreeList(userId, pageNo);	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(free);
+	}
+	//공지게시판 리스트
+	@RequestMapping(value="/{userId}/noticeList", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String noticeList(@RequestHeader("token") String token, @PathVariable String userId, @RequestParam int pageNo) {
+		Map<String,Object> notice = service.miniHomeSelectNoticeList(userId, pageNo);	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(notice);
 	}
 	
 	//자유게시판 작성
@@ -48,6 +65,19 @@ public class MiniHomeController {
 			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
 		}
 	}
+
+	//공지게시판 작성
+	@RequestMapping(value="/{userId}/noticeRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> createNotice(@RequestHeader("token") String token, @RequestBody MiniHomeNotice notice) throws BindException {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		int result = service.miniHomeRegisterNotice(notice);
+		
+		if(result==1){
+			return new ResponseEntity<String>(notice.toString(),HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
+		}
+	}
 	
 	//회원 토큰으로 정보 얻기
 	@RequestMapping(value="/getUserInfo", method=RequestMethod.POST, produces="text/html;charset=utf-8")
@@ -58,7 +88,7 @@ public class MiniHomeController {
 		return new Gson().toJson(userId);
 	}
 	
-	//수정
+	//자유게시판 수정
 	@RequestMapping(value="/{userId}/freeUpdate/{freeNo}", method=RequestMethod.PUT, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String> update(@RequestHeader("token") String token, @RequestBody MiniHomeFree free) throws BindException {
 		System.out.println("-=-==-=-=-=-=-=-=-=--=--=="+free.toString());
@@ -66,6 +96,17 @@ public class MiniHomeController {
 			
 		if(result==1){
 			return new ResponseEntity<String>(free.toString(),HttpStatus.OK);
+		}else{
+			return new ResponseEntity<String>("수정 실패",HttpStatus.BAD_REQUEST);
+		}
+	}
+	//공지게시판 수정
+	@RequestMapping(value="/{userId}/noticeUpdate/{noticeArticleNo}", method=RequestMethod.PUT, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> noticeUpdate(@RequestHeader("token") String token, @RequestBody MiniHomeNotice notice) throws BindException {
+		int result = service.miniHomeUpdateNotice(notice);
+			
+		if(result==1){
+			return new ResponseEntity<String>(notice.toString(),HttpStatus.OK);
 		}else{
 			return new ResponseEntity<String>("수정 실패",HttpStatus.BAD_REQUEST);
 		}
@@ -81,10 +122,25 @@ public class MiniHomeController {
 			return new ResponseEntity<String>(HttpStatus.OK);
 			
 		}else{
-			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("실패",HttpStatus.BAD_REQUEST);
 			
 		}
+	}
+	
+	//공지게시판 삭제
+	@RequestMapping(value="/{userId}/noticeDelete/{noticeArticleNo}", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> deleteNotice(@RequestHeader("token") String token, @PathVariable int noticeArticleNo) throws BindException {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		int result = service.miniHomeDeleteNotice(noticeArticleNo);
+			
+		if(result==1){
+			return new ResponseEntity<String>(HttpStatus.OK);
+			
+		}else{
+			return new ResponseEntity<String>("실패",HttpStatus.BAD_REQUEST);
+			
 		}
+	}
 //	//자유게시판 댓글
 //	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
 //	public String repleAll( @PathVariable String userId, @PathVariable int freeNo) {
@@ -92,6 +148,36 @@ public class MiniHomeController {
 //		List<MiniHomeFreeReple> reple = service.miniHomeSelectAllFreeReple(freeNo);
 //		return new Gson().toJson(reple);
 //	}
+	
+	//자유 덧글 추가
+	@RequestMapping(value="/{userId}/freeRepleRegister/{freeNo}", method=RequestMethod.POST)
+	public String insertReple(@ModelAttribute MiniHomeFreeReple reple,@PathVariable int freeNo){
+		reple.setFreeNo(freeNo);
+		reple.setFreeRepleName(reple.getFreeRepleName());
+		return service.miniHomeRegisterFreeReple(reple);
+	}
+	
+	//자유 덧글 삭제
+	@RequestMapping(value="/{userId}/freeRepleDelete/{freeRepleNo}", method=RequestMethod.POST)
+	public String deleteReple(@RequestParam int freeNo,@PathVariable int freeRepleNo){
+		return service.miniHomeDeleteFreeReple(freeNo, freeRepleNo);
+	}
+	
+	//자유 덧글 수정
+	@RequestMapping(value="/{userId}/freeRepleUpdate/{freeRepleNo2}", method=RequestMethod.POST)
+	public String updateReple(@ModelAttribute MiniHomeFreeReple reple,@RequestParam String freeRepleContent,@PathVariable int freeRepleNo2, @RequestParam int freeNo){
+		System.out.println("=========================="+reple);
+		System.out.println("=========================="+freeRepleNo2);
+		System.out.println("=========================="+freeRepleContent);
+		System.out.println("=========================="+freeNo);
+		reple.setFreeRepleNo(freeRepleNo2);
+		return service.miniHomeUpdateFreeReple(reple);
+	}
+	
+	
+	
+	
+
 	
 	
 	

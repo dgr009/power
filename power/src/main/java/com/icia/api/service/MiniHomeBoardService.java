@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
+import com.google.gson.*;
 import com.icia.api.dao.*;
 import com.icia.api.util.*;
 import com.icia.api.vo.*;
@@ -18,36 +19,13 @@ public class MiniHomeBoardService {
 	private MiniHomeBoardDao dao;
 	
 	//(개인)공지게시판 작성
-	public void miniHomeRegisterNotice(MiniHomeNotice notice,HttpServletRequest req){
-		HttpSession session = req.getSession();
-		Users user=(Users)session.getAttribute("userId");
-		
-		dao.miniHomeRegisterNotice(notice);
+	public int miniHomeRegisterNotice(MiniHomeNotice notice){
+		 return dao.miniHomeRegisterNotice(notice);
 	}
 	
 	//(개인)공지게시판 수정
-	public void miniHomeUpdateNotice(MiniHomeNotice notice){
-		dao.miniHomeUpdateNotice(notice);	
-	}
-	
-	//(개인)공지게시판 삭제
-	public void miniHomeDeleteNotice(int noticeArticleNo){
-		dao.miniHomeDeleteNotice(noticeArticleNo);	
-	}
-	
-	//(개인)공지게시판 리스트
-	public HashMap<String,Object> getBoardList(String userId,int pageNo) {
-		int cnt = dao.miniHomeNumberOfNotice(userId);
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("pagination", pagination);
-		map.put("list", dao.miniHomeSelectNoticeList(userId, pagination.getEndArticle(), pagination.getStartArticle()));
-		return map;
-	}	
-
-	//(개인)공지게시판 뷰
-	public MiniHomeNotice miniHomeSelectNoticeView(int noticeArticleNo){
-		return dao.miniHomeSelectNoticeView(noticeArticleNo);
+	public int miniHomeUpdateNotice(MiniHomeNotice notice){
+		return dao.miniHomeUpdateNotice(notice);	
 	}
 	
 	//(개인)자유게시판 작성
@@ -64,6 +42,10 @@ public class MiniHomeBoardService {
 	public int miniHomeDeleteFree(int freeNo){
 		return dao.miniHomeDeleteFree(freeNo);
 	}
+	//(개인)공지게시판 삭제
+	public int miniHomeDeleteNotice(int noticeArticleNo){
+		return dao.miniHomeDeleteNotice(noticeArticleNo);
+	}
 	
 	//(개인)자유게시판 리스트 
 	public HashMap<String,Object> miniHomeSelectFreeList(String userId, int pageNo){
@@ -76,6 +58,16 @@ public class MiniHomeBoardService {
 		return map;
 	}
 	
+	//(개인)공지게시판 리스트
+	public HashMap<String,Object> miniHomeSelectNoticeList(String userId,int pageNo) {
+		int cnt = dao.miniHomeNumberOfNotice(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.miniHomeSelectNoticeList(userId, pagination.getEndArticle(), pagination.getStartArticle()));
+		return map;
+	}	
+	
 	//(개인)자유게시판 뷰
 	@Transactional
 	public HashMap<String,Object> miniHomeSelectFreeView(int freeNo){
@@ -83,7 +75,12 @@ public class MiniHomeBoardService {
 		HashMap<String,Object> map = new HashMap<String, Object>();
 		map.put("free", dao.miniHomeSelectFreeView(freeNo));
 		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
+		
 		return map;
+	}
+	//(개인)공지게시판 뷰
+	public MiniHomeNotice miniHomeSelectNoticeView(int noticeArticleNo){
+		return dao.miniHomeSelectNoticeView(noticeArticleNo);
 	}
 	
 	//(개인)자유게시판 댓글 하나 조회
@@ -98,21 +95,40 @@ public class MiniHomeBoardService {
 	
 	//자유게시판 댓글 추가
 	@Transactional
-	public void miniHomeRegisterFreeReple(int freeNo, MiniHomeFreeReple reple){	
-		dao.miniHomeIncreaseFreeRepleCnt(freeNo);//자유게시판 댓글 수 증가
+	public String miniHomeRegisterFreeReple(MiniHomeFreeReple reple){	
+		dao.miniHomeIncreaseFreeRepleCnt(reple.getFreeNo());//자유게시판 댓글 수 증가
 		dao.miniHomeRegisterFreeReple(reple);
+		int result = dao.miniHomeRepleCnt(reple.getFreeNo());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(reple.getFreeNo()));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(reple.getFreeNo()));
+		map.put("cnt", result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
 	
 	//자유게시판 댓글 수정
-	public void miniHomeUpdateFreeReple(MiniHomeFreeReple reple){
+	public String miniHomeUpdateFreeReple(MiniHomeFreeReple reple){
 		dao.miniHomeUpdateFreeReple(reple);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(reple.getFreeNo()));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(reple.getFreeNo()));
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
 	
 	//자유게시판 댓글 삭제
 	@Transactional
-	public void miniHomeDeleteFreeReple(int freeNo, int freeRepleNo){
+	public String miniHomeDeleteFreeReple(int freeNo, int freeRepleNo){
 		dao.miniHomeDecreaseFreeRepleCnt(freeNo);//자유게시판 댓글 수 감소
-		dao.miniHomeDeleteFreeReple(freeRepleNo);
+		dao.miniHomeDeleteFreeReple(freeRepleNo);// 댓글 삭제
+		int result = dao.miniHomeRepleCnt(freeNo);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.miniHomeSelectFreeView(freeNo));
+		map.put("reple", dao.miniHomeSelectAllFreeReple(freeNo));
+		map.put("cnt", result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
 
 	//자유게시판 댓글 전체삭제
