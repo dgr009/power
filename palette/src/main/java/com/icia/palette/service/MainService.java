@@ -52,12 +52,32 @@ public class MainService {
 	}
 	
 	//자유게시판 리스트
-	public Map<String,Object> mainFreeBoardList(HttpSession session, int pageNo){
+	public Map<String,Object> mainFreeBoardList(int pageNo){
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity requestEntity = new HttpEntity(headers);
-		String result=tpl.exchange("http://localhost:8087/api/main/freeboard/List?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		String result=tpl.exchange("http://localhost:8087/api/main/freeboard/list?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
 		return map;		
 	}
+	//자유게시판 삭제
+	public void miniHomeDeleteFree(HttpSession session,int mainArticleNo,String userId){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity =  new  HttpEntity (headers);
+		String result=tpl.exchange("http://localhost:8087/api/main/{userId}/freeboard/delete?mainArticleNo="+mainArticleNo, HttpMethod.DELETE, requestEntity, String.class,userId).getBody();
+		
+	}
+	//------------------------------------------------------------------------------------
+	//공지게시판 생성
+		public String mainNoticeBoardRegister(MainNoticeBoard notice) {
+			RestTemplate tpl = new RestTemplate();
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(notice), headers);
+			String result=tpl.exchange("http://localhost:8087/api/main/noticeboard/register", HttpMethod.POST, requestEntity, String.class).getBody();
+			return result;
+		}
 }

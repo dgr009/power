@@ -43,8 +43,8 @@ public class MainDao {
 		return tpl.update("api.dao.MainFreeBoardDao.mainFreeBoardUpdate",mainFreeBoard);
 	}
 	//자유게시판 삭제하기
-	public void mainFreeBoardDelete(int mainArticleNo){
-		tpl.delete("api.dao.MainFreeBoardDao.mainFreeBoardDelete",mainArticleNo);
+	public int mainFreeBoardDelete(int mainArticleNo){
+		return tpl.delete("api.dao.MainFreeBoardDao.mainFreeBoardDelete",mainArticleNo);
 	}
 	//자유게시판 댓글 생성
 	public void mainFreeBoardRepleInsert(MainFreeReple mainFreeReple){
@@ -102,8 +102,8 @@ public class MainDao {
 		return tpl.selectOne("api.dao.MainNoticeDao.mainFreeBoardView",mainNoticeArticleNo);
 	}
 	//공지게시판 생성하기
-	public void mainNoticeBoardInsert(MainNoticeBoard mainNoticeBoard){
-		tpl.insert("api.dao.MainNoticeDao.mainFreeBoardInsert",mainNoticeBoard);
+	public int mainNoticeBoardInsert(MainNoticeBoard mainNoticeBoard){
+		 return tpl.insert("api.dao.MainNoticeDao.mainFreeBoardInsert",mainNoticeBoard);
 	}
 	//공지게시판 수정하기
 	public void mainNoticeBoardUpdate(MainNoticeBoard mainNoticeBoard){

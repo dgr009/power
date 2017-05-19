@@ -10,7 +10,7 @@ import lombok.*;
 public class MainFreeBoardList {
 	private int mainArticleNo;
 	private String mainArticleTitle;
-	private String mainArticleName;
 	private int mainArticleHits;
 	private Date mainArticleDate;
+	private String userId;
 }

@@ -30,6 +30,13 @@ public class MainController {
 		System.out.println(result);
 		return "main";	
 	}
+	//삭제
+	@RequestMapping(value="/{userId}/freeboard/delete/{mainArticleNo}",method = RequestMethod.POST)
+	public String delete(HttpSession session,@PathVariable int mainArticleNo){
+		String userId = service.getUserId(session);
+		service.miniHomeDeleteFree(session, mainArticleNo, userId);
+		return "redirect:/main/"+userId+"/mainfreeBoardList?pageNo=1";
+	}
 	//자유게시판 뷰
 	@RequestMapping(value="/freeboard/view/{mainArticleNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
@@ -37,10 +44,10 @@ public class MainController {
 		return "main/mainFreeBoardView";
 	}
 	//자유게시판 리스트
-	@RequestMapping(value="/freeboard/List",method = RequestMethod.GET)
-	public String userInfo(HttpSession session,Model model,@RequestParam int pageNo){
-		model.addAttribute("main", service.mainFreeBoardList(session, pageNo));
-		return "main/list";
+	@RequestMapping(value="/freeboard/list",method = RequestMethod.GET)
+	public String userInfo(Model model,@RequestParam int pageNo){
+		model.addAttribute("main", service.mainFreeBoardList(pageNo));
+		return "main/mainFreeBoardList";
 	}
 	//팔레컨 - 팔레서 - 파워컨 - 파워서 -파워디에 - 파워서 - 파워 컨 - 팔레서- 팔레 컨 - 뷰
 	
@@ -60,4 +67,16 @@ public class MainController {
 		return "redirect:freeView/"+freeNo;
 	}*/
 	
+	//공지게시판 작성페이지로
+	@RequestMapping(value="/noticeboard/register",method=RequestMethod.GET)
+	public String noticeBoardRegisterStart(){
+		return "main/mainFreeBoardRegister";	
+	}
+	//공지게시판 작성
+	@RequestMapping(value="/noticeboard/register",method=RequestMethod.POST)
+	public String noticeBoardRegisterEnd(@ModelAttribute MainNoticeBoard notice){
+		String result = service.mainNoticeBoardRegister(notice);
+		System.out.println(result);
+		return "main/mainNoticeBoardRegister";	
+	}	
 }

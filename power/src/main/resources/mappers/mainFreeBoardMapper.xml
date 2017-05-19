@@ -9,7 +9,7 @@
 	<![CDATA[
 		 select * from  
 			(select rownum rnum, b1.* from
-				(select main_article_no, main_article_title, main_article_name,main_article_hits,main_article_date,main_article_reple_cnt from main_free_board order by main_article_no desc) b1
+				(select main_article_no, main_article_title,main_article_hits,main_article_date,main_article_reple_cnt from main_free_board order by main_article_no desc) b1
 			where rownum <=#{end}) b2
 		where rnum>=#{start}
 		]]>
@@ -27,7 +27,7 @@
 	
 	<!--자유게시판 상세보기 -->
 	<select id="mainFreeBoardView" parameterType="int" resultType="MainFreeBoard">
-	select main_article_title,main_article_name,main_article_hits,main_article_content,main_article_date,user_id,main_article_reple_cnt from main_free_board where main_article_no=#{mainArticleNo}
+	select main_article_title,main_article_hits,main_article_content,main_article_date,user_id,main_article_reple_cnt from main_free_board where main_article_no=#{mainArticleNo}
 	</select>
 	
 	<!--자유게시판 생성하기-->
@@ -36,7 +36,7 @@
 	    	select main_free_board_seq.nextval from dual
 	  	</selectKey>
 		insert into main_free_board 
-		values(#{mainArticleNo},#{mainArticleTitle},#{mainArticleName},0,#{mainArticleContent},sysdate,#{userId},0)
+		values(#{mainArticleNo},#{mainArticleTitle},0,#{mainArticleContent},sysdate,#{userId},0)
 	</insert>
 	
 	<!-- 자유게시판 삭제하기 -->

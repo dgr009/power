@@ -23,7 +23,8 @@
 			<tr><td>아이디</td><td>${main.userId}</td></tr>
 			<tr><td>댓글 수</td><td>${main.mainArticleRepleCnt}</td></tr>
 		</table>
-		<input type="submit" value="수정">
+						<button>삭제</button>
+		
 	</form>
 </body>
 </html>

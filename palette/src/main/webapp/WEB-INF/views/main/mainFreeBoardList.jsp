@@ -10,8 +10,6 @@
 <title>asd</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	
-
 </script>
 </head>
 <body>
@@ -24,15 +22,17 @@
 			<td>조회수</td>
 			<td>내용</td>
 			<td>게시시간</td>
+			<td>아이디</td>
 			<td>댓글 수</td>
+		
 		</tr>
-		<c:forEach items="${main.list }" var="free">
+		<c:forEach items="${main.list }" var="main">
 		<tr>			
 			<td>
-				${main.mainArticle }
+				${main.mainArticleNo }
 			</td>
 			<td>
-				<a href="/palette/main/freeboard/view/${main.mainArticle}">${main.mainArticleTitle }</a>
+				<a href="/palette/main/freeboard/view/${main.mainArticleNo}">${main.mainArticleTitle }</a>
 			</td>
 			<td>
 				${main.mainArticleName }
@@ -47,26 +47,27 @@
 				${main.mainArticleDate }
 			</td>
 			<td>
-				${main.mainArticleRepleCnt }
+				${main.userId }
 			</td>
 			<td>
-				${main.mainfreeRepleCnt }
-			</td>	
+				${main.mainArticleRepleCnt }
+			</td>
+				
+				
 		</tr>
 		</c:forEach>
 
-			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/main/freeboard/list?pageNo=${main.pagination.prev}">이전으로</a></c:if>
+			<c:if test="${main.pagination.prev>0 }"><a href="/palette/main/freeboard/list?pageNo=${main.pagination.prev}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${main.pagination.startPage}" end="${main.pagination.endPage}">
 				<a href="/palette/main/freeboard/list?pageNo=${i}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/main/freeboard/list?pageNo=${main.pagination.next}">다음으로</a></c:if>
+		<c:if test="${main.pagination.next>0 }"><a href="/palette/main/freeboard/list?pageNo=${main.pagination.next}">다음으로</a></c:if>
 		
-		<form>
-		<input type="button" value="게시글 작성" 
-		onclick="window.location.href='/palette/miniHome/${userId }/freeRegister'" />
-		</form>
+	<!-- 	<form> 		<input type="button" value="게시글 작성" 
+		onclick="window.location.href='/palette/main/${userId }/freeRegister'" />
+		</form> -->
 </body>
 </html>
 

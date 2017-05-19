@@ -36,8 +36,8 @@ public class MainService {
 		return dao.mainFreeBoardUpdate(mainFreeBoard);
 	}
 	//메인 자유게시판 삭제
-	public void mainFreeBoardDalete(int mainArticleNo){
-		dao.mainFreeBoardDelete(mainArticleNo);
+	public int mainFreeBoardDalete(int mainArticleNo){
+	return	dao.mainFreeBoardDelete(mainArticleNo);
 	}
 	//메인 자유게시판 뷰
 	@Transactional
@@ -101,8 +101,8 @@ public class MainService {
 		return map;
 	}
 	//메인 공지게시판 작성
-	public void mainNoticeInsert(MainNoticeBoard mainNoticeArticleBoard){
-		dao.mainNoticeBoardInsert(mainNoticeArticleBoard);
+	public int mainNoticeBoardInsert(MainNoticeBoard mainNoticeBoard){
+		return dao.mainNoticeBoardInsert(mainNoticeBoard);
 	}
 	//메인 공지게시판 수정
 	public void mainNoticeBoardUpdate(MainNoticeBoard mainNoticeArticleBoard){

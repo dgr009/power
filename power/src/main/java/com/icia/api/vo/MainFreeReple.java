@@ -9,7 +9,7 @@ import lombok.*;
 public class MainFreeReple {
 	private int mainFreeRepleNo;
 	private int mainArticleNo;
-	private String mainFreeRepleName;
 	private String mainFreeRepleContent;
 	private Date mainFreeDate;
+	private String userId;
 }

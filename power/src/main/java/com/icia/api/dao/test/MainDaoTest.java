@@ -22,7 +22,7 @@ public class MainDaoTest {
 		//System.out.println("추가 전 게시글 수 :"+ dao.mainFreeBoardCnt());
 		MainFreeBoard free = new MainFreeBoard();
 		free.setMainArticleTitle("21번입니다");
-		free.setMainArticleName("스물하나입니다");
+	//	free.setMainArticleName("스물하나입니다");
 		free.setMainArticleContent("새키얌 안뇽");
 		free.setUserId("sdfsdf");
 		
@@ -66,7 +66,7 @@ public class MainDaoTest {
 			MainFreeReple free = new MainFreeReple();
 			free.setMainFreeRepleNo(2);
 			free.setMainArticleNo(25);
-			free.setMainFreeRepleName("ㄴㅇㄹㄴㅇㄹ짱");
+			//free.setMainFreeRepleName("ㄴㅇㄹㄴㅇㄹ짱");
 			free.setMainFreeRepleContent("짱짱맨");
 			
 		//	dao.mainFreeBoardRepleInsert(free);
