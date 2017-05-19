@@ -58,8 +58,8 @@ public class MainController {
 		return new Gson().toJson(free);
 	}
 	//자유게시판 삭제
-	@RequestMapping(value="/{userId}/freeboard/delete/{mainArticle}", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
-	public ResponseEntity<String> delete(@RequestHeader("token") String token, @PathVariable int mainArticleNo, @PathVariable String userId) throws BindException {
+	@RequestMapping(value="/freeboard/delete/{mainArticle}", method=RequestMethod.DELETE,produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> delete(@PathVariable int mainArticleNo) throws BindException {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
 		int result = service.mainFreeBoardDalete(mainArticleNo);;
 			
@@ -84,7 +84,7 @@ public class MainController {
 		} else {
 			return new ResponseEntity<String>("작성 실패", HttpStatus.BAD_REQUEST);
 		}
-	}
+	}/*
 	// 공지게시판 수정
 	@RequestMapping(value = "/freeboard/update/{mainFreeArticleNo}", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public ResponseEntity<String> noticeUpdate(@RequestBody MainFreeBoard mainFreeBoard)throws BindException {
@@ -97,6 +97,7 @@ public class MainController {
 		}
 
 	}
+	
 		
 		// 공지게시판 상세 보기
 		@RequestMapping(value = "/noticeboard/view/{mainNoticeArticleNo}", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
@@ -124,7 +125,7 @@ public class MainController {
 				return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
 				
 			}
-		}
+		}*/
 	
 	
 }

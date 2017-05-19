@@ -45,9 +45,10 @@ public class MainService {
 	public void miniHomeUpdateFree(HttpSession session,MainFreeBoard free) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.add("token", (String) session.getAttribute("token"));
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
-		String result = tpl.exchange("http://localhost:8087/api/", HttpMethod.PUT, requestEntity, String.class).getBody();
+		String result = tpl.exchange("http://localhost:8087/api/main/maiupdate", HttpMethod.PUT, requestEntity, String.class).getBody();
 		System.out.println(result);
 	}
 	
@@ -61,13 +62,13 @@ public class MainService {
 		return map;		
 	}
 	//자유게시판 삭제
-	public void miniHomeDeleteFree(HttpSession session,int mainArticleNo,String userId){
+	public void mainFreeBoardDelete(HttpSession session,int mainArticleNo){
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String)session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (headers);
-		String result=tpl.exchange("http://localhost:8087/api/main/{userId}/freeboard/delete?mainArticleNo="+mainArticleNo, HttpMethod.DELETE, requestEntity, String.class,userId).getBody();
+		String result=tpl.exchange("http://localhost:8087/api/main/freeboard/delete/{mainArticleNo}", HttpMethod.DELETE, requestEntity, String.class,mainArticleNo).getBody();
 		
 	}
 	//------------------------------------------------------------------------------------
@@ -79,7 +80,7 @@ public class MainService {
 			HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(notice), headers);
 			String result=tpl.exchange("http://localhost:8087/api/main/noticeboard/register", HttpMethod.POST, requestEntity, String.class).getBody();
 			return result;
-	}
+	}/*
 	//공지게시판 뷰
 	public MainNoticeBoard mainNoticeBoardView(int mainNoticeArticleNo) {
 		RestTemplate tpl = new RestTemplate();
@@ -108,7 +109,7 @@ public class MainService {
 		HttpEntity requestEntity =  new  HttpEntity (headers);
 		String result=tpl.exchange("http://localhost:8087/api/main/noticeboard/delete?mainNoticeArticleNo="+mainNoticeArticleNo, HttpMethod.DELETE, requestEntity, String.class).getBody();
 		
-	}
+	}*/
 	
 		
 }
