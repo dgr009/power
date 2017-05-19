@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% Users mainUser =(Users) session.getAttribute("user");%>
 <script>
-function openHome(){  
-	//
-	
-    window.open("http://localhost:8087/palette/miniHome/<%=mainUser.getUserId()%>/main", 
-    		"미니홈페이지", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-}  
 
 </script>
 
