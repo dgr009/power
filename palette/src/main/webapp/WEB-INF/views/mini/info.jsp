@@ -17,55 +17,78 @@
 		
 		function print(result){
 			$("#comment").empty();
-			//alert("작동")
+			
+			$("#repleCnt").empty();
+			$("#repleCnt").html(result.cnt);
+			
 			
 			$.each(result.reple, function(idx, reply){
 				
 				//alert(reply)
 				var str = "<tr><td>"+reply.freeRepleNo+"</td>";
+				var ccc= "Content"+reply.freeRepleNo;
+				var cxc= reply.freeRepleNo;
+				//$(".Content").prop('class',ccc);
 				str = str + "<td>"+reply.freeRepleName+"</td>";
-				str = str + "<td>" +reply.freeRepleContent + "</td>";
+				str = str + "<td class='"+ccc+"'>" +reply.freeRepleContent + "</td>";
+				
+				console.log("Content"+reply.freeRepleNo)
 				str = str + "<td>"+reply.freeRepleDate+"</td>";
 				str = str + "<input type='hidden' value='"+reply.freeRepleName+"' name='freeRepleName' class='repleName'>";
 				str = str + "<input type='hidden' value='"+reply.freeRepleNo+"' name='freeRepleNo' class='freeRepleNo'>";
 				str = str + "<input type='hidden' value='"+reply.freeNo+"' name='freeNo' class='freeNo'>";
 				
-				if(reply.freeRepleName=='<%=user.getUserId()%>'){
-					str = str + "<td id='nnn'><button class='deleteReple' data-cno='"+reply.freeRepleNo+"' >삭제</button></td>";
-					str = str + "<td><button class='updateReple' data-freeRepleNo='"+reply.freeRepleNo+"'>수정</button></td></tr>";
+				if(reply.freeRepleName=="<%=user.getUserId()%>"){
+					str = str + "<td><button id='deleteReple"+cxc+"' class='deleteReple' data-cno='"+reply.freeRepleNo+"' >삭제</button></td>";
+					str = str + "<td><button id='updateReple"+cxc+"' class='updateReple' data-nono='"+reply.freeRepleNo+"' data-content='"+reply.freeRepleContent+"'>수정</button></td></tr>";
 				}
-				console.log(str);	// 찍어보기
-				
+				//console.log(str);	// 찍어보기
+
 				$("#comment").append(str);
 				$("#freeRepleContent").val("");
-				//alert("작동완료")
-			})
-			
-		}
-	
-		
-		$("#updateReple").on("click",function(){
-			
-		})
-		
-		//추가하고 추가한 결과를 뱉는다
+				
+				
+				//수정완료로 바꿔줌
+				$('.updateReple').click(function(e){
+			        var id = e.target.getAttribute('id');
+
+			        $('#'+id).html("수정 완료");   
+			        var res = id.substring(11)
+			        //$(".Content"+res).text()
+			        
+			        
+			        $('#'+id).on("click",function(){
+			        	$.ajax({
+							url:"/api/miniHome/${mini.free.userId }/freeRepleUpdate/"+res,
+							type:"post",
+							data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
+							dataType: 'JSON',
+							success : function(result){
+								
+								print(result);
+							}
+							
+				        })
+			  
+			   		 });
+			    });	
+			})	
+		}	
+		//추가
 		$("#btn1").on("click",function(){
 			$.ajax({
-				url:"/api/miniHome/${mini.free.userId }/freeRegister/${mini.free.freeNo.intValue()}",
+				url:"/api/miniHome/${mini.free.userId }/freeRepleRegister/${mini.free.freeNo.intValue()}",
 				type:"post",
 				data : {"freeRepleContent":$("#freeRepleContent").val(), "freeRepleName":$("#freeRepleName").val()},
 				dataType: 'JSON',
 				success : function(result){
-					//alert(result.reple);
 					print(result);
 				}
 			})
 		})
-		
-		
 		$("#comment").on("click",".deleteReple",function(){
 			$.ajax({
-				url:"/api/miniHome/${mini.free.userId }/freeDelete/"+$(this).data("cno"),
+				url:"/api/miniHome/${mini.free.userId }/freeRepleDelete/"+$(this).data("cno"),
 				type:"post",          
 				data : {"freeNo":$(".freeNo").val(),"freeRepleNo":$(this).data("cno") },
 				dataType: 'JSON',
@@ -75,6 +98,39 @@
 			})
 		})
 		
+		$("#comment").on("click",".updateReple",function(){
+			$("td[class='Content"+$(this).data("nono")+"']").empty();
+			$("td[class='Content"+$(this).data("nono")+"']").append("<input type='text' id='ddd' value='"+$(this).data("content")+"'>");
+		})
+		
+				
+		//
+		$('.updateReple').click(function(e){
+			
+	        var id = e.target.getAttribute('id');
+	        
+	        $('#'+id).html("수정 완료");
+	        
+	        var res = id.substring(11)
+	        //$(".Content"+res).text()
+	        
+	        
+	        $('#'+id).on("click",function(){
+	        	$.ajax({
+					url:"/api/miniHome/${mini.free.userId }/freeRepleUpdate/"+res,
+					type:"post",
+					data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
+					dataType: 'JSON',
+					success : function(result){
+						
+						print(result);
+					}
+					
+		        })
+	  
+	   		 });
+		})
+	
 		
 		
 	})
@@ -92,7 +148,7 @@
 			<tr><td>내용</td><td>${mini.free.freeContent}</td></tr>
 			<tr><td>게시시간</td><td>${mini.free.freeDate}</td></tr>
 			<tr><td>아이디</td><td>${mini.free.userId}</td></tr>
-			<tr><td>댓글 수</td><td>${mini.free.freeRepleCnt.intValue()}</td></tr>
+			<tr><td>댓글 수</td><td id="repleCnt">${mini.free.freeRepleCnt.intValue()}</td></tr>
 		</table>
 		<input type="submit" value="수정">
 	</form>
@@ -101,6 +157,7 @@
 		<input type="hidden" value="${mini.userId }" name="userId" id="userId">
 		<input type="hidden" value="${mini.freeNo.intValue() }" name="freeNo" id="freeNo">
 	</form>
+		 <a href="#" onClick="history.back()"><button>이전으로</button></a><br>
 	<table>
 		<thead>
 		<tr>
@@ -115,7 +172,7 @@
 			<tr>
 				<td>${reple.freeRepleNo.intValue() }</td>
 				<td>${reple.freeRepleName }</td>
-				<td>${reple.freeRepleContent }</td>
+				<td class="Content${reple.freeRepleNo.intValue() }">${reple.freeRepleContent }</td>
 				<td>${reple.freeRepleDate }</td>
 				
 				<input type="hidden" value="${reple.freeRepleName }" name="repleName" class="repleName">
@@ -127,8 +184,8 @@
 				<c:set var="freeName" value="${reple.freeRepleName }" />
 				
 				<c:if test="${name eq freeName}">
-				   	<td><button class="deleteReple" data-cno="${reple.freeRepleNo.intValue() }">삭제</button></td>
-					<td><button class="updateReple" data-freeRepleNo="${reple.freeRepleNo.intValue() }">수정</button></td>
+				   	<td><button id="deleteReple${reple.freeRepleNo.intValue()}" class="deleteReple" data-cno="${reple.freeRepleNo.intValue() }">삭제</button></td>
+					<td><button id="updateReple${reple.freeRepleNo.intValue()}" class="updateReple" data-content="${reple.freeRepleContent }" data-nono="${reple.freeRepleNo.intValue() }">수정</button></td>
 				</c:if>
 		
 			</tr>
