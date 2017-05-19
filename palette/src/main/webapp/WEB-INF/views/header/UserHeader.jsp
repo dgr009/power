@@ -27,10 +27,9 @@
 	<script type="text/javascript">
 	function openHome(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main", "미니홈페이지", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main", "미니홈페이지", "width=1024, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
 		else{
-			window.location.href="http://localhost:8087/palette/users/homeRegister";
-			
+			window.open("http://localhost:8087/palette/users/homeRegister", "미니홈페이지제작", "width=1024, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );	
 		}
 	}
 	</script>
