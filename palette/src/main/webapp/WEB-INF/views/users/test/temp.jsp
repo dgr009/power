@@ -150,7 +150,6 @@
 
 
 
-/////////////////
 
 미니홈페이지 제작
 <article class="container">
@@ -177,7 +176,6 @@
                   </div>
                   <div class="form-group">
                       <label for="username">홈페이지 소개</label>
-                      <textarea class="form-control"  rows="50" cols="60" id='content'><%=user.getUserId() %>의 홈페이지 입니다.</textarea>
                   </div>
                  
                   <div class="form-group">
@@ -188,7 +186,6 @@
                   </div>
  				 
  				  <div id="hideValue">
- 				  	<input type="hidden" name="userId" value="<%=user.getUserId() %>" id='id'>
  				  </div>
  
                   <div class="form-group">
