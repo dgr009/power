@@ -15,7 +15,7 @@
 	<!-- (개인)공지게시판 수정 -->
 	<update id="miniHomeUpdateNotice" parameterType="MiniHomeNotice">
 		update notice_board set notice_article_title=#{noticeArticleTitle}, notice_article_content=#{noticeArticleContent} 
-		where notice_article_no=#{userId}
+		where notice_article_no=#{noticeArticleNo}
 	</update>
 	
 	<!-- (개인)공지게시판 삭제 -->

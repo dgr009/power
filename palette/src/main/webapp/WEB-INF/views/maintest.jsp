@@ -19,6 +19,7 @@
 	<a href="http://localhost:8087/palette/users/bookmark">${user.userId} 즐겨찾기테스트해보기</a><br>
 	<a href="http://localhost:8087/palette/users/basketList">${user.userId} 장바구니보기</a><br>
 	<a href="http://localhost:8087/palette/miniHome/qhrals8/freeList?pageNo=1">'qhrals8'의 자유게시판으로 가기</a><br>
+	<a href="http://localhost:8087/palette/miniHome/qhrals8/noticeList?pageNo=1">'qhrals8'의 공지게시판으로 가기</a><br>
 	<%} else{ %>
 	<a href='http://localhost:8087/palette/users/login'>로그인</a><br><br>
 	<%} %>

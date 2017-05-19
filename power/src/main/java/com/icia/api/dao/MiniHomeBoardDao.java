@@ -15,18 +15,18 @@ public class MiniHomeBoardDao {
 	private SqlSessionTemplate tpl;
 	
 	//(개인)공지게시판 작성
-	public void miniHomeRegisterNotice(MiniHomeNotice notice){
-		tpl.insert("api.dao.MiniHomeBoardDao.miniHomeRegisterNotice",notice);
+	public int miniHomeRegisterNotice(MiniHomeNotice notice){
+		return tpl.insert("api.dao.MiniHomeBoardDao.miniHomeRegisterNotice",notice);
 	}
 	
 	//(개인)공지게시판 수정
-	public void miniHomeUpdateNotice(MiniHomeNotice notice){
-		tpl.update("api.dao.MiniHomeBoardDao.miniHomeUpdateNotice",notice);
+	public int miniHomeUpdateNotice(MiniHomeNotice notice){
+		return tpl.update("api.dao.MiniHomeBoardDao.miniHomeUpdateNotice",notice);
 	}
 	
 	//(개인)공지게시판 삭제
-	public void miniHomeDeleteNotice(int noticeArticleNo){
-		tpl.delete("api.dao.MiniHomeBoardDao.miniHomeDeleteNotice",noticeArticleNo);
+	public int miniHomeDeleteNotice(int noticeArticleNo){
+		return tpl.delete("api.dao.MiniHomeBoardDao.miniHomeDeleteNotice",noticeArticleNo);
 	}
 	
 	//(개인)공지게시판 리스트

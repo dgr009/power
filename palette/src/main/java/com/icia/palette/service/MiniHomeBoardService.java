@@ -27,6 +27,21 @@ public class MiniHomeBoardService {
 		
 		return map;
 	}
+	
+	//공지게시판 뷰
+	public Map<String,Object> miniHomeSelectNoticeView(HttpSession session,int noticeArticleNo, String userId) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		System.out.println(requestEntity);
+		String result = tpl.exchange("http://localhost:8087/api/miniHome/{userId}/noticeView/{noticeArticleNo}", HttpMethod.GET, requestEntity, String.class,userId,noticeArticleNo).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		System.out.println(map);
+		
+		return map;
+	}
+	
 	//자유게시판 리스트
 	public Map<String,Object> miniHomeSelectFreeList(HttpSession session,String userId, int pageNo){
 		RestTemplate tpl = new RestTemplate();
@@ -40,6 +55,19 @@ public class MiniHomeBoardService {
 		
 		return map;		
 	}
+	//공지게시판 리스트
+	public Map<String,Object> miniHomeSelectNoticeList(HttpSession session,String userId, int pageNo){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		System.out.println(requestEntity);
+		
+		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/noticeList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class,userId).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		
+		return map;		
+	}
 	
 	//자유게시판 작성
 	public void miniHomeRegisterFree(HttpSession session,MiniHomeFree free){
@@ -49,6 +77,16 @@ public class MiniHomeBoardService {
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(free), headers);
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeRegister", HttpMethod.POST, requestEntity, String.class,free.getUserId()).getBody();
+	
+	}
+	//공지게시판 작성
+	public void miniHomeRegisterNotice(HttpSession session,MiniHomeNotice notice){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(notice), headers);
+		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/noticeRegister", HttpMethod.POST, requestEntity, String.class,notice.getUserId()).getBody();
 	
 	}
 	//토큰으로 아이디 가져오기(X)
@@ -78,6 +116,22 @@ public class MiniHomeBoardService {
 		if (!result.equals("수정 실패"))
 			session.removeAttribute("token");
 	}
+	//공지게시판 수정
+	public void miniHomeUpdateNotice(HttpSession session, MiniHomeNotice notice) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String) session.getAttribute("token"));
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(notice), headers);
+		System.out.println(notice);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/{userId}/noticeUpdate/{noticeArticleNo}", HttpMethod.PUT, requestEntity, String.class,notice.getUserId(),notice.getNoticeArticleNo())
+				.getBody();
+
+		System.out.println(result);
+		if (!result.equals("수정 실패"))
+			session.removeAttribute("token");
+	}
 	//자유게시판 삭제
 	public void miniHomeDeleteFree(HttpSession session,int freeNo,String userId){
 		RestTemplate tpl = new RestTemplate();
@@ -86,6 +140,16 @@ public class MiniHomeBoardService {
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (headers);
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeDelete/{freeNo}", HttpMethod.DELETE, requestEntity, String.class,userId,freeNo).getBody();
+		
+	}
+	//공지게시판 삭제
+	public void miniHomeDeleteNotice(HttpSession session,int noticeArticleNo, String userId){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity =  new  HttpEntity (headers);
+		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/noticeDelete/{noticeArticleNo}", HttpMethod.DELETE, requestEntity, String.class,userId,noticeArticleNo).getBody();
 		
 	}
 	//자유게시판 모든 댓글 조회
