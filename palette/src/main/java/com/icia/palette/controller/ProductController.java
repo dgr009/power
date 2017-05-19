@@ -97,6 +97,11 @@ public class ProductController {
 		model.addAttribute("result", service.productMain(itemNo));
 		return "products/ProductMain";
 	}
+	@RequestMapping()
+	public void mini(@PathVariable String userId) {
+		System.out.println("여기들어 오나요 오오오~~~~~~~~~"+userId);
+		
+	}
 	
 	
 	

@@ -235,6 +235,10 @@ delete item_review where review_reple_no=#{reviewRepleNo}
 <insert id="insertBasket" parameterType="hashmap">
 insert into basket values(#{itemNo},#{userId})
 </insert>
+<!-- 장바구니 있는지확인 -->
+<select id="selectBasket" parameterType="hashmap" resultType="int">
+select count(*) from basket where item_no=#{itemNo} and user_id=#{userId}
+</select>
 <!-- 배송리스트 개수 -->
 <select id="selectDeliveryCnt" parameterType="String">
 select count(*) from order_statement o,item i,delivery d where i.item_no=o.item_no and d.order_no,o.order_no and o.order_state='배송중' and i.user_id=#{userId}

@@ -207,6 +207,10 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectProductOption", itemNo);
 	
 	}
+	//장바구니 담겻는지 확인
+	public int selectBasket(HashMap<String, Object> map) {
+		return tpl.selectOne("api.dao.ProductDao.selectBasket", map);
+	}
 
 	
 	

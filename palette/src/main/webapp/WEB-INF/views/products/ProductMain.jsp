@@ -147,13 +147,13 @@
 									<div>
 										<div>
 											<button type="button"
-												data-loading-text="Loading..." style="color: white;"
+												 style="color: white;"
 												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
-												type="button" data-loading-text="Loading..."
+												type="button"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
 												href="/hooligan/product/evalutionList?product_no="><input
-												type="button" data-loading-text="Loading..."
+												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
 												value="상품평가"></a>
 
@@ -163,7 +163,6 @@
 							</ul>
 						</div>
 					</div>
-					</form>
 
 
 
@@ -466,14 +465,17 @@
 <script type="text/javascript">
 	$(function(){
 		$("#basket").on("click",function(){
-			alert($("#itemNo").val() +" " + '<%=user1.getUserId()%>');
 			$.ajax({
 				url:"/api/miniHome/basket",
 				type:"post",
 				data : {"userId": '<%=user1.getUserId()%>', "itemNo" : $("#itemNo").val() },
 				dataType: 'JSON',
 				complete:function(r){
-					alert("성공 ????  " + r.responseText);
+				if(r.responseText==1)
+					alert("장바구니에 담겼습니다");
+				else if(r.responseText==0)
+					alert("장바구니에 이미 담긴 상품입니다")
+					
 				}
 
 			})

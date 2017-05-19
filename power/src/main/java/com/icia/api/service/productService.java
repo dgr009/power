@@ -215,10 +215,13 @@ public class productService {
 		dao.deleteReviewReple(reviewRepleNo);
 	}
 	//장바구니담기
+	@Transactional
 	public int insertBasket(int itemNo,String userId){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("itemNo", itemNo);
 		map.put("userId", userId);
+		int result= dao.selectBasket(map);
+		if(result==1) return 0; 
 		return dao.insertBasket(map);
 	}
 	//배송리스트
