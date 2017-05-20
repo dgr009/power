@@ -15,7 +15,7 @@
 	<!-- (개인)공지게시판 수정 -->
 	<update id="miniHomeUpdateNotice" parameterType="MiniHomeNotice">
 		update notice_board set notice_article_title=#{noticeArticleTitle}, notice_article_content=#{noticeArticleContent} 
-		where notice_article_no=#{userId}
+		where notice_article_no=#{noticeArticleNo}
 	</update>
 	
 	<!-- (개인)공지게시판 삭제 -->
@@ -112,7 +112,7 @@
 	
 	<!-- 자유게시판 댓글 수정 -->
 	<update id="miniHomeUpdateFreeReple" parameterType="MiniHomeFreeReple">
-		update free_reple set free_reple_content=#{freeContent}, free_reple_date=sysdate
+		update free_reple set free_reple_content=#{freeRepleContent}, free_reple_date=sysdate
 		where free_reple_no=#{freeRepleNo}
 	</update>
 	
@@ -133,9 +133,13 @@
 	
 	<!-- 댓글의 개수를 1 감소시킨다 -->
 	<update id="miniHomeDecreaseFreeRepleCnt" parameterType="int">
-		update free_board set free_reple_cnt=free_reple_cnt+1 where free_no=#{free_no}
+		update free_board set free_reple_cnt=free_reple_cnt-1 where free_no=#{free_no}
 	</update>	
 	
+	<!-- 게시물의 댓글 개수 출력 -->
+	<select id="miniHomeRepleCnt" parameterType="int" resultType="int">
+		select count(*) from free_reple where free_no=#{free_no}
+	</select>
 	
 </mapper>
 

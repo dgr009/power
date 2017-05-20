@@ -146,3 +146,77 @@
 <li>
 	<a href="/palette/users/delete" class="btn btn-block btn-default">회원 탈퇴</a>
 </li>
+
+
+
+
+/////////////////
+
+<!-- 미니홈페이지 제작 -->
+<!-- <article class="container"> -->
+<!--           <div class="page-header"> -->
+<!--               <h1>홈페이지 만들기</h1> -->
+<!--           </div> -->
+<!--           <div class="col-md-6 col-md-offset-3"> -->
+<!--                   <div class="form-group"> -->
+<!--                       <label for="InputEmail">홈페이지 제목</label> -->
+<!--                       <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title"> -->
+<!--                   </div> -->
+<!--                   <div class="form-group"> -->
+<!--                   <div style="display:inline; width:50%"> -->
+<!--                       <label for="InputPassword1">홈페이지 이미지</label> -->
+<!--                       <input type="file" class="form-control" name="homeImg" id="img"> -->
+<!--                   </div> -->
+<!--                   <div id="imagePreView"></div> -->
+<!--                   </div> -->
+<!--                   <div class="form-group"> -->
+<!--                       <label for="InputPassword2">홈페이지 디자인 선택</label> -->
+<!--                       <select name="homeDesign" id="design" class="form-control" > -->
+<!-- 							<option value="1">기본타입</option> -->
+<!-- 					  </select> -->
+<!--                   </div> -->
+<!--                   <div class="form-group"> -->
+<!--                       <label for="username">홈페이지 소개</label> -->
+<%--                       <textarea class="form-control"  rows="50" cols="60" id='content'><%=user.getUserId() %>의 홈페이지 입니다.</textarea> --%>
+<!--                   </div> -->
+                 
+<!--                   <div class="form-group"> -->
+                  		
+<!--                   </div> -->
+<!--                   <div class="form-group"> -->
+                  
+<!--                   </div> -->
+ 				 
+<!--  				  <div id="hideValue"> -->
+<%--  				  	<input type="hidden" name="userId" value="<%=user.getUserId() %>" id='id'> --%>
+<!--  				  </div> -->
+ 
+<!--                   <div class="form-group"> -->
+<!--                       <label>약관 동의</label> -->
+<!--                       <div data-toggle="buttons"> -->
+<!--                           <label class="btn btn-primary active"> -->
+<!--                               <span class="fa fa-check"></span> -->
+<!--                               <input id="agree" type="checkbox" autocomplete="off" checked> -->
+<!--                           </label> -->
+<!--                           <a href="#">이용약관</a>에 동의합니다. -->
+<!--                       </div> -->
+<!--                   </div> -->
+<!--                   <div class="form-group text-center"> -->
+<!--                       <button type="button"  id="register" class="btn btn-info" >완료</button> -->
+<!--                       <button onclick="location.href='/palette/users/home'">취소</button> -->
+<!--                   </div> -->
+<!--           </div> -->
+<!--       </article> -->
+
+
+///////////
+<ul class="dropdown-menu sm-nowrap" style="width: auto; display: none; top: auto; left: 0px; margin-left: 0px; margin-top: 0px; min-width: 10em; max-width: 20em;">
+                                        <li><a href="/hooligan/main/productList?type_no=3">점퍼</a></li>
+                                        <li><a href="/hooligan/main/productList?type_no=4"> 자켓</a></li>
+                                        <li><a href="/hooligan/main/productList?type_no=5">니트</a></li>
+                                        <li><a href="/hooligan/main/productList?type_no=2">신발</a></li>
+                                        <li><a href="/hooligan/main/productList?type_no=6">티셔츠</a></li>
+                                        <li><a href="/hooligan/main/productList?type_no=7">팬츠</a></li>
+                                        <li><a href="/hooligan/main/productList?type_no=1">모자</a></li>
+                                    </ul>
+<a href="#" class="has-submenu">의류<span class="sub-arrow">...</span></a>
