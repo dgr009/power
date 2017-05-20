@@ -227,6 +227,7 @@ public class productService {
 	//배송리스트
 	@Transactional
 	public String deliveryList(String userId,int pageNo){
+		
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectDeliveryListCnt(userId));
 		map.put("start", p.getStartArticle());
@@ -271,6 +272,13 @@ public class productService {
 	public String selectItemListOrderByScore(String userId){
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		result.put("result", dao.selectItemListOrderByScore(userId));
+		return new Gson().toJson(result);
+	}
+	//카테고리메뉴가져오기
+	public String selectKind(String userId){
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("bigKind", dao.selectbigKind(userId));
+		result.put("smallKind",dao.selectSmallKind(userId));
 		return new Gson().toJson(result);
 	}
 

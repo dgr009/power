@@ -34,15 +34,17 @@ public class ProductController {
 	private String path;
 	@Autowired
 	private ProductService service;
-	//제품등록전 제품종류가져오기
+	//미니홈페이지 메인
 	@RequestMapping(value="/{userId}/main",method=RequestMethod.GET)
-	public String miniMain(@PathVariable String userId){
+	public String miniMain(@PathVariable String userId,Model model){
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/homepageMain";
 	}
 	//상품등록창으로
 	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
 	public String productRegister(@PathVariable String userId,Model model){
 		model.addAttribute("result",service.productRegisterReady(userId));
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductRegister";
 	}
 	//상품수정하기
@@ -74,6 +76,7 @@ public class ProductController {
 	public String productRegisterList(@PathVariable String userId,@RequestParam(defaultValue = "1") int pageNo,Model model) {
 		model.addAttribute("result", service.productRegisterList(userId,pageNo));
 		model.addAttribute("userId", userId);
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductRegisterList";
 	}
 	//상품삭제하기
@@ -88,6 +91,7 @@ public class ProductController {
 	public String productOrderList(@PathVariable String userId,Model model,@RequestParam int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
 		model.addAttribute("result", service.productOrderList(itemNo,pageNo));
 		model.addAttribute("itemNo",itemNo);
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductOrderList";
 	}
 	//상품보기
@@ -95,14 +99,9 @@ public class ProductController {
 	public String productMain(@PathVariable String userId,Model model,@RequestParam int itemNo) {
 		
 		model.addAttribute("result", service.productMain(itemNo));
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductMain";
 	}
-	@RequestMapping()
-	public void mini(@PathVariable String userId) {
-		System.out.println("여기들어 오나요 오오오~~~~~~~~~"+userId);
-		
-	}
-	
 	
 	
 }

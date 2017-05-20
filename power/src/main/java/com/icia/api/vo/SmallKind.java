@@ -8,5 +8,4 @@ import lombok.*;
 public class SmallKind {
 	private String smallKind;
 	private String bigKind;
-	private String userId;
 }

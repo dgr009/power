@@ -211,7 +211,18 @@ public class ProductDao {
 	public int selectBasket(HashMap<String, Object> map) {
 		return tpl.selectOne("api.dao.ProductDao.selectBasket", map);
 	}
-
+//작은종류가져오기
+	public List<SmallKind> selectSmallKind(String Id) {
+		int d=Id.length();
+		String userId=Id.substring(1, d-1);
+		return tpl.selectList("api.dao.ProductDao.selectSmallKind", userId);
+	}
+	//큰종류가져오기
+	public List<BigKind> selectbigKind(String Id) {
+		int d=Id.length();
+		String userId=Id.substring(1, d-1);
+		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
 	
+	}
 	
 }

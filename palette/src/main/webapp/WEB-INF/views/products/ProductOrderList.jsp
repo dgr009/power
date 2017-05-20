@@ -126,9 +126,11 @@
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
 						<tr><td>${free.userId}</td><td>${free.orderSize.intValue()}개</td><td>${free.orderPrice.intValue()}P</td><td>${free.orderDate}</td>
-						<td><c:if test="${free.orderState=='배송준비중'}"><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">배송</button></c:if>
+						   
+						<td><c:if test="${free.orderState=='배송준비중'}"><a href="#"  data-toggle="modal" data-target="#insertDeliveryModal" style="color:black;">배송입력</a></c:if>
 						<c:if test="${free.orderState=='배송중'}">배송중</c:if>
 						<c:if test="${free.orderState=='주문완료'}">주문완료</c:if>
+						
 						</td>
 						
 						</tr>

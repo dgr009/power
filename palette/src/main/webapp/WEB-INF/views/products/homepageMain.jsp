@@ -40,17 +40,10 @@
  
 <!--===========================헤더 끝========================================-->
 
-        <div id="menu-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                       
-                        </div>
-                    </div>
+       
                     
   <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-<%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+       <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 
 
@@ -79,7 +72,7 @@
 
                                 <a href="/hooligan/product/productMain?product_no=91" class="slider-read FromLeft">구매하기</a>
                             </div>
-                            <div class="flex_caption2 FromRight"><img src="/hooligan/employees/productImg/images-271242409252415.jpg" style="width:350px; height:320px; " alt="Alternate Text" /></div>
+                            <div class="flex_caption2 FromRight"><img  style="width:350px; height:320px; " alt="Alternate Text" /></div>
                         </div>
                     </li>
 
@@ -89,11 +82,11 @@
                                 <p class="slide-heading FromTop">트위드스타일기본롱가디건</p><br/>
 
                                 <p class="sub-line FromRight">20%세일 249,000원</p><br/>
-
+							
                                 <a href="/hooligan/product/productMain?product_no=96"" class="slider-read FromLeft">구매하기</a>
 
                             </div>
-                            <div class="flex_caption2 FromBottom"><img src="/hooligan/employees/productImg/1000014199835_i1_1200-271683130195246.jpg" style="width:350px; height:320px; " alt="Alternate Text" /></div>
+                            <div class="flex_caption2 FromBottom"><img  style="width:350px; height:320px; " alt="Alternate Text" /></div>
                         </div>
                     </li>
                     <li class="slide3">
@@ -106,11 +99,13 @@
                                 <a href="/hooligan/product/productMain?product_no=96" class="slider-read FromLeft">구매하기</a>
 
                             </div>
-                            <div class="flex_caption2 FromRight"><img src="/hooligan/employees/productImg/1000003768148_i1_1200-267924535187609.jpg" style="width:350px; height:320px; " alt="Alternate Text" /></div>
+                            <div class="flex_caption2 FromRight"><img  style="width:350px; height:320px; " alt="Alternate Text" /></div>
                         </div>
                     </li>
+                    </ul>
             </div>
         </div>
+        </section>
     </header>
     <!-- 최신상품시작 -->
     <section class="latest_work">
@@ -165,7 +160,6 @@
             </div>
         </div>
     </section>
-</section>
     <!--=====================인기상품 끝========================-->
 
 
@@ -180,9 +174,12 @@
 <!-- Parallax with Testimonial -->
     <section class="parallax parallax-1">
         <div class="container">
+        
+        
+        </div></section>
             <!--<h2 class="center">Testimonials</h2>-->
 <!-- end : Parallax with Testimonial -->
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"/>
+<script src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>

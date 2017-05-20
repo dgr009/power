@@ -76,5 +76,9 @@ public class ProductController {
 			return result + "";
 		
 	}
-	
+	//카테고리받기
+	@RequestMapping(value="/productKind", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productKind(@RequestBody String userId){
+		 return service.selectKind(userId);
+	}
 }
