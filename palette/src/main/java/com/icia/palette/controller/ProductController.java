@@ -49,11 +49,20 @@ public class ProductController {
 		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductRegister";
 	}
-	//상품수정하기
-	@RequestMapping(value="/{userid}/admin/productUpdate",method=RequestMethod.GET)
-	public String productUpdate(@PathVariable String userid){
+	//상품수정하기폼으로
+	@RequestMapping(value="/{userId}/admin/productUpdate/{itemNo}",method=RequestMethod.GET)
+	public String productUpdateStart(@PathVariable String userId,@PathVariable int itemNo,Model model){
+		model.addAttribute("kind",service.productRegisterReady(userId));//홈페이지small가져오기
+		model.addAttribute("result", service.productMain(itemNo));//상품정보다가져오기
+		System.out.println(service.productRegisterReady(userId).get("kind"));
 		return "products/ProductUpdate";
 	}
+	//상품수정하기폼으로
+	@RequestMapping(value="/{userid}/admin/productUpdate",method=RequestMethod.POST)
+	public String productUpdateEnd(@PathVariable String userid ){
+		return "products/ProductUpdate";
+	}
+	
 	//상품등록하기
 	@RequestMapping(value = "/{userId}/admin/register", method = RequestMethod.POST)
 	public String productRegister(@ModelAttribute Item item,@PathVariable String userId, MultipartHttpServletRequest req) throws IOException {

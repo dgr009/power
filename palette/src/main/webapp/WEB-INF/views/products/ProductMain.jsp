@@ -126,7 +126,7 @@
 							<option value=5>5</option>
 							</select>
 							</p>
-							<p>상품 옵션: <select name="itemSize">
+							<p>상품 옵션: <select name="itemOption">
 							<c:forEach items="${result.itemOption}"   var="free">
 							<option value="${free.optionName}">${free.optionName}</option>
 							<</c:forEach></select></p>

@@ -244,7 +244,19 @@ public class UsersController {
 		if (result == 1)
 			return new ResponseEntity<String>(home.toString(), HttpStatus.OK);
 		else
-			return new ResponseEntity<String>("가입 실패", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
+
+	}
+	
+	//홈페이지 태그만들기
+	@RequestMapping(value = "/homeTagRegister", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> usersHomeTagRegister(@RequestParam String userId, @RequestParam String bigKind,@RequestParam String smallKind){
+		System.out.println("BIG KIND : "+bigKind + " \nSMALL KIND : "+smallKind);
+		int result = service.homeTagRegister(userId,bigKind,smallKind);
+		if (result == 1)
+			return new ResponseEntity<String>("성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
 
 	}
 }

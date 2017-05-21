@@ -150,4 +150,11 @@
 	<update id="usersIsHomeOk" parameterType="string">
 		update users set user_ishome=1 where user_id=#{userId}
 	</update>
+	<insert id="usersBigTagRegister" parameterType="hashmap">
+		insert into big_kind values(#{userId},#{bigTag})
+	</insert>
+	<insert id="usersSmallTagRegister" parameterType="hashmap">
+		insert into small_kind values(#{userId},#{bigTag},#{smallTag})
+	</insert>
+	
 </mapper>
