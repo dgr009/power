@@ -18,77 +18,77 @@
     	$(function(){
     		var a =  /^[a-zA-Z0-9]{3,15}$/;	//아이디
     		var b =  /^[a-zA-Z0-9]{3,20}$/;// 비밀번호
-    		var mailcheck = 0;
-    		var pwdcheck =1;
+    		var umailcheck = 0;
+    		var upwdcheck =1;
     		
-    		$("#mail").on("blur",function(){
-    			if(!$("#mail").val()==='<%=users.getUserMail()%>'){
-    				alert("asfdaasdf");
-	    			$.ajax({
+    		$("#umail").on("blur",function(){
+    			alert($("#umail").val()=='<%=users.getUserMail()%>');
+    			if($("#umail").val()=='<%=users.getUserMail()%>'){
+    				$("#umailchecked").html("기존 메일입니다.");
+					$("#umailchecked").css("color","green");
+    				umailcheck=0;
+    			}else{
+    				$.ajax({
 	    				url:"/api/users/hasMail",
 	    				type:"post",
-	    				data : {"userMail":$("#mail").val()},
+	    				data : {"userMail":$("#umail").val()},
 	    				dataType:"JSON",
 	    				success:function(result) {
 	    					if(result==0){
-	    						$("#mailchecked").html("사용 가능한 메일입니다.");
-	    						$("#mailchecked").css("color","green");
-	    						mailcheck=0;
+	    						$("#umailchecked").html("사용 가능한 메일입니다.");
+	    						$("#umailchecked").css("color","green");
+	    						umailcheck=0;
 	    					}else{
-	    						$("#mailchecked").html("이미 사용중인 메일입니다.");
-	    						$("#mailchecked").css("color","red");
-	    						mailcheck=1;
+	    						$("#umailchecked").html("이미 사용중인 메일입니다.");
+	    						$("#umailchecked").css("color","red");
+	    						umailcheck=1;
 	    					}
 	    				}
 	    			})
-    			}else{
-    				$("#mailchecked").html("");
-    				$("#mailchecked").html("기존 메일입니다.");
-					$("#mailchecked").css("color","green");
-    				mailcheck=0;
+    			
     			}
     		})
     	
-    		$("#pwd").on("blur",function(){
+    		$("#upwd").on("blur",function(){
     				
-    				if(b.test($("#pwd").val())==false){
-    					$("#pwdcheck").html("비밀번호는 대소문자 및 숫자 3~20의 길이 입니다")
-    					$("#pwdcheck").css("color","red")
-    					pwdcheck =1;
+    				if(b.test($("#upwd").val())==false){
+    					$("#upwdcheck").html("비밀번호는 대소문자 및 숫자 3~20의 길이 입니다")
+    					$("#upwdcheck").css("color","red")
+    					upwdcheck =1;
     				}
     				else {
-    					$("#pwdcheck").html("")
-    					pwdcheck =0;
+    					$("#upwdcheck").html("")
+    					upwdcheck =0;
     				}
     				
-    				if($("#pwd").val()==$("#pwd2").val()){
-    					$("#pwdcheck2").html("")
-    					pwdcheck =0;
+    				if($("#upwd").val()==$("#upwd2").val()){
+    					$("#upwdcheck2").html("")
+    					upwdcheck =0;
     				}
     			
     			})
     			
-    		$("#pwd2").on("blur",function(){
+    		$("#upwd2").on("blur",function(){
     				
-    				if($("#pwd").val()!==$("#pwd2").val()){
-    					$("#pwdcheck2").html("비밀번호를 확인해 주십시오")
-    					$("#pwdcheck2").css("color","red")
-    					pwdcheck =1;
+    				if($("#upwd").val()!==$("#upwd2").val()){
+    					$("#upwdcheck2").html("비밀번호를 확인해 주십시오")
+    					$("#upwdcheck2").css("color","red")
+    					upwdcheck =1;
     				}
     				else {
-    					$("#pwdcheck2").html("")
-    					pwdcheck =0;
+    					$("#upwdcheck2").html("")
+    					upwdcheck =0;
     				}
     			})
     		
     			$("#update").on("click",function(){			
-    				if(mailcheck == 0 && pwdcheck==0)	
+    				if(umailcheck == 0 && upwdcheck==0)	
     					$("#updateform").submit();
-    				else if(pwdcheck==1){
-    					$("#pwd").focus();
+    				else if(upwdcheck==1){
+    					$("#upwd").focus();
     					alert("비밀번호를 확인해주세요");
-    				}else if(mailcheck ==1){
-    					$("#mail").focus();
+    				}else if(umailcheck ==1){
+    					$("#umail").focus();
     					alert("이메일을 확인해주세요");
     				}
     			})
@@ -118,14 +118,14 @@
                   </div>
                   <div class="form-group">
                       <label for="InputPassword1">비밀번호</label>
-                      <input type="password" class="form-control" name="userPwd" placeholder="비밀번호" name="password" id="pwd">
+                      <input type="password" class="form-control" name="userPwd" placeholder="비밀번호" name="password" id="upwd">
                   </div>
-                  <p id="pwdcheck"></p>
+                  <p id="upwdcheck"></p>
                   <div class="form-group">
                       <label for="InputPassword2">비밀번호 확인</label>
-                      <input type="password" class="form-control" placeholder="비밀번호 확인"name="password2" id="pwd2">
+                      <input type="password" class="form-control" placeholder="비밀번호 확인"name="password2" id="upwd2">
                   </div>
-                  <p id="pwdcheck2"></p>
+                  <p id="upwdcheck2"></p>
                   <div class="form-group">
                       <label for="phone_number">전화번호</label>
                       <input type="text" class="form-control" name="userPhone" value='<%=users.getUserPhone() %>'>
@@ -141,9 +141,9 @@
                   </div>
                   <div class="form-group">
                       <label for="email">이메일</label>
-                      <input type="text" class="form-control" id='mail' name="userMail" value='<%=users.getUserMail() %>'>
+                      <input type="text" class="form-control"  id='umail' name="userMail" value='<%=users.getUserMail() %>'>
                   </div>         
-                   <p id="mailchecked"></p>
+                   <p id="umailchecked"></p>
                  
                   <div class="form-group text-center">
                       <button type="button"  id="update" class="btn btn-info">수정완료</button>
