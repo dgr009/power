@@ -127,6 +127,7 @@ function check(){
 
 														<img style="width: 700px; height: 500px;"
 															src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
+															<input type="hidden" name="imgNo" value="${img.imgNo.intValue()}">
 														<input type="file" name="${img.imgName}" id="orgFile">
 													</c:forEach>
 												</div>
