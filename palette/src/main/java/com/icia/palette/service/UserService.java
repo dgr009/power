@@ -248,7 +248,7 @@ public class UserService {
 				.exchange("http://localhost:8087/api/users/homeRegister", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
 		System.out.println(result);
-		if(!result.equals("가입 실패")){
+		if(!result.equals("제작 실패")){
 			session.setAttribute("user", userInfo(session));
 		}
 	}

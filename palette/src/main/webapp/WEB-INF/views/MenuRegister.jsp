@@ -15,7 +15,7 @@
                         </div>
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav" id="bigTag">
-                                <li><a href="#" id="insertTag">태그추가</a></li>
+                                <li><a href="#" id="insertBigTag">태그추가</a></li>
                                 
 								
                             </ul>

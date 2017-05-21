@@ -200,4 +200,19 @@ public class UsersDao {
 	public int tradeListCnt(String userId) {
 		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt",userId);
 	}
+
+	public int bigTagRegister(String userId, String bigTag) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("bigTag",bigTag);
+		return	tpl.insert("api.dao.UsersDao.usersBigTagRegister",map);
+	}
+
+	public int smallTagRegister(String userId, String bigTag, String smallTag) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("bigTag",bigTag);
+		map.put("smallTag",smallTag);
+		return	tpl.insert("api.dao.UsersDao.usersSmallTagRegister",map);
+	}
 }

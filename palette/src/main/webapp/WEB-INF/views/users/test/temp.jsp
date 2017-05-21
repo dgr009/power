@@ -152,7 +152,7 @@
 
 /////////////////
 
-<!-- 미니홈페이지 제작 -->
+미니홈페이지 제작
 <!-- <article class="container"> -->
 <!--           <div class="page-header"> -->
 <!--               <h1>홈페이지 만들기</h1> -->
@@ -220,3 +220,40 @@
                                         <li><a href="/hooligan/main/productList?type_no=1">모자</a></li>
                                     </ul>
 <a href="#" class="has-submenu">의류<span class="sub-arrow">...</span></a>
+
+
+///
+
+var tagData = new FormData();
+				 tagData.append("");
+				 $.ajax({
+				 	url:"/palette/users/homeTagRegister",
+				 	type:"post",
+				 	data: tagData,
+				 	complete:function(result){
+				 		console.log(result)
+					}
+
+				 })
+				 
+				 //
+				 
+				 		
+<!-- 		$("#test").on("click",function(e){ -->
+<!-- 			var smallResult =""; -->
+<!-- 			var bigArray = []; -->
+<!-- 			$(".bigKind").each(function(){ -->
+<!-- 				bigArray.push($(this).html()); -->
+<!-- 			}) -->
+<!-- 			alert(bigArray.join(",")); -->
+			
+<!-- 			for(var j=0; j<i; j++){ -->
+<!-- 				$(".smallName"+(j+1)).each(function() { -->
+<!-- 					smallResult +=$(this).html()+","; -->
+<!-- 				}); -->
+<!-- 				smallResult +="\n"; -->
+<!-- 			} -->
+<!-- 			alert(smallResult); -->
+			
+<!-- 		}) -->
+				 
