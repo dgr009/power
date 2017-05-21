@@ -16,6 +16,7 @@ public class ApplicantList {
 	private Date orderDate;
 	private int orderPrice;
 	private int orderSize;
+	private int orderNo;
 	private int itemNo;
 	private String orderState;
 }

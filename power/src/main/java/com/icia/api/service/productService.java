@@ -59,12 +59,7 @@ public class productService {
 	public void deleteItem(int itemNo){
 		dao.deleteItem(itemNo);
 	}
-	//배송하기 클릭
-	@Transactional
-	public void insertDelivery(Delivery d,int orderNo){
-		dao.insertDelivery(d);
-		dao.updateOrderStatement(orderNo);
-	}
+
 	//이름으로검색
 	@Transactional
 		public String selectItemByName(String userId,String itemName,int pageNo){
@@ -280,6 +275,16 @@ public class productService {
 		result.put("bigKind", dao.selectbigKind(userId));
 		result.put("smallKind",dao.selectSmallKind(userId));
 		return new Gson().toJson(result);
+	}
+	//배송하기
+	@Transactional
+	public void insertBasket(Map<String, Object> map) {
+		dao.insertDelivery((HashMap<String, Object>) map);
+		System.out.println("여기지임마");
+		int orderNo=(Integer)map.get("orderNo");
+		System.out.println(orderNo);
+		dao.updateOrderStatement(orderNo);
+		
 	}
 
 }

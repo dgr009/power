@@ -47,8 +47,8 @@ public class ProductDao {
 		tpl.delete("api.dao.ProductDao.deleteItem", itemNo);
 	}
 	//배송하기
-	public void insertDelivery(Delivery d){
-		tpl.insert("api.dao.ProductDao.insertDelivery", d);
+	public void insertDelivery(HashMap<String, Object> map){
+		tpl.insert("api.dao.ProductDao.insertDelivery", map);
 	}
 	//상품주문상태변경
 	public void updateOrderStatement(int orderNo){

@@ -81,4 +81,11 @@ public class ProductController {
 	public String  productKind(@RequestBody String userId){
 		 return service.selectKind(userId);
 	}
+	@RequestMapping(value = "/deliveryInsert", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void deliveryInsert(@RequestBody Map<String, Object> map) {
+	
+	 service.insertBasket(map);
+		
+		
+	}
 }

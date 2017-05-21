@@ -14,4 +14,5 @@ public class DeliveryList {
  private int orderSize;
  private int orderPrice;
  private Date deliDate;
+ private int orderNo;
 }

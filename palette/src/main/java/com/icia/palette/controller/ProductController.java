@@ -10,9 +10,11 @@ import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
@@ -102,6 +104,18 @@ public class ProductController {
 		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductMain";
 	}
+	//배송입력
+		@RequestMapping(value = "/admin/insertDelivery", method = RequestMethod.POST)
+		public String deliveryInsert(HttpSession sesstion,@RequestParam int orderNo,@RequestParam int deliNo,@RequestParam String itemNo) {
+			Users user=(Users) sesstion.getAttribute("user");
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("orderNo", orderNo);
+			map.put("deliNo", deliNo);
+			System.out.println("여기값모냐"+itemNo);
+			service.deliveryInsert(map);
+			String a="redirect:/miniHome/"+user.getUserId()+"/admin/productOrderList?itemNo="+itemNo;
+			return a;
+		}
 	
 	
 }

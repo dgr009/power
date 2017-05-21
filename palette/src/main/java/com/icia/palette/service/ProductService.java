@@ -113,5 +113,15 @@ public class ProductService {
 		System.out.println("카테고리뿌려봐"+s);
 		return s;
 	}
+	public void deliveryInsert(HashMap<String, Object> map) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/deliveryInsert", HttpMethod.POST, requestEntity, String.class).getBody();
+	
+		
+	
+	}
 	
 }
