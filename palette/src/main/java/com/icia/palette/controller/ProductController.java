@@ -62,10 +62,9 @@ public class ProductController {
 	}
 	//상품수정하기폼으로
 	@RequestMapping(value="/{userid}/admin/productUpdate/{itemNo}",method=RequestMethod.POST)
-	public String productUpdateEnd(@PathVariable String userid,@ModelAttribute Item item,@RequestParam String optionName,@RequestParam String optionNo,MultipartHttpServletRequest req
+	public String productUpdateEnd(@PathVariable String userid,@PathVariable int itemNo,@ModelAttribute Item item,@RequestParam String optionName,@RequestParam String optionNo,MultipartHttpServletRequest req
 			) throws IOException{
 		ArrayList<String> fileName=new ArrayList<String>();
-		java.util.List<MultipartFile> mw=new ArrayList<MultipartFile>();
 		Iterator<String> it=req.getFileNames();
 		java.util.List<Map<String, Object>> itemList=new ArrayList<Map<String,Object>>();
 		ArrayList<String> option=new ArrayList<String>();
@@ -85,8 +84,8 @@ public class ProductController {
 			itemList.add(optionMap);
 		}
 		while (it.hasNext()) {
-		 String imgNo=it.next();
-			fileName.add(imgNo);
+		 String imgName=it.next();
+			fileName.add(imgName);
 		}
 		for(int i=0;i<fileName.size();i++){
 			Map<String, Object> map=new HashMap<String, Object>();
@@ -139,16 +138,16 @@ public class ProductController {
 		return a;
 	}
 	//상품주문자리스트
-	@RequestMapping(value = "/{userId}/admin/productOrderList", method = RequestMethod.GET)
-	public String productOrderList(@PathVariable String userId,Model model,@RequestParam int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
+	@RequestMapping(value = "/{userId}/admin/productOrderList/{itemNo}", method = RequestMethod.GET)
+	public String productOrderList(@PathVariable String userId,Model model,@PathVariable int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
 		model.addAttribute("result", service.productOrderList(itemNo,pageNo));
 		model.addAttribute("itemNo",itemNo);
 		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductOrderList";
 	}
 	//상품보기
-	@RequestMapping(value = "/{userId}/productMain", method = RequestMethod.GET)
-	public String productMain(@PathVariable String userId,Model model,@RequestParam int itemNo) {
+	@RequestMapping(value = "/{userId}/productMain/{itemNo}", method = RequestMethod.GET)
+	public String productMain(@PathVariable String userId,Model model,@PathVariable int itemNo) {
 		model.addAttribute("userId",userId);
 		model.addAttribute("result", service.productMain(itemNo));
 		model.addAttribute("kind", service.productKind(userId));
@@ -164,7 +163,7 @@ public class ProductController {
 			
 			System.out.println("여기값모냐"+itemNo);
 			service.deliveryInsert(map);
-			String a="redirect:/miniHome/"+user.getUserId()+"/admin/productOrderList?itemNo="+itemNo;
+			String a="redirect:/miniHome/"+user.getUserId()+"/admin/productOrderList/"+itemNo;
 			return a;
 		}
 		//상품주문하기페이지로

@@ -180,13 +180,13 @@
                 </table>
                  <!--페이징 시작 -->
                 <div class="col-sm-12 text-center"  id="pagination" >
-                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?pageNo=${result.pagination.prev}&itemNo=${itemNo}">이전으로</a></c:if>
+                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList/${itemNo}?pageNo=${result.pagination.prev}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?pageNo=${i}&itemNo=${itemNo}">${i} </a>
+				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList/${itemNo}?pageNo=${i}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?pageNo=${result.pagination.next}&itemNo=${itemNo}">다음으로</a></c:if>
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList/${itemNo}?pageNo=${result.pagination.next}">다음으로</a></c:if>
                 </div>
             </div> <!--페이징 끝 -->
 							

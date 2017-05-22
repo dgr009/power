@@ -127,7 +127,6 @@ function check(){
 
 														<img style="width: 700px; height: 500px;"
 															src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
-															<input type="hidden" name="imgNo" value="${img.imgNo.intValue()}">
 														<input type="file" name="${img.imgName}" id="orgFile">
 													</c:forEach>
 												</div>
@@ -148,8 +147,7 @@ function check(){
 												<p>상품 내용:</p>
 												<textarea rows="4" cols="3" style="width: 200px;"
 													name="itemContent" id="itemContent">${result.item.itemContent}</textarea>
-												<input type="hidden" id="itemNo" name="itemNo"
-													value="${result.item.itemNo.intValue()}">
+										
 												<p>
 													상품 가격<span></span> <input type="text" name="itemPrice"
 														value="${result.item.itemPrice.intValue()}" />원
