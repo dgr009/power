@@ -113,7 +113,7 @@ function check(){
 								</div>
 							</div>
 						</section>
-						<form action="/palette/miniHome/" method="POST"
+						<form action="/palette/miniHome/<%=user1.getUserId()%>/admin/productUpdate/${result.item.itemNo.intValue()}" method="POST"
 							enctype="multipart/form-data">
 							<section class="content portfolio_single">
 								<div class="container">

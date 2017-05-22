@@ -36,6 +36,7 @@ public class ProductController {
 	private String path;
 	@Autowired
 	private ProductService service;
+	
 	//미니홈페이지 메인
 	@RequestMapping(value="/{userId}/main",method=RequestMethod.GET)
 	public String miniMain(@PathVariable String userId,Model model){
@@ -58,8 +59,9 @@ public class ProductController {
 		return "products/ProductUpdate";
 	}
 	//상품수정하기폼으로
-	@RequestMapping(value="/{userid}/admin/productUpdate",method=RequestMethod.POST)
+	@RequestMapping(value="/{userid}/admin/productUpdate/{itemNo}",method=RequestMethod.POST)
 	public String productUpdateEnd(@PathVariable String userid ){
+		
 		return "products/ProductUpdate";
 	}
 	

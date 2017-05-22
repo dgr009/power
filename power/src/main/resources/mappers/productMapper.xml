@@ -268,11 +268,11 @@ update item set item_inven=item_inven-#{orderSize} where item_no=#{itemNo}
 </update>
 <!-- 메뉴창 smallKind 가져오기 -->
 <select id="selectSmallKind" parameterType="String" resultType="SmallKind">
-select *from small_kind where user_id=#{userId}
+select *from small_kind where user_id=#{userId} order by small_kind_no asc
 </select>
 <!-- 메뉴창 bigKind 가져오기 -->
 <select id="selectBigKind" parameterType="String" resultType="BigKind">
-select*from big_kind where user_id=#{userId}
+select*from big_kind where user_id=#{userId} order by big_kind_no asc
 </select>
 <!-- 메뉴창 bigKind 가져오기 -->
 
