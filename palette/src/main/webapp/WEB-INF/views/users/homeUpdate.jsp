@@ -39,11 +39,31 @@
 <script>
 	$(function(){
 		var i =0;
+		printTag();
+		
+		function printTag(){
+			<c:forEach items="${result.bigKind}" var="big">
+			i++;
+			var btag = $("<li id='smallKind"+i+"'>${big.bigKind}</li>");
+			var ultag = $("<ul id='smallTag"+i+"' class='pagination'></ul>");
+			ultag.append("<li><a href='#' id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li>");
+			$("#smallTag").append(btag);
+			var j=0;
+				<c:forEach items="${result.smallKind}" var="small">
+					j++;
+					if('${small.bigKind}'=='${big.bigKind}'){
+						var stag = "<li id='smallLi"+j+"'><a href='#' class='smallName"+j+"' id='smallName' data-nno='"+j+"'>${small.smallKind}</a></li>";
+						ultag.append(stag);
+					}
+				</c:forEach>
+				$("#smallTag").append(ultag);
+			</c:forEach>
+		}
 		
 		$("#insertBigTag").on("click",function(){
 			i++;
-			var tag = "<li id='bigKind"+i+"'><a href='#' class='bigKind' data-no='"+ i +"'>새태그</a></li>";
-			var stag =  "<ul id='smallTag"+i+"' class='pagination'><li  style='display:inline;'><a href='#' id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li></ul><br>";
+			var tag = "<li id='bigKind"+i+"'><a class='bigKind' data-no='"+ i +"'>새태그</a></li>";
+			var stag =  "<ul id='smallTag"+i+"' class='pagination'><li  style='display:inline;'><a id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li></ul><br>";
 			var btag = $("<li id='smallKind"+i+"'>새태그</li>");
 			
 			$("#bigTag").append(tag);
@@ -51,22 +71,26 @@
 			
 		})
 		
+		
 		$(document).on("click","#insertSmallTag",function(){
 			var stag = "<li style='display:inline-block;' id='smallLi"+$(this).data("sno")+"'><a href='#' class='smallName"+$(this).data("sno")+"' id='smallName' data-nno='"+$(this).data("sno")+"'>새태그</a></li>";
 			$("#smallTag"+$(this).data("sno")).append(stag);
 		})
+		
 		
 		$(document).on("dblclick",".bigKind",function(){
 			var name = prompt("태그 이름 입력",$(this).html());
 			if(name=="" || name==null){
 				$("#bigKind"+$(this).data("no")).html("");
 				$("#smallKind"+$(this).data("no")).html("");
+				$("#smallTag"+$(this).data("no")).html("");
 			}else{
 				$(this).html(name);
 				$("#smallKind"+$(this).data("no")).html(name);
 			}
 			
 		})
+		
 		
 		$(document).on("click","#smallName",function(){
 			var name = prompt("태그 이름 입력",$(this).html());
@@ -81,12 +105,13 @@
 		$("#complete").on("click",function(e){
 				e.preventDefault(); //기본 이벤트를 차단
 				 var formData = new FormData();
-				 formData.append("userId",<%=users.getUserId()%>)
-				 formData.append("homeTitle",$("#title").val())
-				 formData.append("homeIntroduce",$("#content").val())
-				 formData.append("homeDesign",$("#design").val())
+				 formData.append("userId",$("#uid").val());
+				 formData.append("homeTitle",$("#title").val());
+				 formData.append("homeIntroduce",$("#content").val());
+				 formData.append("homeDesign",$("#design").val());
+				 formData.append("homeImg",$("#hideImg").val());
 				 formData.append("file",$("#img")[0].files[0])
-
+		
 				 var smallResult ="";
 					var bigArray = [];
 					$(".bigKind").each(function(){
@@ -99,28 +124,31 @@
 						});
 						smallResult +="\n";
 					}
-					
+				
 				$.ajax({
-				 	url:"/palette/users/homeRegister",
+				 	url:"/palette/users/homeUpdate",
 				 	type:"post",
 				 	data: formData,
 				 	complete:function(result){
-				 		console.log(result)
-				 		self.close();
+				 		upTag();
 					},
-				 		processData:false,
-				 		contentType:false
+				 	processData:false,
+				 	contentType:false
 				 })
-				 
-				 $.ajax({
-				 	url:"/api/users/homeTagRegister",
-				 	type:"post",
-				 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
-				 	complete:function(result){
-				 		alert(result)
-					}
+		
+				function upTag(){
+					 $.ajax({
+						 	url:"/api/users/homeTagUpdate",
+						 	type:"post",
+						 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
+						 	complete:function(result){
+						 		alert(result)
+							}
 
-				 })
+						 })
+				}
+				
+				 
 			})
 	})
 	
@@ -137,14 +165,18 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <div id="logo">
-                      <input type="hidden" class="form-control" name="userId" id="uid"  value="<%=users.getUserId()%>">
-                      <input type="file" class="form-control" name="homeImg" id="img" value="홈페이지 로고">
-                      <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title">
+                      		<input type="hidden" class="form-control" name="userId" id="uid"  value="<%=users.getUserId()%>">
+                      		<input type="hidden" class="form-control" name="homeImg" id="hideImg"  value="${result.home.homeImg }">
+                      		<input type="file" class="form-control" name="homeImg" id="img">
+                      		<input type="text" class="form-control" name="homeTitle" value="${result.home.homeTitle}" id="title">
+                        </div>
+                         <div id="logo2">
+                        	<img style="width:90%; height:90%;" 
+									src="<c:url value='http://localhost:8087/palette/homeimg/${result.home.homeImg}'/>">
                         </div>
                     </div>
-                   
   <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-<%@include file="/WEB-INF/views/MenuRegister.jsp" %>
+<%@include file="/WEB-INF/views/MenuUpdate.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
  </div>
 </div>
@@ -159,7 +191,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                            <h2>홈페이지 만들기</h2>
+                            <h2>홈페이지 수정하기</h2>
                         </div>
      				</div>
                 </div>
@@ -176,11 +208,12 @@
                       <label for="InputPassword2">홈페이지 디자인 선택</label>
                       <select name="homeDesign" id="design" class="form-control" >
 							<option value="1">기본타입</option>
+							<option value="1">기본타입</option>
 					  </select>
                   </div>
                   <div class="form-group">
                       <label for="username">홈페이지 소개</label>
-                      <textarea class="form-control"  rows="20" cols="60" id='content'><%=users.getUserId() %>의 홈페이지 입니다.</textarea>
+                      <textarea class="form-control"  rows="20" cols="60" id='content'>${result.home.homeIntroduce}</textarea>
                   </div>
 </div>
 <button id="complete"  class="btn btn-default btn-lg btn-block" >완료</button>

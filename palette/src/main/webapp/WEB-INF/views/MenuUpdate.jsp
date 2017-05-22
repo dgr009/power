@@ -24,32 +24,15 @@
                             </button>
                         </div>
                         <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                     
-                     <c:forEach items="${result.bigKind}" var="big">
-                     	<li><a href="#">${big.bigKind}</a>
-                     		<ul class="dropdown-menu">
-                     			<c:forEach items="${kind.smallKind }" var="small">
-                     				<c:if test="${big.bigKind==small.bigKind}"><li><a href="/hooligan/main/notice/list">${small.smallKind}</a></li></c:if>
-                     			</c:forEach>
-                     		</ul>
-                     		</li>
-                     </c:forEach>                    
-                                 <li><a href="#">게시판</a>
-                                    <ul class="dropdown-menu">
-                                    
-                                    <li><a href="/hooligan/main/notice/list"> 공지사항</a> </li>
-                                    
-                                    <li><a href="/hooligan/main/faq/list">문의사항</a> </li>
-                                    
-                                    <li><a href="/hooligan/main/free/list">자유게시판</a></li>
-                                    </ul>
-                                    </li>
+                            <ul class="nav navbar-nav" id="bigTag">
+                     			<li><a href="#" id="insertBigTag">태그추가</a></li>
+                     			<c:forEach items="${result.bigKind}" var="big" varStatus="i">
+                     				<li id='bigKind${i.count}'><a class='bigKind' data-no='${i.count}'>${big.bigKind}</a></li>
+                     			</c:forEach>                    
                             </ul>
                         </div>
                     </div>
                 	</div></div>
-            
             
 </body>
 </html>
