@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
- 
+	pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	Users user1 = (Users) session.getAttribute("user");
+%>
 <!DOCTYPE html>
+
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
 <html class="no-js" lang="en">
@@ -17,13 +20,18 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 <!-- CSS FILES -->
-<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
-<link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/style.css"/>" media="screen"
+	data-name="skins">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/layout/wide.css"/>"
+	data-name="layout">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
-	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/switcher.css"/>" media="screen" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -31,46 +39,43 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 <style>
-
-
-
-.name {
+.order_status {
+	font-size: 40px;
+	height: 50px;
+	line-height: 50px;
 	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
+	color: white;
+	background: #694fa8;
+	border-radius: 5px;
+	margin-bottom: 30px;
 }
-
-
-.well {
-    min-height: 360px;
-    padding : 0;
-    padding-left: 50px;
-    }
-    tr{
-    	font-size: 1.1em;
-    	height: 28px;
-    	line-height: 28px;
-    }
-    
-    .form-control{
-    height: 20px;
-    	line-height: 20px;
-    	
-    }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	
-</script>
 </head>
+<script>
+function eventOccur(evEle, evType){
+ if (evEle.fireEvent) {
+ evEle.fireEvent('on' + evType);
+ } else {
+ //MouseEvents가 포인트 그냥 Events는 안됨~ ??
+ var mouseEvent = document.createEvent('MouseEvents');
+ /* API문서 initEvent(type,bubbles,cancelable) */
+ mouseEvent.initEvent(evType, true, false);
+ var transCheck = evEle.dispatchEvent(mouseEvent);
+ if (!transCheck) {
+ console.log("클릭 이벤트 발생 실패!");
+ }
+ }
+}
+function check(){
+ eventOccur(document.getElementById('orgFile'),'click');
+}
+</script>
 <body>
 	<!--Start Header-->
-<header id="header">
-  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
- </header>
- <!--end Header-->
-	
+	<!--Start Header-->
+	<header id="header">
+		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
+		<!--end Header-->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
@@ -78,374 +83,205 @@
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-							<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
+								<!-- 이미지 -->
 							</h1>
 						</div>
 					</div>
+					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
+					<%@include file="/WEB-INF/views/MenuSelect.jsp"%>
+					<!-- =====================메인 메뉴(우측상단) 끝============================= -->
+					<!--End Header-->
+
+					<!--start wrapper-->
+					<section class="wrapper">
+						<section class="page_head">
+							<div class="container">
+								<div class="row">
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<nav id="breadcrumbs">
+											<ul>
+
+												<li><a href="index.html">Home</a></li>
+												<li>상품</li>
+											</ul>
+										</nav>
+
+										<div class="page_title">
+											<h2>상품 정보 수정</h2>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<form action="/palette/miniHome/" method="POST"
+							enctype="multipart/form-data">
+							<section class="content portfolio_single">
+								<div class="container">
+									<div class="row sub_content">
+										<div class="col-lg-8 col-md-8 col-sm-8">
+											<!--Project Details Page-->
+
+											<div class="porDetCarousel">
+												<div class="carousel-content">
+													<c:forEach items="${result.itemImg }" var="img">
+
+														<img style="width: 700px; height: 500px;"
+															src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
+															<input type="hidden" name="imgNo" value="${img.imgNo.intValue()}">
+														<input type="file" name="${img.imgName}" id="orgFile">
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+
+
+										<div class="col-lg-4 col-md-4 col-sm-4">
+											<div class="project_description">
+												<div class="widget_title">
+													<h2 id="productN"></h2>
+													<span></span>
+												</div>
+												<h1>
+													상품 이름:<input type="text" style="font-size: 15px"
+														name="itemName" value="${result.item.itemName}">
+												</h1>
+												<p>상품 내용:</p>
+												<textarea rows="4" cols="3" style="width: 200px;"
+													name="itemContent" id="itemContent">${result.item.itemContent}</textarea>
+												<input type="hidden" id="itemNo" name="itemNo"
+													value="${result.item.itemNo.intValue()}">
+												<p>
+													상품 가격<span></span> <input type="text" name="itemPrice"
+														value="${result.item.itemPrice.intValue()}" />원
+												</p>
+
+												<p>상품 옵션</p>
+
+												<c:forEach items="${result.itemOption}" var="free">
+													<span> <input type="text" name="optionName"
+														value="${free.optionName}">
+													</span>
+													<br />
+												</c:forEach>
+												<p>
+													상품 종류: <select name="smallKind">
+														<c:forEach items="${kind.kind}" var="free">
+															<c:choose>
+																<c:when test="${free.smallKind==result.item.smallKind}">
+																	<option value="${free.smallKind}" selected="selected">${free.smallKind}</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${free.smallKind}">${free.smallKind}</option>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+													</select>
+												</p>
+												<p>
+													등록일<span></span> :${result.item.itemDate}
+												</p>
+
+
+
+
+											</div>
+											<br>
+											<p></p>
+											<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
+											<br>
+											<div>
+												<div>
+													<button type="button" style="color: white;"
+														class="btn btn-default btn-lg" id="basket">상품수정</button>
+													<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
 					
-				     <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                       <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
-		<!--End Header-->
-		</div></div>
-		<!--start wrapper-->
-		<section class="page_head">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                        <div class="page_title">
-                            <h2>직원 마이페이지</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             </section>
-                     <div class="col-lg-12 col-md-12 col-sm-12">
-            <br><br>
-            
-            
-       <%@include file="/WEB-INF/views/AdminMenu.jsp" %>
-           	<div class="col-lg-9 col-md-9 col-sm-9">
-							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
-
-							<form action="update" method="post">
-							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-								<tbody>
-									
-									<tr><td>상품명</td></tr>	
-									<tr><td>가격</td></tr>
-									<tr><td>최소수량</td></tr>
-									<tr><td>최대수량</td></tr>
-									<tr><td>상품 내용</td></tr>
-
-									
-								</tbody>
-							</table>
-							</div>
-							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><input type="text" ></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:180px;"></textarea></td></tr>
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-2 col-md-2 col-sm-2">
-							<table>
-									<tbody>
-
-										<tr><td>상품 이미지</td></tr>
-										<tr><td>제품 상세 이미지</td></tr>
-
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="file" ></td></tr>
-										<tr><td><input type="file" ></td></tr>
-										
-										</tbody>
-								</table>
-								<br><br><br><br><br><br><br><br>
-								<button class="btn btn-default btn-lg btn-block" type="button"> 
-							<i class="fa fa-rocket"></i> 상품 수정하기</button>
-							</div>
-                            
-							</form>
-							
-									
-							</div>
-							
-							
-							</div>
-							</div></div>
-							
-							
-					
-
-           
+							</section>
+									</form>
+					</section>
+				</div>
+			</div>
 			
 
 
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
-					<!-- jQuery cookie -->
-					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
-					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 
 
-					<script type="text/javascript">
-						$(document)
-								.ready(
-										function() {
-											$.fn.carousel = function(op) {
-												var op, ui = {};
-												op = $.extend({
-													speed : 500,
-													autoChange : false,
-													interval : 5000
-												}, op);
-												ui.carousel = this;
-												ui.items = ui.carousel
-														.find('.carousel-item');
-												ui.itemsLen = ui.items.length;
 
-												// CREATE CONTROLS
-												ui.ctrl = $(
-														'<div />',
-														{
-															'class' : 'carousel-control'
-														});
-												ui.prev = $('<div />', {
-													'class' : 'carousel-prev'
-												});
-												ui.next = $('<div />', {
-													'class' : 'carousel-next'
-												});
-												ui.pagList = $(
-														'<ul />',
-														{
-															'class' : 'carousel-pagination'
-														});
-												ui.pagItem = $('<li></li>');
-												for (var i = 0; i < ui.itemsLen; i++) {
-													ui.pagItem.clone()
-															.appendTo(
-																	ui.pagList);
-												}
-												ui.prev.appendTo(ui.ctrl);
-												ui.next.appendTo(ui.ctrl);
-												ui.pagList.appendTo(ui.ctrl);
-												ui.ctrl.appendTo(ui.carousel);
-												ui.carousel
-														.find(
-																'.carousel-pagination li')
-														.eq(0).addClass(
-																'active');
-												ui.carousel.find(
-														'.carousel-item').each(
-														function() {
-															$(this).hide();
-														});
-												ui.carousel.find(
-														'.carousel-item').eq(0)
-														.show().addClass(
-																'active');
 
-												// CHANGE ITEM
-												var changeImage = function(
-														direction, context) {
-													var current = ui.carousel
-															.find('.carousel-item.active');
+		</div>
 
-													if (direction == 'index') {
-														if (current.index() === context
-																.index())
-															return false;
 
-														context
-																.addClass(
-																		'active')
-																.siblings()
-																.removeClass(
-																		'active');
+		<div class="row sub_content">
+			<div class="carousel-intro">
+				<div class="col-md-12">
+					<div class="dividerHeading">
 
-														ui.items
-																.eq(
-																		context
-																				.index())
-																.addClass(
-																		'current')
-																.fadeIn(
-																		op.speed,
-																		function() {
-																			current
-																					.removeClass(
-																							'active')
-																					.hide();
-																			$(
-																					this)
-																					.addClass(
-																							'active')
-																					.removeClass(
-																							'current');
-																		});
-													}
 
-													if (direction == 'prev') {
-														if (current.index() == 0) {
-															ui.carousel
-																	.find(
-																			'.carousel-item:last')
-																	.addClass(
-																			'current')
-																	.fadeIn(
-																			op.speed,
-																			function() {
-																				current
-																						.removeClass(
-																								'active')
-																						.hide();
-																				$(
-																						this)
-																						.addClass(
-																								'active')
-																						.removeClass(
-																								'current');
-																			});
-														} else {
-															current
-																	.prev()
-																	.addClass(
-																			'current')
-																	.fadeIn(
-																			op.speed,
-																			function() {
-																				current
-																						.removeClass(
-																								'active')
-																						.hide();
-																				$(
-																						this)
-																						.addClass(
-																								'active')
-																						.removeClass(
-																								'current');
-																			});
-														}
-													}
 
-													if (direction == undefined) {
-														if (current.index() == ui.itemsLen - 1) {
-															ui.carousel
-																	.find(
-																			'.carousel-item:first')
-																	.addClass(
-																			'current')
-																	.fadeIn(
-																			300,
-																			function() {
-																				current
-																						.removeClass(
-																								'active')
-																						.hide();
-																				$(
-																						this)
-																						.addClass(
-																								'active')
-																						.removeClass(
-																								'current');
-																			});
-														} else {
-															current
-																	.next()
-																	.addClass(
-																			'current')
-																	.fadeIn(
-																			300,
-																			function() {
-																				current
-																						.removeClass(
-																								'active')
-																						.hide();
-																				$(
-																						this)
-																						.addClass(
-																								'active')
-																						.removeClass(
-																								'current');
-																			});
-														}
-													}
-													ui.carousel
-															.find(
-																	'.carousel-pagination li')
-															.eq(
-																	ui.carousel
-																			.find(
-																					'.carousel-item.current')
-																			.index())
-															.addClass('active')
-															.siblings()
-															.removeClass(
-																	'active');
-												};
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+						<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+						<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+						<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
+						<!-- jQuery cookie -->
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/styleswitch.js"/>"></script>
+						<!-- Style Colors Switcher -->
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/swipe.js"/>"></script>
+						<script type="text/javascript"
+							src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 
-												ui.carousel
-														.on(
-																'click',
-																'li',
-																function() {
-																	changeImage(
-																			'index',
-																			$(this));
-																})
-														.on(
-																'click',
-																'.carousel-prev',
-																function() {
-																	changeImage('prev');
-																})
-														.on(
-																'click',
-																'.carousel-next',
-																function() {
-																	changeImage();
-																});
 
-												// AUTO CHANGE
-												if (op.autoChange) {
-													var changeInterval = setInterval(
-															changeImage,
-															op.interval);
-													ui.carousel
-															.on(
-																	'mouseenter',
-																	function() {
-																		clearInterval(changeInterval);
-																	})
-															.on(
-																	'mouseleave',
-																	function() {
-																		changeInterval = setInterval(
-																				changeImage,
-																				op.interval);
-																	});
-												}
-												return this;
-											};
 
-											$('.porDetCarousel').each(
-													function() {
-														$(this).carousel({
-															autoChange : true
-														});
-													});
-										});
-					</script>
-				<script src="<c:url value="/resources/js/main.js"/>"></script>
+						<script type="text/javascript">
+	$(function(){
+		$("#basket").on("click",function(){
+			$.ajax({
+				url:"/api/miniHome/basket",
+				type:"post",
+				data : {"userId": '<%=user1.getUserId()%>
+							',
+																	"itemNo" : $(
+																			"#itemNo")
+																			.val()
+																},
+																dataType : 'JSON',
+																complete : function(
+																		r) {
+																	if (r.responseText == 1)
+																		alert("장바구니에 담겼습니다");
+																	else if (r.responseText == 0)
+																		alert("장바구니에 이미 담긴 상품입니다")
+
+																}
+
+															})
+												})
+							})
+						</script>
+
+						<!-- Start Style Switcher -->
+						<div class="switcher"></div>
+						<!-- End Style Switcher -->
 </body>
 </html>

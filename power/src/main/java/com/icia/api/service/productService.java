@@ -59,12 +59,7 @@ public class productService {
 	public void deleteItem(int itemNo){
 		dao.deleteItem(itemNo);
 	}
-	//배송하기 클릭
-	@Transactional
-	public void insertDelivery(Delivery d,int orderNo){
-		dao.insertDelivery(d);
-		dao.updateOrderStatement(orderNo);
-	}
+
 	//이름으로검색
 	@Transactional
 		public String selectItemByName(String userId,String itemName,int pageNo){
@@ -215,15 +210,19 @@ public class productService {
 		dao.deleteReviewReple(reviewRepleNo);
 	}
 	//장바구니담기
+	@Transactional
 	public int insertBasket(int itemNo,String userId){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("itemNo", itemNo);
 		map.put("userId", userId);
+		int result= dao.selectBasket(map);
+		if(result==1) return 0; 
 		return dao.insertBasket(map);
 	}
 	//배송리스트
 	@Transactional
 	public String deliveryList(String userId,int pageNo){
+		
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectDeliveryListCnt(userId));
 		map.put("start", p.getStartArticle());
@@ -269,6 +268,23 @@ public class productService {
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		result.put("result", dao.selectItemListOrderByScore(userId));
 		return new Gson().toJson(result);
+	}
+	//카테고리메뉴가져오기
+	public String selectKind(String userId){
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("bigKind", dao.selectbigKind(userId));
+		result.put("smallKind",dao.selectSmallKind(userId));
+		return new Gson().toJson(result);
+	}
+	//배송하기
+	@Transactional
+	public void insertBasket(Map<String, Object> map) {
+		dao.insertDelivery((HashMap<String, Object>) map);
+		System.out.println("여기지임마");
+		int orderNo=(Integer)map.get("orderNo");
+		System.out.println(orderNo);
+		dao.updateOrderStatement(orderNo);
+		
 	}
 
 }

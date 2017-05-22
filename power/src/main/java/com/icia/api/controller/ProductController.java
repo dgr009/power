@@ -66,17 +66,26 @@ public class ProductController {
 	public String  product(@RequestBody int itemNo){
 		 return service.selectItemDetail(itemNo);
 	}
-	// 회원 즐겨찾기 추가
+	// 회원 장바구니 추가
 	@RequestMapping(value = "/basket", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public String basketInsert(@RequestParam String userId, @RequestParam String itemNo) {
 	System.out.println(itemNo);
 		int item=Integer.parseInt(itemNo);
 		System.out.println("시방새야"+item);
 		int result = service.insertBasket(item, userId);
-		if (result == 1)
 			return result + "";
-		else
-			return result + "";
+		
 	}
+	//카테고리받기
+	@RequestMapping(value="/productKind", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public String  productKind(@RequestBody String userId){
+		 return service.selectKind(userId);
+	}
+	@RequestMapping(value = "/deliveryInsert", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void deliveryInsert(@RequestBody Map<String, Object> map) {
 	
+	 service.insertBasket(map);
+		
+		
+	}
 }

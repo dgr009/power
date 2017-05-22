@@ -81,7 +81,7 @@
 		$("#complete").on("click",function(e){
 				e.preventDefault(); //기본 이벤트를 차단
 				 var formData = new FormData();
-				 formData.append("userId",<%=users.getUserId()%>)
+				 formData.append("userId",'<%=users.getUserId()%>')
 				 formData.append("homeTitle",$("#title").val())
 				 formData.append("homeIntroduce",$("#content").val())
 				 formData.append("homeDesign",$("#design").val())

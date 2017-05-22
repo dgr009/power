@@ -13,6 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <title>Portfolio Single - Edge Responsive Multipurpose Template</title>
 <meta name="description" content="">
 <meta name="viewport"
@@ -31,6 +32,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 <style>
 
 
@@ -61,11 +63,17 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	
-</script>
+
+ 
+
+
+
+
+
 </head>
+
 <body>
+
 	<!--Start Header-->
 	<header id="header">
  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
@@ -117,6 +125,7 @@
 							<table class="table table-striped table-hover">
                     <thead>
                     <tr>
+                    <th>주문번호</th>
                     	<th>회원ID</th>
 						<th>주문개수</th>
 						<th>주문금액</th>
@@ -125,10 +134,43 @@
                     </thead>
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
-						<tr><td>${free.userId}</td><td>${free.orderSize.intValue()}개</td><td>${free.orderPrice.intValue()}P</td><td>${free.orderDate}</td>
-						<td><c:if test="${free.orderState=='배송준비중'}"><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">배송</button></c:if>
+						<tr><td>${free.orderNo.intValue()}번</td><td>${free.userId}</td><td>${free.orderSize.intValue()}개</td><td>${free.orderPrice.intValue()}P</td><td>${free.orderDate}</td>
+						<td><input type="hidden" id="orderNo" value="${free.orderNo}" ></td>
+						<td><c:if test="${free.orderState=='배송준비중'}"><button type="button"   id="bb" data-toggle="modal"  data-target="#insertDeliveryModal">배송하기</button>			<div class="modal"  id="insertDeliveryModal" role="dialog" data-backdrop="false" >
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">주문번호와 배송번호를 입력하세요</h4>
+				</div>
+              <form  id='registerform' action="/palette/miniHome/admin/insertDelivery" method="post">
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label for="InputEmail">주문번호</label>
+                      <input type="hidden" class="form-control" name="itemNo" value="${free.itemNo.intValue()}">
+                      <input type="text" class="form-control" name="orderNo" placeholder="주문번호">
+                  </div>
+                  <div class="form-group">
+                      <label for="InputEmail">배송번호</label>
+                      <input type="text" class="form-control" name="deliNo" placeholder="배송번호">
+                  </div>
+                 
+                  <div class="form-group text-center">
+                      <button type="submit"  id="register" class="btn btn-info">입력완료</button>
+                     </div>
+                  </div>
+                  
+              </form>
+          </div>
+          </div>
+      </div>
+					
+      </c:if>
+    
 						<c:if test="${free.orderState=='배송중'}">배송중</c:if>
 						<c:if test="${free.orderState=='주문완료'}">주문완료</c:if>
+						
 						</td>
 						
 						</tr>
@@ -438,6 +480,8 @@
 													});
 										});
 					</script>
+
 				<script src="<c:url value="/resources/js/main.js"/>"></script>
+		
 </body>
 </html>

@@ -24,8 +24,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
-	media="screen" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"media="screen" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -89,8 +88,6 @@
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
-		</div>
-		</div>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">

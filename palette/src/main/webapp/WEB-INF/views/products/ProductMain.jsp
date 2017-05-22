@@ -68,7 +68,6 @@
 	<!-- =====================메인 메뉴(우측상단) 끝============================= -->
 	<!--End Header-->
 
-
 	<!--start wrapper-->
 	<section class="wrapper">
 		<section class="page_head">
@@ -127,7 +126,7 @@
 							<option value=5>5</option>
 							</select>
 							</p>
-							<p>상품 옵션: <select name="itemSize">
+							<p>상품 옵션: <select name="itemOption">
 							<c:forEach items="${result.itemOption}"   var="free">
 							<option value="${free.optionName}">${free.optionName}</option>
 							<</c:forEach></select></p>
@@ -147,13 +146,13 @@
 									<div>
 										<div>
 											<button type="button"
-												data-loading-text="Loading..." style="color: white;"
+												 style="color: white;"
 												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
-												type="button" data-loading-text="Loading..."
+												type="button"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
 												href="/hooligan/product/evalutionList?product_no="><input
-												type="button" data-loading-text="Loading..."
+												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
 												value="상품평가"></a>
 
@@ -163,7 +162,6 @@
 							</ul>
 						</div>
 					</div>
-					</form>
 
 
 
@@ -466,14 +464,17 @@
 <script type="text/javascript">
 	$(function(){
 		$("#basket").on("click",function(){
-			alert($("#itemNo").val() +" " + '<%=user1.getUserId()%>');
 			$.ajax({
 				url:"/api/miniHome/basket",
 				type:"post",
 				data : {"userId": '<%=user1.getUserId()%>', "itemNo" : $("#itemNo").val() },
 				dataType: 'JSON',
 				complete:function(r){
-					alert("성공 ????  " + r.responseText);
+				if(r.responseText==1)
+					alert("장바구니에 담겼습니다");
+				else if(r.responseText==0)
+					alert("장바구니에 이미 담긴 상품입니다")
+					
 				}
 
 			})

@@ -95,13 +95,10 @@ delete from item where item_no=#{item_no}
 </delete>
 <!-- 상품주문상태변경 -->
 <update id="updateOrderStatement" parameterType="int">
-update order_statement set order_statement='배송중' where order_no=#{orderNo}
+update order_statement set order_state='배송중' where order_no=#{orderNo}
 </update>
 <!-- 배송번호입력 -->
-<insert id="insertDelivery" parameterType="Delivery">
-<selectKey keyProperty="deliNo" resultType="int" order="BEFORE">
-select delino_seq.nextval from dual
-</selectKey>
+<insert id="insertDelivery" parameterType="hashmap">
 insert into delivery values(#{deliNo},sysdate,#{orderNo}) 
 </insert>
 <!-- 이름으로 검색 개수 -->
@@ -131,7 +128,7 @@ select count(*) from order_statement where  item_no=#{itemNo}
 <!-- 상품신청리스트 -->
 <select id="orderList" parameterType="hashmap" resultType="ApplicantList">
 <![CDATA[
-select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_post,u.user_mail,u.user_phone,o.order_date,o.order_price,o.order_size,o.item_no,o.order_state from users u,order_statement o where u.user_id=o.user_id and o.item_no=#{itemNo} order by o.ORDER_DATE DESC)b where rownum<=#{end}) where rnum>=#{start}
+select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_post,u.user_mail,u.user_phone,o.order_date,o.order_price,o.order_size,o.item_no,o.order_state,o.order_no from users u,order_statement o where u.user_id=o.user_id and o.item_no=#{itemNo} order by o.ORDER_DATE DESC)b where rownum<=#{end}) where rnum>=#{start}
 ]]>
 </select>
 <!-- 상품상세조회 -->
@@ -235,6 +232,10 @@ delete item_review where review_reple_no=#{reviewRepleNo}
 <insert id="insertBasket" parameterType="hashmap">
 insert into basket values(#{itemNo},#{userId})
 </insert>
+<!-- 장바구니 있는지확인 -->
+<select id="selectBasket" parameterType="hashmap" resultType="int">
+select count(*) from basket where item_no=#{itemNo} and user_id=#{userId}
+</select>
 <!-- 배송리스트 개수 -->
 <select id="selectDeliveryCnt" parameterType="String">
 select count(*) from order_statement o,item i,delivery d where i.item_no=o.item_no and d.order_no,o.order_no and o.order_state='배송중' and i.user_id=#{userId}
@@ -242,7 +243,7 @@ select count(*) from order_statement o,item i,delivery d where i.item_no=o.item_
 <!-- 배송리스트 -->
 <select id="deliveryList" parameterType="hashmap" resultType="DeliveryList">
 <![CDATA[
-select * from(select rownum rnum,b* from (select i.item_name,o.item_no,o.order_size,o.order_price,d.deli_date, from order_statement o,item i,delivery d where i.item_no=o.item_no and d.order_no,o.order_no and o.order_state='배송중' and i.user_id=#{userId})b where rownum<=#{end})where rnum>=#{start}
+select * from(select rownum rnum,b* from (select i.item_name,o.item_no,o.order_size,o.order_price,o.orderNo,d.deli_date, from order_statement o,item i,delivery d where i.item_no=o.item_no and d.order_no,o.order_no and o.order_state='배송중' and i.user_id=#{userId})b where rownum<=#{end})where rnum>=#{start}
 ]]>
 </select>
 <!-- 주문하기 -->
@@ -265,6 +266,14 @@ insert into order_statement values(#{orderNo},'배송준비중',#{orderSize},#{o
 <update id="updateItemInven" parameterType="hashmap">
 update item set item_inven=item_inven-#{orderSize} where item_no=#{itemNo}
 </update>
-
+<!-- 메뉴창 smallKind 가져오기 -->
+<select id="selectSmallKind" parameterType="String" resultType="SmallKind">
+select *from small_kind where user_id=#{userId}
+</select>
+<!-- 메뉴창 bigKind 가져오기 -->
+<select id="selectBigKind" parameterType="String" resultType="BigKind">
+select*from big_kind where user_id=#{userId}
+</select>
+<!-- 메뉴창 bigKind 가져오기 -->
 
 </mapper>

@@ -47,8 +47,8 @@ public class ProductDao {
 		tpl.delete("api.dao.ProductDao.deleteItem", itemNo);
 	}
 	//배송하기
-	public void insertDelivery(Delivery d){
-		tpl.insert("api.dao.ProductDao.insertDelivery", d);
+	public void insertDelivery(HashMap<String, Object> map){
+		tpl.insert("api.dao.ProductDao.insertDelivery", map);
 	}
 	//상품주문상태변경
 	public void updateOrderStatement(int orderNo){
@@ -207,7 +207,22 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectProductOption", itemNo);
 	
 	}
-
+	//장바구니 담겻는지 확인
+	public int selectBasket(HashMap<String, Object> map) {
+		return tpl.selectOne("api.dao.ProductDao.selectBasket", map);
+	}
+//작은종류가져오기
+	public List<SmallKind> selectSmallKind(String Id) {
+		int d=Id.length();
+		String userId=Id.substring(1, d-1);
+		return tpl.selectList("api.dao.ProductDao.selectSmallKind", userId);
+	}
+	//큰종류가져오기
+	public List<BigKind> selectbigKind(String Id) {
+		int d=Id.length();
+		String userId=Id.substring(1, d-1);
+		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
 	
+	}
 	
 }

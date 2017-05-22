@@ -10,9 +10,11 @@ import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
@@ -34,22 +36,33 @@ public class ProductController {
 	private String path;
 	@Autowired
 	private ProductService service;
-	//제품등록전 제품종류가져오기
+	//미니홈페이지 메인
 	@RequestMapping(value="/{userId}/main",method=RequestMethod.GET)
-	public String miniMain(@PathVariable String userId){
+	public String miniMain(@PathVariable String userId,Model model){
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/homepageMain";
 	}
 	//상품등록창으로
 	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
 	public String productRegister(@PathVariable String userId,Model model){
 		model.addAttribute("result",service.productRegisterReady(userId));
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductRegister";
 	}
-	//상품수정하기
-	@RequestMapping(value="/{userid}/admin/productUpdate",method=RequestMethod.GET)
-	public String productUpdate(@PathVariable String userid){
+	//상품수정하기폼으로
+	@RequestMapping(value="/{userId}/admin/productUpdate/{itemNo}",method=RequestMethod.GET)
+	public String productUpdateStart(@PathVariable String userId,@PathVariable int itemNo,Model model){
+		model.addAttribute("kind",service.productRegisterReady(userId));//홈페이지small가져오기
+		model.addAttribute("result", service.productMain(itemNo));//상품정보다가져오기
+		System.out.println(service.productRegisterReady(userId).get("kind"));
 		return "products/ProductUpdate";
 	}
+	//상품수정하기폼으로
+	@RequestMapping(value="/{userid}/admin/productUpdate",method=RequestMethod.POST)
+	public String productUpdateEnd(@PathVariable String userid ){
+		return "products/ProductUpdate";
+	}
+	
 	//상품등록하기
 	@RequestMapping(value = "/{userId}/admin/register", method = RequestMethod.POST)
 	public String productRegister(@ModelAttribute Item item,@PathVariable String userId, MultipartHttpServletRequest req) throws IOException {
@@ -74,6 +87,7 @@ public class ProductController {
 	public String productRegisterList(@PathVariable String userId,@RequestParam(defaultValue = "1") int pageNo,Model model) {
 		model.addAttribute("result", service.productRegisterList(userId,pageNo));
 		model.addAttribute("userId", userId);
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductRegisterList";
 	}
 	//상품삭제하기
@@ -88,6 +102,7 @@ public class ProductController {
 	public String productOrderList(@PathVariable String userId,Model model,@RequestParam int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
 		model.addAttribute("result", service.productOrderList(itemNo,pageNo));
 		model.addAttribute("itemNo",itemNo);
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductOrderList";
 	}
 	//상품보기
@@ -95,9 +110,21 @@ public class ProductController {
 	public String productMain(@PathVariable String userId,Model model,@RequestParam int itemNo) {
 		
 		model.addAttribute("result", service.productMain(itemNo));
+		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductMain";
 	}
-	
+	//배송입력
+		@RequestMapping(value = "/admin/insertDelivery", method = RequestMethod.POST)
+		public String deliveryInsert(HttpSession sesstion,@RequestParam int orderNo,@RequestParam int deliNo,@RequestParam String itemNo) {
+			Users user=(Users) sesstion.getAttribute("user");
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("orderNo", orderNo);
+			map.put("deliNo", deliNo);
+			System.out.println("여기값모냐"+itemNo);
+			service.deliveryInsert(map);
+			String a="redirect:/miniHome/"+user.getUserId()+"/admin/productOrderList?itemNo="+itemNo;
+			return a;
+		}
 	
 	
 }
