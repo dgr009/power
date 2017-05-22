@@ -24,7 +24,7 @@ public class UsersController {
 
 	@Autowired
 	private ServletContext ctx;
-	@Resource(name="homePath")
+	@Resource(name = "homePath")
 	private String path;
 	@Autowired
 	private UserService service;
@@ -142,7 +142,7 @@ public class UsersController {
 	// 포인트 충전 환급 조회
 	@RequestMapping(value = "/tradeList", method = RequestMethod.GET)
 	public String tradeList(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo) {
-		model.addAttribute("result", service.tradeList(session,pageNo));
+		model.addAttribute("result", service.tradeList(session, pageNo));
 		return "users/tradeList";
 	}
 
@@ -221,17 +221,25 @@ public class UsersController {
 
 	// 회원 미니홈페이지 개설하기
 	@RequestMapping(value = "/homeRegister", method = RequestMethod.POST)
-	public String homeRegisterEnd(HttpSession session,@ModelAttribute MiniHome home,MultipartFile file) throws IOException {
+	public String homeRegisterEnd(HttpSession session, @ModelAttribute MiniHome home, MultipartFile file)
+			throws IOException {
 		String fileName = UploadUtils2.storeAndGetFileName(file, ctx, path);
 		home.setHomeImg(fileName);
-		service.homeRegister(home,session);
+		service.homeRegister(home, session);
 		return "redirect:/users/main";
 	}
-	
-		//메인으로
-		@RequestMapping(value = "/main", method = RequestMethod.GET)
-		public String ma() {
-			return "main/main";
-		}
+
+	// 회원 미니홈페이지 수정하기 페이지로
+	@RequestMapping(value = "/homeUpdate", method = RequestMethod.GET)
+	public String homeUpdateStart(HttpSession session, Model model) {
+		model.addAttribute("result", service.getHomeInfo(session));
+		return "users/homeUpdate";
+	}
+
+	// 메인으로
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String ma() {
+		return "main/main";
+	}
 
 }

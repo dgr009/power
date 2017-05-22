@@ -150,11 +150,24 @@
 	<update id="usersIsHomeOk" parameterType="string">
 		update users set user_ishome=1 where user_id=#{userId}
 	</update>
+	<!-- 큰 태그 등록하기 -->
 	<insert id="usersBigTagRegister" parameterType="hashmap">
-		insert into big_kind values(#{userId},#{bigTag})
+	<selectKey keyProperty="bigKindNo" resultType="int" order="BEFORE">
+		select big_kind_seq.nextval from dual
+	</selectKey>
+		insert into big_kind values(#{userId},#{bigTag},#{bigKindNo})
 	</insert>
+	<!-- 작은 태그 등록하기 -->
 	<insert id="usersSmallTagRegister" parameterType="hashmap">
-		insert into small_kind values(#{userId},#{bigTag},#{smallTag})
+	<selectKey keyProperty="smallKindNo" resultType="int" order="BEFORE">
+		select small_kind_seq.nextval from dual
+	</selectKey>
+		insert into small_kind values(#{userId},#{bigTag},#{smallTag},#{smallKindNo})
 	</insert>
 	
+	<!-- 홈페이지 수정 -->
+	<!-- 홈페이지 정보 받아오기 -->
+	<select id="userseGetHomeInfo" parameterType="string" resultType="MiniHome">
+		select * from home where user_id=#{userId}
+	</select>
 </mapper>

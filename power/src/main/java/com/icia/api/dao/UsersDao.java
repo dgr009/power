@@ -215,4 +215,18 @@ public class UsersDao {
 		map.put("smallTag",smallTag);
 		return	tpl.insert("api.dao.UsersDao.usersSmallTagRegister",map);
 	}
+
+	//홈페이지 정보 가져오기
+	public MiniHome getHomeInfo(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.usersGetHomeInfo",userId);
+	}
+	// 큰태그 가져오기
+	public List<BigKind> getBigTag(String userId) {
+		return tpl.selectList("api.dao.ProductDao.selectSmallKind", userId);
+	}
+
+	//작은태그 가져오기
+	public List<SmallKind> getSmallTag(String userId) {
+		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
+	}
 }
