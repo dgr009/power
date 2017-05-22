@@ -39,6 +39,7 @@
 <script>
 	$(function(){
 		var i =0;
+		var j = 0;
 		printTag();
 		
 		function printTag(){
@@ -48,11 +49,10 @@
 			var ultag = $("<ul id='smallTag"+i+"' class='pagination'></ul>");
 			ultag.append("<li><a href='#' id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li>");
 			$("#smallTag").append(btag);
-			var j=0;
 				<c:forEach items="${result.smallKind}" var="small">
-					j++;
 					if('${small.bigKind}'=='${big.bigKind}'){
-						var stag = "<li id='smallLi"+j+"'><a href='#' class='smallName"+j+"' id='smallName' data-nno='"+j+"'>${small.smallKind}</a></li>";
+						j++;
+						var stag = "<li id='smallLi"+j+"'><a class='smallName"+i+"' id='smallName' data-nno='"+j+"'>${small.smallKind}</a></li>";
 						ultag.append(stag);
 					}
 				</c:forEach>
@@ -63,7 +63,7 @@
 		$("#insertBigTag").on("click",function(){
 			i++;
 			var tag = "<li id='bigKind"+i+"'><a class='bigKind' data-no='"+ i +"'>새태그</a></li>";
-			var stag =  "<ul id='smallTag"+i+"' class='pagination'><li  style='display:inline;'><a id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li></ul><br>";
+			var stag =  "<ul id='smallTag"+i+"' class='pagination'><li><a id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li></ul><br>";
 			var btag = $("<li id='smallKind"+i+"'>새태그</li>");
 			
 			$("#bigTag").append(tag);
@@ -73,7 +73,8 @@
 		
 		
 		$(document).on("click","#insertSmallTag",function(){
-			var stag = "<li style='display:inline-block;' id='smallLi"+$(this).data("sno")+"'><a href='#' class='smallName"+$(this).data("sno")+"' id='smallName' data-nno='"+$(this).data("sno")+"'>새태그</a></li>";
+			j++;
+			var stag = "<li id='smallLi"+j+"'><a class='smallName"+$(this).data("sno")+"' id='smallName' data-nno='"+j+"'>새태그</a></li>";
 			$("#smallTag"+$(this).data("sno")).append(stag);
 		})
 		
@@ -105,6 +106,7 @@
 		$("#complete").on("click",function(e){
 				e.preventDefault(); //기본 이벤트를 차단
 				 var formData = new FormData();
+				 formData.append("homeActive",$("#active").val());
 				 formData.append("userId",$("#uid").val());
 				 formData.append("homeTitle",$("#title").val());
 				 formData.append("homeIntroduce",$("#content").val());
@@ -143,6 +145,7 @@
 						 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
 						 	complete:function(result){
 						 		alert(result)
+						 		self.close();
 							}
 
 						 })
@@ -204,7 +207,7 @@
          
          </ul>
  </div>
-	 <div class="form-group">
+				 <div class="form-group">
                       <label for="InputPassword2">홈페이지 디자인 선택</label>
                       <select name="homeDesign" id="design" class="form-control" >
 							<option value="1">기본타입</option>
@@ -214,6 +217,13 @@
                   <div class="form-group">
                       <label for="username">홈페이지 소개</label>
                       <textarea class="form-control"  rows="20" cols="60" id='content'>${result.home.homeIntroduce}</textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="InputPassword2">비활성화</label>
+                      <select name="homeActive" id="active" class="form-control" >
+							<option value="0">아니오</option>
+							<option value="1">예</option>
+					  </select>
                   </div>
 </div>
 <button id="complete"  class="btn btn-default btn-lg btn-block" >완료</button>

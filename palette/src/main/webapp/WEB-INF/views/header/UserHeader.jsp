@@ -21,6 +21,14 @@
 		}
 	}
 	
+	function openHomeDe(){
+		if(<%=user.getUserIsHome()%>==1)
+	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main","_blank");
+		else{
+			window.open("http://localhost:8087/palette/users/homeDelete","_blank");	
+		}
+	}
+	
 	function openHomeUp(){
 		if(<%=user.getUserIsHome()%>==1)
 	    	window.open("http://localhost:8087/palette/users/homeUpdate","_blank");

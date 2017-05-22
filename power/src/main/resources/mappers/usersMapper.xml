@@ -172,7 +172,7 @@
 	</select>
 	<!-- 홈페이지 정보 수정하기 -->
 	<update id="usersHomeUpdate" parameterType="MiniHome">
-		update home set home_title=#{homeTitle},home_introduce=#{homeIntroduce},home_img=#{homeImg},home_design=#{homeDesign} where user_id=#{userId}
+		update home set home_title=#{homeTitle},home_introduce=#{homeIntroduce},home_img=#{homeImg},home_design=#{homeDesign},home_active=#{homeActive} where user_id=#{userId}
 	</update>
 	<!-- 큰태그 지우기 -->
 	<delete id="usersDeleteBigTag" parameterType="string">
