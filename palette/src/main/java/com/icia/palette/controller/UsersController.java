@@ -235,6 +235,18 @@ public class UsersController {
 		model.addAttribute("result", service.getHomeInfo(session));
 		return "users/homeUpdate";
 	}
+	
+	// 회원 미니홈페이지 수정하기
+		@RequestMapping(value = "/homeUpdate", method = RequestMethod.POST)
+		public String homeUpdateEnd(HttpSession session, @ModelAttribute MiniHome home, MultipartFile file)
+				throws IOException {
+			if(file!=null){
+				String fileName = UploadUtils2.storeAndGetFileName(file, ctx, path);
+				home.setHomeImg(fileName);
+			}
+			service.homeUpdate(home, session);
+			return "redirect:/users/main";
+		}
 
 	// 메인으로
 	@RequestMapping(value = "/main", method = RequestMethod.GET)

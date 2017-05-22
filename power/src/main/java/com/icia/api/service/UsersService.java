@@ -207,4 +207,31 @@ public class UsersService {
 		map.put("smallKind", dao.getSmallTag(userId));
 		return map;
 	}
+
+	//홈페이지 수정 하기
+	public int homeUpdate(MiniHome home) {
+		return dao.homeUpdate(home);
+	}
+
+	//홈페이지 태그 수정하기
+	@Transactional
+	public int homeTagUpdate(String userId, String bigKind, String smallKind) {
+		String[] big = bigKind.split(",");
+		String[] smalls = smallKind.split("\n");
+		
+		dao.deleteBigTag(userId);
+		dao.deleteSmallTag(userId);
+		for (int i=0;i<big.length;i++) {
+			System.out.print(big[i] + " big : ");
+			dao.bigTagRegister(userId,big[i]);
+			String[] small = smalls[i].split(",");
+			for(String strS : small){
+				System.out.print(strS + "-s ");
+				dao.smallTagRegister(userId,big[i],strS);
+			}
+			System.out.println("");
+		}
+		
+		return 1;
+	}
 }

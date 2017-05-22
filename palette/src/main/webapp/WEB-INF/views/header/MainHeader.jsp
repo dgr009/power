@@ -92,6 +92,9 @@
                                		 </li>
                                		   <li><a href="#" onclick=openHome()>회원 홈페이지</a>
                                     </li>
+                                    </li>
+                               		   <li><a href="#" onclick=openHomeUp()>홈페이지 수정</a>
+                                    </li>
                                     <%} %>
                             </ul>
                             

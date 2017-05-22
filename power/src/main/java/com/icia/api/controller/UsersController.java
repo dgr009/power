@@ -242,7 +242,7 @@ public class UsersController {
 		logger.info(home.toString());
 		int result = service.homeRegister(home);
 		if (result == 1)
-			return new ResponseEntity<String>(home.toString(), HttpStatus.OK);
+			return new ResponseEntity<String>("성공", HttpStatus.OK);
 		else
 			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
 
@@ -262,9 +262,35 @@ public class UsersController {
 	
 	//홈페이지 수정 정보 가져오기
 	@RequestMapping(value = "/homeUpdate", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String usersHomeTagRegister(@RequestHeader("token") String token){
+	public String usersHomeUpdateStart(@RequestHeader("token") String token){
 		String userId = service.getUserIdByToken(token);
 		Map<String,Object> map = service.getHomeInfo(userId);
 		return new Gson().toJson(map);
 	}
+	
+	// 홈페이지 수정하기
+		@RequestMapping(value = "/homeUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+		public ResponseEntity<String> usersHomeUpdateEnd(@RequestBody MiniHome home) throws BindException {
+			logger.info(home.toString());
+			int result = service.homeUpdate(home);
+			if (result == 1)
+				return new ResponseEntity<String>("성공", HttpStatus.OK);
+			else
+				return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
+
+		}
+	
+	//홈페이지 태그 수정하기
+		@RequestMapping(value = "/homeTagUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+		public String usersHomeTagUpdate(@RequestParam String userId, @RequestParam String bigKind,@RequestParam String smallKind){
+			System.out.println("BIG KIND : "+bigKind + " \nSMALL KIND : "+smallKind);
+			int result = service.homeTagUpdate(userId,bigKind,smallKind);
+			if (result == 1)
+				return "성공";
+			else
+				return "제작 실패";
+
+		}
+		
+		
 }

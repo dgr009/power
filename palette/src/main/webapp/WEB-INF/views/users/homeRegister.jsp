@@ -61,6 +61,7 @@
 			if(name=="" || name==null){
 				$("#bigKind"+$(this).data("no")).html("");
 				$("#smallKind"+$(this).data("no")).html("");
+				$("#smallTag"+$(this).data("no")).html("");
 			}else{
 				$(this).html(name);
 				$("#smallKind"+$(this).data("no")).html(name);
@@ -80,13 +81,6 @@
 
 		$("#complete").on("click",function(e){
 				e.preventDefault(); //기본 이벤트를 차단
-				 var formData = new FormData();
-				 formData.append("userId",'<%=users.getUserId()%>')
-				 formData.append("homeTitle",$("#title").val())
-				 formData.append("homeIntroduce",$("#content").val())
-				 formData.append("homeDesign",$("#design").val())
-				 formData.append("file",$("#img")[0].files[0])
-
 				 var smallResult ="";
 					var bigArray = [];
 					$(".bigKind").each(function(){
@@ -99,28 +93,38 @@
 						});
 						smallResult +="\n";
 					}
-					
-				$.ajax({
-				 	url:"/palette/users/homeRegister",
-				 	type:"post",
-				 	data: formData,
-				 	complete:function(result){
-				 		console.log(result)
-				 		self.close();
-					},
-				 		processData:false,
-				 		contentType:false
-				 })
+					 
+				var formData = new FormData();
+				 formData.append("userId",'<%=users.getUserId()%>')
+				 formData.append("homeTitle",$("#title").val())
+				 formData.append("homeIntroduce",$("#content").val())
+				 formData.append("homeDesign",$("#design").val())
+				 formData.append("file",$("#img")[0].files[0])
+				 formData.append("bigKind",bigArray.join(","))
+				 formData.append("smallKind",smallResult)
 				 
+				function regit(){
+					$.ajax({
+					 	url:"/palette/users/homeRegister",
+					 	type:"post",
+					 	data: formData,
+					 	complete:function(result){
+					 		self.close();
+						},
+					 		processData:false,
+					 		contentType:false
+					 })
+				 }
+				
 				 $.ajax({
-				 	url:"/api/users/homeTagRegister",
-				 	type:"post",
-				 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
-				 	complete:function(result){
-				 		alert(result)
-					}
-
-				 })
+					 url:"/api/users/homeTagRegister",
+					 type:"post",
+					 data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
+					 complete:function(result){
+					 		regit();
+					 }
+	
+				})
 			})
 	})
 	
@@ -175,6 +179,7 @@
 	 <div class="form-group">
                       <label for="InputPassword2">홈페이지 디자인 선택</label>
                       <select name="homeDesign" id="design" class="form-control" >
+							<option value="1">기본타입</option>
 							<option value="1">기본타입</option>
 					  </select>
                   </div>

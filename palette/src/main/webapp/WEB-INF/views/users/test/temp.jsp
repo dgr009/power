@@ -256,4 +256,29 @@ var tagData = new FormData();
 <!-- 			alert(smallResult); -->
 			
 <!-- 		}) -->
+
+///////////////////////
+<!--  var smallResult =""; -->
+<!-- 					var bigArray = []; -->
+<!-- 					$(".bigKind").each(function(){ -->
+<!-- 						bigArray.push($(this).html()); -->
+<!-- 					}) -->
+					
+<!-- 					for(var j=0; j<i; j++){ -->
+<!-- 						$(".smallName"+(j+1)).each(function() { -->
+<!-- 							smallResult +=$(this).html()+","; -->
+<!-- 						}); -->
+<!-- 						smallResult +="\n"; -->
+<!-- 					} -->
+					
+
+<!-- 	 $.ajax({ -->
+<!-- 				 	url:"/api/users/homeTagUpdate", -->
+<!-- 				 	type:"post", -->
+<%-- 				 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult}, --%>
+<!-- 				 	complete:function(result){ -->
+<!-- 				 		alert(result) -->
+<!-- 					} -->
+
+<!-- 				 }) -->
 				 

@@ -222,11 +222,28 @@ public class UsersDao {
 	}
 	// 큰태그 가져오기
 	public List<BigKind> getBigTag(String userId) {
-		return tpl.selectList("api.dao.ProductDao.selectSmallKind", userId);
+		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
 	}
 
 	//작은태그 가져오기
 	public List<SmallKind> getSmallTag(String userId) {
-		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
+		return tpl.selectList("api.dao.ProductDao.selectSmallKind", userId);
+	}
+	
+	//홈페이지 수정
+	public int homeUpdate(MiniHome home) {
+		return tpl.update("api.dao.UsersDao.usersHomeUpdate",home);
+	}
+
+	//큰태그 지우기
+	public int deleteBigTag(String userId) {
+		return tpl.delete("api.dao.UsersDao.usersDeleteBigTag",userId);
+		
+	}
+	
+	//작은 태그 지우기
+	public int deleteSmallTag(String userId) {
+		return tpl.delete("api.dao.UsersDao.usersDeleteSmallTag",userId);
+		
 	}
 }
