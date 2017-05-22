@@ -259,4 +259,12 @@ public class UsersController {
 			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
 
 	}
+	
+	//홈페이지 수정 정보 가져오기
+	@RequestMapping(value = "/homeUpdate", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String usersHomeTagRegister(@RequestHeader("token") String token){
+		String userId = service.getUserIdByToken(token);
+		Map<String,Object> map = service.getHomeInfo(userId);
+		return new Gson().toJson(map);
+	}
 }

@@ -253,4 +253,31 @@ public class UserService {
 		}
 	}
 
+	//홈페이지 수정페이지로 정보 보내기
+	public Map<String,Object> getHomeInfo(HttpSession session) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result=tpl.exchange("http://localhost:8087/api/users/homeUpdate", HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
+	}
+	
+	//홈페이지 정보 수정하기
+		public int homeUpdate(MiniHome home,HttpSession session) {
+			RestTemplate tpl = new RestTemplate();
+			System.out.println("Service User" + home);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(home), headers);
+			String result=tpl.exchange("http://localhost:8087/api/users/homeUpdate", HttpMethod.POST, requestEntity, String.class).getBody();
+			System.out.println(result);
+			if(!result.equals("제작 실패")){
+				session.setAttribute("user", userInfo(session));
+				return 1;
+			}
+			return 0;
+		}
+
 }

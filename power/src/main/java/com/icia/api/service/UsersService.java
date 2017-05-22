@@ -198,4 +198,13 @@ public class UsersService {
 		
 		return 1;
 	}
+
+	//홈페이지 수정 정보가져오기
+	public Map<String, Object> getHomeInfo(String userId) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("home", dao.getHomeInfo(userId));
+		map.put("bigKind", dao.getBigTag(userId));
+		map.put("smallKind", dao.getSmallTag(userId));
+		return map;
+	}
 }
