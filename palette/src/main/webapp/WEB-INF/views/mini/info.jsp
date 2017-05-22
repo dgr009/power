@@ -17,10 +17,12 @@
 
 	$(function(){
 		
+		//alert($(location).attr('href'))	
 <%-- 		if(<%=user.getUserId() %>==null){ --%>
 // 			alert("권한이 없습니다")
 // 			location.href="/palette/user/login";
 // 		}
+		
 		
 		function print(result){
 			$("#comment").empty();
@@ -71,7 +73,6 @@
 							data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
 							dataType: 'JSON',
 							success : function(result){
-								
 								print(result);
 							}
 							
@@ -137,11 +138,9 @@
 	  
 	   		 });
 		})
-	
-		
-		
+
 	})
-	
+
 </script>
 </head>
 <body>
@@ -150,17 +149,24 @@
 		<table border="1">
 			<tr><td>게시글번호</td><td>${mini.free.freeNo.intValue() } </td></tr>
 			<tr><td>제목</td><td>${mini.free.freeTitle}</td></tr>
-			<tr><td>작성자</td><td>${mini.free.freeName}</td></tr>
+			<tr><td>작성자아이디</td><td>${mini.free.freeName}</td></tr>
 			<tr><td>조회수</td><td>${mini.free.freeHits.intValue()}</td></tr>
 			<tr><td>내용</td><td>${mini.free.freeContent}</td></tr>
 			<tr><td>게시시간</td><td>${mini.free.freeDate}</td></tr>
-			<tr><td>아이디</td><td>${mini.free.userId}</td></tr>
 			<tr><td>댓글 수</td><td id="repleCnt">${mini.free.freeRepleCnt.intValue()}</td></tr>
 		</table>
-		<input type="submit" value="수정">
+		<c:set var="userSession" value="<%=user.getUserId() %>" />
+		<c:set var="userName" value="${mini.free.freeName}" />
+				
+		<c:if test="${userSession eq userName}">
+			<input type="submit" value="수정">
+		</c:if>
+		
 	</form>
 	<form action="/palette/miniHome/${mini.free.userId }/freeDelete/${mini.free.freeNo.intValue()}" method="post">
-		<input type="submit" value="삭제">
+		<c:if test="${userSession eq userName}">
+			<input type="submit" value="삭제">
+		</c:if>	
 		<input type="hidden" value="${mini.userId }" name="userId" id="userId">
 		<input type="hidden" value="${mini.freeNo.intValue() }" name="freeNo" id="freeNo">
 	</form>

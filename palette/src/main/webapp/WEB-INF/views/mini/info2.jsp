@@ -24,13 +24,12 @@
 			<td>이름</td>
 			<td>조회수</td>
 			<td>게시시간</td>
-			<td>아이디</td>
 			<td>댓글 수</td>
 		</tr>
 		<c:forEach items="${mini2.list }" var="free">
 		<tr>			
 			<td>
-				${free.freeNo }
+				${free.freeNo.intValue() }
 			</td>
 			<td>
 				<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}">${free.freeTitle }</a>
@@ -43,9 +42,6 @@
 			</td>
 			<td>
 				${free.freeDate }
-			</td>
-			<td>
-				${free.userId }
 			</td>
 			<td>
 				${free.freeRepleCnt.intValue() }
