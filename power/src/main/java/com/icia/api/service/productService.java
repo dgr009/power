@@ -43,19 +43,8 @@ public class productService {
 			dao.insertOption(o);
 		}
 	}
-	//등록상품변경
-	@Transactional
-	public void productUpdate(Item i,ArrayList<ItemOption> optionList,ArrayList<ItemImg> imgList){
-		dao.updateItem(i);
-		for (ItemImg itemImg : imgList) {
-			itemImg.setItemNo(i.getItemNo());
-			dao.updateItemImg(itemImg);
-		}
-		for (ItemOption itemOption : optionList) {
-			itemOption.setItemNo(i.getItemNo());
-			dao.updateOption(itemOption);
-		}
-	}//등록상품삭제
+
+	//등록상품삭제
 	public void deleteItem(int itemNo){
 		dao.deleteItem(itemNo);
 	}
@@ -235,12 +224,13 @@ public class productService {
 	}
 	//주문하기
 	@Transactional
-	public void productOrder(OrderStatement o,String ownerId){
+	public void productOrder(OrderStatement o){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		HashMap<String, Object> map1=new HashMap<String, Object>();
 		HashMap<String, Object> map2=new HashMap<String, Object>();
 		map.put("orderPrice",o.getOrderPrice());
 		map.put("userId", o.getUserId());
+		String ownerId=dao.getOwnerId(o.getItemNo());
 		dao.orderUserPoint(map);
 		map1.put("orderPrice", o.getOrderPrice());
 		map1.put("userId", ownerId);
@@ -286,5 +276,27 @@ public class productService {
 		dao.updateOrderStatement(orderNo);
 		
 	}
+	//등록상품변경
+	@Transactional
+	public void productUpdate(List<Map<String, Object>> itemList) {
+		for (Map<String, Object> map : itemList) {
+			dao.updateOption(map);
+			dao.updateItemImg(map);
+			dao.updateItem(map);
+		}
+
+	}
+	//등록상품변경
+	/*@Transactional
+	public void productUpdate(Item i,ArrayList<ItemOption> optionList,ArrayList<ItemImg> imgList){
+		dao.updateItem(i);
+		for (ItemImg itemImg : imgList) {
+			itemImg.setItemNo(i.getItemNo());
+			dao.updateItemImg(itemImg);
+		}
+		for (ItemOption itemOption : optionList) {
+			itemOption.setItemNo(i.getItemNo());
+			dao.updateOption(itemOption);
+		}*/
 
 }

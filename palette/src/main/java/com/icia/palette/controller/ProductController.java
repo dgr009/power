@@ -10,7 +10,8 @@ import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
+import javax.servlet.annotation.*;
+import javax.servlet.http.*;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.icia.palette.service.*;
+import com.icia.palette.util.*;
 import com.icia.palette.vo.*;
 
 @Controller
@@ -60,9 +62,46 @@ public class ProductController {
 	}
 	//상품수정하기폼으로
 	@RequestMapping(value="/{userid}/admin/productUpdate/{itemNo}",method=RequestMethod.POST)
-	public String productUpdateEnd(@PathVariable String userid ){
-		
-		return "products/ProductUpdate";
+	public String productUpdateEnd(@PathVariable String userid,@ModelAttribute Item item,@RequestParam String optionName,@RequestParam String optionNo,MultipartHttpServletRequest req
+			) throws IOException{
+		ArrayList<String> fileName=new ArrayList<String>();
+		java.util.List<MultipartFile> mw=new ArrayList<MultipartFile>();
+		Iterator<String> it=req.getFileNames();
+		java.util.List<Map<String, Object>> itemList=new ArrayList<Map<String,Object>>();
+		ArrayList<String> option=new ArrayList<String>();
+		String[] optionList=optionName.split(",");
+		String[] optionNoList=optionNo.split(",");
+		Map<String, Object> itemMap=new HashMap<String, Object>();
+		itemMap.put("itemPrice", item.getItemPrice());
+		itemMap.put("itemNo",item.getItemNo());
+		itemMap.put("itemName", item.getItemName());
+		itemMap.put("smallKind", item.getSmallKind());
+		itemMap.put("itemContent", item.getItemContent());
+		itemList.add(itemMap);
+		for (int i=0;i<optionList.length;i++) {
+			Map<String, Object> optionMap=new HashMap<String, Object>();
+			optionMap.put("optionNo", optionNoList[i]);
+			optionMap.put("optionName",optionList[i]);
+			itemList.add(optionMap);
+		}
+		while (it.hasNext()) {
+		 String imgNo=it.next();
+			fileName.add(imgNo);
+		}
+		for(int i=0;i<fileName.size();i++){
+			Map<String, Object> map=new HashMap<String, Object>();
+			MultipartFile f=req.getFile(fileName.get(i));
+			if(!f.getOriginalFilename().equals("")){
+			System.out.println("바꾼이름"+f.getOriginalFilename());
+			String name=UploadUtils2.storeAndGetFileName(f, ctx, path);
+			map.put("originalName", fileName.get(i));
+			map.put("fileName", name);
+			itemList.add(map);
+			}
+		}
+		service.productUpdate(itemList);
+		String a="redirect:/miniHome/"+userid+"/admin/registerList";
+		return a;
 	}
 	
 	//상품등록하기
@@ -110,7 +149,7 @@ public class ProductController {
 	//상품보기
 	@RequestMapping(value = "/{userId}/productMain", method = RequestMethod.GET)
 	public String productMain(@PathVariable String userId,Model model,@RequestParam int itemNo) {
-		
+		model.addAttribute("userId",userId);
 		model.addAttribute("result", service.productMain(itemNo));
 		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductMain";
@@ -122,9 +161,30 @@ public class ProductController {
 			HashMap<String, Object> map=new HashMap<String, Object>();
 			map.put("orderNo", orderNo);
 			map.put("deliNo", deliNo);
+			
 			System.out.println("여기값모냐"+itemNo);
 			service.deliveryInsert(map);
 			String a="redirect:/miniHome/"+user.getUserId()+"/admin/productOrderList?itemNo="+itemNo;
+			return a;
+		}
+		//상품주문하기페이지로
+		@RequestMapping(value = "/{userId}/productOrder/{itemNo}", method = RequestMethod.GET)
+		public String productOrder(@PathVariable String userId,@PathVariable int itemNo,@RequestParam String itemOption,@RequestParam int itemPrice,@RequestParam String itemName,@RequestParam int itemSize,Model model) {
+			model.addAttribute("itemSize", itemSize);
+			model.addAttribute("itemOption", itemOption);
+			model.addAttribute("itemName", itemName);
+			model.addAttribute("itemPrice", itemPrice);
+			model.addAttribute("itemNo", itemNo);
+			model.addAttribute("kind", service.productKind(userId));
+			model.addAttribute("result", service.productMain(itemNo));
+			return "products/ProductOrder";
+		}
+		//상품주문
+		@RequestMapping(value = "/{userId}/productOrder/{itemNo}", method = RequestMethod.POST)
+		public String productOrderEnd(@PathVariable int itemNo,@PathVariable String userId,@ModelAttribute OrderStatement o) {
+			System.out.println(o.toString());
+			service.productOrder(o);
+			String a="redirect:/miniHome/"+userId+"/main";
 			return a;
 		}
 	

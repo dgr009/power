@@ -125,7 +125,8 @@
                     </thead>
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
-						<tr><td>${free.itemDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productMain?itemNo=${free.itemNo.intValue()}">${free.itemName}</a></td><td>${free.itemInven.intValue()}</td>
+						<tr><td>${free.itemDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productMain?itemNo=${free.itemNo.intValue()}">${free.itemName}</a></td><td>${free.itemInven.intValue()}개</td>
+						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productUpdate/${free.itemNo.intValue()}'">상품수정</button></td>
 						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productDelete?itemNo=${free.itemNo.intValue()}'">상품삭제</button></td>
 						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">구매자목록</button></td>
 						</tr>

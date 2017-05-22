@@ -89,7 +89,7 @@
 				</div>
 			</div>
 		</section>
-
+<form action="/palette/miniHome/${userId}/productOrder/${result.item.itemNo.intValue()}" method="get">
 		<section class="content portfolio_single">
 			<div class="container">
 				<div class="row sub_content">
@@ -118,6 +118,8 @@
 							<input type="hidden"  id="itemNo" name="itemNo" value="${result.item.itemNo.intValue()}">
 							<p>상품 가격<span></span> :${result.item.itemPrice.intValue()}원
 							</p>
+							<input type="hidden" name="itemPrice" value="${result.item.itemPrice.intValue()}">
+							<input type="hidden" name="itemName" value="${result.item.itemName}">
 							<p>상품 개수: <select name="itemSize">
 							<option value=1>1</option>
 							<option value=2>2</option>
@@ -148,7 +150,7 @@
 											<button type="button"
 												 style="color: white;"
 												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
-												type="button"
+												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
 												href="/hooligan/product/evalutionList?product_no="><input
@@ -163,7 +165,7 @@
 						</div>
 					</div>
 
-
+</form>
 
 
 

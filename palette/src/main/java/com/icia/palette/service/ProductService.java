@@ -105,12 +105,10 @@ public class ProductService {
 		HttpHeaders headers=new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId), headers);
-		System.out.println("여기는 수민아 들어오냐");
 		String result = tpl
 				.exchange("http://localhost:8087/api/miniHome/productKind", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
 		Map<String, Object> s=new Gson().fromJson(result, Map.class);
-		System.out.println("카테고리뿌려봐"+s);
 		return s;
 	}
 	public void deliveryInsert(HashMap<String, Object> map) {
@@ -122,6 +120,28 @@ public class ProductService {
 	
 		
 	
+	}
+	//상품업데이트하기
+	public void productUpdate(List<Map<String, Object>> itemList) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		System.out.println("안녕들어왔냐"+itemList.toString());
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(itemList), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/productUpdate", HttpMethod.POST, requestEntity, String.class).getBody();
+	
+		
+	
+	}
+	public void productOrder(OrderStatement o) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(o), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/productOrder", HttpMethod.POST, requestEntity, String.class).getBody();
+	
+		
+		
 	}
 	
 }

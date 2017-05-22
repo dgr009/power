@@ -160,6 +160,7 @@ function check(){
 												<c:forEach items="${result.itemOption}" var="free">
 													<span> <input type="text" name="optionName"
 														value="${free.optionName}">
+														<input type="hidden" value="${ free.optionNo.intValue()}" name="optionNo">
 													</span>
 													<br />
 												</c:forEach>
@@ -191,7 +192,7 @@ function check(){
 											<br>
 											<div>
 												<div>
-													<button type="button" style="color: white;"
+													<button type="submit" style="color: white;"
 														class="btn btn-default btn-lg" id="basket">상품수정</button>
 													<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
 												</div>
@@ -253,32 +254,7 @@ function check(){
 
 
 
-						<script type="text/javascript">
-	$(function(){
-		$("#basket").on("click",function(){
-			$.ajax({
-				url:"/api/miniHome/basket",
-				type:"post",
-				data : {"userId": '<%=user1.getUserId()%>
-							',
-																	"itemNo" : $(
-																			"#itemNo")
-																			.val()
-																},
-																dataType : 'JSON',
-																complete : function(
-																		r) {
-																	if (r.responseText == 1)
-																		alert("장바구니에 담겼습니다");
-																	else if (r.responseText == 0)
-																		alert("장바구니에 이미 담긴 상품입니다")
 
-																}
-
-															})
-												})
-							})
-						</script>
 
 						<!-- Start Style Switcher -->
 						<div class="switcher"></div>

@@ -81,6 +81,7 @@ public class ProductController {
 	public String  productKind(@RequestBody String userId){
 		 return service.selectKind(userId);
 	}
+	//상품배송번호입력
 	@RequestMapping(value = "/deliveryInsert", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public void deliveryInsert(@RequestBody Map<String, Object> map) {
 	
@@ -88,4 +89,12 @@ public class ProductController {
 		
 		
 	}
+	//상품 업데이트하기
+	@RequestMapping(value = "/productOrder", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void productOrder(@RequestBody OrderStatement o) {
+	 service.productOrder(o);
+		
+		
+	}
+	
 }

@@ -30,16 +30,16 @@ insert into item_img values(#{imgNo},#{imgName},#{itemNo})
 </insert>
 <!-- 상품정보변경 -->
 <!--상품업데이트 -->
-<update id="updateItem" parameterType="Item">
-update item set item_name=#{itemName},item_content=#{itemContent},item_price=#{itemPrice},item_size=#{itemSize},small_kind=#{smallKind}
+<update id="updateItem" parameterType="hashmap">
+update item set item_name=#{itemName},item_content=#{itemContent},item_price=#{itemPrice},small_kind=#{smallKind} where item_no=#{itemNo}
 </update>
 <!-- 상품옵션변경 -->
-<update id="updateOption" parameterType="ItemOption">
-update item_option set(option_name={optionName}) where option_no=#{optionNo}
+<update id="updateOption" parameterType="hashmap">
+update item_option set option_name=#{optionName} where option_no=#{optionNo}
 </update>
 <!-- 상품사진변경하기 -->
-<update id="updateItemImg" parameterType="ItemImg">
-update item_img set img_name=#{imgName} where img_no=#{imgNo}
+<update id="updateItemImg" parameterType="hashmap">
+update item_img set img_name=#{fileName} where img_name=#{originalName}
 </update>
 <!-- 등록 상품조회 개수 -->
 <select id="selectItemListByKindCnt" parameterType="hashmap" resultType="int">
@@ -247,6 +247,10 @@ select * from(select rownum rnum,b* from (select i.item_name,o.item_no,o.order_s
 ]]>
 </select>
 <!-- 주문하기 -->
+<!-- 상품등록자찾기 -->
+<select id="getOwnerId" parameterType="int" resultType="String">
+select user_id from item where item_no=#{itemNo}
+</select>
 <!-- 회원포인트차감 -->
 <update id="orderUserPoint" parameterType="hashmap">
 update users set user_point=user_point-#{orderPrice} where user_id=#{userId}
@@ -260,7 +264,7 @@ update users set user_point=user_point+#{orderPrice} where user_id=#{userId}
 <selectKey keyProperty="orderNo" resultType="int" order="BEFORE">
 select orderno_seq.nextval from dual 
 </selectKey>
-insert into order_statement values(#{orderNo},'배송준비중',#{orderSize},#{orderPrice},sysdate,#{itemNo},#{userId},#{optionName}) 
+insert into order_statement values(#{orderNo},'배송준비중',#{orderSize},#{orderPrice},sysdate,#{userId},#{itemNo},#{optionName}) 
 </insert>
 <!--상품재고차감 -->
 <update id="updateItemInven" parameterType="hashmap">

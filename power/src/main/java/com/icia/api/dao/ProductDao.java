@@ -31,16 +31,16 @@ public class ProductDao {
 		tpl.insert("api.dao.ProductDao.insertItemImg", img);
 	}
 	//상품정보변경
-	public void updateItem(Item i){
-		tpl.update("api.dao.ProductDao.updateItem", i);
+	public void updateItem(Map<String, Object> map){
+		tpl.update("api.dao.ProductDao.updateItem", map);
 	}
 	//상품옵션변경하기
-	public void updateOption(ItemOption i){
-		tpl.update("api.dao.ProductDao.updateOption", i);
+	public void updateOption(Map<String, Object> map){
+		tpl.update("api.dao.ProductDao.updateOption", map);
 	}
 	//상품사진변경하기
-	public void updateItemImg(ItemImg img){
-		tpl.update("api.dao.ProductDao.updateItemImg", img);
+	public void updateItemImg(Map<String, Object> map){
+		tpl.update("api.dao.ProductDao.updateItemImg", map);
 	}
 	//등록상품삭제하기
 	public void deleteItem(int itemNo){
@@ -223,6 +223,10 @@ public class ProductDao {
 		String userId=Id.substring(1, d-1);
 		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
 	
+	}
+	//오너가져오기
+	public String getOwnerId(int itemNo) {
+		return tpl.selectOne("api.dao.ProductDao.getOwnerId", itemNo);
 	}
 	
 }
