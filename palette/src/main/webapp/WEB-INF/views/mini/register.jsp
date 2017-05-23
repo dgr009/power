@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@page import="com.icia.palette.vo.Users"%>
+<%@ page errorPage="error.jsp" %>
+<% Users user = (Users) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 	
 <script type="text/javascript">
-	alert(${userId});
+		//로그인 안하고 주소창에 쳐서 들어갈때 방지
+		if('<%=user.getUserId()%>' === null){
+			 alert("로그인 필요")
+		}else{
+			alert("환영합니다")
+		}
 </script>
 </head>
 <body>

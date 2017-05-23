@@ -8,9 +8,9 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
+import com.icia.palette.dao.*;
 import com.icia.palette.service.*;
 import com.icia.palette.vo.*;
-
 @Controller
 @RequestMapping("/miniHome")
 public class MiniHomeController {
@@ -19,11 +19,14 @@ public class MiniHomeController {
 	@Autowired
 	private MiniHomeBoardService service;
 	
+	@Autowired
+	private MiniHomeBoardDao dao;
+	
 	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
 		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo, userId));
-		return "mini/info";
+		return "mini/freeView";
 	}
 	//공지 뷰
 	@RequestMapping(value="/{userId}/noticeView/{noticeArticleNo}",method = RequestMethod.GET)
@@ -51,14 +54,16 @@ public class MiniHomeController {
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
-		return "mini/register";
+		model.addAttribute("nn",dao.seq());
+		return "mini/freeRegister";
 	}
 	
 	//추가 끝
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.POST)
-	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free){
+	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free,@RequestParam int seq){
 		service.miniHomeRegisterFree(session, free);
-		return "redirect:freeList?pageNo=1";
+		seq = seq-1;
+		return "redirect:freeView/"+seq;
 	}
 	
 	//공지게시판 추가 시작

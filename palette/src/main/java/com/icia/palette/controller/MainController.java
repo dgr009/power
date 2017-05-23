@@ -16,4 +16,9 @@ public class MainController {
 		return "main/main";
 		
 	}
+//	@RequestMapping(value="/test",method=RequestMethod.GET)
+//	public String test(){
+//		return "mini/freeView";
+//		
+//	}
 }

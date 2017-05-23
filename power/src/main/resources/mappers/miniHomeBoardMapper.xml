@@ -56,6 +56,11 @@
 		insert into free_board values(#{freeNo},#{freeTitle},#{freeName},0,#{freeContent},sysdate,#{userId},0)
 	</insert>
 	
+	<!-- 게시글 번호 찾기-->
+	<select id="seq" resultType="int">
+		select seq_free.nextval from dual
+	</select>
+	
 	<!--  (개인)자유게시판 수정-->
 	<update id="miniHomeUpdateFree" parameterType="MiniHomeFree">
 		update free_board set free_title=#{freeTitle}, free_content=#{freeContent} where free_no=#{freeNo}

@@ -9,6 +9,7 @@ import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.google.gson.*;
+import com.icia.api.dao.*;
 import com.icia.api.service.*;
 import com.icia.api.vo.*;
 
@@ -20,6 +21,8 @@ public class MiniHomeController {
 	@Autowired
 	private MiniHomeBoardService service;	
 	
+	@Autowired
+	private MiniHomeBoardDao dao;	
 	
 	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
@@ -58,6 +61,7 @@ public class MiniHomeController {
 	public ResponseEntity<String> create(@RequestHeader("token") String token, @RequestBody MiniHomeFree free) throws BindException {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
 		int result = service.miniHomeRegisterFree(free);
+		int nn = dao.seq();
 		
 		if(result==1){
 			return new ResponseEntity<String>(free.toString(),HttpStatus.OK);
