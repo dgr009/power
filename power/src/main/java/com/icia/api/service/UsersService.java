@@ -133,7 +133,11 @@ public class UsersService {
 	}
 
 	//회원 주문 내역에서 주문 취소하기
+	@Transactional
 	public int userOrderDelete(int orderNo) {
+		dao.itemInvenUp(orderNo);
+		dao.orderPointUp(orderNo);
+		dao.ownerPointDown(orderNo);
 		return dao.orderDelete(orderNo);
 		
 	}
