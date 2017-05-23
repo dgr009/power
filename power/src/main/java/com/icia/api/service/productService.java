@@ -91,7 +91,7 @@ public class productService {
 			map1.put("end", p.getEndArticle());
 			map1.put("userId", userId);
 			HashMap<String, Object> result=new HashMap<String, Object>();
-			List<ItemList> r=dao.selectItemListByKind(map1);
+			List<ItemList> r=dao.selectItemListByKind1(map1);
 			result.put("result", r);
 			result.put("pagination", p);
 			System.out.println("api서버"+result);
@@ -289,5 +289,23 @@ public class productService {
 		//result.put("score", dao.selectItemListOrderByScore(userId));
 		return new Gson().toJson(result);
 	}
-
+	
+	//미니홈피카테고리로 검색하기
+	@Transactional
+	public String productSelectKind(Map<String, Object> map) {
+	Map<String, Object> result=new HashMap<String, Object>();
+	int pageNo=(Integer) map.get("pageNo");
+	System.out.println("한번와봐 아이디"+map.get("userId"));
+	Pagination p=PagingUtil2.setPageMaker(pageNo, dao.productSelectKindCnt(map));
+	System.out.println("여기한번찍어봐 수민아 개수야"+dao.productSelectKindCnt(map));
+	map.put("start", p.getStartArticle());
+	map.put("end", p.getEndArticle());
+	List<ItemList> list= dao.selectItemListByKind2(map);
+	result.put("result", list);
+	result.put("pagination", p);
+	System.out.println("찍어봐임마"+result.get("result").toString());
+		return new Gson().toJson(result);
+	}
+	
+	
 }

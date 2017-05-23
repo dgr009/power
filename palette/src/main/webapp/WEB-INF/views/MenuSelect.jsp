@@ -30,7 +30,7 @@
                      	<li><a href="#">${big.bigKind}</a>
                      		<ul class="dropdown-menu">
                      			<c:forEach items="${kind.smallKind }" var="small">
-                     				<c:if test="${big.bigKind==small.bigKind}"><li><a href="/hooligan/main/notice/list">${small.smallKind}</a></li></c:if>
+                     				<c:if test="${big.bigKind==small.bigKind}"><li><a href="/palette/miniHome/${userId}/productKind/${small.smallKind}">${small.smallKind}</a></li></c:if>
                      			</c:forEach>
                      		</ul>
                      		</li>

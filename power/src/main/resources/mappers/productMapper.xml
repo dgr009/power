@@ -43,10 +43,21 @@ update item_img set img_name=#{fileName} where img_name=#{originalName}
 </update>
 <!-- 등록 상품조회 개수 -->
 <select id="selectItemListByKindCnt" parameterType="hashmap" resultType="int">
-select count(*) from item  where  user_id=#{userId}
+select count(*) from item  where  user_id=#{userId} 
 </select>
-<!-- 등록 상품조회(리스트 )-->
+<!-- 카테고리 상품조회(리스트 )-->
 <select id="selectItemListByKind" parameterType="hashmap" resultType="ItemList">
+<![CDATA[
+select * from
+(select rownum rnum,b.* from 
+(select i.item_no,i.item_date,i.item_price,item_name,m.img_name,i.item_inven,user_id
+from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and i.small_kind=#{smallKind} and m.img_no in(select min(img_no) from item_img group by item_no)) b
+where rownum<=#{end}) where rnum>=#{start}
+]]>
+
+</select>
+<!--상품등록리스트 -->
+<select id="selectItemListByKind1" parameterType="hashmap" resultType="ItemList">
 <![CDATA[
 select * from
 (select rownum rnum,b.* from 
@@ -107,6 +118,12 @@ insert into delivery values(#{deliNo},sysdate,#{orderNo})
 select count(*) from item where user_id=#{userId} and item_name=%#{itemName}%
 ]]>
 </select>
+<!-- 상품카테고리로 검색 -->
+<select id="productSelectKindCnt" parameterType="hashmap" resultType="int">
+select count(*) from item where user_id=#{userId} and small_kind=#{smallKind} 
+</select>
+<!-- 상품카테고리로 검색 -->
+
 <!-- 이름으로검색 -->
 <select id="selectItemByName" parameterType="hashmap" resultType="ItemList">
 <![CDATA[

@@ -1,211 +1,185 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+    <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Portfolio Single - Edge Responsive Multipurpose Template</title>
-<meta name="description" content="">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Portfolio Single - Edge Responsive Multipurpose Template</title>
+   <meta name="description" content="">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<!-- CSS FILES -->
-<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
+    <!-- CSS FILES -->
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
-<link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/style.css"/>" media="screen"
+	data-name="skins">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/layout/wide.css"/>"
+	data-name="layout">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
-	media="screen" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/switcher.css"/>" media="screen" />
 
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+       <style>
+      .panel-body, .panel-heading{
+         text-align: center;
+      }
+      
+      .panel-body, .panel-heading{
+         text-align: center;
+      }
+         .name li{
+         list-style : none;
+         float : left;
+         margin : 15px 10px;
+      }
+      .name{
+      text-align: center;
+      padding-left: 200px;
+      padding-right: 200px;
+      }
+      .post_img{
+         display: inline-block;
+         
+      
+         
+      }
+      .container{
+         text-align: center;
+      }
+      #jobs{
+         text-align: center;
+         display: inline-block;
+      }
 
-
-<style>
-.panel-body, .panel-heading {
-	text-align: center;
-}
-
-.panel-body, .panel-heading {
-	text-align: center;
-}
-
-.name li {
-	list-style: none;
-	float: left;
-	margin: 15px 10px;
-}
-
-.name {
-	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
-}
-
-.post_img {
-	display: inline-block;
-}
-
-.container {
-	text-align: center;
-}
-
-#jobs {
-	text-align: center;
-	display: inline-block;
-}
-
-</style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+   </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script>
+      
+   </script>
 </head>
-<script>
-$(document).ready(function(){
-
-	 var result = <%=request.getAttribute("result")%>
-	 var list = result.list;
-	var pagination = result.pagination;
-	var pageNo = pagination.pageNo;
-	
-	var typeNo = <%=request.getParameter("type_no")%>
-	
-	 $.each(list, function(index,p){
-	  var image = p.mainImagePath;
-	  var price = p.price;
-	  var name= p.productName;
-	  
-	  $("#sumin").append("<li class='list_item col-lg-4 col-md-6 col-sm-6'><figure class='touching effect-bubba'><img src='/hooligan/employees/productImg/"+image+"' alt='' style='width:500px; height:300px; ' class='img-responsive'/><div class='option'><a href='/hooligan/product/productMain?product_no="+p.productNo+"' class='fa fa-search mfp-image'></a></div><figcaption><h5>"+name+"</h5><p>"+price+"</p></figcaption></figure></li>").trigger("create");
-	  
-	 })
-	 $("#pagination").append("<ul class='pagination' style='height: 20px;' ></ul>");
-		var p = $("#pagination ul");
-		if (pagination.prev > -1)
-			p.append("<li><a href='productList?type_no="+typeNo+"&pageNo=" + pagination.prev + "'>이전으로</a></li>");
-		for (var i = pagination.startPage; i <= pagination.endPage; i++)
-			p.append("<li><a href='productList?type_no="+typeNo+ "&pageNo="+ i + "'>" + i + "</a></li>");
-		if (pagination.next > -1)
-			p.append("<li><a href='productList?type_no="+typeNo+"&pageNo=" + pagination.next + "'>다음으로</a></li>");
-
-	 });   
-</script>
-
 <body>
-	<!--Start Header-->
-	<header id="header">
+<!--Start Header-->
+    <header id="header">
+  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
+        <div id="menu-bar">
+            <div class="container">
+                <div class="row">
+                    <!-- Logo / Mobile Menu -->
+                    <div class="col-lg-3 col-sm-3 ">
+                        <div id="logo">
+                       
+                        </div>
+                    </div>
+                    <!-- Navigation
+                    ================================================== -->
+                  <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
+        <!--End Header-->
+        <!--start wrapper-->
+        <section class="wrapper">
+         <section class="page_head">
+            <div class="container"></div>
+            </div>
+         </section>
 
-		<!--end Header-->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-3">
-						<div id="logo">
-							<h1>
-								<a href="/hooligan/main/index"><img
-									src="/hooligan/images/logo.png" /></a>
-							</h1>
-						</div>
-					</div>
-					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
-	<!-- =====================메인 메뉴(우측상단) 끝============================= -->
-	<!--End Header-->
-	<!--start wrapper-->
-	<section class="wrapper">
-		<section class="page_head">
-			<div class="container"></div>
-			</div>
-		</section>
+                    <!--물건 표시란 시작-->
+                <div class="mixed-container masonry_wrapper">
+			<c:forEach items="${result.result }" var="free">
+                        <div class="item responsive">
+                            <figure class="touching effect-bubba">
+                            <!-- 상품 이미지 표시 -->
+                                <img style="width: 200	px; height: 250px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
 
-		<section class="content portfolio_single">
-			<div class="container">
-				<div class="row sub_content">
-
-
-
-
-
-					<div class="col-lg-1 col-sm-1"></div>
-
-
-
-					<div class="col-lg-10 col-sm-10">
-
-						<div class="col-lg-12 isotope">
-							<!--begin portfolio filter -->
-
-							<!--end portfolio filter -->
-
-							<!--begin portfolio_list -->
-
-						<div  id="sumin">
-						
-							
-							
-							
-							
-							
-							</div>
-							
-							<!--end isotope -->
-						</div>
-					
-					</div>
-	<div class="col-lg-1 col-sm-1"></div>
-				</div>
-			</div>
-			</div>
+                                <div class="option">
+                                    <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
+                                </div>
+                                <figcaption class="item-description">
+                                <br><br>
+                                    <!-- 상품명 -->
+                                    <h5>${free.itemName}</h5>
+                                    <!-- 상품 가격 -->
+                                    <p>${free.itemPrice.intValue()}원</p>
+                                       <!-- 상품 상태 표시-->
+                                    <div class="col-sm-4 images-style-inner">
+                                    </div>
+                                    <!-- 상품 상태 표시끝 -->
+                                </figcaption>
+                                
+                            </figure>
+                        </div>
+</c:forEach>
+              
 
 
 
+            
 
-
-		<div class="col-sm-12 text-right" style="height: 20px;">
-							
-						  
-                    <br><br>
-	                    <div id="pagination" style="text-align: center;"></div>
-	                  
-                    <br><br> <br><br>
+                    </div>
+                    <!--물건 표시란 시작-->
                 </div>
-			</div>
-			<!--./div-->
-		</section>
-	</section>
+                
+                
+                    <!--페이징 시작 -->
+                <div class="col-sm-12 text-center">
+                    <ul class="pagination">
+                        	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/productKind/${smallKind}?pageNo=${result.pagination.prev}">이전으로</a></c:if>
+			
+			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+				<a href="/palette/miniHome/${userId}/productKind/${smallKind }?pageNo=${i}">${i} </a>
+			</c:forEach>
+			
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/${userId }/productKind/${smallKind }?pageNo=${result.pagination.next}">다음으로</a></c:if>
+                </div>
+                    </ul>
+                </div>
+            </div> <!--페이징 끝 -->
+        </div> <!--./div-->
+    </section>
+</section>
+                        
+                     
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+		<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+		<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
+		<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
+		<!-- jQuery cookie -->
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/styleswitch.js"/>"></script>
+		<!-- Style Colors Switcher -->
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/swipe.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
 
-
-	<script type="text/javascript" src="/hooligan/js/jquery-1.10.2.min.js"></script>
-	<script src="/hooligan/js/bootstrap.min.js"></script>
-	<script src="/hooligan/js/jquery.easing.1.3.js"></script>
-	<script src="/hooligan/js/retina-1.1.0.min.js"></script>
-	<script type="text/javascript" src="/hooligan/js/jquery.cookie.js"></script>
-	<!-- jQuery cookie -->
-	<script type="text/javascript" src="/hooligan/js/styleswitch.js"></script>
-	<!-- Style Colors Switcher -->
-	<script type="text/javascript"
-		src="/hooligan/js/jquery.smartmenus.min.js"></script>
-	<script type="text/javascript"
-		src="/hooligan/js/jquery.smartmenus.bootstrap.min.js"></script>
-	<script type="text/javascript" src="/hooligan/js/jquery.jcarousel.js"></script>
-	<script type="text/javascript" src="/hooligan/js/jflickrfeed.js"></script>
-	<script type="text/javascript"
-		src="/hooligan/js/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript" src="/hooligan/js/jquery.isotope.min.js"></script>
-	<script type="text/javascript" src="/hooligan/js/swipe.js"></script>
-	<script type="text/javascript"
-		src="/hooligan/js/jquery-scrolltofixed-min.js"></script>
-
-
-	<script type="text/javascript">
+                    <script type="text/javascript">
                         $(document).ready(function () {
                             $.fn.carousel = function (op) {
                                 var op, ui = {};
@@ -318,11 +292,60 @@ $(document).ready(function(){
                             });
                         });
                     </script>
-		<script type="text/javascript">
+                    <script>
+    (function ($) {
+        var $container = $('.masonry_wrapper'),
+                colWidth = function () {
+                    var w = $container.width(),
+                            columnNum = 1,
+                            columnWidth = 0;
+                    if (w > 1200) {
+                        columnNum  = 3;
+                    } else if (w > 900) {
+                        columnNum  = 3;
+                    } else if (w > 600) {
+                        columnNum  = 2;
+                    } else if (w > 300) {
+                        columnNum  = 1;
+                    }
+                    columnWidth = Math.floor(w/columnNum);
+                    $container.find('.item').each(function() {
+                        var $item = $(this),
+                                multiplier_w = $item.attr('class').match(/item-w(\d)/),
+                                multiplier_h = $item.attr('class').match(/item-h(\d)/),
+                                width = multiplier_w ? columnWidth*multiplier_w[1]-4 : columnWidth-4,
+                                height = multiplier_h ? columnWidth*multiplier_h[1]*0.5-4 : columnWidth*0.5-4;
+                        $item.css({
+                            width: width,
+                            height: height
+                        });
+                    });
+                    return columnWidth;
+                }
 
+        function refreshWaypoints() {
+            setTimeout(function() {
+            }, 1000);
+        }
+        function setPortfolio() {
+            setColumns();
+            $container.isotope('reLayout');
+        }
 
+        isotope = function () {
+            $container.isotope({
+                resizable: true,
+                itemSelector: '.item',
+                masonry: {
+                    columnWidth: colWidth(),
+                    gutterWidth: 0
+                }
+            });
+        };
+        isotope();
+        $(window).smartresize(isotope);
+    }(jQuery));
 </script>
-
-	<script src="/hooligan/js/main.js"></script>
+               	<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>

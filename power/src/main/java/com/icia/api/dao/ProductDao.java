@@ -177,9 +177,20 @@ public class ProductDao {
 	public int selectItemListByKindCnt(HashMap<String, Object> map){
 		return tpl.selectOne("api.dao.ProductDao.selectItemListByKindCnt",map);
 	}
-	//카테고리별 상품조회(리스트)
-	public List<ItemList> selectItemListByKind(HashMap<String, Object> map){
+	//카테고리별상품리스트개수
+	public int productSelectKindCnt(Map<String, Object> map) {
+		return tpl.selectOne("api.dao.ProductDao.productSelectKindCnt", map);
+	}
+	//카테고리별 상품조회리스트
+	public List<ItemList> selectItemListByKind2(Map<String, Object> map){
+		System.out.println("디비카테고리");
 		return tpl.selectList("api.dao.ProductDao.selectItemListByKind", map);
+	}
+	
+	//등록 상품조회(리스트)
+	public List<ItemList> selectItemListByKind1(Map<String, Object> map){
+		System.out.println("디비카테고리");
+		return tpl.selectList("api.dao.ProductDao.selectItemListByKind1", map);
 	}
 	//미니홈메인 상품등록순 9개
 	public List<ItemList> selectItemListOrderByDate(String id){
@@ -234,5 +245,6 @@ public class ProductDao {
 	public String getOwnerId(int itemNo) {
 		return tpl.selectOne("api.dao.ProductDao.getOwnerId", itemNo);
 	}
+	
 	
 }

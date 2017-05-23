@@ -35,15 +35,18 @@ public class ProductController {
 	public String productRegisterReady(@PathVariable String userid){
 		return new Gson().toJson(service.productRegisterReady(userid));
 	}
+	//상품등록시종류값
 	@RequestMapping(value="/admin/kindList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  productRegisterEnd(@RequestBody String userId){
 		 return 	service.productRegisterReady(userId);
 	}
+	//상품등록
 	@RequestMapping(value="/admin/productRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public ResponseEntity<String>  productRegisterEnd(@RequestBody Item item){
 	service.productRegister(item);
 		 return new ResponseEntity<String>("success",HttpStatus.OK);//성공은 200
 	}
+	//상품등록리스트
 	@RequestMapping(value="/admin/productList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  productList(@RequestBody Map<String, Object> map){
 		int pageNo=(Integer) map.get("pageNo");
@@ -51,17 +54,20 @@ public class ProductController {
 		System.out.println("여기한번찍어봐라"+service.selectItemListByKind(pageNo, userId));
 		 return service.selectItemListByKind(pageNo, userId);
 	}
+	//상품삭제하기
 	@RequestMapping(value="/admin/productDelete", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  productDelete(@RequestBody int itemNo){
 		 service.deleteItem(itemNo);
 		 return null;
 	}
+	//상품주문한회원리스트
 	@RequestMapping(value="/admin/productOrderList", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  productOrderList(@RequestBody Map<String, Object> map){
 		int pageNo=(Integer) map.get("pageNo");
 		int itemNo=(Integer)map.get("itemNo");
 		 return service.orderList(itemNo,pageNo);
 	}
+	//상품정보보기
 	@RequestMapping(value="/productMain", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
 	public String  product(@RequestBody int itemNo){
 		 return service.selectItemDetail(itemNo);
@@ -89,7 +95,7 @@ public class ProductController {
 		
 		
 	}
-	//상품 업데이트하기
+	//주문하기
 	@RequestMapping(value = "/productOrder", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public void productOrder(@RequestBody OrderStatement o) {
 	 service.productOrder(o);
@@ -102,5 +108,20 @@ public class ProductController {
 	return service.getMain(userId);
 		
 	}
+	//미니홈피카테고리로 검색
+	@RequestMapping(value = "/productSelectKind", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String productSelectKind(@RequestBody Map<String, Object> map) {
+	return service.productSelectKind(map);
+		
+	}
+	//상품업데이트
+	@RequestMapping(value = "/productUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void productUpdate(@RequestBody List<Map<String, Object>> itemList) {
+	 service.productUpdate(itemList);;
+	}
+		
+	
+	
+	
 	
 }
