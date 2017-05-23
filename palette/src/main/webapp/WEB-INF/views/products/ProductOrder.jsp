@@ -37,6 +37,19 @@
     <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+$(function(){
+	$("#orderBtn").on("click",function(){			
+		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize}){
+			$("#orderForm").submit();}
+		else if(<%=user1.getUserPoint()%><${itemPrice*itemSize}){
+			alert("포인트를 충전해주세요");
+		}else if(${itemInven}<${itemSize}){
+			alert("재고가 부족합니다");
+		}
+	})
+	
+
+})
 
 </script>
 </head>
@@ -54,7 +67,7 @@
                 <!-- Logo / Mobile Menu -->
                  <div  class="col-lg-3 col-sm-3 ">
                     <div id="logo">
-                        <h1><a href="index.html"><img src="/hooligan/images/logo.png" alt=""/></a></h1>
+
                     </div>
                 </div>
                     <!-- =====================메인 메뉴(우측상단) 시작============================= -->
@@ -65,7 +78,7 @@
 	<!--start wrapper-->
 	
 		
-		 <form action="/palette/miniHome/${userId}/productOrder/${itemNo}" method="POST" >
+		 <form id="orderForm" action="/palette/miniHome/${userId}/productOrder/${itemNo}" method="POST" >
                 <section class="wrapper">
         <section class="page_head">
             <div class="container">
@@ -158,7 +171,7 @@
 				<div class="col-lg-1 col-md-1 col-sm-1"></div>
 				<div class="col-lg-6 col-md-6 col-sm-6">
            
-                <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="주문하기">
+                <button type="button" data-loading-text="Loading..."  id="orderBtn" class="btn btn-default btn-lg" >주문하기</button>
 						
 				</div>
 				<div class="col-lg-5 col-md-5 col-sm-5"></div>

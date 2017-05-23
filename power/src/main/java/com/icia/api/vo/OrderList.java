@@ -16,5 +16,6 @@ public class OrderList {
 	private String optionName;
 	private int itemNo;
 	private String itemName;
+	private String userId;
 
 }

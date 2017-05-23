@@ -25,9 +25,7 @@
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 결제</a>
 								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 폐쇄</a>
-								</div>
+								
 
 							</div>
 </body>

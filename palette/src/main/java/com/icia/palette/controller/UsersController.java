@@ -179,7 +179,7 @@ public class UsersController {
 	@RequestMapping(value = "/orderDelete", method = RequestMethod.GET)
 	public String orderDelete(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo,
 			@RequestParam int orderNo) {
-		service.deleteOrder(orderNo);
+		service.deleteOrder(session,orderNo);
 		model.addAttribute("result", service.userOrderList(session, pageNo));
 		return "users/orderStatement";
 	}
@@ -254,4 +254,10 @@ public class UsersController {
 		return "main/main";
 	}
 
+	//홈페이지 비활성화
+	@RequestMapping(value = "/homeDelete", method = RequestMethod.GET)
+	public String homeDeleteStart() {
+		return "users/homeDelete";
+	}
+	
 }

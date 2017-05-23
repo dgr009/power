@@ -54,14 +54,8 @@ public class ProductDao {
 	public void updateOrderStatement(int orderNo){
 		tpl.update("api.dao.ProductDao.updateOrderStatement",orderNo);
 	}
-	//이름으로검색 개수
-	public int selectItemByNameCnt(HashMap<String, Object> map){
-		return tpl.selectOne("api.dao.ProductDao.selectItemByNameCnt", map);
-	}
-	//이름으로검색 //홈피주인이름,상품이름 입력
-	public List<ItemList> selectItemByName(HashMap<String, Object> map){
-		return tpl.selectList("api.dao.ProductDao.selectItemByName", map);
-	}
+
+
 	
 
 	//제품상세정보보기
@@ -177,21 +171,46 @@ public class ProductDao {
 	public int selectItemListByKindCnt(HashMap<String, Object> map){
 		return tpl.selectOne("api.dao.ProductDao.selectItemListByKindCnt",map);
 	}
-	//카테고리별 상품조회(리스트)
-	public List<ItemList> selectItemListByKind(HashMap<String, Object> map){
+	//이름으로 상품검색 개수
+	public int productSearchCnt(Map<String, Object> map) {
+		return tpl.selectOne("api.dao.ProductDao.productSearchCnt", map);
+	}
+	//이름으로검색 //홈피주인이름,상품이름 입력
+	public List<ItemList> selectItemByName(Map<String, Object> map){
+		return tpl.selectList("api.dao.ProductDao.selectItemByName", map);
+	}
+	//카테고리별상품리스트개수
+	public int productSelectKindCnt(Map<String, Object> map) {
+		return tpl.selectOne("api.dao.ProductDao.productSelectKindCnt", map);
+	}
+	//카테고리별 상품조회리스트
+	public List<ItemList> selectItemListByKind2(Map<String, Object> map){
+		System.out.println("디비카테고리");
 		return tpl.selectList("api.dao.ProductDao.selectItemListByKind", map);
 	}
+	
+	//등록 상품조회(리스트)
+	public List<ItemList> selectItemListByKind1(Map<String, Object> map){
+		System.out.println("디비카테고리");
+		return tpl.selectList("api.dao.ProductDao.selectItemListByKind1", map);
+	}
 	//미니홈메인 상품등록순 9개
-	public List<ItemList> selectItemListOrderByDate(String userId){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByDate", userId);
+	public List<ItemList> selectItemListOrderByDate(String id){
+		int a=id.length();
+		String userId=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.selectItemListOrderByDate", userId);
 	}
 	//미니홈메인 상품재고순 9개
-	public List<ItemList> selectItemListOrderByInven(String userId){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByInven", userId);
+	public List<ItemList> selectItemListOrderByInven(String id){
+		int a=id.length();
+		String userId=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.selectItemListOrderByInven", userId);
 	}
 	//미니홈메인 베스트상품순 9개
-	public List<ItemList> selectItemListOrderByScore(String userId){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByScore", userId);
+	public List<ItemList> selectItemListOrderByScore(String id){
+		int a=id.length();
+		String userId=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.selectItemListOrderByScore", userId);
 	}
 	//주문회원리스트 개수
 	public int selectOrderListCnt(int itemNo) {
@@ -228,5 +247,7 @@ public class ProductDao {
 	public String getOwnerId(int itemNo) {
 		return tpl.selectOne("api.dao.ProductDao.getOwnerId", itemNo);
 	}
+
+	
 	
 }

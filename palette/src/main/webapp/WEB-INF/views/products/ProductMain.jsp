@@ -138,7 +138,7 @@
 							<p>
 								상품종류<span></span> :${result.item.smallKind}</p>
 							<p>
-								남은수량<span></span> :${result.item.itemInven.intValue()}개</p>
+								남은수량<span></span> :<input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">${result.item.itemInven.intValue()}개</p>
 							<ul class="progress-skill-bar mrg-0">
 
 							
@@ -181,7 +181,7 @@
 
 
 
-									<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>

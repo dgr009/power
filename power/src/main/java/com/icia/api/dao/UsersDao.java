@@ -246,4 +246,20 @@ public class UsersDao {
 		return tpl.delete("api.dao.UsersDao.usersDeleteSmallTag",userId);
 		
 	}
+
+	//주문 취소시 인벤(재고) 증가
+	public int itemInvenUp(int orderNo) {
+		return tpl.update("api.dao.UsersDao.usersItemInvenUp",orderNo);
+		
+	}
+
+	// 주문취소 주문자 포인트 증가
+	public void orderPointUp(int orderNo) {
+		tpl.update("api.dao.UsersDao.orderPointUp",orderNo);
+	}
+
+	// 주문취소 판매자 포인트 감소
+	public void ownerPointDown(int orderNo) {
+		tpl.update("api.dao.UsersDao.ownerPointDown",orderNo);
+	}
 }
