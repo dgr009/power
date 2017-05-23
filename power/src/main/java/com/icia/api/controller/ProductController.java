@@ -89,7 +89,15 @@ public class ProductController {
 		
 		
 	}
-	//상품 업데이트하기
+	
+	////상품수정하기
+	@RequestMapping(value = "/productUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void productUpdate(@RequestBody List<Map<String, Object>> list) {
+	 service.productUpdate(list);	
+		
+	}
+	
+	//상품 주문하기
 	@RequestMapping(value = "/productOrder", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public void productOrder(@RequestBody OrderStatement o) {
 	 service.productOrder(o);

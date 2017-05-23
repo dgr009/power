@@ -13,6 +13,13 @@
 	
 <script type="text/javascript">
 	
+	//최초 페이지가 로딩되면 한번만 새로고침
+	if (self.name != 'reload') {
+	    self.name = 'reload';
+	    self.location.reload(true);
+	}
+	else self.name = ''; 
+
 </script>
 </head>
 <body>
@@ -65,6 +72,7 @@
 		<input type="button" value="게시글 작성" 
 		onclick="window.location.href='/palette/miniHome/${userId }/freeRegister'" />
 		</form>
+		<button onclick="location.href='/palette/users/home'">홈으로</button>
 </body>
 </html>
 

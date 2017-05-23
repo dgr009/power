@@ -281,6 +281,7 @@ public class productService {
 	public void productUpdate(List<Map<String, Object>> itemList) {
 		for (Map<String, Object> map : itemList) {
 			dao.updateOption(map);
+			System.out.println("야야야야");
 			dao.updateItemImg(map);
 			dao.updateItem(map);
 		}

@@ -77,7 +77,7 @@
 						<nav id="breadcrumbs">
 							<ul>
 
-								<li><a href="index.html">Home</a></li>
+								<li><a href="/palette/miniHome/${userId}/main">Home</a></li>
 								<li>상품</li>
 							</ul>
 						</nav>
@@ -98,7 +98,7 @@
 						<div class="porDetCarousel">
 							<div class="carousel-content">
 							<c:forEach items="${result.itemImg }" var="img">
-							<img class="carousel-item" style="width:700px; height:500px;"
+							<img class="carousel-item" style="width:800px; height:500px;"
 									src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
 									</c:forEach>
 							</div>

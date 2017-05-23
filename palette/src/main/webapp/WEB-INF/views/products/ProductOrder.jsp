@@ -74,7 +74,7 @@
                         <nav id="breadcrumbs">
                             <ul>
 
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="/palette/miniHome/${userId}/main">Home</a></li>
                                 <li>주문하기</li>
                             </ul>
                         </nav>
