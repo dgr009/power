@@ -241,24 +241,6 @@ public class productService {
 		dao.updateItemInven(map2);
 	}
 
-	//미니홈메인 상품등록순9개
-	public String selectItemListOrderByDate(String userId){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListOrderByDate(userId));
-		return new Gson().toJson(result);
-	}
-	//미니홈메인 상품재고순9개
-	public String selectItemListOrderByInven(String userId){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListOrderByInven(userId));
-		return new Gson().toJson(result);
-	}
-	//미니홈메인 베스트상품순9개
-	public String selectItemListOrderByScore(String userId){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListOrderByScore(userId));
-		return new Gson().toJson(result);
-	}
 	//카테고리메뉴가져오기
 	public String selectKind(String userId){
 		HashMap<String, Object> result=new HashMap<String, Object>();
@@ -298,5 +280,14 @@ public class productService {
 			itemOption.setItemNo(i.getItemNo());
 			dao.updateOption(itemOption);
 		}*/
+	//미니홈피메인 이미지파일
+	@Transactional
+	public String getMain(String userId) {
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("recent", dao.selectItemListOrderByDate(userId));
+		result.put("inven", dao.selectItemListOrderByInven(userId));
+		//result.put("score", dao.selectItemListOrderByScore(userId));
+		return new Gson().toJson(result);
+	}
 
 }

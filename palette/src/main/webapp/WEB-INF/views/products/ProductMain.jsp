@@ -77,7 +77,7 @@
 						<nav id="breadcrumbs">
 							<ul>
 
-								<li><a href="index.html">Home</a></li>
+								<li><a href="/palette/miniHome/${userId}/main">Home</a></li>
 								<li>상품</li>
 							</ul>
 						</nav>
@@ -98,7 +98,7 @@
 						<div class="porDetCarousel">
 							<div class="carousel-content">
 							<c:forEach items="${result.itemImg }" var="img">
-							<img class="carousel-item" style="width:700px; height:500px;"
+							<img class="carousel-item" style="width:800px; height:500px;"
 									src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
 									</c:forEach>
 							</div>
@@ -138,7 +138,7 @@
 							<p>
 								상품종류<span></span> :${result.item.smallKind}</p>
 							<p>
-								남은수량<span></span> :${result.item.itemInven.intValue()}개</p>
+								남은수량<span></span> :<input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">${result.item.itemInven.intValue()}개</p>
 							<ul class="progress-skill-bar mrg-0">
 
 							
@@ -181,7 +181,7 @@
 
 
 
-									<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>

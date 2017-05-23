@@ -96,5 +96,11 @@ public class ProductController {
 		
 		
 	}
+	//미니홈피메인 상품이미지
+	@RequestMapping(value = "/mainImg", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String getMain(@RequestBody String userId) {
+	return service.getMain(userId);
+		
+	}
 	
 }

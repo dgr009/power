@@ -43,7 +43,10 @@ public class ProductController {
 	@RequestMapping(value="/{userId}/main",method=RequestMethod.GET)
 	public String miniMain(@PathVariable String userId,Model model){
 		model.addAttribute("kind", service.productKind(userId));
-		return "products/homepageMain";
+		System.out.println("여기ㅇㅇㅇㅇㅇㅇㅇ");
+		model.addAttribute("item", service.getMain(userId));
+		model.addAttribute("userId", userId);
+		return "products/Main";
 	}
 	//상품등록창으로
 	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
@@ -168,7 +171,7 @@ public class ProductController {
 		}
 		//상품주문하기페이지로
 		@RequestMapping(value = "/{userId}/productOrder/{itemNo}", method = RequestMethod.GET)
-		public String productOrder(@PathVariable String userId,@PathVariable int itemNo,@RequestParam String itemOption,@RequestParam int itemPrice,@RequestParam String itemName,@RequestParam int itemSize,Model model) {
+		public String productOrder(@PathVariable String userId,@PathVariable int itemNo,@RequestParam String itemOption,@RequestParam int itemPrice,@RequestParam String itemName,@RequestParam int itemSize,int itemInven,Model model) {
 			model.addAttribute("itemSize", itemSize);
 			model.addAttribute("itemOption", itemOption);
 			model.addAttribute("itemName", itemName);
@@ -176,6 +179,7 @@ public class ProductController {
 			model.addAttribute("itemNo", itemNo);
 			model.addAttribute("kind", service.productKind(userId));
 			model.addAttribute("result", service.productMain(itemNo));
+			model.addAttribute("itemInven", itemInven);
 			return "products/ProductOrder";
 		}
 		//상품주문

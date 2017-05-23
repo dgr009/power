@@ -19,7 +19,7 @@ import com.icia.palette.vo.*;
 public class ProductService {
 	@Autowired
 	private ProductDao dao;
-
+//상품등록하기
 	public void productRegister(Item item) {
 		RestTemplate tpl=new RestTemplate();
 		System.out.println("item"+item.getItemContent());
@@ -62,6 +62,7 @@ public class ProductService {
 		
 		return s;
 	}
+	//상품삭제
 	public void productDelete(int itemNo) {
 		RestTemplate tpl=new RestTemplate();
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -70,6 +71,7 @@ public class ProductService {
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(itemNo), headers);
 		tpl.exchange("http://localhost:8087/api/miniHome/admin/productDelete", HttpMethod.POST, requestEntity, String.class).getBody();
 	}
+	//상품주문자리스트
 	public Map<String, Object> productOrderList(int itemNo,int pageNo) {
 		RestTemplate tpl=new RestTemplate();
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -98,8 +100,21 @@ public class ProductService {
 		Map<String, Object> s=new Gson().fromJson(result, Map.class);
 		System.out.println("주문리스트한번뿌려봐"+s);
 		return s;
+	}//미니홈피 최신,마감,베스트상품가져오기
+	public Map<String, Object> getMain(String userId) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/mainImg", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		Map<String, Object> s=new Gson().fromJson(result, Map.class);
+		System.out.println("주문리스트한번뿌려봐"+s);
+		return s;
 	}
-	//상품메인보기
+	
+	//미니홈피 카테고리
 	public Map<String, Object> productKind(String userId) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();
@@ -111,6 +126,7 @@ public class ProductService {
 		Map<String, Object> s=new Gson().fromJson(result, Map.class);
 		return s;
 	}
+	//배송입력하기
 	public void deliveryInsert(HashMap<String, Object> map) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();
@@ -133,6 +149,7 @@ public class ProductService {
 		
 	
 	}
+	//상품주문하기
 	public void productOrder(OrderStatement o) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();
@@ -143,5 +160,5 @@ public class ProductService {
 		
 		
 	}
-	
+
 }

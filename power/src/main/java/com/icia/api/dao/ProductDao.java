@@ -182,16 +182,22 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectItemListByKind", map);
 	}
 	//미니홈메인 상품등록순 9개
-	public List<ItemList> selectItemListOrderByDate(String userId){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByDate", userId);
+	public List<ItemList> selectItemListOrderByDate(String id){
+		int a=id.length();
+		String userId=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.selectItemListOrderByDate", userId);
 	}
 	//미니홈메인 상품재고순 9개
-	public List<ItemList> selectItemListOrderByInven(String userId){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByInven", userId);
+	public List<ItemList> selectItemListOrderByInven(String id){
+		int a=id.length();
+		String userId=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.selectItemListOrderByInven", userId);
 	}
 	//미니홈메인 베스트상품순 9개
-	public List<ItemList> selectItemListOrderByScore(String userId){
-		return tpl.selectList("api.dao.ProductDao.selectListOrderByScore", userId);
+	public List<ItemList> selectItemListOrderByScore(String id){
+		int a=id.length();
+		String userId=id.substring(1, a-1);
+		return tpl.selectList("api.dao.ProductDao.selectItemListOrderByScore", userId);
 	}
 	//주문회원리스트 개수
 	public int selectOrderListCnt(int itemNo) {
