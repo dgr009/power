@@ -57,13 +57,7 @@
 		</c:forEach>
 		</table>
 
-			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
 			
-			<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
-				<a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a>
-			</c:forEach>
-			
-		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음으로</a></c:if>
 		
 		<form>
 		<input type="button" value="게시글 작성" 

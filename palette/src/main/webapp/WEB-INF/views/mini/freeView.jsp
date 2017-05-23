@@ -54,6 +54,15 @@ input[type="submit"] {
 input[type="button"] {
 	font-family:FontAwesome;
 }     
+
+#repleCnt{
+	color : orange;
+	font-weight: normal;
+}
+
+#repleCnt #rrrrr{
+	font-weight: bold;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -67,12 +76,12 @@ input[type="button"] {
 		function print(result){
 			$("#comment").empty();
 			
-			$("#repleCnt").empty();
-			$("#repleCnt").html(result.cnt);
+			$("#rrrrr").empty();
+			$("#rrrrr").html(result.cnt);
 			
 			
 			$.each(result.reple, function(idx, reply){
-				
+
 				//alert(reply)
 				var ccc= "Content"+reply.freeRepleNo;
 				var cxc= reply.freeRepleNo;
@@ -108,6 +117,7 @@ input[type="button"] {
 							data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
 							dataType: 'JSON',
 							success : function(result){
+								
 								print(result);
 							}
 				        })
@@ -123,6 +133,8 @@ input[type="button"] {
 				data : {"freeRepleContent":$("#freeRepleContent").val(), "freeRepleName":$("#freeRepleName").val()},
 				dataType: 'JSON',
 				success : function(result){
+					
+					
 					print(result);
 				}
 			})
@@ -220,18 +232,21 @@ input[type="button"] {
 							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
 							
 							<!-- 게시물 제목 -->
-							     ${mini.free.freeTitle } &nbsp;(</h3>
+							     ${mini.free.freeTitle }</h3>
 							     <!-- 댓글 수 -->
-							     <h3 style="display: inline-block;" id="repleCnt">
-							    	 ${mini.free.freeRepleCnt.intValue() }
-							     </h3>
-							     <h3 style="display: inline-block;">)</h3>
+							     <c:if test="${mini.free.freeRepleCnt.intValue()>0 }">
+							      <h3 style="display: inline-block;" id="repleCnt">
+							      	&nbsp;(
+							      	<span id="rrrrr">${mini.free.freeRepleCnt.intValue() }</span>&nbsp;)
+							      </h3>
+							      </c:if>
+							      
 							     <div style="font-size: 90%;">
 							     	<div style=" float: left; ">
-									&nbsp;&nbsp;&nbsp;글 번호 (${mini.free.freeNo.intValue() })
+									&nbsp;&nbsp;&nbsp;글 번호 (&nbsp;${mini.free.freeNo.intValue() }&nbsp;)
 									</div>
 									<div style=" float: right; ">
-									조회수(${mini.free.freeHits.intValue() })&nbsp;&nbsp;&nbsp;
+									조회수 (&nbsp;${mini.free.freeHits.intValue() }&nbsp;)&nbsp;&nbsp;&nbsp;
 									</div>
 							     </div>
 							     <!-- 조회수 -->
