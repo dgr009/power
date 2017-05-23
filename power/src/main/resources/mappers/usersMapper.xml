@@ -81,7 +81,7 @@
 	</update>
 	<!-- 판매자 포인트 감소 -->
 	<update id="ownerPointDown" parameterType="int">
-		update users set user_point = user_point - (select order_price from order_statement where order_no=#{orderNo}) where user_id in (select i.user_id from order_statement o,item i where o.item_no=o.item_no and order_no=#{orderNo})
+		update users set user_point = user_point - (select order_price from order_statement where order_no=#{orderNo}) where user_id in (select i.user_id from order_statement o,item i where o.item_no=i.item_no and o.order_no=#{orderNo})
 	</update>
 	<!-- 포인트 충전하기 -->
 	<update id="usersChargePoint" parameterType="hashmap">
