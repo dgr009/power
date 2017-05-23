@@ -270,7 +270,7 @@ input[type="button"] {
               		   </div>	
               		   
               		   <div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="#" onClick="history.back()"><input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로"></a>
+              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
               		   </div>  
               		   
               		   <c:set var="ddddd" value="<%=user.getUserId()%>" />

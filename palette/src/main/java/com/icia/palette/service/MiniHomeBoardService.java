@@ -70,14 +70,16 @@ public class MiniHomeBoardService {
 	}
 	
 	//자유게시판 작성
-	public void miniHomeRegisterFree(HttpSession session,MiniHomeFree free){
+	public String miniHomeRegisterFree(HttpSession session,MiniHomeFree free){
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String)session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(free), headers);
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/freeRegister", HttpMethod.POST, requestEntity, String.class,free.getUserId()).getBody();
-	
+		System.out.println(" 서비스 :  "+result);
+		return result;
+		
 	}
 	//공지게시판 작성
 	public void miniHomeRegisterNotice(HttpSession session,MiniHomeNotice notice){

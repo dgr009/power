@@ -54,12 +54,31 @@ input[type="submit"] {
 input[type="button"] {
 	font-family:FontAwesome;
 }     
+
+A:LINK {
+	text-decoration: none;
+	
+}
+A:VISITED {
+	text-decoration: none;
+	
+}
+A:HOVER {
+	text-decoration: underline;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
+	//최초 페이지가 로딩되면 한번만 새로고침
+	if (self.name != 'reload') {
+	    self.name = 'reload';
+	    self.location.reload(true);
+	}
+	else self.name = ''; 
+
 </script>
 </head>
 <body>
@@ -100,53 +119,62 @@ input[type="button"] {
              </section>
             
  
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
+							
+							
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     자유게시판 글 목록</h3>
 						
-							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 자유 게시판 글 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr>
-										<form  action="/palette/miniHome/${homeId }/freeRegister" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="freeTitle">
-
-									</tr>
-                  					  </thead>
-
-              						  </table>
-	
-              		   <textarea rows="15" cols="" name="freeContent" ></textarea>
-              		   <input type="hidden" name="freeName" id="freeName" value='${userId}'><br>
-						<input type="hidden" name="userId" id="userId" value="${homeId }">
-						<input type="hidden" name="seq" id="seq" value="${nn }">
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기">
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
-           				 </div>
-							
-						
-						
-					</form>		
-							
-						
-                            
-							
-									
-							
-							
-							</div>
-							
-							</div></div>
+				<table class="table table-striped table-hover" style="text-align: center;">
+                    <thead>
+                    <tr>
+						<th style="text-align: center;  width: 80px;">번호</th>
+						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
+						<th style="text-align: center;  width: 100px;">작성자</th>		
+						<th style="text-align: center; width: 150px;">작성일</th>
+						<th style="text-align: center; width: 50px;">조회</th>
+					</tr>
+                    </thead>
+                    
+                    <tbody id="free">
+                    	<c:forEach items="${mini2.list }" var="free">
+							<tr>			
+								<td>
+									${free.freeNo.intValue() }
+								</td>
+								<td style="text-align: left;">
+									<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}">${free.freeTitle }(<span>${free.freeRepleCnt.intValue() }</span>)</a>
+								</td>
+								<td>
+									${free.freeName }
+								</td>
+								<td>
+									${free.freeDate }
+								</td>
+								<td>
+									${free.freeHits.intValue() }
+								</td>
+							</tr>
+						</c:forEach>
+                </table>
+				<div class="col-lg-9 col-md-9 col-sm-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	 <a href='/hooligan/free/register' style="text-align: left;"><input type="submit" style="text-align: left;" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로"></a>
+                 </div>
+              	  <div class="col-lg-3 col-md-3 col-sm-3" style="text-align: left;">
+                </div>
+              	
+                <br>
 					
- 
+                </div>
+                 
+            </div>	
+				                     
+                
+            
+             
+									
+									
            
 							
 							

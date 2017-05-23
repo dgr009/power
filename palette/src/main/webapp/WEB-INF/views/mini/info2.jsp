@@ -55,6 +55,7 @@
 			</td>	
 		</tr>
 		</c:forEach>
+		</table>
 
 			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
 			

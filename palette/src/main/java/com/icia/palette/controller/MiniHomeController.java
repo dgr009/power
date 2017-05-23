@@ -19,9 +19,6 @@ public class MiniHomeController {
 	@Autowired
 	private MiniHomeBoardService service;
 	
-	@Autowired
-	private MiniHomeBoardDao dao;
-	
 	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
@@ -39,7 +36,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeList",method = RequestMethod.GET)
 	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectFreeList(session,userId,pageNo));
-		return "mini/info2";
+		return "mini/freeList";
 	}
 	//공지 리스트
 	@RequestMapping(value="/{userId}/noticeList",method = RequestMethod.GET)
@@ -54,16 +51,16 @@ public class MiniHomeController {
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
-		model.addAttribute("nn",dao.seq());
 		return "mini/freeRegister";
 	}
 	
 	//추가 끝
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.POST)
-	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free,@RequestParam int seq){
-		service.miniHomeRegisterFree(session, free);
-		seq = seq-1;
-		return "redirect:freeView/"+seq;
+	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free){
+		String result = service.miniHomeRegisterFree(session, free);
+		//return 값으로 freeNo를 넘겼으므로 result안에 들어있다
+		
+		return "redirect:freeView/"+result;
 	}
 	
 	//공지게시판 추가 시작
