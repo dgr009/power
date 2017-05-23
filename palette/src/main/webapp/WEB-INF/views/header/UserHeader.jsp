@@ -15,9 +15,25 @@
 	<script type="text/javascript">
 	function openHome(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main", "미니홈페이지", "width=1024, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );
+	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main","_blank");
 		else{
-			window.open("http://localhost:8087/palette/users/homeRegister", "미니홈페이지제작", "width=1024, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );	
+			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
+		}
+	}
+	
+	function openHomeDe(){
+		if(<%=user.getUserIsHome()%>==1)
+	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main","_blank");
+		else{
+			window.open("http://localhost:8087/palette/users/homeDelete","_blank");	
+		}
+	}
+	
+	function openHomeUp(){
+		if(<%=user.getUserIsHome()%>==1)
+	    	window.open("http://localhost:8087/palette/users/homeUpdate","_blank");
+		else{
+			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
 		}
 	}
 	</script>

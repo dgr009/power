@@ -167,7 +167,19 @@
 	
 	<!-- 홈페이지 수정 -->
 	<!-- 홈페이지 정보 받아오기 -->
-	<select id="userseGetHomeInfo" parameterType="string" resultType="MiniHome">
+	<select id="usersGetHomeInfo" parameterType="string" resultType="MiniHome">
 		select * from home where user_id=#{userId}
 	</select>
+	<!-- 홈페이지 정보 수정하기 -->
+	<update id="usersHomeUpdate" parameterType="MiniHome">
+		update home set home_title=#{homeTitle},home_introduce=#{homeIntroduce},home_img=#{homeImg},home_design=#{homeDesign},home_active=#{homeActive} where user_id=#{userId}
+	</update>
+	<!-- 큰태그 지우기 -->
+	<delete id="usersDeleteBigTag" parameterType="string">
+		delete from big_kind where user_id=#{userId}
+	</delete>
+	<!-- 작은태그 지우기 -->
+	<delete id="usersDeleteSmallTag" parameterType="string">
+		delete from small_kind where user_id=#{userId}
+	</delete>
 </mapper>
