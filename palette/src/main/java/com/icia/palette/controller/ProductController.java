@@ -184,12 +184,21 @@ public class ProductController {
 		}
 		//상품주문
 		@RequestMapping(value = "/{userId}/productOrder/{itemNo}", method = RequestMethod.POST)
-		public String productOrderEnd(@PathVariable int itemNo,@PathVariable String userId,@ModelAttribute OrderStatement o) {
+		public String productOrderEnd(@PathVariable int itemNo,@PathVariable String userId,@ModelAttribute OrderStatement o,HttpSession session) {
 			System.out.println(o.toString());
 			service.productOrder(o);
+			Users user=(Users) session.getAttribute("user");
+			int orderPrice=o.getOrderPrice();
+			user.setUserPoint(user.getUserPoint()-orderPrice);
+			session.setAttribute("user", user);
 			String a="redirect:/miniHome/"+userId+"/main";
 			return a;
 		}
-	
+	//상품종류로 상품검색
+		@RequestMapping(value = "/{userId}/productKind/{smallKind}", method = RequestMethod.GET)
+		public String productselectKind(@PathVariable String userId,@PathVariable String smallKind,Model model) {
+			model.addAttribute("kind", service.productKind(userId));
+			return "products/ProductKind";
+		}
 	
 }
