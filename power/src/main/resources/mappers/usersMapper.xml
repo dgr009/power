@@ -55,7 +55,7 @@
 		  	select * from  
 				(select rownum rnum,a.* from 
 					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_date orderDate,
-					o.order_price orderPrice,i.item_name itemName, o.option_name optionName,o.item_no itemNo
+					o.order_price orderPrice,i.item_name itemName,i.user_id userId, o.option_name optionName,o.item_no itemNo
 					 from order_statement o,users u,item i 
 					 where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId} order by o.order_date) a 
       			where rownum<=#{end})
@@ -66,11 +66,23 @@
 	<select id="usersOrderListCnt" parameterType="string" resultType="int">
 		select count(*) from order_statement where user_id=#{userId}
 	</select>
-	
+	<!-- 주문취소 하기 전체 -->
+	<!-- 주문 취소시 재고 증가 -->
+	<update id="usersItemInvenUp" parameterType="int">
+		update item set item_inven=item_inven+(select order_size from order_statement where order_no=#{orderNo}) where item_no in (select i.item_no from item i,order_statement o where o.item_no=i.item_no and o.order_no=#{orderNo}) 
+	</update>
 	<!-- 주문취소하기 -->
 	<delete id="usersOrderDelete" parameterType="int">
 		delete from order_statement where order_no=#{orderNo}
 	</delete>
+	<!-- 주문자 포인트 증가 -->
+	<update id="orderPointUp" parameterType="int">
+		update users set user_point = user_point + (select order_price from order_statement where order_no=#{orderNo}) where user_id in (select user_id from order_statement where order_no=#{orderNo})
+	</update>
+	<!-- 판매자 포인트 감소 -->
+	<update id="ownerPointDown" parameterType="int">
+		update users set user_point = user_point - (select order_price from order_statement where order_no=#{orderNo}) where user_id in (select i.user_id from order_statement o,item i where o.item_no=o.item_no and order_no=#{orderNo})
+	</update>
 	<!-- 포인트 충전하기 -->
 	<update id="usersChargePoint" parameterType="hashmap">
 		update users set user_point=user_point+#{tradePoint} where user_id=#{userId}

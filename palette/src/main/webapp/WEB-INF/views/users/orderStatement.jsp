@@ -90,7 +90,7 @@
 				${index.count }
 			</td>
 			<td>
-				<a href="#">${order.itemName }</a>
+				<a href="/palette/miniHome/${order.userId }/productMain/${order.itemNo }">${order.itemName }</a>
 			</td>
 			<td>
 				${order.orderPrice.intValue() }

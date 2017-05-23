@@ -196,11 +196,12 @@ public class UserService {
 	}
 
 	//주문내역에서 주문 취소하기
-	public String deleteOrder(int orderNo) {
+	public String deleteOrder(HttpSession session,int orderNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity requestEntity = new HttpEntity(headers);
 		String result = tpl.exchange("http://localhost:8087/api/users/orderDelete?orderNo="+orderNo, HttpMethod.DELETE, requestEntity, String.class).getBody();
+		session.setAttribute("user", userInfo(session));
 		return result;
 	}
 
