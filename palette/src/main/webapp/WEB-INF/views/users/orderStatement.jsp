@@ -123,7 +123,7 @@
 			
 		<c:if test="${result.pagination.next>0 }"><a href="/palette/users/orderList?pageNo=${result.pagination.next}">다음으로</a></c:if>
 		<br><br>
-	<button onclick="location.href='/palette/users/home'">홈으로</button>
+	<button onclick="location.href='/palette/users/main'">홈으로</button>
   </div>
 		</div>
 

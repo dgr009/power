@@ -250,7 +250,8 @@ public class UsersController {
 
 	// 메인으로
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String ma() {
+	public String mamamain(Model model) {
+		model.addAttribute("rank", service.getRankSide());
 		return "main/main";
 	}
 

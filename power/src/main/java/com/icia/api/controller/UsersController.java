@@ -301,4 +301,11 @@ public class UsersController {
 		return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
 	}
 
+	
+	//회원 메인 랭킹 가져오기
+	@RequestMapping(value = "/main", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String mamamain() {
+		List<MiniHome> list = service.getRankSide();
+		return new Gson().toJson(list);
+	}
 }

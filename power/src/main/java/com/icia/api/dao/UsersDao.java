@@ -287,4 +287,8 @@ public class UsersDao {
 	public int getTotalSellPoint(int orderNo) {
 		return tpl.selectOne("api.dao.UsersDao.getTotalSellPoint", orderNo);
 	}
+
+	public List<MiniHome> getRankSide() {
+		return tpl.selectList("api.dao.UsersDao.getRankSide");
+	}
 }

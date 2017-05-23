@@ -255,4 +255,9 @@ public class UsersService {
 				dao.ownerGoldGradeUp(orderNo);
 		}
 	}
+
+	//랭킹 5명 가져오기
+	public List<MiniHome> getRankSide() {
+		return dao.getRankSide();
+	}
 }

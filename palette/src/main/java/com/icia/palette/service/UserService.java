@@ -304,4 +304,14 @@ public class UserService {
 		return result;
 	}
 
+	//메인 랭킹 표시
+	public List<MiniHome> getRankSide() {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/main",HttpMethod.GET, requestEntity, String.class).getBody();
+		List<MiniHome> list = new Gson().fromJson(result, List.class);
+		return list;
+	}
+
 }

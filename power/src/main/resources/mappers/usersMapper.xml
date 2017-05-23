@@ -216,4 +216,13 @@
 		select sum(o.order_price) from item i,order_statement o where o.item_no=i.item_no and i.user_id=(select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo}) and o.order_state='주문완료' group by i.user_id,o.order_state 
 	</select>
 	
+	<!-- 메인 랭킹 5명 가져오기 -->
+	<select id="getRankSide" resultType="MiniHome">
+		<![CDATA[
+		select rownum, a.* from 
+			(select i.user_id userId,h.home_img homeImg from item i,order_statement o,home h
+				where h.user_id=i.user_id and o.item_no=i.item_no and i.user_id in(select i.user_id from order_statement o,item i where i.item_no=o.item_no) and o.order_state='주문완료'  group by i.user_id,o.order_state,h.home_img
+				order by sum(o.order_price) desc) a where rownum<=5
+		]]>
+	</select>
 </mapper>
