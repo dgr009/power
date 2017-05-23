@@ -135,9 +135,9 @@ public class UsersController {
 
 	// 회원 포인트 충전 환급 내역 보기
 	@RequestMapping(value = "/tradeList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String tradeList(@RequestHeader("token") String token,@RequestParam int pageNo) {
+	public String tradeList(@RequestHeader("token") String token, @RequestParam int pageNo) {
 		String userId = service.getUserIdByToken(token);
-		Map<String,Object> map = service.tradeList(userId,pageNo);
+		Map<String, Object> map = service.tradeList(userId, pageNo);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		return gson.toJson(map);
 
@@ -247,50 +247,58 @@ public class UsersController {
 			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
 
 	}
-	
-	//홈페이지 태그만들기
+
+	// 홈페이지 태그만들기
 	@RequestMapping(value = "/homeTagRegister", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public ResponseEntity<String> usersHomeTagRegister(@RequestParam String userId, @RequestParam String bigKind,@RequestParam String smallKind){
-		System.out.println("BIG KIND : "+bigKind + " \nSMALL KIND : "+smallKind);
-		int result = service.homeTagRegister(userId,bigKind,smallKind);
+	public ResponseEntity<String> usersHomeTagRegister(@RequestParam String userId, @RequestParam String bigKind,
+			@RequestParam String smallKind) {
+		System.out.println("BIG KIND : " + bigKind + " \nSMALL KIND : " + smallKind);
+		int result = service.homeTagRegister(userId, bigKind, smallKind);
 		if (result == 1)
 			return new ResponseEntity<String>("성공", HttpStatus.OK);
 		else
 			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
 
 	}
-	
-	//홈페이지 수정 정보 가져오기
+
+	// 홈페이지 수정 정보 가져오기
 	@RequestMapping(value = "/homeUpdate", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String usersHomeUpdateStart(@RequestHeader("token") String token){
+	public String usersHomeUpdateStart(@RequestHeader("token") String token) {
 		String userId = service.getUserIdByToken(token);
-		Map<String,Object> map = service.getHomeInfo(userId);
+		Map<String, Object> map = service.getHomeInfo(userId);
 		return new Gson().toJson(map);
 	}
-	
+
 	// 홈페이지 수정하기
-		@RequestMapping(value = "/homeUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
-		public ResponseEntity<String> usersHomeUpdateEnd(@RequestBody MiniHome home) throws BindException {
-			logger.info(home.toString());
-			int result = service.homeUpdate(home);
-			if (result == 1)
-				return new ResponseEntity<String>("성공", HttpStatus.OK);
-			else
-				return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
+	@RequestMapping(value = "/homeUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersHomeUpdateEnd(@RequestBody MiniHome home) throws BindException {
+		logger.info(home.toString());
+		int result = service.homeUpdate(home);
+		if (result == 1)
+			return new ResponseEntity<String>("성공", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("제작 실패", HttpStatus.BAD_REQUEST);
 
-		}
-	
-	//홈페이지 태그 수정하기
-		@RequestMapping(value = "/homeTagUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-		public String usersHomeTagUpdate(@RequestParam String userId, @RequestParam String bigKind,@RequestParam String smallKind){
-			System.out.println("BIG KIND : "+bigKind + " \nSMALL KIND : "+smallKind);
-			int result = service.homeTagUpdate(userId,bigKind,smallKind);
-			if (result == 1)
-				return "성공";
-			else
-				return "제작 실패";
+	}
 
-		}
-		
-		
+	// 홈페이지 태그 수정하기
+	@RequestMapping(value = "/homeTagUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String usersHomeTagUpdate(@RequestParam String userId, @RequestParam String bigKind,
+			@RequestParam String smallKind) {
+		System.out.println("BIG KIND : " + bigKind + " \nSMALL KIND : " + smallKind);
+		int result = service.homeTagUpdate(userId, bigKind, smallKind);
+		if (result == 1)
+			return "성공";
+		else
+			return "제작 실패";
+
+	}
+
+	// 회원 주문 내역에서 주문 확정하기
+	@RequestMapping(value = "/orderComplete", method = RequestMethod.PUT, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> orderComplete(@RequestParam int orderNo) {
+		service.userOrderComplete(orderNo);
+		return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
+	}
+
 }

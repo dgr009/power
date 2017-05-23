@@ -194,4 +194,25 @@
 	<delete id="usersDeleteSmallTag" parameterType="string">
 		delete from small_kind where user_id=#{userId}
 	</delete>
+	
+	<!-- 주문 확정 하기 -->
+	<update id="orderComplete" parameterType="int">
+		update order_statement set order_state='주문완료' where order_no=#{orderNo} 
+	</update>
+	<!-- 판매자 등급 가져오기 -->
+	<select id="selectOwnerGrade" parameterType="int" resultType="string">
+		select user_grade from users where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo})
+	</select>
+	<!-- 판매자 등급 실버로 -->
+	<update id="ownerSilverGradeUp" parameterType="int">
+		update users set user_grade='silver' where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo}) 
+	</update>
+	<!-- 판매자 등급 골드로 -->
+	<update id="ownerGoldGradeUp" parameterType="int">
+		update users set user_grade='gold' where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo})
+	</update>
+	<select id="getTotalSellPoint" parameterType="int" resultType="int">
+		select sum(order_price) from order_statement where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo}) and order_state='주문완료' 
+	</select>
+	
 </mapper>

@@ -238,4 +238,21 @@ public class UsersService {
 		
 		return 1;
 	}
+
+	// 주문 확정 하기( 판매자 등급 조정)
+	@Transactional
+	public void userOrderComplete(int orderNo) {
+		dao.orderComplete(orderNo);
+		String result = dao.getOwnerGrade(orderNo);
+		int totalPoint = dao.getTotalSellPoint(orderNo);
+		if(result.equals("bronze")){
+			if(totalPoint > 300000)
+				dao.ownerSilverGradeUp(orderNo);
+			else if(totalPoint > 1000000)
+				dao.ownerGoldGradeUp(orderNo);
+		}else if(result.equals("silver")){
+			if(totalPoint > 1000000)
+				dao.ownerGoldGradeUp(orderNo);
+		}
+	}
 }

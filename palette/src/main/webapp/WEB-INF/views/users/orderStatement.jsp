@@ -109,6 +109,7 @@
 			</td>
 			<td>
 				<c:if test="${order.orderState=='배송준비중' }"><a href='/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}'>주문 취소</a></c:if>
+				<c:if test="${order.orderState=='배송중' }"><a href='/palette/users/orderComplete?orderNo=${order.orderNo.intValue()}'>주문 확정</a></c:if>
 			</td>
 		</tr>
 		</c:forEach>

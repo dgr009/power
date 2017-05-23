@@ -260,4 +260,13 @@ public class UsersController {
 		return "users/homeDelete";
 	}
 	
+	//회원 배송 및 구매 확정
+	@RequestMapping(value = "/orderComplete", method = RequestMethod.GET)
+	public String orderComplete(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo,
+			@RequestParam int orderNo) {
+		service.completeOrder(session,orderNo);
+		model.addAttribute("result", service.userOrderList(session, pageNo));
+		return "users/orderStatement";
+	}
+	
 }

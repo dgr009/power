@@ -262,4 +262,29 @@ public class UsersDao {
 	public void ownerPointDown(int orderNo) {
 		tpl.update("api.dao.UsersDao.ownerPointDown",orderNo);
 	}
+
+	// 주문 확정 하기
+	public int orderComplete(int orderNo) {
+		return tpl.update("api.dao.UsersDao.orderComplete",orderNo);
+	}
+
+	// 회원 등급 가져오기
+	public String getOwnerGrade(int orderNo) {
+		return tpl.selectOne("api.dao.UsersDao.selectOwnerGrade", orderNo);
+	}
+
+	// 회원등급 실버로 승급
+	public void ownerSilverGradeUp(int orderNo) {
+		tpl.update("api.dao.UsersDao.ownerSilverGradeUp",orderNo);
+	}
+
+	// 회원등급 골드로 승급
+	public void ownerGoldGradeUp(int orderNo) {
+		tpl.update("api.dao.UsersDao.ownerGoldGradeUp",orderNo);
+	}
+
+	// 회원 총 판매량 가져오기
+	public int getTotalSellPoint(int orderNo) {
+		return tpl.selectOne("api.dao.UsersDao.getTotalSellPoint", orderNo);
+	}
 }
