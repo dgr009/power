@@ -91,7 +91,7 @@ input[type="button"] {
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>자유 게시판</h2>
+                           <h2>자유 게시판 글 수정</h2>
                         </div>
                     </div>
                 </div>
@@ -112,43 +112,38 @@ input[type="button"] {
 								<table class="table table-striped table-hover" style="text-align: center;">
 				                    <thead>
 				                    <tr>
-										<form  action="/palette/miniHome/${homeId }/freeRegister" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="freeTitle">
+										<form action="/palette/miniHome/${mini.free.userId }/freeUpdate/${mini.free.freeNo.intValue()}" method="post">
+										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${mini.free.freeTitle}" style="width:730px;"name="freeTitle" >
 
 									</tr>
                   					  </thead>
 
               						  </table>
 	
-              		   <textarea rows="15" cols="" name="freeContent" ></textarea>
-              		   <input type="hidden" name="freeName" id="freeName" value='${userId}'><br>
-						<input type="hidden" name="userId" id="userId" value="${homeId }">
-						<input type="hidden" name="seq" id="seq" value="${nn }">
+              		   <textarea rows="15" cols="" name="freeContent" >${mini.free.freeContent}</textarea>
+              		   <input type="hidden" value="${mini.free.freeNo.intValue() }" name="freeNo">
+						<input type="hidden" value="${mini.free.userId }" name="userId">
 						<br>		
               		   			<div id="id"></div>
               		   <div class="col-sm-12 text-center"><br>
- 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
+                  			 <a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
                   			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
+                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료" id="update">
+           				 	</form>
            				 </div>
 							
 						
 						
-					</form>		
-							
-						
-                            
-							
-									
-							
-							
+
 							</div>
 							
 							</div></div>
 					
  
            
-							
+	
+			
+	
 							
 					
 

@@ -22,6 +22,9 @@ public class MiniHomeController {
 	private MiniHomeBoardService service;	
 	
 	@Autowired
+	private MiniHomeService service2;
+	
+	@Autowired
 	private MiniHomeBoardDao dao;	
 	
 	//자유게시판 뷰
@@ -68,15 +71,11 @@ public class MiniHomeController {
 
 	//공지게시판 작성
 	@RequestMapping(value="/{userId}/noticeRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
-	public ResponseEntity<String> createNotice(@RequestHeader("token") String token, @RequestBody MiniHomeNotice notice) throws BindException {
+	public String createNotice(@RequestHeader("token") String token, @RequestBody MiniHomeNotice notice) throws BindException {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
 		int result = service.miniHomeRegisterNotice(notice);
-		
-		if(result==1){
-			return new ResponseEntity<String>(notice.toString(),HttpStatus.OK);
-		}else{
-			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
-		}
+		return new Gson().toJson(notice.getNoticeArticleNo());	//추가된 게시글 번호를 알기 위해
+	
 	}
 	
 	//회원 토큰으로 정보 얻기
@@ -140,15 +139,7 @@ public class MiniHomeController {
 			return new ResponseEntity<String>("실패",HttpStatus.BAD_REQUEST);
 			
 		}
-	}
-//	//자유게시판 댓글
-//	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
-//	public String repleAll( @PathVariable String userId, @PathVariable int freeNo) {
-//		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-//		List<MiniHomeFreeReple> reple = service.miniHomeSelectAllFreeReple(freeNo);
-//		return new Gson().toJson(reple);
-//	}
-	
+	}	
 	//자유 덧글 추가
 	@RequestMapping(value="/{userId}/freeRepleRegister/{freeNo}", method=RequestMethod.POST)
 	public String insertReple(@ModelAttribute MiniHomeFreeReple reple,@PathVariable int freeNo){
@@ -173,8 +164,29 @@ public class MiniHomeController {
 		reple.setFreeRepleNo(freeRepleNo2);
 		return service.miniHomeUpdateFreeReple(reple);
 	}
+	//회원 정보 보기 
+	@RequestMapping(value="/{userId}/Info", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String miniHomeSelectSellerInformation(@RequestHeader("token") String token, @PathVariable String userId) {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(service2.miniHomeSelectSellerInformation(userId));
+	}
 	
-	
+	//홈페이지 결제
+	@RequestMapping(value="/{userId}/pay", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> homePay(@RequestHeader("token") String token,@PathVariable String userId, @RequestBody ActiveDate active) throws BindException {
+		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		service2.miniHomePay(userId);	// 회원 포인트 차감, 홈페이지 활성화
+		int result = service2.insertActiveDate(active);// 기록 생성
+			
+		if(result==1){
+			return new ResponseEntity<String>(HttpStatus.OK);
+			
+		}else{
+			return new ResponseEntity<String>("실패",HttpStatus.BAD_REQUEST);
+			
+		}
+	}
 	
 	
 
