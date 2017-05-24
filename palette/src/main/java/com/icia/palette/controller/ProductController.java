@@ -223,5 +223,32 @@ public class ProductController {
 					model.addAttribute("kind", service.productKind(userId));
 					return "products/ProductSearch";
 				}
+				//문의게시판페이지로
+				@RequestMapping(value = "/{userId}/productInquiryList/{itemNo}", method = RequestMethod.GET)
+				public String productInquiry(@PathVariable String userId,Model model,@PathVariable int itemNo,@RequestParam(defaultValue="1") int pageNo) {
+					model.addAttribute("userId",userId);
+					Map<String, Object> map=new HashMap<String, Object>();
+					map.put("itemNo", itemNo);
+					map.put("pageNo", pageNo);
+					System.out.println("1111111");
+					model.addAttribute("result", service.InquiryList(map));
+					model.addAttribute("kind", service.productKind(userId));
+					return "products/InquiryList";
+				}
+				//문의게시판작성페이지로
+				@RequestMapping(value = "/{userId}/inquiryRegister/{itemNo}", method = RequestMethod.GET)
+				public String inquiryRegister(@PathVariable String userId,Model model,@PathVariable int itemNo) {
+					model.addAttribute("userId",userId);
+					model.addAttribute("itemNo", itemNo);
+					model.addAttribute("kind", service.productKind(userId));
+					return "products/InquiryRegister";
+				}
+				//문의게시판작성
+				@RequestMapping(value = "/{userId}/inquiryRegister/{itemNo}", method = RequestMethod.POST)
+				public String inquiryRegisterEnd(@PathVariable String userId,@PathVariable int itemNo,@ModelAttribute InquiryBoard i) {
+					service.inquiryRegister(i);
+					String a="redirect:/miniHome/"+userId+"/productInquiryList/"+itemNo;
+					return a;
+				}
 	
 }

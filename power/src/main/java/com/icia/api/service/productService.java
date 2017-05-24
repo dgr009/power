@@ -97,6 +97,22 @@ public class productService {
 			return gson.toJson(result);	
 			
 		}
+		//문의게시판리스트
+		@Transactional
+		public String inquiryList(Map<String, Object> map) {
+			Map<String, Object> result=new HashMap<String, Object>();
+			int itemNo=(Integer) map.get("itemNo");
+			int pageNo=(Integer)map.get("pageNo");
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(itemNo));
+			map.put("start", p.getStartArticle());
+			map.put("end", p.getEndArticle());
+			result.put("result", dao.selectInquiry(map));
+			System.out.println(dao.selectInquiry(map).toString());
+			result.put("pagination", p);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		
 	//상품문의작성
 	public void insertInquiry(InquiryBoard i){
 		dao.insertInquiry(i);
@@ -109,19 +125,7 @@ public class productService {
 	public void deleteInquiry(int inquiryNo){
 		dao.deleteInquiry(inquiryNo);
 	}
-	//상품문의 페이지로
-	@Transactional
-	public String selectInquiry(int itemNo,int pageNo){
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(itemNo));
-		map.put("start", p.getStartArticle());
-		map.put("end", p.getEndArticle());
-		map.put("itemNo", itemNo);
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectInquiry(map));
-		result.put("pagination", p);
-		return new Gson().toJson(result);	
-	}
+
 	//상품문의 리플 다가져오기
 	public String selectInquiryReple(int inquiryNo){
 		HashMap<String, Object> result=new HashMap<String, Object>();
@@ -307,7 +311,7 @@ public class productService {
 		System.out.println("찍어봐임마"+result.get("result").toString());
 			return new Gson().toJson(result);
 		}
-	
+
 	
 	
 }

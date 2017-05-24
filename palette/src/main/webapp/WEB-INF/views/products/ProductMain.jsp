@@ -153,7 +153,7 @@
 												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
-												href="/palette/miniHome/${userId}/productInquiry/${result.item.itemNo.intValue()}"><input
+												href="/palette/miniHome/${userId}/productInquiryList/${result.item.itemNo.intValue()}"><input
 												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
 												value="상품문의"></a>

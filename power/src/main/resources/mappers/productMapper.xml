@@ -162,9 +162,9 @@ select *from item where item_no=#{itemNo}
 select *from item_option where item_no=#{itemNo}
 </select>
 <!-- 상품문의 작성 -->
-<insert id="InsertInquiry" parameterType="InquiryBoard">
+<insert id="insertInquiry" parameterType="InquiryBoard">
 <selectKey keyProperty="inquiryNo" resultType="int" order="BEFORE">
-select inquiryno_seq.nextval from dual
+select inquiry_board_seq.nextval from dual
 </selectKey>
 insert into inquiry_board values(#{inquiryNo},#{inquiryTitle},#{inquiryContent},sysdate,#{itemNo},#{userId})
 </insert>
@@ -180,12 +180,15 @@ delete inquiry_board where inquiry_no=#{inquiryNo}
 <!-- 상품문의 페이지 -->
 <select id="selectInquiry" parameterType="hashmap" resultType="InquiryBoard">
 <![CDATA[
-select * from(select rownum rnum b.*  from(select *from inquiry_board where item_no=#{itemNo})b where rownum<=#{start}) where rnum>=#{end}
+select * from 
+(select rownum rnum,b.*  from
+(select *from inquiry_board where item_no=#{itemNo} order by inquiry_no desc)b
+ where rownum>=#{start}) where rnum<=#{end}
 ]]>
 </select>
 <!-- 상품문의 페이지 개수 -->
 <select id="selectInquiryCnt" parameterType="int" resultType="int">
-select count(*) cnt from inquiry_board where item_no=#{itemNo}
+select count(*) from inquiry_board where item_no=#{itemNo}
 </select>
 <!-- 상품문의 댓글가져오기 -->
 <select id="selectInquiryReple" parameterType="int" resultType="InquiryReple">

@@ -186,5 +186,26 @@ public class ProductService {
 		
 		return s;
 	}
+	//문의게시판리스트
+	public Map<String, Object> InquiryList(Map<String, Object> map) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map),headers);
+		
+		String result = tpl.exchange("http://localhost:8087/api/miniHome/inquiryList", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map1 = new Gson().fromJson(result, Map.class);
+		System.out.println(map1);
+		
+		return map1;
+	}
+	//상품문의글 작성
+	public void inquiryRegister(InquiryBoard i) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(i), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/inquiryRegister", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
 
 }

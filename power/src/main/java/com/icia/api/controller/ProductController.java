@@ -80,7 +80,6 @@ public class ProductController {
 		System.out.println("시방새야"+item);
 		int result = service.insertBasket(item, userId);
 			return result + "";
-		
 	}
 	//카테고리받기
 	@RequestMapping(value="/productKind", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
@@ -90,21 +89,12 @@ public class ProductController {
 	//상품배송번호입력
 	@RequestMapping(value = "/deliveryInsert", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public void deliveryInsert(@RequestBody Map<String, Object> map) {
-	
 	 service.insertBasket(map);
-		
-		
 	}
-	
-
-	
-	
 	//주문하기
 	@RequestMapping(value = "/productOrder", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public void productOrder(@RequestBody OrderStatement o) {
 	 service.productOrder(o);
-		
-		
 	}
 	//미니홈피메인 상품이미지
 	@RequestMapping(value = "/mainImg", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
@@ -129,7 +119,16 @@ public class ProductController {
 	public void productUpdate(@RequestBody List<Map<String, Object>> itemList) {
 	 service.productUpdate(itemList);;
 	}
-	
+	//문의게시판 리스트
+	@RequestMapping(value = "/inquiryList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String inquiryList(@RequestBody Map<String, Object> map) {
+	return service.inquiryList(map);	
+	}
+	//문의게시판 작성
+	@RequestMapping(value = "/inquiryRegister", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void inquiryRegister(@RequestBody InquiryBoard i) {
+	 service.insertInquiry(i);
+	}
 		
 	
 	

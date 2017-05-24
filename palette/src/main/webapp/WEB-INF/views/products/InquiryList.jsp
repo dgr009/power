@@ -47,19 +47,50 @@
     padding-left: 50px;
     }
     
-input[type="submit"] {
-	font-family:FontAwesome;
+/* input[type="submit"] { */
+/* 	font-family:FontAwesome; */
+/* } */
+
+/* input[type="button"] { */
+/* 	font-family:FontAwesome; */
+/* }      */
+
+a:LINK {
+	color :  threeddarkshadow;
+}
+a:VISITED {
+	color :  threeddarkshadow;
 }
 
-input[type="button"] {
-	font-family:FontAwesome;
-}     
+#under:HOVER {
+	text-decoration: underline;
+/* 	border-bottom:3px solid black; */
+}
+
+#rc{
+	color:orange;
+}
+
+#rc span{
+	font-weight: bold;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
+
+	//최초 페이지가 로딩되면 한번만 새로고침
+	if (self.name != 'reload') {
+	    self.name = 'reload';
+	    self.location.reload(true);
+	}
+	else self.name = ''; 
+	
+	
+	
 </script>
 </head>
 <body>
@@ -91,7 +122,7 @@ input[type="button"] {
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>자유 게시판</h2>
+                           <h2>문의 게시판</h2>
                         </div>
                     </div>
                 </div>
@@ -100,51 +131,75 @@ input[type="button"] {
              </section>
             
  
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
-						
 							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 자유 게시판 글 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr>
-										<form  action="/palette/miniHome/${userId}/inquiryRegister" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="inquiryTitle">
-
-									</tr>
-                  					  </thead>
-
-              						  </table>
-	
-              		   <textarea rows="15" cols="" name="inquiryContent" ></textarea>
-              		   <input type="hidden" name="userId" id="userId" value=<%=user.getUserId()%>><br>
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
- 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
-           				 </div>
 							
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     자유게시판 글 목록</h3>
 						
+				<table class="table table-striped table-hover" style="text-align: center;">
+                    <thead>
+                    <tr>
+						<th style="text-align: center;  width: 120px;">번호</th>
+						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
+						<th style="text-align: center;  width: 120px;">작성자</th>		
+						<th style="text-align: center; width: 150px;">작성일</th>
+					</tr>
+                    </thead>
+                    
+                    <tbody id="free">
+                    	<c:forEach items="${result.result }" var="free">
+							<tr>			
+								<td>
+									${free.inquiryNo.intValue() }
+								</td>
+								<td style="text-align: left; ">
+									<a href="/palette/miniHome/${userId }/productInquiry/${free.inquiryNo.intValue()}" id="under">
+										${free.inquiryTitle}
+									</a>
+								</td>
+								<td>
+									${free.userId}
+								</td>
+								<td>
+									${free.inquiryDate }
+								</td>
+							</tr>
+						</c:forEach>
+                </table>
+                	<div id="pagination" style="text-align: center;">
+			         <ul class='pagination' style='height: 20px;' >
+			         	<c:if test="${result.pagination.prev>0 }">
+							<li><a href="/palette/miniHome/${userId}/productInquiryList/${itemNo}?pageNo=${mini2.pagination.prev.intValue()}">이전</a></li>
+						</c:if>
 						
-					</form>		
-							
+						<c:forEach var="i" begin="${result.pagination.startPage}" end="${mini2.pagination.endPage}">
+							<li><a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a></li>
+						</c:forEach>
 						
-                            
-							
+						<c:if test="${result.pagination.next>0 }">
+							<a href="/palette/miniHome/${userId }/freeList?pageNo=${result.pagination.next.intValue()}">다음</a>
+						</c:if>
+					</ul>
+                 </div>
+                 
+              	<div class="col-lg-9 col-md-9 col-sm-9">
+              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
+              		   </div>  
+              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/miniHome/${userId }/inquiryRegister/${itemNo}'"  style="color:white;"/></div>
+                
+					<br>  <br>
+                </div>
+                 <br>  <br><br>  <br>
+            </div>	
+				                     
+                
+            
+             
 									
-							
-							
-							</div>
-							
-							</div></div>
-					
- 
+									
            
 							
 							

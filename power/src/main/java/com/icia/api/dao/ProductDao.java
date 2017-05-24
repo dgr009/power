@@ -79,12 +79,12 @@ public class ProductDao {
 		tpl.delete("api.dao.ProductDao.deleteInquiry", inquiryNo);
 	}
 	//상품문의페이지
-	public List<InquiryBoard> selectInquiry(HashMap< String, Object> map){
+	public List<InquiryBoard> selectInquiry(Map< String, Object> map){
 		return tpl.selectList("api.dao.ProductDao.selectInquiry", map);
 	}
 	//상품문의페이지 개수
-	public int selectInquiryCnt(int item_no){
-		return tpl.selectOne("api.dao.ProductDao.selectInquiryCnt",item_no);
+	public int selectInquiryCnt(int itemNo){
+		return tpl.selectOne("api.dao.ProductDao.selectInquiryCnt",itemNo);
 	}
 	//상품문의 댓글가져오기
 	public List<InquiryReple> selectInquiryReple(int inquiryNo){
