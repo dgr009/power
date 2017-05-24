@@ -38,8 +38,10 @@ public class MiniHomeBoardService {
 		return dao.miniHomeUpdateFree(free);
 	}
 	
+	@Transactional
 	//(개인)자유게시판 삭제
 	public int miniHomeDeleteFree(int freeNo){
+		dao.miniHomeDeleteAllFreeReple(freeNo);
 		return dao.miniHomeDeleteFree(freeNo);
 	}
 	//(개인)공지게시판 삭제

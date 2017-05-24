@@ -9,6 +9,7 @@ import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.google.gson.*;
+import com.icia.api.dao.*;
 import com.icia.api.service.*;
 import com.icia.api.vo.*;
 
@@ -20,6 +21,8 @@ public class MiniHomeController {
 	@Autowired
 	private MiniHomeBoardService service;	
 	
+	@Autowired
+	private MiniHomeBoardDao dao;	
 	
 	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}", method=RequestMethod.GET, produces="text/html;charset=utf-8")
@@ -55,15 +58,12 @@ public class MiniHomeController {
 	
 	//자유게시판 작성
 	@RequestMapping(value="/{userId}/freeRegister", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
-	public ResponseEntity<String> create(@RequestHeader("token") String token, @RequestBody MiniHomeFree free) throws BindException {
+	public String create(@RequestHeader("token") String token, @RequestBody MiniHomeFree free) throws BindException {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
 		int result = service.miniHomeRegisterFree(free);
-		
-		if(result==1){
-			return new ResponseEntity<String>(free.toString(),HttpStatus.OK);
-		}else{
-			return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
-		}
+//		System.out.println(free.getFreeNo());
+//		System.out.println(new Gson().toJson(free.getFreeNo()));
+		return new Gson().toJson(free.getFreeNo());	//추가된 게시글 번호를 알기 위해
 	}
 
 	//공지게시판 작성

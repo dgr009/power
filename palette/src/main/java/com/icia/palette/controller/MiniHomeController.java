@@ -8,9 +8,9 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
+import com.icia.palette.dao.*;
 import com.icia.palette.service.*;
 import com.icia.palette.vo.*;
-
 @Controller
 @RequestMapping("/miniHome")
 public class MiniHomeController {
@@ -36,7 +36,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeList",method = RequestMethod.GET)
 	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectFreeList(session,userId,pageNo));
-		return "mini/info2";
+		return "mini/freeList";
 	}
 	//공지 리스트
 	@RequestMapping(value="/{userId}/noticeList",method = RequestMethod.GET)
@@ -51,14 +51,16 @@ public class MiniHomeController {
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
-		return "mini/register";
+		return "mini/freeRegister";
 	}
 	
 	//추가 끝
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.POST)
 	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free){
-		service.miniHomeRegisterFree(session, free);
-		return "redirect:freeList?pageNo=1";
+		String result = service.miniHomeRegisterFree(session, free);
+		//return 값으로 freeNo를 넘겼으므로 result안에 들어있다
+		
+		return "redirect:freeView/"+result;
 	}
 	
 	//공지게시판 추가 시작
