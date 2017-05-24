@@ -89,10 +89,10 @@
 					${index.count }
 				</td>
 				<td>
-					${book.ownerId }
+					<a href="/palette/miniHome/${book.ownerId}/main">${book.homeTitle}</a>
 				</td>
 				<td>
-					<a href="#">${book.homeTitle}</a>
+					${book.ownerId }
 				</td>
 			</tr>
 			</c:forEach>

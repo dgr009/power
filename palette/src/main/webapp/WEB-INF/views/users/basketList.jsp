@@ -91,10 +91,10 @@
 				${index.count }
 			</td>
 			<td>
-				<a href="#"><img src="/productImg/${basket.imgName }" width='100px' height='100px'></a>
+				<a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }"><img src="/productImg/${basket.imgName }" width='100px' height='100px'></a>
 			</td>
 			<td>
-				<a href="#">${basket.itemName}</a>
+				<a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }">${basket.itemName}</a>
 			</td>
 			<td>
 				${basket.itemPrice.intValue()}

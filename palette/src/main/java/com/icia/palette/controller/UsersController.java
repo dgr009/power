@@ -250,7 +250,8 @@ public class UsersController {
 
 	// 메인으로
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String ma() {
+	public String mamamain(Model model) {
+		model.addAttribute("rank", service.getRankSide());
 		return "main/main";
 	}
 
@@ -259,5 +260,22 @@ public class UsersController {
 	public String homeDeleteStart() {
 		return "users/homeDelete";
 	}
+	
+	//회원 배송 및 구매 확정
+	@RequestMapping(value = "/orderComplete", method = RequestMethod.GET)
+	public String orderComplete(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo,
+			@RequestParam int orderNo) {
+		service.completeOrder(session,orderNo);
+		model.addAttribute("result", service.userOrderList(session, pageNo));
+		return "users/orderStatement";
+	}
+	
+	//회원 스코어 입력하기
+	@RequestMapping(value = "/score", method = RequestMethod.GET)
+	public String mamamain(@RequestParam int orderNo,Model model) {
+		model.addAttribute("orderNo", orderNo);
+		return "users/score";
+	}
+	
 	
 }

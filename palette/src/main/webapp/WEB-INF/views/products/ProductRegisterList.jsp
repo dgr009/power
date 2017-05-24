@@ -75,13 +75,7 @@
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-							
-							</h1>
-						</div>
-					</div>
+					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                      <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->

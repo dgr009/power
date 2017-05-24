@@ -49,6 +49,9 @@
 	<select id="usersBookmarkListCnt" parameterType="string" resultType="int">
 		select count(*) from bookmark where order_id=#{userId}
 	</select>
+	<select id="getBookmark" parameterType="hashmap" resultType="int">
+		select count(*) from bookmark where order_id=#{orderId} and owner_id=#{ownerId}
+	</select>
 	<!-- 주문내역보기 -->
 	<select id="usersOrderList" parameterType="hashmap" resultType="OrderList">
 		<![CDATA[
@@ -81,7 +84,7 @@
 	</update>
 	<!-- 판매자 포인트 감소 -->
 	<update id="ownerPointDown" parameterType="int">
-		update users set user_point = user_point - (select order_price from order_statement where order_no=#{orderNo}) where user_id in (select i.user_id from order_statement o,item i where o.item_no=o.item_no and order_no=#{orderNo})
+		update users set user_point = user_point - (select order_price from order_statement where order_no=#{orderNo}) where user_id in (select i.user_id from order_statement o,item i where o.item_no=i.item_no and o.order_no=#{orderNo})
 	</update>
 	<!-- 포인트 충전하기 -->
 	<update id="usersChargePoint" parameterType="hashmap">
@@ -194,4 +197,35 @@
 	<delete id="usersDeleteSmallTag" parameterType="string">
 		delete from small_kind where user_id=#{userId}
 	</delete>
+	
+	<!-- 주문 확정 하기 -->
+	<update id="orderComplete" parameterType="int">
+		update order_statement set order_state='주문완료' where order_no=#{orderNo} 
+	</update>
+	<!-- 판매자 등급 가져오기 -->
+	<select id="selectOwnerGrade" parameterType="int" resultType="string">
+		select user_grade from users where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo})
+	</select>
+	<!-- 판매자 등급 실버로 -->
+	<update id="ownerSilverGradeUp" parameterType="int">
+		update users set user_grade='silver' where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo}) 
+	</update>
+	<!-- 판매자 등급 골드로 -->
+	<update id="ownerGoldGradeUp" parameterType="int">
+		update users set user_grade='gold' where user_id in (select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo})
+	</update>
+	<!-- 판매자 총 판매량 조회하기 -->
+	<select id="getTotalSellPoint" parameterType="int" resultType="int">
+		select sum(o.order_price) from item i,order_statement o where o.item_no=i.item_no and i.user_id=(select i.user_id from order_statement o,item i where i.item_no=o.item_no and o.order_no=#{orderNo}) and o.order_state='주문완료' group by i.user_id,o.order_state 
+	</select>
+	
+	<!-- 메인 랭킹 5명 가져오기 -->
+	<select id="getRankSide" resultType="MiniHome">
+		<![CDATA[
+		select rownum, a.* from 
+			(select i.user_id userId,h.home_img homeImg from item i,order_statement o,home h
+				where h.user_id=i.user_id and o.item_no=i.item_no and i.user_id in(select i.user_id from order_statement o,item i where i.item_no=o.item_no) and o.order_state='주문완료'  group by i.user_id,o.order_state,h.home_img
+				order by sum(o.order_price) desc) a where rownum<=5
+		]]>
+	</select>
 </mapper>

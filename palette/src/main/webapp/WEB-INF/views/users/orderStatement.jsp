@@ -54,7 +54,22 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-	
+$(function(){
+	$("#scoreBtn").on("click",function(){
+		alert("aerd");
+		
+// 		$.ajax({
+// 			url:"/palette/users/orderComplete?orderNo="+$(this).data("ono"),
+// 			type:"get",
+// 			complete:function(){
+// 				window.open("http://localhost:8087/palette/users/score?orderNo="+$(this).data("ono"),"Score","scrollbars=yes,toolbar=yes,location=yes,resizable=yes,status=yes,menubar=yes,resizable=yes,width=400,height=400,left=300,top=300");		
+// 			}
+
+// 		})
+	})
+
+})
+
 </script>
 </head>
 <body>
@@ -108,7 +123,8 @@
 				${order.orderState }
 			</td>
 			<td>
-				<c:if test="${order.orderState=='배송준비중' }"><a href='/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}'>주문 취소</a></c:if>
+				<c:if test="${order.orderState=='배송준비중' }"><button onclick="location.href='/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}'">주문 취소</a></c:if>
+				<c:if test="${order.orderState=='배송중' }"><button id='scoreBtn' data-ono='${order.orderNo.intValue()}'>주문 확정</a></c:if>
 			</td>
 		</tr>
 		</c:forEach>
@@ -122,7 +138,7 @@
 			
 		<c:if test="${result.pagination.next>0 }"><a href="/palette/users/orderList?pageNo=${result.pagination.next}">다음으로</a></c:if>
 		<br><br>
-	<button onclick="location.href='/palette/users/home'">홈으로</button>
+	<button onclick="location.href='/palette/users/main'">홈으로</button>
   </div>
 		</div>
 
