@@ -207,5 +207,15 @@ public class ProductService {
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(i), headers);
 		tpl.exchange("http://localhost:8087/api/miniHome/inquiryRegister", HttpMethod.POST, requestEntity, String.class).getBody();
 	}
+	//상품문의글보기
+	public Map<String, Object> productInquiryView(int inquiryNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(inquiryNo),headers);
+		String result = tpl.exchange("http://localhost:8087/api/miniHome/inquiryView", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
+	}
 
 }

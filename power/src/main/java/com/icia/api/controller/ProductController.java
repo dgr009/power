@@ -31,6 +31,7 @@ public class ProductController {
 	private productService service;
 	@Resource(name="path")
 	private String path;
+	
 	@RequestMapping(value="/productRegister/{userid}")
 	public String productRegisterReady(@PathVariable String userid){
 		return new Gson().toJson(service.productRegisterReady(userid));
@@ -129,6 +130,13 @@ public class ProductController {
 	public void inquiryRegister(@RequestBody InquiryBoard i) {
 	 service.insertInquiry(i);
 	}
+	//문의게시판 보기
+		@RequestMapping(value = "/inquiryView", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+		public String productSearch(@RequestBody int inquiryNo) {
+			System.out.println("여기찍어봐임마");
+		return service.inquiryView(inquiryNo);
+			
+		}
 		
 	
 	

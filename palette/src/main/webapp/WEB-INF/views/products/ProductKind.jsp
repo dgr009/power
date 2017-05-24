@@ -87,18 +87,18 @@
         <!--start wrapper-->
         <section class="wrapper">
          <section class="page_head">
-            <div class="container"></div>
+            <div class="container" ></div>
             </div>
          </section>
-
+         
                     <!--물건 표시란 시작-->
-                    <div style="width: 90%; text-align: center;">
+                    <div style="width: 80%; text-align: center; padding-left: 10%" >
                 <div class="mixed-container masonry_wrapper" style="margin-left: 10%;">
 			<c:forEach items="${result.result }" var="free">
                         <div class="item responsive">
                             <figure class="touching effect-bubba">
                             <!-- 상품 이미지 표시 -->
-                                <img style="width: 200	px; height: 250px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
+                                <img style="width: 100	px; height: 350px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
 
                                 <div class="option">
                                     <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>

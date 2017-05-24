@@ -112,6 +112,15 @@ public class productService {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 			return gson.toJson(result);	
 		}
+		//상품문의글보기,리플도
+		@Transactional
+		public String inquiryView(int inquiryNo) {
+			Map<String, Object> result=new HashMap<String, Object>();
+			result.put("inquiry", dao.selectInquiryView(inquiryNo));
+			result.put("reple", dao.selectInquiryReple(inquiryNo));
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
 		
 	//상품문의작성
 	public void insertInquiry(InquiryBoard i){
@@ -126,12 +135,6 @@ public class productService {
 		dao.deleteInquiry(inquiryNo);
 	}
 
-	//상품문의 리플 다가져오기
-	public String selectInquiryReple(int inquiryNo){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectInquiryReple(inquiryNo));
-		return new Gson().toJson(result);
-	}
 	//상품문의 댓글작성
 	public void insertInquiryReple(InquiryReple i){
 		dao.insertInquiryReple(i);
@@ -311,6 +314,7 @@ public class productService {
 		System.out.println("찍어봐임마"+result.get("result").toString());
 			return new Gson().toJson(result);
 		}
+	
 
 	
 	

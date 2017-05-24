@@ -4,7 +4,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
 <%
-	Users user = (Users) session.getAttribute("user");
+	Users user1 = (Users) session.getAttribute("user");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -96,19 +96,13 @@ a:VISITED {
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
-							</h1>
-						</div>
-					</div>
+					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
@@ -155,7 +149,7 @@ a:VISITED {
 									${free.inquiryNo.intValue() }
 								</td>
 								<td style="text-align: left; ">
-									<a href="/palette/miniHome/${userId }/productInquiry/${free.inquiryNo.intValue()}" id="under">
+									<a href="/palette/miniHome/${userId }/productInquiryView/${free.inquiryNo.intValue()}" id="under">
 										${free.inquiryTitle}
 									</a>
 								</td>
@@ -171,21 +165,21 @@ a:VISITED {
                 	<div id="pagination" style="text-align: center;">
 			         <ul class='pagination' style='height: 20px;' >
 			         	<c:if test="${result.pagination.prev>0 }">
-							<li><a href="/palette/miniHome/${userId}/productInquiryList/${itemNo}?pageNo=${mini2.pagination.prev.intValue()}">이전</a></li>
+							<li><a href="/palette/miniHome/${userId}/productInquiryList/${itemNo}?pageNo=${result.pagination.prev.intValue()}">이전</a></li>
 						</c:if>
 						
-						<c:forEach var="i" begin="${result.pagination.startPage}" end="${mini2.pagination.endPage}">
-							<li><a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a></li>
+						<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+							<li><a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${i}">${i} </a></li>
 						</c:forEach>
 						
 						<c:if test="${result.pagination.next>0 }">
-							<a href="/palette/miniHome/${userId }/freeList?pageNo=${result.pagination.next.intValue()}">다음</a>
+							<a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${result.pagination.next.intValue()}">다음</a>
 						</c:if>
 					</ul>
                  </div>
                  
               	<div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
+              		   		<a href="../productInquiryList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
               		   </div>  
               		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
               		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/miniHome/${userId }/inquiryRegister/${itemNo}'"  style="color:white;"/></div>

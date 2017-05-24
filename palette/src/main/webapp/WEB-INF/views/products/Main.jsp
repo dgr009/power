@@ -142,7 +142,7 @@
     <!--=====================최신등록 상품 끝======================-->
 
 
-    <!--=====================인기상품 시작========================-->
+    <!--=====================마감임박 시작========================-->
     <section class="latest_work">
         <div class="container">
             <div class="row sub_content">
@@ -177,135 +177,7 @@
         </div>
     </section>
 </section>
-    <!--=====================인기상품 끝========================-->
-<!-- ===================마감임박상품============================= -->
-    <section class="latest_work">
-        <div class="container">
-            <div class="row sub_content">
-                <div class="carousel-intro">
-                    <div class="col-md-12">
-                        <div class="dividerHeading">
-                            <h4><span>마감임박 상품</span></h4>
-                        </div>
-                        <div class="carousel-navi">
-                            <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
-                            <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-
-                <div class="jcarousel recent-work-jc">
-                    <ul class="jcarousel-list">
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_2.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_3.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_4.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_5.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_6.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_7.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_8.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                            </figure>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-</section>
-    <!--=====================마감임박 상품끝========================-->
-
-
-
-
-
-
-
-
+    <!--=====================마감임박상품 끝========================-->
 
 <!--
     밑에 꺼는 정확하게 어떤건지 모르니까 만지지 마시오...

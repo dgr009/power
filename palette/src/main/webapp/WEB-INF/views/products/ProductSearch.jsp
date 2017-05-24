@@ -92,7 +92,7 @@
          </section>
 
                     <!--물건 표시란 시작-->
-                    <div style="width: 90%; text-align: center;">
+                     <div style="width: 80%; text-align: center; padding-left: 10%" >
                 <div class="mixed-container masonry_wrapper" style="margin-left: 10%;" >
 			<c:forEach items="${result.result }" var="free">
                         <div class="item responsive">

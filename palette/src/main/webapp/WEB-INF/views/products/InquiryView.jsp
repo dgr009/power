@@ -54,25 +54,35 @@ input[type="submit"] {
 input[type="button"] {
 	font-family:FontAwesome;
 }     
+
+#repleCnt{
+	color : orange;
+	font-weight: normal;
+}
+
+#repleCnt #rrrrr{
+	font-weight: bold;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
+
 </script>
 </head>
 <body>
 <!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+	 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-		
-					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
+				      	<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
+					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
@@ -85,7 +95,7 @@ input[type="button"] {
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>제품 문의 게시판</h2>
+                           <h2>문의 게시판</h2>
                         </div>
                     </div>
                 </div>
@@ -94,52 +104,154 @@ input[type="button"] {
              </section>
             
  
+           
             <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
 						
+							<form 
+							action="/palette/miniHome/${mini.free.userId }/productInquiryUpdate/${result.inquiry.inquiryNo.intValue()}"
+							method="get">
+							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
+							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
 							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 문의게시판 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
+							<!-- 게시물 제목 -->
+							     ${result.inquiry.inquiryTitle }</h3>
+							     <!-- 댓글 수 -->
+		
+							      
+							     <div style="font-size: 90%;">
+							     	<div style=" float: left; ">
+									&nbsp;&nbsp;&nbsp;글 번호 (&nbsp;${result.inquiry.inquiryNo.intValue() }&nbsp;)
+									</div>
+								
+							     </div>
+							     <!-- 조회수 -->
+							     
+							     	
+              				  		
+              				  		<table class="table table-striped table-hover" >
 				                    <thead>
-				                    <tr>
-										<form  action="/palette/miniHome/${userId}/inquiryRegister/${itemNo}" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="InquiryTitle">
-
+				                    <tr >
+				                    
+				                    <!-- 작성자 및 시간 -->
+				                    
+				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>${result.inquiry.userId }</th>
+										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${result.inquiry.inquiryDate}</th>
 									</tr>
                   					  </thead>
+                   
 
               						  </table>
-					
-              		   <textarea rows="15" cols="" name="inquiryContent" ></textarea>
-						<input type="hidden" name="userId" id="userId" value=<%=user.getUserId()%>>
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
- 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
-           				 </div>
+              						
+              		   <div class="col-lg-1 col-md-1 col-sm-1">
+              		   </div>
+              		   
+              		   <div class="col-lg-10 col-md-10 col-sm-10">
+              		   <br>
+              		   <!-- 게시물 내용 -->
+              		   <p style="max-height: 700px; min-height: 250px;">
+              		   ${result.inquiry.inquiryContent }
+							</p>
 							
+							
+              		   </div>
+              		   	
+              		   <div class="col-lg-1 col-md-1 col-sm-1">
+              		   		
+              		   </div>	
+              		   
+              		   <div class="col-lg-9 col-md-9 col-sm-9">
+              		   		<a href="../productInquiryList/${result.inquiry.itemNo.intValue()}?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
+              		   </div>  
+              		   
+              		
 						
+						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
+					<c:set var = "userId" scope = "session" value = "<%=user1.getUserId()%>"/>
+						<c:if test="${result.inquiry.userId==userId}">
+							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정하기">
+						</form>
+						</c:if>
 						
-					</form>		
+              		   		 
+              		 		
+								
+								<c:if test="${result.inquiry.userId==userId}">
+								 <form style="display: inline-block;" action="/palette/miniHome/${result.inquiry.userId }/productInquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
+								 &nbsp;
+								 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
+								 <input type="hidden"value="${result.inquiry.userId }" name="userId" id="userId"> 
+								 <input type="hidden" value="${result.inquiry.inquiryNo.intValue() }" name="freeNo"id="freeNo">
+								</form>
+					
+									</c:if>
+									
+							
+              		 		 
+              		   </div>  
+						<table class="table table-striped table-hover" style="text-align: center;">
+				                    <thead>
+				                    <tr >
+										<th style="text-align: center;"></th>
+									</tr>
+                  					  </thead>
+                   
+
+              						  </table>
+              						  
+               				 <p>답변</p>
+               				 
+               				 <!-- 댓글 -->
+               				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
+				                    <c:forEach items="${result.reple }" var="reple">
+				                    <thead>
+				                    <tr>
+				                    	<!-- 작성자 -->
+				                    	<th><span style="font-weight: normal;">ID : </span>${reple.userId }</th>
+				                    	<th></th>
+				                    	<!-- 시간 -->
+										<th style="text-align: right;"><span style="font-weight: normal; font-size: 90%;">작성일 : </span>${reple.inquiryRepleDate }</th>
+									</tr>
+									</thead>
+									<tbody>
+             							<tr>
+             								<!--내용 -->
+             							
+             								<td colspan="2" width="900px;" class="Content${reple.inquiryRepleNo.intValue() }" style="text-align: left; "><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.inquiryRepleContent }</td>
+             								<!-- 히든 -->
+             								<input type="hidden" value="${reple.userId}"
+												name="userId" class="repleName">
+											<input type="hidden" value="${reple.inquiryRepleNo.intValue() }"
+												name="inquiryRepleNo" class="inquiryRepleNo">
+											<input type="hidden" value="${reple.freeNo.intValue() }"
+												name="freeNo" class="freeNo">
+             								<td style=" text-align: right;" class="rrr">
+             								<!-- 버튼 -->
+             					
+             					
+             								</td>
+             							</tr>
+             							</tbody>
+             							</c:forEach>
+              						  </table>
+              						  
+              						<!-- 댓글 -->
+            
+									<br><br>
+									<br><br>
+								
+							
+							
+								
 							
 						
                             
 							
 									
+							</div>
 							
 							
 							</div>
-							
-							</div></div>
-					
- 
-           
 							
 							
 					

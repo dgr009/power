@@ -225,7 +225,7 @@ public class ProductController {
 				}
 				//문의게시판페이지로
 				@RequestMapping(value = "/{userId}/productInquiryList/{itemNo}", method = RequestMethod.GET)
-				public String productInquiry(@PathVariable String userId,Model model,@PathVariable int itemNo,@RequestParam(defaultValue="1") int pageNo) {
+				public String productInquiryList(@PathVariable String userId,Model model,@PathVariable int itemNo,@RequestParam(defaultValue="1") int pageNo) {
 					model.addAttribute("userId",userId);
 					Map<String, Object> map=new HashMap<String, Object>();
 					map.put("itemNo", itemNo);
@@ -249,6 +249,14 @@ public class ProductController {
 					service.inquiryRegister(i);
 					String a="redirect:/miniHome/"+userId+"/productInquiryList/"+itemNo;
 					return a;
+				}
+				//문의글로
+				@RequestMapping(value = "/{userId}/productInquiryView/{inquiryNo}", method = RequestMethod.GET)
+				public String productInquiryView(@PathVariable String userId,Model model,@PathVariable int inquiryNo) {
+					model.addAttribute("userId",userId);
+					model.addAttribute("result", service.productInquiryView(inquiryNo));
+					model.addAttribute("kind", service.productKind(userId));
+					return "products/InquiryView";
 				}
 	
 }

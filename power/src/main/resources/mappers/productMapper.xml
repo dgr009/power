@@ -186,6 +186,10 @@ select * from
  where rownum>=#{start}) where rnum<=#{end}
 ]]>
 </select>
+<!--상품문의 글보기 -->
+<select id="selectInquiryView" parameterType="int" resultType="InquiryBoard"> 
+select *from inquiry_board where inquiry_no=#{inquiryNo}
+</select>
 <!-- 상품문의 페이지 개수 -->
 <select id="selectInquiryCnt" parameterType="int" resultType="int">
 select count(*) from inquiry_board where item_no=#{itemNo}
