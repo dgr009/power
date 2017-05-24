@@ -60,20 +60,6 @@ input[type="button"] {
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
-var link = document.location.href; 
-var sss = link.split('/');
-var idid=sss[5];
-var id='<%=user.getUserId() %>'
-
-
-//공지글 작성에 url만 쳐서 들어올경우
-if(id === idid){
-	 
-}else{
-	 alert("권한이 없습니다")
-	 var url = "http://localhost:8087/palette/users/login";    
-	 $(location).attr('href',url);
-}
 </script>
 </head>
 <body>
@@ -105,7 +91,7 @@ if(id === idid){
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>공지 게시판 글 수정</h2>
+                           <h2>자유 게시판</h2>
                         </div>
                     </div>
                 </div>
@@ -122,42 +108,47 @@ if(id === idid){
 							<div class="col-lg-1 col-md-1 col-sm-1">
               		   </div>
 							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 공지 게시판 글 작성</h3>
+							<h3><i class="fa fa-info-circle"></i>&nbsp; 자유 게시판 글 작성</h3>
 								<table class="table table-striped table-hover" style="text-align: center;">
 				                    <thead>
 				                    <tr>
-										<form action="/palette/miniHome/${mini.userId }/noticeUpdate/${mini.noticeArticleNo.intValue()}" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${mini.noticeArticleTitle}" name="noticeArticleTitle" style="width:730px;">
+										<form  action="/palette/miniHome/${homeId }/freeRegister" method="post">
+										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="freeTitle">
 
 									</tr>
                   					  </thead>
 
               						  </table>
 	
-              		   <textarea rows="15" cols="" name="noticeArticleContent" >${mini.noticeArticleContent}</textarea>
-              		 <input type="hidden" value="${mini.noticeArticleNo.intValue() }" name="noticeArticleNo">
-						<input type="hidden" value="${mini.userId }" name="userId">
+              		   <textarea rows="15" cols="" name="freeContent" ></textarea>
+              		   <input type="hidden" name="freeName" id="freeName" value='${userId}'><br>
+						<input type="hidden" name="userId" id="userId" value="${homeId }">
+						<input type="hidden" name="seq" id="seq" value="${nn }">
 						<br>		
               		   			<div id="id"></div>
               		   <div class="col-sm-12 text-center"><br>
-                  			 <a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
+ 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
                   			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료" id="update">
-           				 	</form>
+                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
            				 </div>
 							
 						
 						
-
+					</form>		
+							
+						
+                            
+							
+									
+							
+							
 							</div>
 							
 							</div></div>
 					
  
            
-	
-			
-	
+							
 							
 					
 

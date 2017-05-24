@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users user = (Users) session.getAttribute("user");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,33 +44,40 @@
     padding-left: 50px;
     }
     
-input[type="submit"] {
-	font-family:FontAwesome;
+/* input[type="submit"] { */
+/* 	font-family:FontAwesome; */
+/* } */
+
+/* input[type="button"] { */
+/* 	font-family:FontAwesome; */
+/* }      */
+
+a:LINK {
+	color :  threeddarkshadow;
+}
+a:VISITED {
+	color :  threeddarkshadow;
 }
 
-input[type="button"] {
-	font-family:FontAwesome;
-}     
+a:HOVER {
+	text-decoration: underline;
+}
+
+#rc{
+	color:orange;
+}
+
+#rc span{
+	font-weight: bold;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
-var link = document.location.href; 
-var sss = link.split('/');
-var idid=sss[5];
-var id='<%=user.getUserId() %>'
 
-
-//공지글 작성에 url만 쳐서 들어올경우
-if(id === idid){
-	 
-}else{
-	 alert("권한이 없습니다")
-	 var url = "http://localhost:8087/palette/users/login";    
-	 $(location).attr('href',url);
-}
 </script>
 </head>
 <body>
@@ -105,7 +109,7 @@ if(id === idid){
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>공지 게시판 글 수정</h2>
+                           <h2>자유 게시판</h2>
                         </div>
                     </div>
                 </div>
@@ -114,50 +118,68 @@ if(id === idid){
              </section>
             
  
-            <div class="col-lg-12 col-md-12 col-sm-12">
-							<br><br>
-						
-							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 공지 게시판 글 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr>
-										<form action="/palette/miniHome/${mini.userId }/noticeUpdate/${mini.noticeArticleNo.intValue()}" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${mini.noticeArticleTitle}" name="noticeArticleTitle" style="width:730px;">
-
-									</tr>
-                  					  </thead>
-
-              						  </table>
-	
-              		   <textarea rows="15" cols="" name="noticeArticleContent" >${mini.noticeArticleContent}</textarea>
-              		 <input type="hidden" value="${mini.noticeArticleNo.intValue() }" name="noticeArticleNo">
-						<input type="hidden" value="${mini.userId }" name="userId">
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
-                  			 <a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료" id="update">
-           				 	</form>
-           				 </div>
-							
-						
-						
-
-							</div>
-							
-							</div></div>
-					
- 
+            
            
-	
-			
-	
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+							<br><br>
+							
+							
+							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     작성한 문의 글 목록</h3>
+							
+								<table class="table table-striped table-hover" style="text-align: center;">
+                    <thead>
+                    <tr >
+										<th style="text-align: center;  width: 80px;">글쓴이</th>
+										<th style="text-align: center;  width: 100px;">분류</th>
+										<th style="text-align: center;">제목</th>				
+										<th style="text-align: center; width: 150px;">등록일</th>
+									</tr>
+                    </thead>
+                    
+                    <tbody id="free">
+                    	<tr>
+    						<td>qhrals8</td>
+    						<td>입금확인</td>
+    						<td>입금 확인이 안되고 있습니다 이유좀...</td>
+    						<td>2015/11/11</td>
+                    	</tr>
+                    	<tr>
+    						<td>qazwsxo05</td>
+    						<td>배송/기타</td>
+    						<td>아니 왜 안오는 거냐고</td>
+    						<td>2015/11/11</td>
+                    	</tr>
+                    	<tr>
+    						<td>asdwqe2</td>
+    						<td>1st.Class전용</td>
+    						<td>내가 누군지 몰라? ㅡㅡ  다 엎어버리기 전에 사장나와</td>
+    						<td>2015/11/11</td>
+                    	</tr>
+                    </tbody>
+
+                </table>
+              	
+                <br>
+							<div class="col-sm-12 text-right" style="height: 20px;">
+							
+						  
+                    <br><br>
+	                    <div id="pagination" style="text-align: center;"></div>
+	                  
+                    <br><br> <br><br>
+                </div>
+                </div>
+                 <div class="col-lg-9 col-md-9 col-sm-9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <a href='/hooligan/free/register'><input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로"></a></div>
+              	  <div class="col-lg-3 col-md-3 col-sm-3" style="text-align: left;">
+              	  
+                </div>
+            </div>	
+             
+									
+									
+           
+							
 							
 					
 

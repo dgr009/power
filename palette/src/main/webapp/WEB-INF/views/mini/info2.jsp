@@ -31,13 +31,12 @@
 			<td>이름</td>
 			<td>조회수</td>
 			<td>게시시간</td>
-			<td>아이디</td>
 			<td>댓글 수</td>
 		</tr>
 		<c:forEach items="${mini2.list }" var="free">
 		<tr>			
 			<td>
-				${free.freeNo }
+				${free.freeNo.intValue() }
 			</td>
 			<td>
 				<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}">${free.freeTitle }</a>
@@ -52,21 +51,13 @@
 				${free.freeDate }
 			</td>
 			<td>
-				${free.userId }
-			</td>
-			<td>
 				${free.freeRepleCnt.intValue() }
 			</td>	
 		</tr>
 		</c:forEach>
+		</table>
 
-			<c:if test="${mini2.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></c:if>
 			
-			<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
-				<a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a>
-			</c:forEach>
-			
-		<c:if test="${mini2.pagination.next>0 }"><a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음으로</a></c:if>
 		
 		<form>
 		<input type="button" value="게시글 작성" 

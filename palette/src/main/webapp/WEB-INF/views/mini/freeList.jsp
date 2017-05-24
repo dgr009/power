@@ -47,33 +47,50 @@
     padding-left: 50px;
     }
     
-input[type="submit"] {
-	font-family:FontAwesome;
+/* input[type="submit"] { */
+/* 	font-family:FontAwesome; */
+/* } */
+
+/* input[type="button"] { */
+/* 	font-family:FontAwesome; */
+/* }      */
+
+a:LINK {
+	color :  threeddarkshadow;
+}
+a:VISITED {
+	color :  threeddarkshadow;
 }
 
-input[type="button"] {
-	font-family:FontAwesome;
-}     
+#under:HOVER {
+	text-decoration: underline;
+/* 	border-bottom:3px solid black; */
+}
+
+#rc{
+	color:orange;
+}
+
+#rc span{
+	font-weight: bold;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
-var link = document.location.href; 
-var sss = link.split('/');
-var idid=sss[5];
-var id='<%=user.getUserId() %>'
 
-
-//공지글 작성에 url만 쳐서 들어올경우
-if(id === idid){
-	 
-}else{
-	 alert("권한이 없습니다")
-	 var url = "http://localhost:8087/palette/users/login";    
-	 $(location).attr('href',url);
-}
+	//최초 페이지가 로딩되면 한번만 새로고침
+	if (self.name != 'reload') {
+	    self.name = 'reload';
+	    self.location.reload(true);
+	}
+	else self.name = ''; 
+	
+	
+	
 </script>
 </head>
 <body>
@@ -105,7 +122,7 @@ if(id === idid){
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>공지 게시판 글 수정</h2>
+                           <h2>자유 게시판</h2>
                         </div>
                     </div>
                 </div>
@@ -114,50 +131,86 @@ if(id === idid){
              </section>
             
  
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
-						
 							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 공지 게시판 글 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr>
-										<form action="/palette/miniHome/${mini.userId }/noticeUpdate/${mini.noticeArticleNo.intValue()}" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${mini.noticeArticleTitle}" name="noticeArticleTitle" style="width:730px;">
-
-									</tr>
-                  					  </thead>
-
-              						  </table>
-	
-              		   <textarea rows="15" cols="" name="noticeArticleContent" >${mini.noticeArticleContent}</textarea>
-              		 <input type="hidden" value="${mini.noticeArticleNo.intValue() }" name="noticeArticleNo">
-						<input type="hidden" value="${mini.userId }" name="userId">
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
-                  			 <a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료" id="update">
-           				 	</form>
-           				 </div>
 							
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     자유게시판 글 목록</h3>
 						
+				<table class="table table-striped table-hover" style="text-align: center;">
+                    <thead>
+                    <tr>
+						<th style="text-align: center;  width: 120px;">번호</th>
+						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
+						<th style="text-align: center;  width: 120px;">작성자</th>		
+						<th style="text-align: center; width: 150px;">작성일</th>
+						<th style="text-align: center; width: 80px;">조회</th>
+					</tr>
+                    </thead>
+                    
+                    <tbody id="free">
+                    	<c:forEach items="${mini2.list }" var="free">
+							<tr>			
+								<td>
+									${free.freeNo.intValue() }
+								</td>
+								<td style="text-align: left; ">
+									<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}" id="under">
+										${free.freeTitle }
+										<c:if test="${free.freeRepleCnt.intValue()>0 }">
+										<span id="rc">&nbsp;&nbsp;(
+											<span>${free.freeRepleCnt.intValue() }</span>&nbsp;)
+										</span>
+										</c:if>
+									</a>
+								</td>
+								<td>
+									${free.freeName }
+								</td>
+								<td>
+									${free.freeDate }
+								</td>
+								<td>
+									${free.freeHits.intValue() }
+								</td>
+							</tr>
+						</c:forEach>
+                </table>
+                	<div id="pagination" style="text-align: center;">
+			         <ul class='pagination' style='height: 20px;' >
+			         	<c:if test="${mini2.pagination.prev>0 }">
+							<li><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전</a></li>
+						</c:if>
 						
-
-							</div>
-							
-							</div></div>
-					
- 
+						<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
+							<li><a href="/palette/miniHome/${userId }/freeList?pageNo=${i}">${i} </a></li>
+						</c:forEach>
+						
+						<c:if test="${mini2.pagination.next>0 }">
+							<a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음</a>
+						</c:if>
+					</ul>
+                 </div>
+                 
+              	<div class="col-lg-9 col-md-9 col-sm-9">
+              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
+              		   </div>  
+              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/miniHome/${userId }/freeRegister'"  style="color:white;"/></div>
+                
+					<br>  <br>
+                </div>
+                 <br>  <br><br>  <br>
+            </div>	
+				                     
+                
+            
+             
+									
+									
            
-	
-			
-	
+							
 							
 					
 

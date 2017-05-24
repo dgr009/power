@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
+<link rel="stylesheet" href="https://use.fontawesome.com/f4a7d32a7d.css">
 	
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,9 +47,27 @@
     padding-left: 50px;
     }
     
+input[type="submit"] {
+	font-family:FontAwesome;
+}
+
+input[type="button"] {
+	font-family:FontAwesome;
+}     
+
+#repleCnt{
+	color : orange;
+	font-weight: normal;
+}
+
+#repleCnt #rrrrr{
+	font-weight: bold;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
+	
 <script>
 
 
@@ -57,44 +76,39 @@
 		function print(result){
 			$("#comment").empty();
 			
-			$("#repleCnt").empty();
-			$("#repleCnt").html(result.cnt);
+			$("#rrrrr").empty();
+			$("#rrrrr").html(result.cnt);
 			
 			
 			$.each(result.reple, function(idx, reply){
-				
+
 				//alert(reply)
-				var str = "<tr><td>"+reply.freeRepleNo+"</td>";
 				var ccc= "Content"+reply.freeRepleNo;
 				var cxc= reply.freeRepleNo;
-				//$(".Content").prop('class',ccc);
-				str = str + "<td>"+reply.freeRepleName+"</td>";
-				str = str + "<td class='"+ccc+"'>" +reply.freeRepleContent + "</td>";
-				
-				console.log("Content"+reply.freeRepleNo)
-				str = str + "<td>"+reply.freeRepleDate+"</td>";
+				var str = " <thead><tr><th><span style='font-weight: normal;'>ID : </span>"+reply.freeRepleName+"</th><th></th>";
+				str = str + "<th style='text-align: right;'><span style='font-weight: normal; font-size: 90%;'>작성일 : </span>"+reply.freeRepleDate+"</th>";
+				str = str + "</tr></thead><tbody><tr>"
+				str = str + "<td colspan='2' width='900px;' class='Content"+reply.freeRepleNo+"' style='text-align: left;'><i class='fa fa-ellipsis-h'></i>&nbsp;&nbsp;&nbsp;"+reply.freeRepleContent+"</td>";
 				str = str + "<input type='hidden' value='"+reply.freeRepleName+"' name='freeRepleName' class='repleName'>";
 				str = str + "<input type='hidden' value='"+reply.freeRepleNo+"' name='freeRepleNo' class='freeRepleNo'>";
 				str = str + "<input type='hidden' value='"+reply.freeNo+"' name='freeNo' class='freeNo'>";
 				
 				if(reply.freeRepleName=="<%=user.getUserId()%>"){
-					str = str + "<td><button id='deleteReple"+cxc+"' class='deleteReple' data-cno='"+reply.freeRepleNo+"' >삭제</button></td>";
-					str = str + "<td><button id='updateReple"+cxc+"' class='updateReple' data-nono='"+reply.freeRepleNo+"' data-content='"+reply.freeRepleContent+"'>수정</button></td></tr>";
+					str = str + "<td style='text-align: right;'><input type='button' id='updateReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg updateReple' data-content='"+reply.freeRepleContent +"'data-nono='"+reply.freeRepleNo +"' value='수정' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'>";
+					str = str + "&nbsp;<input type='button' id='deleteReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg deleteReple' data-cno='"+reply.freeRepleNo+"' value='삭제' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'></td></tr></tbody>"
+					
 				}
-				//console.log(str);	// 찍어보기
-
-				$("#comment").append(str);
+			
+				$("#comment").append(str).trigger("create");
 				$("#freeRepleContent").val("");
 				
 				
 				//수정완료로 바꿔줌
 				$('.updateReple').click(function(e){
-			        var id = e.target.getAttribute('id');
+			        var id = e.target.getAttribute('id');//누른 버튼의 id값 얻어오기
 
-			        $('#'+id).html("수정 완료");   
-			        var res = id.substring(11)
-			        //$(".Content"+res).text()
-			        
+// 			        $('#'+id).html("수정 완료");   
+			        var res = id.substring(11)	//잘라서 번호만 따오기
 			        
 			        $('#'+id).on("click",function(){
 			        	$.ajax({
@@ -103,11 +117,10 @@
 							data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
 							dataType: 'JSON',
 							success : function(result){
+								
 								print(result);
 							}
-							
 				        })
-			  
 			   		 });
 			    });	
 			})	
@@ -120,6 +133,8 @@
 				data : {"freeRepleContent":$("#freeRepleContent").val(), "freeRepleName":$("#freeRepleName").val()},
 				dataType: 'JSON',
 				success : function(result){
+					
+					
 					print(result);
 				}
 			})
@@ -137,39 +152,33 @@
 		})
 		
 		$("#comment").on("click",".updateReple",function(){
-			$("td[class='Content"+$(this).data("nono")+"']").empty();
-			$("td[class='Content"+$(this).data("nono")+"']").append("<input type='text' id='ddd' value='"+$(this).data("content")+"'>");
-		})
-		
-				
-		//
-		$('.updateReple').click(function(e){
 			
-	        var id = e.target.getAttribute('id');
-	        
-	        $('#'+id).html("수정 완료");
-	        
-	        var res = id.substring(11)
-	        //$(".Content"+res).text()
-	        
-	        
-	        $('#'+id).on("click",function(){
-	        	$.ajax({
-					url:"/api/miniHome/${mini.free.userId }/freeRepleUpdate/"+res,
-					type:"post",
-					data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
-					dataType: 'JSON',
-					success : function(result){
-						print(result);
-					}
-					
-		        })
-	  
-	   		 });
+			$("td[class='Content"+$(this).data("nono")+"']").empty();
+			//$("td[class='Content"+$(this).data("nono")+"']").append("<input type='text' id='ddd' value='"+$(this).data("content")+"'>");
+			$("td[class='Content"+$(this).data("nono")+"']").append("<textarea rows='3' cols='' id='ddd' style='height:47px;'>"+$(this).data("content")+"</textarea>");
+			
 		})
-	
 		
-		
+		$(".updateReple").on("click",function(e){
+			 var id = e.target.getAttribute('id');
+		        $('#'+id).html("수정 완료");
+		        
+		        var res = id.substring(11)
+		        //$(".Content"+res).text()
+		        
+		        
+		        $('#'+id).on("click",function(){
+		        	$.ajax({
+						url:"/api/miniHome/${mini.free.userId }/freeRepleUpdate/"+res,
+						type:"post",
+						data : {"freeRepleContent":$("#ddd").val(), "freeRepleNo":res,"freeNo":$(".freeNo").val()},
+						dataType: 'JSON',
+						success : function(result){
+							print(result);
+						}
+			        })
+		   		 });
+		})
 	})
 	
 </script>
@@ -178,7 +187,6 @@
 <!--Start Header-->
 	<header id="header">
 		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
-		</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -191,12 +199,12 @@
 							</h1>
 						</div>
 					</div>
-					</div>
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
+		</header>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -217,32 +225,48 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
 						
-							<form
+							<form 
 							action="/palette/miniHome/${mini.free.userId }/freeUpdate/${mini.free.freeNo.intValue()}"
 							method="get">
-							<div class="well well-lg" style=" padding-left: 50px; padding-right: 50px; margin: 0;">
-							<h3 style="display: inline-block;"><i class="fa fa-laptop" ></i>
+							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
+							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
+							
 							<!-- 게시물 제목 -->
-							     ${mini.free.freeTitle } </h3>
+							     ${mini.free.freeTitle }</h3>
 							     <!-- 댓글 수 -->
-							     <h3 style="display: inline-block;" id="repleCnt">
-							    	 (${mini.free.freeRepleCnt.intValue() })
-							     </h3>
-							     
+							     <c:if test="${mini.free.freeRepleCnt.intValue()>0 }">
+							      <h3 style="display: inline-block;" id="repleCnt">
+							      	&nbsp;(
+							      	<span id="rrrrr">${mini.free.freeRepleCnt.intValue() }</span>&nbsp;)
+							      </h3>
+							      </c:if>
+							      
+							     <div style="font-size: 90%;">
+							     	<div style=" float: left; ">
+									&nbsp;&nbsp;&nbsp;글 번호 (&nbsp;${mini.free.freeNo.intValue() }&nbsp;)
+									</div>
+									<div style=" float: right; ">
+									조회수 (&nbsp;${mini.free.freeHits.intValue() }&nbsp;)&nbsp;&nbsp;&nbsp;
+									</div>
+							     </div>
 							     <!-- 조회수 -->
-							     <div style="text-align: right; border: 2">조회수(${mini.free.freeHits.intValue() })</div>
+							     
+							     	
+              				  		
               				  		<table class="table table-striped table-hover" >
 				                    <thead>
 				                    <tr >
+				                    
 				                    <!-- 작성자 및 시간 -->
-				                    <th style="text-align: left;">${mini.free.freeName }</th>
-										<th style="text-align: right;">${mini.free.freeDate }</th>
+				                    
+				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>${mini.free.freeName }</th>
+										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${mini.free.freeDate }</th>
 									</tr>
                   					  </thead>
                    
 
               						  </table>
-              		
+              						
               		   <div class="col-lg-1 col-md-1 col-sm-1">
               		   </div>
               		   
@@ -261,27 +285,31 @@
               		   </div>	
               		   
               		   <div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로">
+              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
               		   </div>  
               		   
               		   <c:set var="ddddd" value="<%=user.getUserId()%>" />
 						<c:set var="ooooo" value="${mini.free.freeName }" />
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
+					
 						<c:if test="${ddddd eq ooooo}">
 							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정하기">
+						</form>
 						</c:if>
-              		   		 </form>
-              		 		 &nbsp; 
-              		 		 <form action="/palette/miniHome/${mini.free.userId }/freeDelete/${mini.free.freeNo.intValue()}"method="post">
+              		   		 
+              		 		
+								
 								<c:if test="${ddddd eq ooooo}">
+								 <form style="display: inline-block;" action="/palette/miniHome/${mini.free.userId }/freeDelete/${mini.free.freeNo.intValue()}"method="post">
+								 &nbsp;
 								 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
 								 <input type="hidden"value="${mini.userId }" name="userId" id="userId"> 
 								 <input type="hidden" value="${mini.freeNo.intValue() }" name="freeNo"id="freeNo">
-								
+								</form>
 					
 									</c:if>
 									
-							</form>
+							
               		 		 
               		   </div>  
 						<table class="table table-striped table-hover" style="text-align: center;">
@@ -297,22 +325,21 @@
                				 <p>댓글 목록</p>
                				 
                				 <!-- 댓글 -->
-               				 <table class="table table-striped table-hover" style="text-align: center;">
+               				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
 				                    <c:forEach items="${mini.reple }" var="reple">
 				                    <thead>
 				                    <tr>
 				                    	<!-- 작성자 -->
-				                    	<th>${reple.freeRepleName }</th>
+				                    	<th><span style="font-weight: normal;">ID : </span>${reple.freeRepleName }</th>
 				                    	<th></th>
 				                    	<!-- 시간 -->
-										<th style="text-align: right;">${reple.freeRepleDate }</th>
+										<th style="text-align: right;"><span style="font-weight: normal; font-size: 90%;">작성일 : </span>${reple.freeRepleDate }</th>
 									</tr>
 									</thead>
-									<tbody id="comment">
+									<tbody>
              							<tr>
-             								<td></td>
              								<!--내용 -->
-             								<td width="900px;" class="Content${reple.freeRepleNo.intValue() }">${reple.freeRepleContent }</td>
+             								<td colspan="2" width="900px;" class="Content${reple.freeRepleNo.intValue() }" style="text-align: left; "><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.freeRepleContent }</td>
              								<!-- 히든 -->
              								<input type="hidden" value="${reple.freeRepleName }"
 												name="repleName" class="repleName">
@@ -320,7 +347,7 @@
 												name="freeRepleNo" class="freeRepleNo">
 											<input type="hidden" value="${reple.freeNo.intValue() }"
 												name="freeNo" class="freeNo">
-             								<td>
+             								<td style=" text-align: right;" class="rrr">
              								<!-- 버튼 -->
              								<c:set var="name" value="<%=user.getUserId()%>" />
 											<c:set var="freeName" value="${reple.freeRepleName }" />
@@ -328,30 +355,29 @@
 	             								<input type="button" id="updateReple${reple.freeRepleNo.intValue()}" 
 	             								data-loading-text="Loading..." class="btn btn-default btn-lg updateReple" 
 	             								data-content="${reple.freeRepleContent }"
-												data-nono="${reple.freeRepleNo.intValue() }" value="수정" style="margin-top: 10px; height: 20px; line-height: 1px;">
-	             								
-	             								
+												data-nono="${reple.freeRepleNo.intValue() }" value="수정" 
+												style="margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;">
 	             								
 	             								<input type="button" id="deleteReple${reple.freeRepleNo.intValue()}" 
 	             								data-loading-text="Loading..." class="btn btn-default btn-lg deleteReple" 
-	             								data-cno="${reple.freeRepleNo.intValue() }" value="삭제" style="margin-top: 10px; height: 20px; line-height: 1px;">
+	             								data-cno="${reple.freeRepleNo.intValue() }" value="삭제" 
+	             								style="margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;">
+	             								
              								</c:if>	
              								</td>
-             								
              							</tr>
-             							</c:forEach>
              							</tbody>
-             							
-				                    
+             							</c:forEach>
               						  </table>
               						  
-              				<!-- 댓글 -->
+              						<!-- 댓글 -->
              						<p>댓글 작성</p>
              						 <div class="col-lg-11 col-md-11 col-sm-11">
              						 <input type="hidden" value='<%=user.getUserId() %>'name='freeRepleName' id="freeRepleName">
              						<textarea rows="3" cols="" id="freeRepleContent" name="freeRepleContent"></textarea>
              						</div>
-										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록" style="margin-top: 10px;">
+										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
+										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
 									<br><br>
 									<br><br>
 								
