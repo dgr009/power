@@ -39,8 +39,8 @@
 <script>
 $(function(){
 	$("#orderBtn").on("click",function(){			
-		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize})	
-			$("#orderForm").submit();
+		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize}){
+			$("#orderForm").submit();}
 		else if(<%=user1.getUserPoint()%><${itemPrice*itemSize}){
 			alert("포인트를 충전해주세요");
 		}else if(${itemInven}<${itemSize}){

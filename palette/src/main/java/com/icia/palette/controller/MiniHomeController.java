@@ -23,7 +23,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeView/{freeNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
 		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo, userId));
-		return "mini/info";
+		return "mini/freeView";
 	}
 	//공지 뷰
 	@RequestMapping(value="/{userId}/noticeView/{noticeArticleNo}",method = RequestMethod.GET)

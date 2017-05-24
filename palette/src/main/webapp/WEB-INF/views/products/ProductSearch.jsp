@@ -135,13 +135,13 @@
                     <!--페이징 시작 -->
                 <div class="col-sm-12 text-center">
                     <ul class="pagination">
-                        	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/productKind/${smallKind}?pageNo=${result.pagination.prev}">이전으로</a></c:if>
+                        	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/productSearch?${itemName}&pageNo=${result.pagination.prev}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/miniHome/${userId}/productKind/${smallKind }?pageNo=${i}">${i} </a>
+				<a href="/palette/miniHome/${userId}/productSearch?${itemName}&pageNo=${i}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/${userId }/productKind/${smallKind }?pageNo=${result.pagination.next}">다음으로</a></c:if>
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/${userId }/productSearch?${itemName}&pageNo=${result.pagination.next}">다음으로</a></c:if>
                 </div>
                     </ul>
                 </div>
