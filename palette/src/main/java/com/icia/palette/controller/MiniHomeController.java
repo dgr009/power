@@ -131,6 +131,24 @@ public class MiniHomeController {
 		model.addAttribute("mini", service2.miniHomeSelectSellerInformation(session, userId));
 		return "mini/infoTest";
 	}
+	
+	//결제 시작
+	@RequestMapping(value="/{homeId}/pay",method = RequestMethod.GET)
+	public String payStart(HttpSession session,@PathVariable String homeId, Model model){
+		model.addAttribute("homeId", homeId);
+		System.out.println("controller userId : "+service.getUserIdByToken(session));
+		model.addAttribute("userId", service.getUserIdByToken(session));
+		return "mini/PayTest";
+	}
+	
+	//결제 처리
+	@RequestMapping(value="/{homeId}/pay",method = RequestMethod.POST)
+	public String payEnd(HttpSession session,@RequestParam String userId){
+		System.out.println(userId+"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		service2.homePay(session, userId);
+		System.out.println("완료 완료 완료 완료");
+		return "redirect:/main";
+	}
 
 	
 
