@@ -270,4 +270,12 @@ public class UsersController {
 		return "users/orderStatement";
 	}
 	
+	//회원 스코어 입력하기
+	@RequestMapping(value = "/score", method = RequestMethod.GET)
+	public String mamamain(@RequestParam int orderNo,Model model) {
+		model.addAttribute("orderNo", orderNo);
+		return "users/score";
+	}
+	
+	
 }
