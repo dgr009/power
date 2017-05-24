@@ -217,6 +217,17 @@ public class UsersController {
 			return result + "";
 	}
 
+	// 회원 즐겨찾기 확인하기
+	@RequestMapping(value = "/bookmarkCheck", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String bookmarkCheck(@RequestParam String orderId, @RequestParam String ownerId) {
+		int result = service.bookmarkCheck(orderId, ownerId);
+		if (result == 1)
+			return result + "";
+		else
+			return result + "";
+	}
+
+	
 	// 회원 장바구니 보기
 	@RequestMapping(value = "/basketList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 	public String basketList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {

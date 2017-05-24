@@ -288,7 +288,16 @@ public class UsersDao {
 		return tpl.selectOne("api.dao.UsersDao.getTotalSellPoint", orderNo);
 	}
 
+	//랭크 가져오기
 	public List<MiniHome> getRankSide() {
 		return tpl.selectList("api.dao.UsersDao.getRankSide");
+	}
+
+	//즐겨찾기 확인하기
+	public int bookmarkCheck(String orderId, String ownerId) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("orderId", orderId);
+		map.put("ownerId", ownerId);
+		return tpl.selectOne("api.dao.UsersDao.getBookmark",map);
 	}
 }

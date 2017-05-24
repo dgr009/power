@@ -260,4 +260,9 @@ public class UsersService {
 	public List<MiniHome> getRankSide() {
 		return dao.getRankSide();
 	}
+
+	//즐겨찾기 확인하기
+	public int bookmarkCheck(String orderId, String ownerId) {
+		return dao.bookmarkCheck(orderId,ownerId);
+	}
 }
