@@ -96,7 +96,8 @@
          </section>
 
                     <!--물건 표시란 시작-->
-                <div class="mixed-container masonry_wrapper">
+                    <div style="width: 90%; text-align: center;">
+                <div class="mixed-container masonry_wrapper" style="margin-left: 10%;">
 			<c:forEach items="${result.result }" var="free">
                         <div class="item responsive">
                             <figure class="touching effect-bubba">
@@ -127,6 +128,7 @@
 
             
 
+                    </div>
                     </div>
                     <!--물건 표시란 시작-->
                 </div>

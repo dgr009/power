@@ -149,14 +149,14 @@
 										<div>
 											<button type="button"
 												 style="color: white;"
-												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
+												class="btn btn-default btn-lg" id="basket" style=width:30px;  >장바구니로</button> <input
 												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
-												href="/hooligan/product/evalutionList?product_no="><input
+												href="/palette/miniHome/${userId}/productInquiry/${result.item.itemNo.intValue()}"><input
 												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
-												value="상품평가"></a>
+												value="상품문의"></a>
 
 											<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
 										</div>

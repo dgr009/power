@@ -30,6 +30,8 @@
 </head>
 
 <body class="home">
+<div style="margin: 10px;">
+<div style="border:double; color:#D8D8D8; border-width:10px; box-shadow: 10px 10px 5px #F2F2F2; box-shadow: 0 0 5px 5px sienna;">
     <header id="header">
         <!-- ===============================헤더 시작================================ -->
 	 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
@@ -355,6 +357,7 @@
             new WOW().init();
         </script>
     <![endif]-->
-
+</div>
+</div>
 </body>
 </html>

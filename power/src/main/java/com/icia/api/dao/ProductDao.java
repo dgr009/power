@@ -247,6 +247,10 @@ public class ProductDao {
 	public String getOwnerId(int itemNo) {
 		return tpl.selectOne("api.dao.ProductDao.getOwnerId", itemNo);
 	}
+	//미니홈피 이미지,타이틀,회원등급가져오기
+	public MiniHome selectMiniHome(String userId) {
+		return tpl.selectOne("api.dao.ProductDao.getHome", userId);
+	}
 
 	
 	

@@ -231,6 +231,7 @@ public class productService {
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		result.put("bigKind", dao.selectbigKind(userId));
 		result.put("smallKind",dao.selectSmallKind(userId));
+		result.put("home", dao.selectMiniHome(userId));
 		return new Gson().toJson(result);
 	}
 	//배송하기
