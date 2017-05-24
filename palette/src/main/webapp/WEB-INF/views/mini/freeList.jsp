@@ -62,8 +62,9 @@ a:VISITED {
 	color :  threeddarkshadow;
 }
 
-a:HOVER {
+#under:HOVER {
 	text-decoration: underline;
+/* 	border-bottom:3px solid black; */
 }
 
 #rc{
@@ -80,6 +81,7 @@ a:HOVER {
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
+
 	//최초 페이지가 로딩되면 한번만 새로고침
 	if (self.name != 'reload') {
 	    self.name = 'reload';
@@ -143,7 +145,7 @@ a:HOVER {
 						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
 						<th style="text-align: center;  width: 120px;">작성자</th>		
 						<th style="text-align: center; width: 150px;">작성일</th>
-						<th style="text-align: center; width: 50px;">조회</th>
+						<th style="text-align: center; width: 80px;">조회</th>
 					</tr>
                     </thead>
                     
@@ -154,7 +156,7 @@ a:HOVER {
 									${free.freeNo.intValue() }
 								</td>
 								<td style="text-align: left; ">
-									<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}" >
+									<a href="/palette/miniHome/${userId }/freeView/${free.freeNo.intValue()}" id="under">
 										${free.freeTitle }
 										<c:if test="${free.freeRepleCnt.intValue()>0 }">
 										<span id="rc">&nbsp;&nbsp;(
@@ -178,7 +180,7 @@ a:HOVER {
                 	<div id="pagination" style="text-align: center;">
 			         <ul class='pagination' style='height: 20px;' >
 			         	<c:if test="${mini2.pagination.prev>0 }">
-							<li><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전으로</a></li>
+							<li><a href="/palette/miniHome/${userId}/freeList?pageNo=${mini2.pagination.prev.intValue()}">이전</a></li>
 						</c:if>
 						
 						<c:forEach var="i" begin="${mini2.pagination.startPage}" end="${mini2.pagination.endPage}">
@@ -186,7 +188,7 @@ a:HOVER {
 						</c:forEach>
 						
 						<c:if test="${mini2.pagination.next>0 }">
-							<a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음으로</a>
+							<a href="/palette/miniHome/${userId }/freeList?pageNo=${mini2.pagination.next.intValue()}">다음</a>
 						</c:if>
 					</ul>
                  </div>

@@ -54,12 +54,23 @@ input[type="submit"] {
 input[type="button"] {
 	font-family:FontAwesome;
 }     
+
+#repleCnt{
+	color : orange;
+	font-weight: normal;
+}
+
+#repleCnt #rrrrr{
+	font-weight: bold;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
+
+	
 </script>
 </head>
 <body>
@@ -91,71 +102,111 @@ input[type="button"] {
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>자유 게시판</h2>
+                           <h2>공지 게시판</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            
              </section>
-            
- 
-            <div class="col-lg-12 col-md-12 col-sm-12">
-							<br><br>
-						
-							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 자유 게시판 글 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr>
-										<form  action="/palette/miniHome/${homeId }/freeRegister" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="freeTitle">
 
+
+
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<br>
+		<br>
+
+		<form action="/palette/miniHome/${mini.userId }/noticeUpdate/${mini.noticeArticleNo.intValue()}" method="get">
+			<div class="well well-lg" style="padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
+				<h3 style="display: inline-block;">
+					&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
+					<!-- 게시물 제목 -->
+					${mini.noticeArticleTitle }
+				</h3>
+
+				<div style="font-size: 90%;">
+					<div style="float: left;">&nbsp;&nbsp;&nbsp;
+						</div>
+					<div style="float: right;">글번호
+						(&nbsp;${mini.noticeArticleNo.intValue() }&nbsp;)&nbsp;&nbsp;&nbsp;
+					</div>
+				</div>
+				
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+
+							<!-- 작성자 및 시간 -->
+
+							<th style="text-align: left;"><span
+								style="font-weight: normal;">작성자 : </span>${mini.userId }</th>
+							<th style="text-align: right;"><span
+								style="font-weight: normal;">작성일 : </span>${mini.noticeArticleDate }</th>
+						</tr>
+					</thead>
+				</table>
+
+				<div class="col-lg-1 col-md-1 col-sm-1"></div>
+
+				<div class="col-lg-10 col-md-10 col-sm-10">
+					<br>
+					<!-- 게시물 내용 -->
+					<p style="max-height: 700px; min-height: 250px;">
+						${mini.noticeArticleContent }</p>
+
+
+				</div>
+				
+				<div class="col-lg-1 col-md-1 col-sm-1"></div>
+
+				<div class="col-lg-9 col-md-9 col-sm-9">
+					<a href="../noticeList?pageNo=1"><input type="button"
+						data-loading-text="Loading..." class="btn btn-default btn-lg"
+						value="목록으로" style="color: white;"></a>
+				</div>
+				
+				<c:set var="name" value="<%=user.getUserId()%>" />
+				<c:set var="userId" value="${mini.userId }" />
+		
+				
+				<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
+					<c:if test="${name eq userId}">
+						<input type="submit" data-loading-text="Loading..."class="btn btn-default btn-lg" value="수정하기">
+					</c:if>
+				</form>
+						
+				<c:if test="${name eq userId}">
+					<form style="display: inline-block;"
+						action="/palette/miniHome/${mini.userId }/noticeDelete/${mini.noticeArticleNo.intValue() }"
+						method="post">
+						&nbsp; <input type="submit" data-loading-text="Loading..."
+							class="btn btn-default btn-lg" value="삭제하기">
+						<input type="hidden" value="${mini.userId }" name="userId" id="userId">
+						<input type="hidden" value="${mini.noticeArticleNo.intValue() }"name="noticeArticleNo" id="noticeArticleNo">
+					</form>
+					
+				</c:if>
+			</div>
+	<table class="table table-striped table-hover" style="text-align: center;">
+				                    <thead>
+				                    <tr >
+										<th style="text-align: center;"></th>
 									</tr>
                   					  </thead>
+                   
 
               						  </table>
-	
-              		   <textarea rows="15" cols="" name="freeContent" ></textarea>
-              		   <input type="hidden" name="freeName" id="freeName" value='${userId}'><br>
-						<input type="hidden" name="userId" id="userId" value="${homeId }">
-						<input type="hidden" name="seq" id="seq" value="${nn }">
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
- 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
-           				 </div>
-							
-						
-						
-					</form>		
-							
-						
-                            
-							
-									
-							
-							
-							</div>
-							
-							</div></div>
-					
- 
-           
-							
-							
-					
+              						  </div>
 
-           
-			
 
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+
+
+
+
+
+
+
+
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>

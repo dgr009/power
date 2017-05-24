@@ -85,13 +85,13 @@ public class MiniHomeDaoTest {
 		dao2.miniHomeInsertActiveStatement(date);
 	}
 	
-	//회원 포인트 차감
-	//@Test
-	public void decreasePoint(){
-		Users user = new Users();
-		int price = 10;
-		dao2.miniHomeDecreaseUsersPoint(price, "qhrals8");
-	}
+//	//회원 포인트 차감
+//	//@Test
+//	public void decreasePoint(){
+//		Users user = new Users();
+//		int price = 10;
+//		dao2.miniHomeDecreaseUsersPoint(price, "qhrals8");
+//	}
 	//회원 홈페이지 활성화
 	//@Test
 	public void activateHome(){

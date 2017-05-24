@@ -94,8 +94,8 @@ input[type="button"] {
 				str = str + "<input type='hidden' value='"+reply.freeNo+"' name='freeNo' class='freeNo'>";
 				
 				if(reply.freeRepleName=="<%=user.getUserId()%>"){
-					str = str + "<td style='text-align: right;'><input type='button' id='updateReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg updateReple' data-content='"+reply.freeRepleContent +"'data-nono='"+reply.freeRepleNo +"' value='수정' style='margin-top: 10px; height: 20px; line-height: 1px; color: white;'>";
-					str = str + "&nbsp;<input type='button' id='deleteReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg deleteReple' data-cno='"+reply.freeRepleNo+"' value='삭제' style='margin-top: 10px; height: 20px; line-height: 1px; color: white;'></td></tr></tbody>"
+					str = str + "<td style='text-align: right;'><input type='button' id='updateReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg updateReple' data-content='"+reply.freeRepleContent +"'data-nono='"+reply.freeRepleNo +"' value='수정' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'>";
+					str = str + "&nbsp;<input type='button' id='deleteReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg deleteReple' data-cno='"+reply.freeRepleNo+"' value='삭제' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'></td></tr></tbody>"
 					
 				}
 			
@@ -339,7 +339,7 @@ input[type="button"] {
 									<tbody>
              							<tr>
              								<!--내용 -->
-             								<td colspan="2" width="900px;" class="Content${reple.freeRepleNo.intValue() }" style="text-align: left;"><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.freeRepleContent }</td>
+             								<td colspan="2" width="900px;" class="Content${reple.freeRepleNo.intValue() }" style="text-align: left; "><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.freeRepleContent }</td>
              								<!-- 히든 -->
              								<input type="hidden" value="${reple.freeRepleName }"
 												name="repleName" class="repleName">
@@ -356,12 +356,12 @@ input[type="button"] {
 	             								data-loading-text="Loading..." class="btn btn-default btn-lg updateReple" 
 	             								data-content="${reple.freeRepleContent }"
 												data-nono="${reple.freeRepleNo.intValue() }" value="수정" 
-												style="margin-top: 10px; height: 20px; line-height: 1px; color: white;">
+												style="margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;">
 	             								
 	             								<input type="button" id="deleteReple${reple.freeRepleNo.intValue()}" 
 	             								data-loading-text="Loading..." class="btn btn-default btn-lg deleteReple" 
 	             								data-cno="${reple.freeRepleNo.intValue() }" value="삭제" 
-	             								style="margin-top: 10px; height: 20px; line-height: 1px; color: white;">
+	             								style="margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;">
 	             								
              								</c:if>	
              								</td>

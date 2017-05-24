@@ -19,9 +19,7 @@
 </head>
 <body>
 	<h2>공지게시판 뷰</h2>
-	<form
-		action="/palette/miniHome/${mini.userId }/noticeUpdate/${mini.noticeArticleNo.intValue()}"
-		method="get">
+	<form action="/palette/miniHome/${mini.userId }/noticeUpdate/${mini.noticeArticleNo.intValue()}" method="get">
 		<table border="1">
 			<tr>
 				<td>번호</td>
@@ -53,18 +51,18 @@
 		</c:if>
 
 	</form>
+	
 	<a href="#" onClick="history.back()"><button>이전으로</button></a>
 	<br>
-	<form
-		action="/palette/miniHome/${mini.userId }/noticeDelete/${mini.noticeArticleNo.intValue() }"
-		method="post">
+	
+	<form action="/palette/miniHome/${mini.userId }/noticeDelete/${mini.noticeArticleNo.intValue() }"method="post">
+		
 		<c:if test="${name eq userId}">
 			<input type="submit" value="삭제">
 		</c:if>
 
 		<input type="hidden" value="${mini.userId }" name="userId" id="userId">
-		<input type="hidden" value="${mini.noticeArticleNo.intValue() }"
-			name="noticeArticleNo" id="noticeArticleNo">
+		<input type="hidden" value="${mini.noticeArticleNo.intValue() }"name="noticeArticleNo" id="noticeArticleNo">
 	</form>
 </body>
 </html>

@@ -19,6 +19,9 @@ public class MiniHomeController {
 	@Autowired
 	private MiniHomeBoardService service;
 	
+	@Autowired
+	private MiniHomeService service2;
+	
 	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
@@ -29,7 +32,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/noticeView/{noticeArticleNo}",method = RequestMethod.GET)
 	public String noticeView(HttpSession session,@PathVariable String userId,@PathVariable int noticeArticleNo ,Model model){
 		model.addAttribute("mini", service.miniHomeSelectNoticeView(session, noticeArticleNo, userId));
-		return "mini/noticeInfo";
+		return "mini/noticeView";
 	}
 	
 	//자유 리스트
@@ -42,7 +45,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/noticeList",method = RequestMethod.GET)
 	public String noticeList(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectNoticeList(session, userId, pageNo));
-		return "mini/noticeInfo2";
+		return "mini/noticeList";
 	}
 	
 	//자유게시판 추가 시작
@@ -75,16 +78,15 @@ public class MiniHomeController {
 	//공지게시판 추가 끝
 	@RequestMapping(value="/{homeId}/noticeRegister",method = RequestMethod.POST)
 	public String InsertNoticeEnd(HttpSession session,@ModelAttribute MiniHomeNotice notice){
-		System.out.println("==========================="+notice);
-		service.miniHomeRegisterNotice(session, notice);
-		return "redirect:noticeList?pageNo=1";
+		String result = service.miniHomeRegisterNotice(session, notice);
+		return "redirect:noticeView/"+result;
 	}
 	
 	//업데이트 뷰
 	@RequestMapping(value="/{homeId}/freeUpdate/{freeNo2}",method = RequestMethod.GET)
 	public String updateStart(HttpSession session,@PathVariable String homeId,@PathVariable int freeNo2,Model model){
 		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo2, homeId));
-		return "mini/update";
+		return "mini/freeUpdate";
 	}
 	
 	//업데이트 처리
@@ -112,7 +114,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/freeDelete/{freeNo}",method = RequestMethod.POST)
 	public String delete(HttpSession session, @PathVariable int freeNo,@PathVariable String userId){
 		service.miniHomeDeleteFree(session, freeNo, userId);
-		return "redirect:/miniHome/"+userId+"/freeList?pageNo=1";
+		return "redirect:../miniHome/"+userId+"/freeList?pageNo=1";
 	}
 	//공지게시판 삭제
 	@RequestMapping(value="/{userId}/noticeDelete/{noticeArticleNo}",method = RequestMethod.POST)
@@ -120,15 +122,16 @@ public class MiniHomeController {
 		System.out.println("================================"+noticeArticleNo);
 		System.out.println("================================"+userId);
 		service.miniHomeDeleteNotice(session, noticeArticleNo, userId);
+		System.out.println("여긱ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
 		return "redirect:/miniHome/"+userId+"/noticeList?pageNo=1";
 	}
-	
-//	//자유게시판 댓글 조회
-//	@RequestMapping(value="/{userId}/freeReple/{freeNo}",method = RequestMethod.GET)
-//	public String repleAll(HttpSession session,@PathVariable String userId,Model model,@PathVariable int freeNo){
-//		model.addAttribute("mini2", service.miniHomeFreeAllReple(userId, freeNo));
-//		return "mini/reple";
-//	}
+	//판매자 정보 조회+홈페이지
+	@RequestMapping(value="/{userId}/Info",method = RequestMethod.GET)
+	public String miniHomeSelectSellerInformation(HttpSession session,@PathVariable String userId,Model model){
+		model.addAttribute("mini", service2.miniHomeSelectSellerInformation(session, userId));
+		return "mini/infoTest";
+	}
+
 	
 
 	
