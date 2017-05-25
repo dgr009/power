@@ -55,8 +55,8 @@ public class ProductDao {
 		tpl.update("api.dao.ProductDao.updateOrderStatement",orderNo);
 	}
 	//제품상세정보보기
-	public Item selectItemDetail(int itemNo){
-		return tpl.selectOne("api.dao.ProductDao.selectItemDetail", itemNo);
+	public Item selectItemDetail(Map<String, Object> map){
+		return tpl.selectOne("api.dao.ProductDao.selectItemDetail", map);
 	}
 	//이미지리스트가져오기
 		public List<ItemImg> selectItemImg(int itemNo){
@@ -253,6 +253,15 @@ public class ProductDao {
 		String userId=id.substring(1, a-1);
 		return tpl.selectOne("api.dao.ProductDao.getHome", userId);
 	}
+	//홈피주인 문의게시물 개수확인
+	public int adminInquiryCnt(String userId) {
+		return tpl.selectOne("api.dao.ProductDao.adminInquiryCnt",userId);
+	}
+	//홈피주인 문의게시물
+	public List<InquiryBoard> adminInquiryList(Map<String,Object> map){
+		return tpl.selectList("api.dao.ProductDao.adminInquiryList", map);
+	}
+	
 
 	
 	

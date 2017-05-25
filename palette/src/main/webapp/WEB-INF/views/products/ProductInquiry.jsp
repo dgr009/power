@@ -1,13 +1,15 @@
+<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users user1 = (Users) session.getAttribute("user");
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%Users users=(Users)session.getAttribute("user"); %>
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,21 +17,20 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
-	
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
+
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
-<link rel="stylesheet" href="https://use.fontawesome.com/f4a7d32a7d.css">
-	
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 <style>
 
 
@@ -42,73 +43,43 @@
 
 
 .well {
-    min-height: 290px;
+    min-height: 360px;
     padding : 0;
     padding-left: 50px;
     }
+    tr{
+    	font-size: 1.1em;
+    	height: 28px;
+    	line-height: 28px;
+    }
     
-/* input[type="submit"] { */
-/* 	font-family:FontAwesome; */
-/* } */
-
-/* input[type="button"] { */
-/* 	font-family:FontAwesome; */
-/* }      */
-
-a:LINK {
-	color :  threeddarkshadow;
-}
-a:VISITED {
-	color :  threeddarkshadow;
-}
-
-#under:HOVER {
-	text-decoration: underline;
-/* 	border-bottom:3px solid black; */
-}
-
-#rc{
-	color:orange;
-}
-
-#rc span{
-	font-weight: bold;
-}
-
+    .form-control{
+    height: 20px;
+    	line-height: 20px;
+    	
+    }
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
-	
 <script>
-
-	//최초 페이지가 로딩되면 한번만 새로고침
-	if (self.name != 'reload') {
-	    self.name = 'reload';
-	    self.location.reload(true);
-	}
-	else self.name = ''; 
-	
-	
 	
 </script>
 </head>
 <body>
-<!--Start Header-->
+	<!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
 					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
-					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+                     <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
-		</header>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -116,85 +87,70 @@ a:VISITED {
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>문의 게시판</h2>
+                            <h2>직원 마이페이지</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            
              </section>
             
  
-            
-                 <div class="col-lg-12 col-md-12 col-sm-12">
-							<br><br>
+           
+            <div class="col-lg-12 col-md-12 col-sm-12">
+            <br><br>
+					<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
 							
-							
-			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     문의게시판 글 목록</h3>
+							<div class="col-lg-9 col-md-9 col-sm-9">
+							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;"><h3><i class="fa fa-leaf"></i> 상품문의 관리   </h3>
 						
-				<table class="table table-striped table-hover" style="text-align: center;">
+							
+							<div class="col-lg-12 col-md-12 col-sm-12">
+							
+							
+							
+							<table class="table table-striped table-hover">
                     <thead>
                     <tr>
-						<th style="text-align: center;  width: 120px;">번호</th>
-						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
-						<th style="text-align: center;  width: 120px;">작성자</th>		
-						<th style="text-align: center; width: 150px;">작성일</th>
-					</tr>
+                        <th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+                    </tr>
                     </thead>
-                    
-                    <tbody id="free">
-                    	<c:forEach items="${result.result }" var="free">
-							<tr>			
-								<td>
-									${free.inquiryNo.intValue() }
-								</td>
-								<td style="text-align: left; ">
-									<a href="/palette/miniHome/${userId }/productInquiryView/${free.inquiryNo.intValue()}" id="under">
-										${free.inquiryTitle}
-									</a>
-								</td>
-								<td>
-									${free.userId}
-								</td>
-								<td>
-									${free.inquiryDate }
-								</td>
-							</tr>
+                    <tbody id=productList>
+						<c:forEach items="${result.result}" var="free">
+						<tr><td>${free.inquiryNo.intValue()}</td><td>${free.inquiryTitle}</td><td>${free.userId}</td>
+						<td>${free.inquiryDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productInquiryView/${free.inquiryNo.intValue()}">답글작성</a></td></tr>
 						</c:forEach>
+						
+                    </tbody>
                 </table>
-                	<div id="pagination" style="text-align: center;">
-			         <ul class='pagination' style='height: 20px;' >
-			         	<c:if test="${result.pagination.prev>0 }">
-							<li><a href="/palette/miniHome/${userId}/productInquiryList/${itemNo}?pageNo=${result.pagination.prev.intValue()}">이전</a></li>
-						</c:if>
-						
-						<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-							<li><a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${i}">${i} </a></li>
-						</c:forEach>
-						
-						<c:if test="${result.pagination.next>0 }">
-							<a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${result.pagination.next.intValue()}">다음</a>
-						</c:if>
-					</ul>
-                 </div>
-                 
-              	<div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../productInquiryList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
-              		   </div>  
-              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
-              		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/miniHome/${userId }/inquiryRegister/${itemNo}'"  style="color:white;"/></div>
-                
-					<br>  <br>
+                 <!--페이징 시작 -->
+                <div class="col-sm-12 text-center"  id="pagination" >
+                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/inquiryList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
+			
+			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/inquiryList?pageNo=${i}">${i} </a>
+			</c:forEach>
+			
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/inquiryList?pageNo=${result.pagination.next}">다음으로</a></c:if>
                 </div>
-                 <br>  <br><br>  <br>
-            </div>	
-				                     
-                
-            
-             
+            </div> <!--페이징 끝 -->
+							
+							
+							
+							
+							
+							</div>
+							
+							
+                            
+							
 									
-									
-           
+							</div>
+							
+							
+							</div>
 							
 							
 					
@@ -202,7 +158,8 @@ a:VISITED {
            
 			
 
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
@@ -220,7 +177,6 @@ a:VISITED {
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-
 
 					<script type="text/javascript">
 						$(document)
@@ -471,6 +427,6 @@ a:VISITED {
 													});
 										});
 					</script>
-					<script src="<c:url value="/resources/js/main.js"/>"></script>
+				<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>

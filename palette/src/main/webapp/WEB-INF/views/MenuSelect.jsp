@@ -28,11 +28,10 @@
                                  <li><a href="#">게시판</a>
                                     <ul class="dropdown-menu">
                                     
-                                    <li><a href="/hooligan/main/notice/list"> 공지사항</a> </li>
+                                    <li><a href="/palette/miniHome/${userId}/noticeList"> 공지사항</a> </li>
                                     
-                                    <li><a href="/hooligan/main/faq/list">문의사항</a> </li>
+                                    <li><a href="/palette/miniHome/${userId}/freeList">자유게시판</a> </li>
                                     
-                                    <li><a href="/hooligan/main/free/list">자유게시판</a></li>
                                     </ul>
                                     </li>
                             </ul>

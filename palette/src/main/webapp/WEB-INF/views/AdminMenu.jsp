@@ -11,12 +11,13 @@
 <body>
 <div class="col-lg-3 col-md-3 col-sm-3">
 
-							<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/update" class="btn btn-block btn-default">홈페이지 설정</a>
-								</div>
+						
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/register" class="btn btn-block btn-default">상품 판매등록</a>
+								</div>
+									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/inquiryList" class="btn btn-block btn-default">상품문의 관리</a>
 								</div>
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->

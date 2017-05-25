@@ -70,8 +70,8 @@ public class ProductController {
 	}
 	//상품정보보기
 	@RequestMapping(value="/productMain", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
-	public String  product(@RequestBody int itemNo){
-		 return service.selectItemDetail(itemNo);
+	public String  product(@RequestBody Map<String, Object> map){
+		 return service.selectItemDetail(map);
 	}
 	// 회원 장바구니 추가
 	@RequestMapping(value = "/basket", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
@@ -131,13 +131,26 @@ public class ProductController {
 	 service.insertInquiry(i);
 	}
 	//문의게시판 보기
-		@RequestMapping(value = "/inquiryView", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-		public String productSearch(@RequestBody int inquiryNo) {
-			System.out.println("여기찍어봐임마");
-		return service.inquiryView(inquiryNo);
-			
+	@RequestMapping(value = "/inquiryView", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String productSearch(@RequestBody int inquiryNo) {
+	return service.inquiryView(inquiryNo);
+	}
+	//문의게시판 삭제
+	@RequestMapping(value = "/inquiryDelete", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public void inquiryDelete(@RequestBody int inquiryNo) {
+	 service.deleteInquiry(inquiryNo);
+	}
+	//문의게시판 업데이트
+		@RequestMapping(value = "/inquiryUpdate", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+		public void inquiryDelete(@RequestBody InquiryBoard i) {
+		 service.updateInquiry(i);
 		}
-		
+		//홈피주인 문의게시판관리리스트
+		@RequestMapping(value = "/adminInquiryList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+		public String adminInquiryList(@RequestBody Map<String, Object> map) {
+	
+			return service.adminInquiryList(map);	
+		}
 	
 	
 	

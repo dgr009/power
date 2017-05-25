@@ -154,8 +154,8 @@ select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_
 ]]>
 </select>
 <!-- 상품상세조회 -->
-<select id="selectItemDetail" parameterType="int" resultType="Item">
-select *from item where item_no=#{itemNo}
+<select id="selectItemDetail" parameterType="hashmap" resultType="Item">
+select *from item where item_no=#{itemNo} and user_id=#{userId}
 </select>
 <!-- 상품옵션가져오기-->
 <select id="selectProductOption" parameterType="int" resultType="itemOption">
@@ -166,7 +166,7 @@ select *from item_option where item_no=#{itemNo}
 <selectKey keyProperty="inquiryNo" resultType="int" order="BEFORE">
 select inquiry_board_seq.nextval from dual
 </selectKey>
-insert into inquiry_board values(#{inquiryNo},#{inquiryTitle},#{inquiryContent},sysdate,#{itemNo},#{userId})
+insert into inquiry_board values(#{inquiryNo},#{inquiryTitle},#{inquiryContent},sysdate,#{itemNo},#{userId},0)
 </insert>
 <!-- 상품문의수정 -->
 <update id="updateInquiry" parameterType="InquiryBoard">
@@ -184,6 +184,20 @@ select * from
 (select rownum rnum,b.*  from
 (select *from inquiry_board where item_no=#{itemNo} order by inquiry_no desc)b
  where rownum>=#{start}) where rnum<=#{end}
+]]>
+</select>
+
+<!-- 미답변 상품문의 글페이지개수 -->
+<select id="adminInquiryCnt" parameterType="String" resultType="int">
+select  count(*) from inquiry_board i,item m where i.inquiry_cnt=0 and i.item_no=m.item_no and m.user_id=#{userId}
+</select>
+<!-- 미답변 상품문의 글페이지 -->
+<select id="adminInquiryList" parameterType="hashmap" resultType="InquiryBoard">
+<![CDATA[
+select *from
+(select rownum rnum,b.* from
+(select i.* from inquiry_board i,item m where i.inquiry_cnt=0 and i.item_no=m.item_no and m.user_id=#{userId} order by i.inquiry_date desc)b 
+where rownum>=#{start}) where rnum<=#{end}
 ]]>
 </select>
 <!--상품문의 글보기 -->

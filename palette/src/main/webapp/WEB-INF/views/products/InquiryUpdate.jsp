@@ -47,34 +47,22 @@
     padding-left: 50px;
     }
     
-/* input[type="submit"] { */
-/* 	font-family:FontAwesome; */
-/* } */
-
-/* input[type="button"] { */
-/* 	font-family:FontAwesome; */
-/* }      */
-
-a:LINK {
-	color :  threeddarkshadow;
-}
-a:VISITED {
-	color :  threeddarkshadow;
+input[type="submit"] {
+	font-family:FontAwesome;
 }
 
-#under:HOVER {
-	text-decoration: underline;
-/* 	border-bottom:3px solid black; */
+input[type="button"] {
+	font-family:FontAwesome;
+}     
+
+#repleCnt{
+	color : orange;
+	font-weight: normal;
 }
 
-#rc{
-	color:orange;
-}
-
-#rc span{
+#repleCnt #rrrrr{
 	font-weight: bold;
 }
-
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -82,27 +70,18 @@ a:VISITED {
 	
 <script>
 
-	//최초 페이지가 로딩되면 한번만 새로고침
-	if (self.name != 'reload') {
-	    self.name = 'reload';
-	    self.location.reload(true);
-	}
-	else self.name = ''; 
-	
-	
-	
 </script>
 </head>
 <body>
 <!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+	 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
+				      	<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
@@ -125,76 +104,148 @@ a:VISITED {
              </section>
             
  
-            
-                 <div class="col-lg-12 col-md-12 col-sm-12">
-							<br><br>
-							
-							
-			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     문의게시판 글 목록</h3>
-						
-				<table class="table table-striped table-hover" style="text-align: center;">
-                    <thead>
-                    <tr>
-						<th style="text-align: center;  width: 120px;">번호</th>
-						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
-						<th style="text-align: center;  width: 120px;">작성자</th>		
-						<th style="text-align: center; width: 150px;">작성일</th>
-					</tr>
-                    </thead>
-                    
-                    <tbody id="free">
-                    	<c:forEach items="${result.result }" var="free">
-							<tr>			
-								<td>
-									${free.inquiryNo.intValue() }
-								</td>
-								<td style="text-align: left; ">
-									<a href="/palette/miniHome/${userId }/productInquiryView/${free.inquiryNo.intValue()}" id="under">
-										${free.inquiryTitle}
-									</a>
-								</td>
-								<td>
-									${free.userId}
-								</td>
-								<td>
-									${free.inquiryDate }
-								</td>
-							</tr>
-						</c:forEach>
-                </table>
-                	<div id="pagination" style="text-align: center;">
-			         <ul class='pagination' style='height: 20px;' >
-			         	<c:if test="${result.pagination.prev>0 }">
-							<li><a href="/palette/miniHome/${userId}/productInquiryList/${itemNo}?pageNo=${result.pagination.prev.intValue()}">이전</a></li>
-						</c:if>
-						
-						<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-							<li><a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${i}">${i} </a></li>
-						</c:forEach>
-						
-						<c:if test="${result.pagination.next>0 }">
-							<a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${result.pagination.next.intValue()}">다음</a>
-						</c:if>
-					</ul>
-                 </div>
-                 
-              	<div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../productInquiryList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
-              		   </div>  
-              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
-              		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/miniHome/${userId }/inquiryRegister/${itemNo}'"  style="color:white;"/></div>
-                
-					<br>  <br>
-                </div>
-                 <br>  <br><br>  <br>
-            </div>	
-				                     
-                
-            
-             
-									
-									
            
+            <div class="col-lg-12 col-md-12 col-sm-12">
+							<br><br>
+						
+							<form 
+							action="/palette/miniHome/${result.inquiry.userId }/inquiryUpdate/${result.inquiry.inquiryNo.intValue()}"
+							method="post">
+							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
+							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
+							
+							<!-- 게시물 제목 -->
+							     <input type="text" name="inquiryTitle" style="width:730px;" value="${result.inquiry.inquiryTitle }"></h3>
+							     <input type="hidden" name="itemNo" value="${result.inquiry.itemNo.intValue()}">
+							     <input type="hidden" name="inquiryNo" value="${result.inquiry.inquiryNo.intValue()}">
+							     <!-- 댓글 수 -->
+		
+							      
+							     <div style="font-size: 90%;">
+							     	<div style=" float: left; ">
+									&nbsp;&nbsp;&nbsp;글 번호 (&nbsp;${result.inquiry.inquiryNo.intValue() }&nbsp;)
+									</div>
+								
+							     </div>
+							     <!-- 조회수 -->
+							     
+							     	
+              				  		
+              				  		<table class="table table-striped table-hover" >
+				                    <thead>
+				                    <tr >
+				                    
+				                    <!-- 작성자 및 시간 -->
+				                    
+				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>${result.inquiry.userId }</th>
+										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${result.inquiry.inquiryDate}</th>
+									</tr>
+                  					  </thead>
+                   
+
+              						  </table>
+              						
+              		   <div class="col-lg-1 col-md-1 col-sm-1">
+              		   </div>
+              		   
+              		   <div class="col-lg-10 col-md-10 col-sm-10">
+              		   <br>
+              		   <!-- 게시물 내용 -->
+              		   <p style="max-height: 700px; min-height: 250px;">
+              		   <textarea rows="15" cols=""  name="inquiryContent" >${result.inquiry.inquiryContent }
+							</textarea></p>
+							
+							
+              		   </div>
+              		   	
+              		   <div class="col-lg-1 col-md-1 col-sm-1">
+              		   		
+              		   </div>	
+              		   
+              		   <div class="col-lg-9 col-md-9 col-sm-9">
+              		   		<a href="../productInquiryList/${result.inquiry.itemNo.intValue()}?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
+              		   </div>  
+              		   
+              		
+						
+						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
+					<c:set var = "userId" scope = "session" value = "<%=user1.getUserId()%>"/>
+						<c:if test="${result.inquiry.userId==userId}">
+							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료">
+						</form>
+						</c:if>
+						
+              		   		 
+              		 		
+								
+					
+								
+							
+              		 		 
+              		   </div>  
+						<table class="table table-striped table-hover" style="text-align: center;">
+				                    <thead>
+				                    <tr >
+										<th style="text-align: center;"></th>
+									</tr>
+                  					  </thead>
+                   
+
+              						  </table>
+              						  
+               				 <p>답변</p>
+               				 
+               				 <!-- 댓글 -->
+               				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
+				                    <c:forEach items="${result.reple }" var="reple">
+				                    <thead>
+				                    <tr>
+				                    	<!-- 작성자 -->
+				                    	<th><span style="font-weight: normal;">ID : </span>${reple.userId }</th>
+				                    	<th></th>
+				                    	<!-- 시간 -->
+										<th style="text-align: right;"><span style="font-weight: normal; font-size: 90%;">작성일 : </span>${reple.inquiryRepleDate }</th>
+									</tr>
+									</thead>
+									<tbody>
+             							<tr>
+             								<!--내용 -->
+             							
+             								<td colspan="2" width="900px;" class="Content${reple.inquiryRepleNo.intValue() }" style="text-align: left; "><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.inquiryRepleContent }</td>
+             								<!-- 히든 -->
+             								<input type="hidden" value="${reple.userId}"
+												name="userId" class="repleName">
+											<input type="hidden" value="${reple.inquiryRepleNo.intValue() }"
+												name="inquiryRepleNo" class="inquiryRepleNo">
+											<input type="hidden" value="${reple.freeNo.intValue() }"
+												name="freeNo" class="freeNo">
+             								<td style=" text-align: right;" class="rrr">
+             								<!-- 버튼 -->
+             					
+             					
+             								</td>
+             							</tr>
+             							</tbody>
+             							</c:forEach>
+              						  </table>
+              						  
+              						<!-- 댓글 -->
+            
+									<br><br>
+									<br><br>
+								
+							
+							
+								
+							
+						
+                            
+							
+									
+							</div>
+							
+							
+							</div>
 							
 							
 					

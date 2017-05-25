@@ -109,7 +109,7 @@ input[type="button"] {
 							<br><br>
 						
 							<form 
-							action="/palette/miniHome/${mini.free.userId }/productInquiryUpdate/${result.inquiry.inquiryNo.intValue()}"
+							action="/palette/miniHome/${result.inquiry.userId }/inquiryUpdate/${result.inquiry.inquiryNo.intValue()}"
 							method="get">
 							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
 							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
@@ -177,11 +177,10 @@ input[type="button"] {
               		 		
 								
 								<c:if test="${result.inquiry.userId==userId}">
-								 <form style="display: inline-block;" action="/palette/miniHome/${result.inquiry.userId }/productInquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
+								 <form style="display: inline-block;" action="/palette/miniHome/${result.inquiry.userId }/inquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
 								 &nbsp;
+								 <input type="hidden" name="itemNo" value="${result.inquiry.itemNo.intValue()}">
 								 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
-								 <input type="hidden"value="${result.inquiry.userId }" name="userId" id="userId"> 
-								 <input type="hidden" value="${result.inquiry.inquiryNo.intValue() }" name="freeNo"id="freeNo">
 								</form>
 					
 									</c:if>

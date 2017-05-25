@@ -85,9 +85,12 @@ public class productService {
 		}
 		//제품상세정보보기
 		@Transactional
-		public String selectItemDetail(int itemNo){
-			Item item=dao.selectItemDetail(itemNo);
+		public String selectItemDetail(Map<String, Object> map){
+			int itemNo=(Integer)map.get("itemNo");
+			Item item=dao.selectItemDetail(map);
+			if(item==null)return null;
 			List<ItemImg> imgList=dao.selectItemImg(itemNo);
+			
 			List<ItemOption> itemOption=dao.selectProductOption(itemNo);
 			HashMap<String,  Object> result=new HashMap<String, Object>();
 			result.put("item", item);
@@ -96,6 +99,19 @@ public class productService {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			return gson.toJson(result);	
 			
+		}
+		//홈피주인문의 관리리스트
+		public String adminInquiryList(Map<String, Object> map) {
+		Map<String, Object> result=new HashMap<String, Object>();
+		int pageNo=(Integer) map.get("pageNo");
+		String userId=(String) map.get("userId");
+		Pagination p=PagingUtil.setPageMaker(pageNo, dao.adminInquiryCnt(userId));
+		map.put("start", p.getStartArticle());
+		map.put("end", p.getEndArticle());
+		result.put("result", dao.adminInquiryList(map));
+		result.put("pagination", p);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(result);	
 		}
 		//문의게시판리스트
 		@Transactional
@@ -314,6 +330,7 @@ public class productService {
 		System.out.println("찍어봐임마"+result.get("result").toString());
 			return new Gson().toJson(result);
 		}
+	
 	
 
 	
