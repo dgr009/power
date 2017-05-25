@@ -169,7 +169,7 @@ a:VISITED {
 						</c:if>
 						
 						<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-							<li><a href="/palette/miniHome/${userId }/productInquiryList?pageNo=${i}">${i} </a></li>
+							<li><a href="/palette/miniHome/${userId }/productInquiryList/${itemNo}?pageNo=${i}">${i} </a></li>
 						</c:forEach>
 						
 						<c:if test="${result.pagination.next>0 }">

@@ -165,19 +165,20 @@ input[type="button"] {
               		
 						
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
-					<c:set var = "userId" scope = "session" value = "<%=user1.getUserId()%>"/>
-						<c:if test="${result.inquiry.userId==userId}">
-							<a href="/palette/miniHome/${userId}/inquiryUpdate/${result.inquiry.inquiryNo.intValue()}"><input type="button"  style="color: white;" class="btn btn-default btn-lg" value="수정하기"></a>
+					<c:set var = "use" scope = "session" value = "<%=user1.getUserId()%>"/>
+						<c:if test="${result.inquiry.userId==use}">
+							<a href="/palette/miniHome/${userId}/inquiryUpdate/${result.inquiry.inquiryNo.intValue()}"><button  data-loading-text="Loading..." class="btn btn-default btn-lg">수정하기</button></a>
 						</c:if>
+					
 						
               		   		 
-              		 		
+              		 	
 								<c:set var = "ownerId" scope = "session" value = "<%=user1.getUserId()%>"/>
 								<c:if test="${result.inquiry.userId==ownerId}">
 								 <form style="display: inline-block;" action="/palette/miniHome/${result.inquiry.userId }/inquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
 								 &nbsp;
 								 <input type="hidden" name="itemNo" value="${result.inquiry.itemNo.intValue()}">
-								 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
+								 <input type="submit" style="font-size: 20px;" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
 								</form>
 					
 									</c:if>
@@ -230,13 +231,7 @@ input[type="button"] {
              							
              								<td colspan="2" width="900px;" class="Content${reple.inquiryRepleNo.intValue() }" style="text-align: left; "><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.inquiryRepleContent }</td>
              								<!-- 히든 -->
-             								<input type="hidden" value="${reple.userId}"
-												name="userId" class="repleName">
-											<input type="hidden" value="${reple.inquiryRepleNo.intValue() }"
-												name="inquiryRepleNo" class="inquiryRepleNo">
-											<input type="hidden" value="${reple.freeNo.intValue() }"
-												name="freeNo" class="freeNo">
-             								<td style=" text-align: right;" class="rrr">
+             							
              								<!-- 버튼 -->
              					
              					
