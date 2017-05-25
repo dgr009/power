@@ -40,7 +40,7 @@
 	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
 	<select id="miniHomeSelectSellerInformation" parameterType="string" resultType="MiniHomeInformation">
 		select u.user_name ,u.user_mail ,u.user_phone ,u.user_grade ,
-		h.home_introduce  from users u, home h 
+		h.home_introduce, h.home_title  from users u, home h 
 		where u.user_id=h.user_id and u.user_id=#{userId}
 	</select>
 	

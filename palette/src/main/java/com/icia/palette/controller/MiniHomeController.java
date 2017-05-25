@@ -37,13 +37,13 @@ public class MiniHomeController {
 	
 	//자유 리스트
 	@RequestMapping(value="/{userId}/freeList",method = RequestMethod.GET)
-	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
+	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectFreeList(session,userId,pageNo));
 		return "mini/freeList";
 	}
 	//공지 리스트
 	@RequestMapping(value="/{userId}/noticeList",method = RequestMethod.GET)
-	public String noticeList(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
+	public String noticeList(HttpSession session,@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectNoticeList(session, userId, pageNo));
 		return "mini/noticeList";
 	}
@@ -129,7 +129,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/Info",method = RequestMethod.GET)
 	public String miniHomeSelectSellerInformation(HttpSession session,@PathVariable String userId,Model model){
 		model.addAttribute("mini", service2.miniHomeSelectSellerInformation(session, userId));
-		return "mini/infoTest";
+		return "mini/testSellerInfo";
 	}
 	
 	//결제 시작
@@ -138,7 +138,7 @@ public class MiniHomeController {
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
-		return "mini/PayTest";
+		return "mini/testPayPay";
 	}
 	
 	//결제 처리

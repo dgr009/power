@@ -40,8 +40,24 @@ public class MiniHomeService {
 
 		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		
-		
+		session.setAttribute("user", userInfo(session));
 	}
+	
+	// 회원 세션 넣기
+	public Users userInfo(HttpSession session) {
+	      RestTemplate tpl = new RestTemplate();
+	      HttpHeaders headers = new HttpHeaders();
+	      headers.add("token", (String) session.getAttribute("token"));
+	      HttpEntity requestEntity = new HttpEntity(headers);
+	      System.out.println(requestEntity);
+	      String result = tpl
+	            .exchange("http://localhost:8087/api/users/info", HttpMethod.GET, requestEntity, String.class)
+	            .getBody();
+	      Users user = new Gson().fromJson(result, Users.class);
+	      System.out.println("userInfo : " + user);
+
+	      return user;
+	   }
 }
 
 

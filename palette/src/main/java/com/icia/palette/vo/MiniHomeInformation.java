@@ -13,5 +13,6 @@ public class MiniHomeInformation {
 	private String userPhone;
 	private String userGrade;
 	private String homeIntroduce;
+	private String homeTitle;
 	
 }
