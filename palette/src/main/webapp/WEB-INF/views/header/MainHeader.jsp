@@ -11,11 +11,36 @@
 <%} %>
 <%@include file="/WEB-INF/views/users/register.jsp" %>
 <!-- 메인 로고 -->
-
+	<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
+         <div class="ab">
+         	<h1><a href="/palette/users/main"><img alt="" src="<c:url value="/resources/images/로고로고로고.png"/>" style="width:100%; height: 100px;"></a></h1>
+         </div><br>
+ 	</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+ 	        <!-- 검색 바 -->
+ 	    <div class="ab" style="margin-top: 30px;">
+ 	        <div class="widget widget_search">
+ 				<div class="site-search-area">
+ 					<form method="get" id="site-searchform" action="#">
+ 						<div>
+ 							<input class="input-text" name="s" id="s" placeholder="상품명 검색..." type="text">
+ 							<input id="searchsubmit" value="Search" type="submit">
+ 						</div>
+ 					</form>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		<!-- 검색 바 -->
+ </div>
+<div class="col-lg-3 col-md-3 col-sm-3">
+ 	 	<div class="ab" style="padding-left: 14px;">
+         	<h1><a href="index.html"><img alt="" src="<c:url value="/resources/images/광고.JPG"/>" style="width:230px; height: 100px;"></a></h1>
+         </div>
+</div>
 <!-- 메인 로고 -->
 <!-- 검색바 -->
 
-    
+<div class="col-lg-12 col-md-12 col-sm-12">    
    <div class="navbar-collapse collapse" >
                             <ul class="nav navbar-nav">
                                 <li><a href="#" >브랜드</a>
@@ -95,13 +120,11 @@
                                     </li>
                                		   <li><a href="#" onclick=openHomeUp()>홈페이지 수정</a>
                                     </li>
-                                     </li>
-                               		   <li><a href="#" onclick=openHomeDe()>홈페이지 폐쇄</a>
-                                    </li>
                                     <%} %>
                             </ul>
                             
                         </div>
+  </div>
   </div>
 </nav>
 </div>

@@ -23,17 +23,16 @@
 		}
 	}
 	
-	function openHomeDe(){
-		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main","_blank");
-		else{
-			window.open("http://localhost:8087/palette/users/homeDelete","_blank");	
-		}
-	}
-	
 	function openHomeUp(){
 		if(<%=user.getUserIsHome()%>==1)
 	    	window.open("http://localhost:8087/palette/users/homeUpdate","_blank");
+		else{
+			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
+		}
+	}
+	function openHomeAd(){
+		if(<%=user.getUserIsHome()%>==1)
+	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/admin/register","_blank");
 		else{
 			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
 		}
@@ -51,6 +50,7 @@
                			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</span>
                			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
                        	  <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
+                       	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         
                       </div>
