@@ -173,15 +173,19 @@ public class MiniHomeController {
 	}
 	
 	//홈페이지 결제
-	@RequestMapping(value="/{userId}/pay", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
-	public ResponseEntity<String> homePay(@RequestHeader("token") String token,@PathVariable String userId, @RequestBody ActiveDate active) throws BindException {
+	@RequestMapping(value="/{userId}/pay", method=RequestMethod.POST, produces="text/html;charset=utf-8", consumes="application/json")
+	public ResponseEntity<String> homePay(@RequestHeader("token") String token,@PathVariable String userId) throws BindException {
 		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+		System.out.println(userId+"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		
 		service2.miniHomePay(userId);	// 회원 포인트 차감, 홈페이지 활성화
-		int result = service2.insertActiveDate(active);// 기록 생성
+		
+		System.out.println("차감 및 활성화 완료");
+		
+		int result = service2.insertActiveDate(userId);// 기록 생성
 			
 		if(result==1){
 			return new ResponseEntity<String>(HttpStatus.OK);
-			
 		}else{
 			return new ResponseEntity<String>("실패",HttpStatus.BAD_REQUEST);
 			
