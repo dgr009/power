@@ -30,8 +30,8 @@ public class MiniHomeDao {
 	}
 	
 	//홈페이지 결제 : 활성화 기록 생성
-	public int miniHomeInsertActiveStatement(ActiveDate active){
-		return tpl.insert("api.dao.HomeDao.miniHomeInsertActiveStatement",active);
+	public int miniHomeInsertActiveStatement(String userId){
+		return tpl.insert("api.dao.HomeDao.miniHomeInsertActiveStatement",userId);
 	}
 	
 	//홈페이지 결제 : 회원 포인트 차감
@@ -40,7 +40,7 @@ public class MiniHomeDao {
 	}
 	
 	//홈페이지 결제 : 홈페이지 활성화
-	public void miniHomeActivateUser(String userId){
+	public void miniHomeActivateHome(String userId){
 		tpl.update("api.dao.HomeDao.miniHomeActivateHome",userId);
 	}
 		

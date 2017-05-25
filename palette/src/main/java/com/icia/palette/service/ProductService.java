@@ -243,5 +243,12 @@ public class ProductService {
 		
 		return map1;
 	}
+	public void inquiryRepleRegister(InquiryReple i) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(i), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/inquiryRepleRegister", HttpMethod.POST, requestEntity, String.class).getBody();		
+	}
 
 }

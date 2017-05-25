@@ -37,13 +37,13 @@ public class MiniHomeController {
 	
 	//자유 리스트
 	@RequestMapping(value="/{userId}/freeList",method = RequestMethod.GET)
-	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
+	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectFreeList(session,userId,pageNo));
 		return "mini/freeList";
 	}
 	//공지 리스트
 	@RequestMapping(value="/{userId}/noticeList",method = RequestMethod.GET)
-	public String noticeList(HttpSession session,@PathVariable String userId,Model model,@RequestParam int pageNo){
+	public String noticeList(HttpSession session,@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo){
 		model.addAttribute("mini2", service.miniHomeSelectNoticeList(session, userId, pageNo));
 		return "mini/noticeList";
 	}
@@ -127,7 +127,25 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/Info",method = RequestMethod.GET)
 	public String miniHomeSelectSellerInformation(HttpSession session,@PathVariable String userId,Model model){
 		model.addAttribute("mini", service2.miniHomeSelectSellerInformation(session, userId));
-		return "mini/infoTest";
+		return "mini/testSellerInfo";
+	}
+	
+	//결제 시작
+	@RequestMapping(value="/{homeId}/pay",method = RequestMethod.GET)
+	public String payStart(HttpSession session,@PathVariable String homeId, Model model){
+		model.addAttribute("homeId", homeId);
+		System.out.println("controller userId : "+service.getUserIdByToken(session));
+		model.addAttribute("userId", service.getUserIdByToken(session));
+		return "mini/testPayPay";
+	}
+	
+	//결제 처리
+	@RequestMapping(value="/{homeId}/pay",method = RequestMethod.POST)
+	public String payEnd(HttpSession session,@RequestParam String userId){
+		System.out.println(userId+"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		service2.homePay(session, userId);
+		System.out.println("완료 완료 완료 완료");
+		return "redirect:/main";
 	}
 
 	

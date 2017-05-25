@@ -4,7 +4,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
 <%
-	Users user1 = (Users) session.getAttribute("user");
+	Users user = (Users) session.getAttribute("user");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -54,34 +54,30 @@ input[type="submit"] {
 input[type="button"] {
 	font-family:FontAwesome;
 }     
-
-#repleCnt{
-	color : orange;
-	font-weight: normal;
-}
-
-#repleCnt #rrrrr{
-	font-weight: bold;
-}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
-
 </script>
 </head>
 <body>
 <!--Start Header-->
 	<header id="header">
-	 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-				      	<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
+					<div class="col-lg-3 col-sm-3 ">
+						<div id="logo">
+							<h1>
+								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
+							</h1>
+						</div>
+					</div>
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
@@ -95,7 +91,7 @@ input[type="button"] {
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>문의 게시판</h2>
+                           <h2>HomePage Introduce</h2>
                         </div>
                     </div>
                 </div>
@@ -104,166 +100,111 @@ input[type="button"] {
              </section>
             
  
-           
-            <div class="col-lg-12 col-md-12 col-sm-12">
-							<br><br>
-						
+            <section class="content service">
+			<div class="container">
+				
+				
+
+                <div class="row sub_content">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="dividerHeading" style="margin: 0;">
+                            <h4 style="margin: 0;"><span>홈페이지 소개</span></h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6" style="margin-top: 61px;">
+                 		  <div class="about_author" style="border: 1px solid #727cb6; border-radius: 2px;">
+								<div class="author_desc">
+									<img alt="about author" src="<c:url value="/resources/images/blog/author.png"/>">							
+									<ul class="author_social" >
+										<li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+										<li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+										<li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+									</ul>
+								</div>
+								<div class="author_bio" style="height: 200px;">
+									<h3 class="author_name"><a href="#"><span class="highlight default">${mini.homeTitle }</span></a></h3>
+									<h5>CEO at <a href="#"><span class="highlight light">${mini.userName }</span></a></h5>
+									<p class="author_det" ><!-- 홈페이지 소개글 -->
+										${mini.homeIntroduce }
+									</p>
+								</div>
+							</div>
+							<br>
 							
-							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
-							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
-							
-							<!-- 게시물 제목 -->
-							     ${result.inquiry.inquiryTitle }</h3>
-							     <!-- 댓글 수 -->
+                 	 </div>
+
+                    
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_3" style="height: 200px;">
+                            <div class="service-icon" >
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <p style="height: 20px; margin-bottom:500px; padding-bottom: 1px;"><span><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;${mini.userMail }</a></span>
+                          <br><a href="#"><i class="fa fa-mobile-phone"></i>&nbsp;&nbsp;${mini.userPhone }<span class="text-muted"></span></a></p>
+                          
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_3" style="height: 200px;">
+                            <div class="service-icon">
+                               <i class="fa fa-briefcase"></i>
+                            </div>
+                            <h3 style="margin: 0; line-height: 3em;"><a href=""><i class="fa fa-align-center"></i>&nbsp;&nbsp;<span style="margin-bottom: 30px;">${mini.userGrade }</span></a></h3>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+		</section>
 		
-							      
-							     <div style="font-size: 90%;">
-							     	<div style=" float: left; ">
-									&nbsp;&nbsp;&nbsp;글 번호 (&nbsp;${result.inquiry.inquiryNo.intValue() }&nbsp;)
-									</div>
-								
-							     </div>
-							     <!-- 조회수 -->
-							     
-							     	
-              				  		
-              				  		<table class="table table-striped table-hover" >
-				                    <thead>
-				                    <tr >
-				                    
-				                    <!-- 작성자 및 시간 -->
-				                    
-				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>${result.inquiry.userId }</th>
-										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${result.inquiry.inquiryDate}</th>
-									</tr>
-                  					  </thead>
-                   
+		<section class="promo_box">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9 col-md-9 col-lg-9">
+						<div class="promo_content">
+							<h3>저희 홈페이지에 오신것을 환영합니다 ! </h3>
+							<p>가나다라마바사아 아자차카타파하 </p>
+						</div>
+					</div>
+					<div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="pb_action">
+                            <a class="btn btn-lg btn-default" href="#fakelink">
+                                <i class="fa fa-shopping-cart"></i>
+                                상품 보러가기
+                            </a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>	<!--end wrapper-->
 
-              						  </table>
-              						
-              		   <div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-              		   
-              		   <div class="col-lg-10 col-md-10 col-sm-10">
-              		   <br>
-              		   <!-- 게시물 내용 -->
-              		   <p style="max-height: 700px; min-height: 250px;">
-              		   ${result.inquiry.inquiryContent }
-							</p>
-							
-							
-              		   </div>
-              		   	
-              		   <div class="col-lg-1 col-md-1 col-sm-1">
-              		   		
-              		   </div>	
-              		   
-              		   <div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../productInquiryList/${result.inquiry.itemNo.intValue()}?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
-              		   </div>  
-              		   
-              		
-						
-						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
-					<c:set var = "userId" scope = "session" value = "<%=user1.getUserId()%>"/>
-						<c:if test="${result.inquiry.userId==userId}">
-							<a href="/palette/miniHome/${userId}/inquiryUpdate/${result.inquiry.inquiryNo.intValue()}"><input type="button"  style="color: white;" class="btn btn-default btn-lg" value="수정하기"></a>
-						</c:if>
-						
-              		   		 
-              		 		
-								<c:set var = "ownerId" scope = "session" value = "<%=user1.getUserId()%>"/>
-								<c:if test="${result.inquiry.userId==ownerId}">
-								 <form style="display: inline-block;" action="/palette/miniHome/${result.inquiry.userId }/inquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
-								 &nbsp;
-								 <input type="hidden" name="itemNo" value="${result.inquiry.itemNo.intValue()}">
-								 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
-								</form>
-					
-									</c:if>
-									
-							
-              		 		 
-              		   </div>  
-						<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr >
-										<th style="text-align: center;"></th>
-									</tr>
-                  					  </thead>
-                   
 
-              						  </table>
-              						  
-               				 <p>답변</p>
-               				 	<c:set var = "ownerId" scope = "session" value = "<%=user1.getUserId()%>"/>
-               				 <c:if test="${ownerId==userId}">
-               				 		<p>댓글 작성</p>
-               				 		<form action="/palette/miniHome/<%=user1.getUserId()%>/inquiryReple"
-							method="post">
-             						 <div class="col-lg-11 col-md-11 col-sm-11">
-             						  <input type="hidden" value="${result.inquiry.inquiryNo.intValue()}" name="inquiryNo">
-             						 <input type="hidden" value='<%=user.getUserId()%>' name="userId'">
-             						<textarea rows="3" cols="" id="inquiryRepleContent" name="inquiryRepleContent"></textarea>
-             						</div>
-										&nbsp;&nbsp;<input type="submit" id="btn1" data-loading-text="Loading..." 
-										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
-									<br><br>
-									<br><br>
-									</form>
-									</c:if>
-               				 <!-- 댓글 -->
-               				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
-				                    <c:forEach items="${result.reple }" var="reple">
-				                    <thead>
-				                    <tr>
-				                    	<!-- 작성자 -->
-				                    	<th><span style="font-weight: normal;">ID : </span>${reple.userId }</th>
-				                    	<th></th>
-				                    	<!-- 시간 -->
-										<th style="text-align: right;"><span style="font-weight: normal; font-size: 90%;">작성일 : </span>${reple.inquiryRepleDate }</th>
-									</tr>
-									</thead>
-									<tbody>
-             							<tr>
-             								<!--내용 -->
-             							
-             								<td colspan="2" width="900px;" class="Content${reple.inquiryRepleNo.intValue() }" style="text-align: left; "><i class="fa fa-ellipsis-h"></i>&nbsp;&nbsp;&nbsp;${reple.inquiryRepleContent }</td>
-             								<!-- 히든 -->
-             								<input type="hidden" value="${reple.userId}"
-												name="userId" class="repleName">
-											<input type="hidden" value="${reple.inquiryRepleNo.intValue() }"
-												name="inquiryRepleNo" class="inquiryRepleNo">
-											<input type="hidden" value="${reple.freeNo.intValue() }"
-												name="freeNo" class="freeNo">
-             								<td style=" text-align: right;" class="rrr">
-             								<!-- 버튼 -->
-             					
-             					
-             								</td>
-             							</tr>
-             							</tbody>
-             							</c:forEach>
-              						  </table>
-              						  
-              						<!-- 댓글 -->
+	
+	<section class="footer_bottom">
+		<div class="container">
+			<div class="row">
+            <div class="col-sm-6">
+                <p class="copyright">&copy; Copyright 2015 Edge | Powered by  <a href="http://www.jqueryrain.com/">jQuery Rain</a></p>
+            </div>
+
+            <div class="col-sm-6 ">
+                <div class="footer_social">
+                    <ul class="footbot_social">
+                        <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+                        <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+		</div>
+	</section>
             
-									<br><br>
-									<br><br>
-								
-							
-							
-								
-							
-						
-                            
-							
-									
-							</div>
-							
-							
-							</div>
-							
+	
 							
 					
 

@@ -217,8 +217,13 @@ select *from inquiry_reple where inquiry_no=#{inquiryNo}
 <selectKey keyProperty="inquiryRepleNo" resultType="int" order="BEFORE">
 select inquiryrepleno_seq.nextval from dual
 </selectKey>
-insert into inquiry_reple values(#{inquiryRepleNo},#{inquiryRepleContent},sysdate,#{userId}),#{inquiryNo}
+
+insert into inquiry_reple values(#{inquiryRepleNo},#{inquiryRepleContent},sysdate,#{userId},#{inquiryNo})
 </insert>
+<!-- 상품문의글 댓글수증가 -->
+<update id="incrementInquiryCnt" parameterType="int">
+update inquiry_board set inquiry_cnt=inquiry_cnt+1 where inquiry_no=#{inquiryNo}
+</update>
 <!-- 상품문의 댓글수정 -->
 <update id="updateInquiryReple" parameterType="InquiryReple">
 update inquiry_reple set inquiry_reple_content=#{inquiryRepleContent} where inquiry_reple_no=#{inquiryRepleNo}

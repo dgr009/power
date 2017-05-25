@@ -301,5 +301,14 @@ public class ProductController {
 					String a="redirect:/miniHome/"+userId+"/productInquiryList/"+itemNo;
 					return a;
 				}
+				//문의 댓글작성하기
+				@RequestMapping(value = "/{userId}/inquiryReple", method = RequestMethod.POST)
+				public String inquiryRepleRegister(@PathVariable String userId,@ModelAttribute InquiryReple i) {
+					int inquiryNo=i.getInquiryNo();
+					System.out.println("찍어봐 새기야"+inquiryNo);
+					service.inquiryRepleRegister(i);
+					String a="redirect:/miniHome/"+userId+"/productInquiryView/"+inquiryNo;
+					return a;
+				}
 	
 }

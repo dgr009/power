@@ -261,6 +261,10 @@ public class ProductDao {
 	public List<InquiryBoard> adminInquiryList(Map<String,Object> map){
 		return tpl.selectList("api.dao.ProductDao.adminInquiryList", map);
 	}
+	//문의게시글 개수증가
+	public void incrementInquiryCnt(int inquiryNo) {
+		tpl.update("api.dao.ProductDao.incrementInquiryCnt", inquiryNo);
+	}
 	
 
 	

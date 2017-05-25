@@ -148,9 +148,13 @@ public class ProductController {
 		//홈피주인 문의게시판관리리스트
 		@RequestMapping(value = "/adminInquiryList", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 		public String adminInquiryList(@RequestBody Map<String, Object> map) {
-	
 			return service.adminInquiryList(map);	
 		}
+		//문의게시판리플작성
+				@RequestMapping(value = "/inquiryRepleRegister", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+				public void inquiryRepleRegister(@RequestBody InquiryReple i) {
+				 service.insertInquiryReple(i);
+				}
 	
 	
 	

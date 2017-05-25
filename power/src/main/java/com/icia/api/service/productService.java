@@ -152,8 +152,11 @@ public class productService {
 	}
 
 	//상품문의 댓글작성
+	@Transactional
 	public void insertInquiryReple(InquiryReple i){
 		dao.insertInquiryReple(i);
+		int inquiryNo=i.getInquiryNo();
+		dao.incrementInquiryCnt(inquiryNo);
 	}
 	//상품문의 댓글수정
 	public void updateInquiryReple(InquiryReple i){

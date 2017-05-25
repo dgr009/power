@@ -78,12 +78,12 @@ public class MiniHomeDaoTest {
 	}
 	//활성화기록 생성
 	//@Test
-	public void insertActiveStatement(){
-		ActiveDate date = new ActiveDate();
-		date.setActiveNo(6);
-		date.setUserId("aaaa");
-		dao2.miniHomeInsertActiveStatement(date);
-	}
+//	public void insertActiveStatement(){
+//		ActiveDate date = new ActiveDate();
+//		date.setActiveNo(6);
+//		date.setUserId("aaaa");
+//		dao2.miniHomeInsertActiveStatement(date);
+//	}
 	
 //	//회원 포인트 차감
 //	//@Test
@@ -94,9 +94,9 @@ public class MiniHomeDaoTest {
 //	}
 	//회원 홈페이지 활성화
 	//@Test
-	public void activateHome(){
-		dao2.miniHomeActivateUser("qhrals8");
-	}
+//	public void activateHome(){
+//		dao2.miniHomeActivateUser("qhrals8");
+//	}
 	
 	//회원정보 조회
 	//@Test
