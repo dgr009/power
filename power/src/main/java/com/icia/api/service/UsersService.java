@@ -103,7 +103,7 @@ public class UsersService {
 	}
 
 	// 회원 충전 환급 내역 확인하기
-	public Map<String,Object> tradeList(String userId,int pageNo) {		
+	public Map<String, Object> tradeList(String userId, int pageNo) {
 		int cnt = dao.tradeListCnt(userId);
 		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -112,17 +112,17 @@ public class UsersService {
 		return map;
 	}
 
-	//회원 비활성화
+	// 회원 비활성화
 	public int deleteUser(String userId) {
 		return dao.userDelete(userId);
 	}
 
-	//회원 활성화
+	// 회원 활성화
 	public int reverseUser(String userId) {
 		return dao.userReverse(userId);
 	}
 
-	//회원 주문 내역 보기
+	// 회원 주문 내역 보기
 	public Map<String, Object> userOrderList(String userId, int pageNo) {
 		int cnt = dao.orderListCnt(userId);
 		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
@@ -132,110 +132,110 @@ public class UsersService {
 		return map;
 	}
 
-	//회원 주문 내역에서 주문 취소하기
+	// 회원 주문 내역에서 주문 취소하기
 	@Transactional
 	public int userOrderDelete(int orderNo) {
 		dao.itemInvenUp(orderNo);
 		dao.orderPointUp(orderNo);
 		dao.ownerPointDown(orderNo);
 		return dao.orderDelete(orderNo);
-		
+
 	}
 
-	//회원 즐겨찾기 보기
+	// 회원 즐겨찾기 보기
 	public Map<String, Object> userBookmarkList(String userId, int pageNo) {
 		int cnt = dao.bookmarkListCnt(userId);
 		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
-		map.put("list", dao.bookmarkList(userId,pagination.getStartArticle(), pagination.getEndArticle()));
+		map.put("list", dao.bookmarkList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
 		return map;
 	}
 
-	//회원 즐겨찾기 추가
+	// 회원 즐겨찾기 추가
 	public int bookmark(String orderId, String ownerId) {
 		return dao.bookmark(orderId, ownerId);
 	}
 
-	//회원 즐겨찾기 제거
+	// 회원 즐겨찾기 제거
 	public int bookmarkDelete(String orderId, String ownerId) {
 		return dao.bookmarkDelete(orderId, ownerId);
 	}
 
-	//장바구니 조회하기
+	// 장바구니 조회하기
 	public Map<String, Object> userBasketList(String userId, int pageNo) {
 		int cnt = dao.basketListCnt(userId);
 		Pagination pagination = PagingUtil3.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
-		map.put("list", dao.basketList(userId,pagination.getStartArticle(), pagination.getEndArticle()));
+		map.put("list", dao.basketList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
 		return map;
 	}
 
-	//장바구니 삭제하기
-	public int userBasketDelete(String userId,int itemNo) {
-		return dao.basketDelete(userId,itemNo);
+	// 장바구니 삭제하기
+	public int userBasketDelete(String userId, int itemNo) {
+		return dao.basketDelete(userId, itemNo);
 	}
-	
-	//홈페이지 만들기
+
+	// 홈페이지 만들기
 	@Transactional
 	public int homeRegister(MiniHome home) {
 		dao.userIsHomeOk(home.getUserId());
 		return dao.homeRegister(home);
 	}
 
-	//홈페이지 태그 만들기
+	// 홈페이지 태그 만들기
 	public int homeTagRegister(String userId, String bigKind, String smallKind) {
 		String[] big = bigKind.split(",");
 		String[] smalls = smallKind.split("\n");
-		
-		for (int i=0;i<big.length;i++) {
+
+		for (int i = 0; i < big.length; i++) {
 			System.out.print(big[i] + " big : ");
-			dao.bigTagRegister(userId,big[i]);
+			dao.bigTagRegister(userId, big[i]);
 			String[] small = smalls[i].split(",");
-			for(String strS : small){
+			for (String strS : small) {
 				System.out.print(strS + "-s ");
-				dao.smallTagRegister(userId,big[i],strS);
+				dao.smallTagRegister(userId, big[i], strS);
 			}
 			System.out.println("");
 		}
-		
+
 		return 1;
 	}
 
-	//홈페이지 수정 정보가져오기
+	// 홈페이지 수정 정보가져오기
 	public Map<String, Object> getHomeInfo(String userId) {
-		Map<String,Object> map = new HashMap<String, Object>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("home", dao.getHomeInfo(userId));
 		map.put("bigKind", dao.getBigTag(userId));
 		map.put("smallKind", dao.getSmallTag(userId));
 		return map;
 	}
 
-	//홈페이지 수정 하기
+	// 홈페이지 수정 하기
 	public int homeUpdate(MiniHome home) {
 		return dao.homeUpdate(home);
 	}
 
-	//홈페이지 태그 수정하기
+	// 홈페이지 태그 수정하기
 	@Transactional
 	public int homeTagUpdate(String userId, String bigKind, String smallKind) {
 		String[] big = bigKind.split(",");
 		String[] smalls = smallKind.split("\n");
-		
+
 		dao.deleteBigTag(userId);
 		dao.deleteSmallTag(userId);
-		for (int i=0;i<big.length;i++) {
+		for (int i = 0; i < big.length; i++) {
 			System.out.print(big[i] + " big : ");
-			dao.bigTagRegister(userId,big[i]);
+			dao.bigTagRegister(userId, big[i]);
 			String[] small = smalls[i].split(",");
-			for(String strS : small){
+			for (String strS : small) {
 				System.out.print(strS + "-s ");
-				dao.smallTagRegister(userId,big[i],strS);
+				dao.smallTagRegister(userId, big[i], strS);
 			}
 			System.out.println("");
 		}
-		
+
 		return 1;
 	}
 
@@ -245,24 +245,29 @@ public class UsersService {
 		dao.orderComplete(orderNo);
 		String result = dao.getOwnerGrade(orderNo);
 		int totalPoint = dao.getTotalSellPoint(orderNo);
-		if(result.equals("bronze")){
-			if(totalPoint > 300000)
+		if (result.equals("bronze")) {
+			if (totalPoint > 300000)
 				dao.ownerSilverGradeUp(orderNo);
-			else if(totalPoint > 1000000)
+			else if (totalPoint > 1000000)
 				dao.ownerGoldGradeUp(orderNo);
-		}else if(result.equals("silver")){
-			if(totalPoint > 1000000)
+		} else if (result.equals("silver")) {
+			if (totalPoint > 1000000)
 				dao.ownerGoldGradeUp(orderNo);
 		}
 	}
 
-	//랭킹 5명 가져오기
+	// 랭킹 5명 가져오기
 	public List<MiniHome> getRankSide() {
 		return dao.getRankSide();
 	}
 
-	//즐겨찾기 확인하기
+	// 즐겨찾기 확인하기
 	public int bookmarkCheck(String orderId, String ownerId) {
-		return dao.bookmarkCheck(orderId,ownerId);
+		return dao.bookmarkCheck(orderId, ownerId);
+	}
+
+	// 리뷰 작성하기
+	public int insertReview(ItemReview review, int orderNo) {
+		return dao.insertReview(review, orderNo);
 	}
 }

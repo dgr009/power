@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>파워파워</title>
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -55,19 +56,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$("#scoreBtn").on("click",function(){
-		alert("aerd");
-		
-// 		$.ajax({
-// 			url:"/palette/users/orderComplete?orderNo="+$(this).data("ono"),
-// 			type:"get",
-// 			complete:function(){
-// 				window.open("http://localhost:8087/palette/users/score?orderNo="+$(this).data("ono"),"Score","scrollbars=yes,toolbar=yes,location=yes,resizable=yes,status=yes,menubar=yes,resizable=yes,width=400,height=400,left=300,top=300");		
-// 			}
-
-// 		})
-	})
-
+	
 })
 
 </script>
@@ -84,8 +73,8 @@ $(function(){
   	<!-- 랭킹 -->
     <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
     <!-- 랭킹 끝 -->
- <div class="col-sm-8"> 
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 600px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 주문내역</h3>
+ <div class="col-sm-10"> 
+		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 650px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 주문내역</h3>
 	<table width="80%" class="table table-striped table-hover" >
 		<thead>
 		<tr>
@@ -123,13 +112,15 @@ $(function(){
 				${order.orderState }
 			</td>
 			<td>
-				<c:if test="${order.orderState=='배송준비중' }"><button onclick="location.href='/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}'">주문 취소</a></c:if>
-				<c:if test="${order.orderState=='배송중' }"><button id='scoreBtn' data-ono='${order.orderNo.intValue()}'>주문 확정</a></c:if>
+				<c:if test="${order.orderState=='배송준비중' }"><a href="/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}">주문취소</a></c:if>
+				<c:if test="${order.orderState=='배송중' }"><a href="#" id='reviewBtn' onclick="review(${order.orderNo.intValue()})">주문확정</a></c:if>
 			</td>
 		</tr>
 		</c:forEach>
 		</tbody>
 </table>
+
+
 			<c:if test="${result.pagination.prev>0 }"><a href="/palette/users/orderList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
@@ -142,9 +133,6 @@ $(function(){
   </div>
 		</div>
 
-						 <!-- 광고 사이드 오른쪽-->
-    <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
-    <!-- 광고 사이드 오른쪽 끝 -->
   </div>
 </div>
 <br><br><br><br><br><br><br><br>
@@ -154,6 +142,23 @@ $(function(){
 </footer>
 
 </body>
+	
+	
+	<script type="text/javascript">
+	function review(orderNo){
+		//show 호출시 넘겨준 값을 이용하여 ajax 등을 통해 modal 을 띄울때 동적으로 바뀌어야 하는 값을 얻어온다.  
+		//얻어온 값을 이용하여, modal 에서 동적으로 바뀌어야 하는 값을 바꾸어 준다..  
+// 		$.ajax({
+// 			url:"/palette/users/orderComplete?orderNo="+orderNo,
+// 			type:"get",
+// 			complete:function(){
+// 			}	
+// 		})
+		window.open("http://localhost:8087/palette/users/review?orderNo="+orderNo,"리뷰");
+	    //modal을 띄워준다.  
+	}
+	
+	</script>
 	
 	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 			<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
