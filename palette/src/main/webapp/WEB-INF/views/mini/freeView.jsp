@@ -4,7 +4,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
 <%
-	Users user = (Users) session.getAttribute("user");
+	Users userMini = (Users) session.getAttribute("user");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -93,7 +93,7 @@ input[type="button"] {
 				str = str + "<input type='hidden' value='"+reply.freeRepleNo+"' name='freeRepleNo' class='freeRepleNo'>";
 				str = str + "<input type='hidden' value='"+reply.freeNo+"' name='freeNo' class='freeNo'>";
 				
-				if(reply.freeRepleName=="<%=user.getUserId()%>"){
+				if(reply.freeRepleName=="<%=userMini.getUserId()%>"){
 					str = str + "<td style='text-align: right;'><input type='button' id='updateReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg updateReple' data-content='"+reply.freeRepleContent +"'data-nono='"+reply.freeRepleNo +"' value='수정' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'>";
 					str = str + "&nbsp;<input type='button' id='deleteReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg deleteReple' data-cno='"+reply.freeRepleNo+"' value='삭제' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'></td></tr></tbody>"
 					
@@ -186,7 +186,7 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -288,7 +288,7 @@ input[type="button"] {
               		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
               		   </div>  
               		   
-              		   <c:set var="ddddd" value="<%=user.getUserId()%>" />
+              		   <c:set var="ddddd" value="<%=userMini.getUserId()%>" />
 						<c:set var="ooooo" value="${mini.free.freeName }" />
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
 					
@@ -349,7 +349,7 @@ input[type="button"] {
 												name="freeNo" class="freeNo">
              								<td style=" text-align: right;" class="rrr">
              								<!-- 버튼 -->
-             								<c:set var="name" value="<%=user.getUserId()%>" />
+             								<c:set var="name" value="<%=userMini.getUserId()%>" />
 											<c:set var="freeName" value="${reple.freeRepleName }" />
 											<c:if test="${name eq freeName}">
 	             								<input type="button" id="updateReple${reple.freeRepleNo.intValue()}" 
@@ -373,7 +373,7 @@ input[type="button"] {
               						<!-- 댓글 -->
              						<p>댓글 작성</p>
              						 <div class="col-lg-11 col-md-11 col-sm-11">
-             						 <input type="hidden" value='<%=user.getUserId() %>'name='freeRepleName' id="freeRepleName">
+             						 <input type="hidden" value='<%=userMini.getUserId() %>'name='freeRepleName' id="freeRepleName">
              						<textarea rows="3" cols="" id="freeRepleContent" name="freeRepleContent"></textarea>
              						</div>
 										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 

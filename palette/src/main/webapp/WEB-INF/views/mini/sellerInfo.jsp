@@ -4,7 +4,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
 <%
-	Users user = (Users) session.getAttribute("user");
+	Users userMini = (Users) session.getAttribute("user");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,8 +24,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
 <link rel="stylesheet" href="https://use.fontawesome.com/f4a7d32a7d.css">
-<!-- fortAwesome -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 	
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,36 +60,12 @@ input[type="button"] {
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
-	$(function(){
-		var x = <%=user.getUserPoint() %>;
-		var y = x-30000;
-		
-		$("#total").text(y);
-		
-		$(".read").on("click",function(){
-			//alert("누름")
-			$("#btnPay").append("<form action='/palette/miniHome/<%=user.getUserId() %>/pay' method='post'><button type='submit' class='btn btn-sm btn-social-pinterest'><i class='fa fa-fw' aria-hidden='true' title='Copy to use diamond'></i> &nbsp;결제하기 </button><input type='hidden' value='<%=user.getUserId() %>' name='userId'></form>")
-			 
-			$("#minus").text("30000P");
-			//alert($("#minus").text());
-			var a = $("#minus").text().split("P")
-			var b = x-a[0]
-			
-			
-			$("#result").text(b);
-			$("#result").append("P")
-			$(".ddd").attr("class","highlight light");
-		})
-		
-// 		if($("#total").text()<0)
-// 			//3마넌 이하일때 조치
-	})
 </script>
 </head>
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -114,97 +88,124 @@ input[type="button"] {
 		<section class="page_head">
             <div class="container">
                 <div class="row">
-                    
+                    <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>홈페이지 결제</h2>
+                           <h2>HomePage Introduce</h2>
                         </div>
                     </div>
                 </div>
             </div>
+            
              </section>
-             <br><br>
-                    <div class="col-sm-6 col-lg-3" style="margin-left: 150px;">
-                        <div class="serviceBox_5">
-                            <div class="service-image">
-                                <img src="<c:url value="/resources/images/사암만원.png"/>">
+            
+ 
+            <section class="content service">
+			<div class="container">
+				
+				
+
+                <div class="row sub_content">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="dividerHeading" style="margin: 0;">
+                            <h4 style="margin: 0;"><span>홈페이지 소개</span></h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6" style="margin-top: 61px;">
+                 		  <div class="about_author" style="border: 1px solid #727cb6; border-radius: 2px;">
+								<div class="author_desc">
+									<img alt="about author" src="<c:url value="/resources/images/blog/author.png"/>">							
+									<ul class="author_social" >
+										<li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facbook"><i class="fa fa-facebook"></i></a></li>
+										<li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+										<li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+									</ul>
+								</div>
+								<div class="author_bio" style="height: 200px;">
+									<h3 class="author_name"><a href="#"><span class="highlight default">${mini.homeTitle }</span></a></h3>
+									<h5>CEO at <a href="#"><span class="highlight light">${mini.userName }</span></a></h5>
+									<p class="author_det" ><!-- 홈페이지 소개글 -->
+										${mini.homeIntroduce }
+									</p>
+								</div>
+							</div>
+							<br>
+							
+                 	 </div>
+
+                    
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_3" style="height: 200px;">
+                            <div class="service-icon" >
+                                <i class="fa fa-mobile"></i>
                             </div>
-                            <div class="service-content bg2">
-                                <div class="internal">
-                                    <div class="item_content">
-                                        <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
-                                        </div>
-                                       <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">30.000원</sapn><br>
-                                        3개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
-                                        <a class="read" href="#">구입하기 !</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <p style="height: 20px; margin-bottom:500px; padding-bottom: 1px;"><span><a href="#"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;${mini.userMail }</a></span>
+                          <br><a href="#"><i class="fa fa-mobile-phone"></i>&nbsp;&nbsp;${mini.userPhone }<span class="text-muted"></span></a></p>
+                          
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-3">
-                        <div class="serviceBox_5">
-                            <div class="service-image">
-                                <img src="<c:url value="/resources/images/오오만원.png"/>">
+                        <div class="serviceBox_3" style="height: 200px;">
+                            <div class="service-icon">
+                               <i class="fa fa-briefcase"></i>
                             </div>
-                            <div class="service-content bg3">
-                                <div class="internal">
-                                    <div class="item_content">
-                                        <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
-                                        </div>
-                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">50.000원</sapn><br>
-                                        6개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
-                                        <a class="read" href="">구입하기 !</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 style="margin: 0; line-height: 3em;"><a href=""><i class="fa fa-align-center"></i>&nbsp;&nbsp;<span style="margin-bottom: 30px;">${mini.userGrade }</span></a></h3>
+                            <br>
                         </div>
                     </div>
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="serviceBox_5">
-                            <div class="service-image">
-                                <img src="<c:url value="/resources/images/시입마너언.png"/>">
-                            </div>
-                            <div class="service-content">
-                                <div class="internal">
-                                    <div class="item_content">
-                                        <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
-                                        </div>
-                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">100.000원</sapn><br>
-                                        12개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
-                                        <a class="read" href="">구입하기 !</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-sm-12 col-md-12 col-lg-12"><br><br>
-                    	<div class="col-sm-1 col-md-1 col-lg-1"></div>
-                    	<div class="col-sm-10 col-md-10 col-lg-10">
-                    		<blockquote class="default" style="text-align: center; ">
-                    			<table>
-                    				<thead style="text-align: center;">
-                    					<tr>
-	                    					<th style="width: 300px; text-align: center;"><span class="highlight default"><%=user.getUserId() %></span>&nbsp;님 보유 포인트 &nbsp;:&nbsp;<span class="highlight light"><%=user.getUserPoint() %>P</span></th>
-	                    					<th style="width: 300px; text-align: center;">차감 될 포인트 &nbsp;:&nbsp;<span class="ddd" id="minus"></span></th>
-	                    					<th style="width: 300px; text-align: center;">결제 후 포인트 &nbsp;:&nbsp;<span class="ddd" id="result"></span></th>
-	                    					<th style="width: 50px; text-align: center;" id="btnPay">
-	                    					
-	                    					</th>
-	                    					
-	                    				</tr>
-                    				</thead>
-                    			</table>
-                    		</blockquote>
+                </div>
+            </div>
+
+		</section>
+		
+		<section class="promo_box">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9 col-md-9 col-lg-9">
+						<div class="promo_content">
+							<h3>저희 홈페이지에 오신것을 환영합니다 ! </h3>
+							<p>가나다라마바사아 아자차카타파하 </p>
 						</div>
-						<div class="col-sm-1 col-md-1 col-lg-1"></div>
 					</div>
-							<br><br><br><br><br>
+					<div class="col-sm-3 col-md-3 col-lg-3">
+                        <div class="pb_action">
+                            <a class="btn btn-lg btn-default" href="#fakelink">
+                                <i class="fa fa-shopping-cart"></i>
+                                상품 보러가기
+                            </a>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>	<!--end wrapper-->
+
+
+	
+	<section class="footer_bottom">
+		<div class="container">
+			<div class="row">
+            <div class="col-sm-6">
+                <p class="copyright">&copy; Copyright 2015 Edge | Powered by  <a href="http://www.jqueryrain.com/">jQuery Rain</a></p>
+            </div>
+
+            <div class="col-sm-6 ">
+                <div class="footer_social">
+                    <ul class="footbot_social">
+                        <li><a class="fb" href="#." data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="twtr" href="#." data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#." data-placement="top" data-toggle="tooltip" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="skype" href="#." data-placement="top" data-toggle="tooltip" title="Skype"><i class="fa fa-skype"></i></a></li>
+                        <li><a class="rss" href="#." data-placement="top" data-toggle="tooltip" title="RSS"><i class="fa fa-rss"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+		</div>
+	</section>
+            
+	
+							
 					
 
            
