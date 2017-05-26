@@ -175,7 +175,7 @@ input[type="button"] {
               		 	
 								<c:set var = "ownerId" scope = "session" value = "<%=user1.getUserId()%>"/>
 								<c:if test="${result.inquiry.userId==ownerId}">
-								 <form style="display: inline-block;" action="/palette/miniHome/${result.inquiry.userId }/inquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
+								 <form style="display: inline-block;" action="/palette/miniHome/${userId }/inquiryDelete/${ result.inquiry.inquiryNo.intValue()}"method="post">
 								 &nbsp;
 								 <input type="hidden" name="itemNo" value="${result.inquiry.itemNo.intValue()}">
 								 <input type="submit" style="font-size: 20px;" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	

@@ -67,8 +67,8 @@ public class ProductDao {
 		tpl.insert("api.dao.ProductDao.insertInquiry", i);
 	}
 	//상품문의글보기 
-	public InquiryBoard selectInquiryView(int inquiyrNo){
-	return tpl.selectOne("api.dao.ProductDao.selectInquiryView", inquiyrNo);
+	public InquiryBoard selectInquiryView(Map<String, Object> map){
+	return tpl.selectOne("api.dao.ProductDao.selectInquiryView", map);
 	}
 	//상품문의수정
 	public void updateInquiry(InquiryBoard i){
@@ -83,12 +83,12 @@ public class ProductDao {
 		return tpl.selectList("api.dao.ProductDao.selectInquiry", map);
 	}
 	//상품문의페이지 개수
-	public int selectInquiryCnt(int itemNo){
-		return tpl.selectOne("api.dao.ProductDao.selectInquiryCnt",itemNo);
+	public int selectInquiryCnt(Map<String, Object> map){
+		return tpl.selectOne("api.dao.ProductDao.selectInquiryCnt",map);
 	}
 	//상품문의 댓글가져오기
-	public List<InquiryReple> selectInquiryReple(int inquiryNo){
-		return tpl.selectList("api.dao.ProductDao.selectInquiryReple", inquiryNo);
+	public List<InquiryReple> selectInquiryReple(Map<String, Object> map){
+		return tpl.selectList("api.dao.ProductDao.selectInquiryReple", map);
 	}
 	//상품문의 댓글작성
 	public void insertInquiryReple(InquiryReple i){
@@ -115,8 +115,8 @@ public class ProductDao {
 		tpl.delete("api.dao.ProductDao.deleteReview", reviewNo);
 	}
 	//상품평가리스트
-	public List<ItemReview> selectReview(HashMap<String, Object> map){
-		return tpl.selectList("api.dao.ProductDao.selectReview"	,map);
+	public List<ItemReview> selectReview(int itemNo){
+		return tpl.selectList("api.dao.ProductDao.selectReview"	,itemNo);
 	}
 	//상품평가리스트개수
 	public int selectReviewCnt(int itemNo){

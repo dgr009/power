@@ -90,12 +90,12 @@ public class productService {
 			Item item=dao.selectItemDetail(map);
 			if(item==null)return null;
 			List<ItemImg> imgList=dao.selectItemImg(itemNo);
-			
 			List<ItemOption> itemOption=dao.selectProductOption(itemNo);
 			HashMap<String,  Object> result=new HashMap<String, Object>();
 			result.put("item", item);
 			result.put("itemImg", imgList);
 			result.put("itemOption", itemOption);
+			result.put("review",dao.selectReview(itemNo));
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			return gson.toJson(result);	
 			
@@ -119,7 +119,8 @@ public class productService {
 			Map<String, Object> result=new HashMap<String, Object>();
 			int itemNo=(Integer) map.get("itemNo");
 			int pageNo=(Integer)map.get("pageNo");
-			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(itemNo));
+			
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(map));
 			map.put("start", p.getStartArticle());
 			map.put("end", p.getEndArticle());
 			result.put("result", dao.selectInquiry(map));
@@ -130,10 +131,12 @@ public class productService {
 		}
 		//상품문의글보기,리플도
 		@Transactional
-		public String inquiryView(int inquiryNo) {
+		public String inquiryView(Map<String, Object> map) {
 			Map<String, Object> result=new HashMap<String, Object>();
-			result.put("inquiry", dao.selectInquiryView(inquiryNo));
-			result.put("reple", dao.selectInquiryReple(inquiryNo));
+			result.put("inquiry", dao.selectInquiryView(map));
+			if(dao.selectInquiryView(map)!=null){
+			result.put("reple", dao.selectInquiryReple(map));
+			}
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 			return gson.toJson(result);	
 		}
@@ -187,7 +190,7 @@ public class productService {
 		map.put("end", p.getEndArticle());
 		map.put("itemNo", itemNo);
 		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectReview(map));
+		result.put("result", dao.selectReview(itemNo));
 		result.put("pagination", p);
 		return new Gson().toJson(result);	
 	}

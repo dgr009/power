@@ -132,8 +132,8 @@ public class ProductController {
 	}
 	//문의게시판 보기
 	@RequestMapping(value = "/inquiryView", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public String productSearch(@RequestBody int inquiryNo) {
-	return service.inquiryView(inquiryNo);
+	public String inquiryView(@RequestBody Map<String, Object> map) {
+	return service.inquiryView(map);
 	}
 	//문의게시판 삭제
 	@RequestMapping(value = "/inquiryDelete", method = RequestMethod.POST, produces = "text/html;charset=utf-8")

@@ -206,11 +206,11 @@ public class ProductService {
 		tpl.exchange("http://localhost:8087/api/miniHome/inquiryRegister", HttpMethod.POST, requestEntity, String.class).getBody();
 	}
 	//상품문의글보기
-	public Map<String, Object> productInquiryView(int inquiryNo) {
+	public Map<String, Object> productInquiryView(Map<String, Object> map1) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(inquiryNo),headers);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map1),headers);
 		String result = tpl.exchange("http://localhost:8087/api/miniHome/inquiryView", HttpMethod.POST, requestEntity, String.class).getBody();
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
 		return map;
@@ -243,6 +243,7 @@ public class ProductService {
 		
 		return map1;
 	}
+	//홈피주인이문의댓글작성
 	public void inquiryRepleRegister(InquiryReple i) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();

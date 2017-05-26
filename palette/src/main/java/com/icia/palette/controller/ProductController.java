@@ -239,7 +239,7 @@ public class ProductController {
 					Map<String, Object> map=new HashMap<String, Object>();
 					map.put("itemNo", itemNo);
 					map.put("pageNo", pageNo);
-					System.out.println("1111111");
+					map.put("userId", userId);
 					model.addAttribute("result", service.InquiryList(map));
 					model.addAttribute("kind", service.productKind(userId));
 					return "products/InquiryList";
@@ -274,8 +274,11 @@ public class ProductController {
 				//문의글로
 				@RequestMapping(value = "/{userId}/productInquiryView/{inquiryNo}", method = RequestMethod.GET)
 				public String productInquiryView(@PathVariable String userId,Model model,@PathVariable int inquiryNo) {
+					Map<String, Object> map=new HashMap<String, Object>();
+					map.put("inquiryNo", inquiryNo);
+					map.put("userId", userId);				
 					model.addAttribute("userId",userId);
-					model.addAttribute("result", service.productInquiryView(inquiryNo));
+					model.addAttribute("result", service.productInquiryView(map));
 					model.addAttribute("kind", service.productKind(userId));
 					return "products/InquiryView";
 				}
@@ -289,8 +292,11 @@ public class ProductController {
 				//문의글 수정하기페이지
 				@RequestMapping(value = "/{userId}/inquiryUpdate/{inquiryNo}", method = RequestMethod.GET)
 				public String inquiryUpdate(@PathVariable String userId,Model model,@PathVariable int inquiryNo) {
+					Map<String, Object> map=new HashMap<String, Object>();
+					map.put("inquiryNo", inquiryNo);
+					map.put("userId", userId);			
 					model.addAttribute("userId",userId);
-					model.addAttribute("result", service.productInquiryView(inquiryNo));
+					model.addAttribute("result", service.productInquiryView(map));
 					model.addAttribute("kind", service.productKind(userId));
 					return "products/InquiryUpdate";
 				}

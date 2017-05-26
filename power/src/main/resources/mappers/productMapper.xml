@@ -182,7 +182,7 @@ delete inquiry_board where inquiry_no=#{inquiryNo}
 <![CDATA[
 select * from 
 (select rownum rnum,b.*  from
-(select *from inquiry_board where item_no=#{itemNo} order by inquiry_no desc)b
+(select i.*from item t,inquiry_board i where t.item_no=i.item_no and i.item_no=#{itemNo} and t.user_id=#{userId} order by i.inquiry_no desc)b
  where rownum>=#{start}) where rnum<=#{end}
 ]]>
 </select>
@@ -201,12 +201,12 @@ where rownum>=#{start}) where rnum<=#{end}
 ]]>
 </select>
 <!--상품문의 글보기 -->
-<select id="selectInquiryView" parameterType="int" resultType="InquiryBoard"> 
-select *from inquiry_board where inquiry_no=#{inquiryNo}
+<select id="selectInquiryView" parameterType="hashmap" resultType="InquiryBoard"> 
+select *from inquiry_board i,item t where i.item_no=t.item_no and i.inquiry_no=#{inquiryNo} and t.user_id=#{userId}
 </select>
 <!-- 상품문의 페이지 개수 -->
-<select id="selectInquiryCnt" parameterType="int" resultType="int">
-select count(*) from inquiry_board where item_no=#{itemNo}
+<select id="selectInquiryCnt" parameterType="hashmap" resultType="int">
+select count(*) from inquiry_board i,item t where i.item_no=#{itemNo} and i.item_no=t.item_no and t.user_id=#{userId}
 </select>
 <!-- 상품문의 댓글가져오기 -->
 <select id="selectInquiryReple" parameterType="int" resultType="InquiryReple">
@@ -248,10 +248,8 @@ update item_review set review_content=#{reviewContent},review_score=#{reviewScor
 delete item_review where review_no=#{reviewNo}
 </delete>
 <!-- 상품평가리스트 -->
-<select id="selectReview" parameterType="hashmap" resultType="ItemReview">
-<![CDATA[
-select * from(select rownum rnum b.*  from(select *from item_review where item_no=#{itemNo})b where rownum<=#{start}) where rnum>=#{end}
-]]>
+<select id="selectReview" parameterType="int" resultType="ItemReview">
+select *from item_review where item_no=#{itemNo} order by review_no
 </select>
 <!-- 상품평가리스트 개수 -->
 <select id="selectReviewCnt" parameterType="int" resultType="int">
