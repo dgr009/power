@@ -28,7 +28,7 @@ public class UsersController {
 	private String path;
 	@Autowired
 	private UserService service;
-
+	
 	// 메인홈으로
 	@RequestMapping(value = "/home")
 	public String home() {
