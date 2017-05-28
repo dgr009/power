@@ -4,7 +4,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
 <%
-	Users user = (Users) session.getAttribute("user");
+	Users userMini = (Users) session.getAttribute("user");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -86,7 +86,7 @@ $(function(){
 	var link = document.location.href; 
 	var sss = link.split('/');
 	var idid=sss[5];
-	var id='<%=user.getUserId() %>'
+	var id='<%=userMini.getUserId() %>'
 	var address = "/palette/miniHome/"+idid+"/noticeRegister";
 	
 	//자신이 주인이면 게시글등록이 보여짐
@@ -105,7 +105,7 @@ $(function(){
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">

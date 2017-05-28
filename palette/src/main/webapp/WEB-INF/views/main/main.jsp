@@ -172,7 +172,7 @@
                         </li>
                         <!-- Recent Work Item -->
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px;">
-                            <figure class="touching effect-bubba">
+                            <figure class="touc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        hing effect-bubba">
                                 <img src="<c:url value="/resources/images/portfolio/portfolio_3.png"/>" alt="" class="img-responsive">
 
                                 <div class="option">

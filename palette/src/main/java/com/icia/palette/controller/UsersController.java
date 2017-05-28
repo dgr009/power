@@ -37,7 +37,8 @@ public class UsersController {
 
 	// 로그인페이지로
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginStart() {
+	public String loginStart(Model model) {
+		model.addAttribute("rank", service.getRankSide());
 		return "users/usersLogin";
 	}
 
@@ -270,12 +271,10 @@ public class UsersController {
 		return "users/orderStatement";
 	}
 	
-	//회원 스코어 입력하기
-	@RequestMapping(value = "/score", method = RequestMethod.GET)
-	public String mamamain(@RequestParam int orderNo,Model model) {
-		model.addAttribute("orderNo", orderNo);
-		return "users/score";
-	}
-	
-	
+	// 리뷰로
+		@RequestMapping(value = "/review", method = RequestMethod.GET)
+		public String review(Model model,@RequestParam int orderNo) {
+			model.addAttribute("orderNo",orderNo);
+			return "users/itemReview";
+		}
 }
