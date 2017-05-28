@@ -308,6 +308,9 @@ public class UsersDao {
 		map.put("reviewContent", review.getReviewContent());
 		map.put("reviewScore", review.getReviewScore());
 		map.put("orderNo", orderNo);
+		System.out.println("-------------------");
+		System.out.println("dao : "+ review);
+		System.out.println("-------------------");
 		return tpl.insert("api.dao.UsersDao.insertReview", map);
 	}
 }

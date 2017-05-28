@@ -1,43 +1,68 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>리뷰 작성</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS FILES -->
+<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
+<link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>" media="screen" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	$("#check").on("click",function(){
-// 		$.ajax({
-// 			url:"/api/users/review",
-// 			type:"post",
-// 			data:{"orderNo":'${orderNo}',"reivewContent":$("#content").val(),"reviewScore":$("#score").val()},
-// 			dataType:"JSON",
-// 			complete:function(){
-// 				window.location.reload();
-// 				alert("리뷰 작성완료");
-// 			}	
-// 		})
+	$("#check").on("click",function(e){
+		e.preventDefault(); //기본 이벤트를 차단
+		var obj = document.getElementsByName('reviewScore');
+		var jumsu;
+		for( i=0; i<obj.length; i++ ) {
+			if(obj[i].checked) {
+				jumsu = obj[i].value;
+			}
+		}
+		
+// 		var formData = new FormData();
+// 		 formData.append("orderNo","${orderNo}");
+// 		 formData.append("reivewContent",$("#content").val());
+// 		 formData.append("reviewScore",jumsu);
+		$.ajax({
+			url:"/api/users/review",
+			type:"post",
+			data:{"orderNo":'${orderNo}',"reviewContent":$("#content").val(),"reviewScore":jumsu},
+			dataType:"json",
+			complete:function(r){
+				if(r.responseText=='성공'){
+					opener.parent.location.reload();
+					self.close();
+				}
+			}
+		})
+		
+		
 	})
 })
 </script>
 <body>
-<div class="modal"  id="reviewModal" role="dialog" data-backdrop="false" >
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h2 class="modal-title">리뷰 작성하기</h2>
-				</div>
-              <form  id='reviewform' action="/palette/users/insert" method="post">
-              <div class="modal-body">
+  <article class="container">
+          <div class="page-header">
+              <h1>리뷰 작성하기</h1>
+          </div>
+          <div class="col-md-6 col-md-offset-3">			<!-- Modal content-->
                <div class="form-group">
+                     <input type="hidden" name="orderNo" value="${orderNo }"> 
                      <label for="score">리뷰 점수  </label>
-                      	<input type="radio" name="score" id="score" value="1"> 1점 
-                      	<input type="radio" name="score" id="score" value="2"> 2점 
-                      	<input type="radio" name="score" id="score" value="3" checked="checked"> 3점 
-                      	<input type="radio" name="score" id="score" value="4"> 4점 
-                      	<input type="radio" name="score" id="score" value="5"> 5점 <br>
+                     
+                      	<input type="radio" name="reviewScore" id="score" value="1"> 1점 
+                      	<input type="radio" name="reviewScore" id="score" value="2"> 2점 
+                      	<input type="radio" name="reviewScore" id="score" value="3" checked="checked"> 3점 
+                      	<input type="radio" name="reviewScore" id="score" value="4"> 4점 
+                      	<input type="radio" name="reviewScore" id="score" value="5"> 5점 <br>
 				  </div>
                   <div class="form-group">
                       <label for="InputEmail">리뷰 내용</label>
@@ -46,15 +71,11 @@ $(function(){
                  
                   
                   <div class="form-group text-center">
-                      <button type="button"  id="check" class="btn btn-info" data-dismiss="modal">작성완료</button>
+                      <button type="button"  id="check" class="btn btn-info" >작성완료</button>
                   </div>
                   </div>
-              </form>
-          </div>
-  
-      </div>
-      </div>
-      
+  </form>
+      </article>
 <br><br><br><br><br><br><br><br>
 
 <footer class="container-fluid text-center">

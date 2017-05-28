@@ -320,9 +320,15 @@ public class UsersController {
 
 	// 아이템 리뷰작성하기
 	@RequestMapping(value = "/review", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
-	public String insertReview(@RequestBody ItemReview review, @RequestParam int orderNo) {
-		System.out.println("review : " + review + " \norderNo : " + orderNo);
-		int result = service.insertReview(review, orderNo);
+	public String insertReview(@RequestParam String orderNo,@RequestParam String reviewScore,@RequestParam String reviewContent) {
+		System.out.println("-------------------");
+		System.out.println("contro : "+ reviewContent);
+		System.out.println("-------------------");
+		System.out.println(orderNo);
+		ItemReview review = new ItemReview();
+		review.setReviewContent(reviewContent);
+		review.setReviewScore(Integer.parseInt(reviewScore));
+		int result = service.insertReview(review, Integer.parseInt(orderNo));
 		if (result == 1)
 			return "성공";
 		else

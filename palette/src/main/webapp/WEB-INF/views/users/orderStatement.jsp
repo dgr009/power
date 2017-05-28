@@ -148,14 +148,13 @@ $(function(){
 	function review(orderNo){
 		//show 호출시 넘겨준 값을 이용하여 ajax 등을 통해 modal 을 띄울때 동적으로 바뀌어야 하는 값을 얻어온다.  
 		//얻어온 값을 이용하여, modal 에서 동적으로 바뀌어야 하는 값을 바꾸어 준다..  
-// 		$.ajax({
-// 			url:"/palette/users/orderComplete?orderNo="+orderNo,
-// 			type:"get",
-// 			complete:function(){
-// 			}	
-// 		})
+		$.ajax({
+			url:"/palette/users/orderComplete?orderNo="+orderNo,
+			type:"get",
+			complete:function(){
+			}	
+		})
 		window.open("http://localhost:8087/palette/users/review?orderNo="+orderNo,"리뷰");
-	    //modal을 띄워준다.  
 	}
 	
 	</script>
