@@ -38,8 +38,10 @@ public class MiniHomeBoardService {
 		return dao.miniHomeUpdateFree(free);
 	}
 	
+	@Transactional
 	//(개인)자유게시판 삭제
 	public int miniHomeDeleteFree(int freeNo){
+		dao.miniHomeDeleteAllFreeReple(freeNo);
 		return dao.miniHomeDeleteFree(freeNo);
 	}
 	//(개인)공지게시판 삭제
@@ -110,9 +112,11 @@ public class MiniHomeBoardService {
 	//자유게시판 댓글 수정
 	public String miniHomeUpdateFreeReple(MiniHomeFreeReple reple){
 		dao.miniHomeUpdateFreeReple(reple);
+		int result = dao.miniHomeRepleCnt(reple.getFreeNo());
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("free", dao.miniHomeSelectFreeView(reple.getFreeNo()));
 		map.put("reple", dao.miniHomeSelectAllFreeReple(reple.getFreeNo()));
+		map.put("cnt", result);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		return gson.toJson(map);
 	}

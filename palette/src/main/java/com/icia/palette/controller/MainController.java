@@ -13,7 +13,12 @@ public class MainController {
 	private ProductService service;
 	@RequestMapping(value="/main",method=RequestMethod.GET)
 	public String productRegister(){
-		return "main/main";
+		return "main/realMain";
 		
 	}
+//	@RequestMapping(value="/test",method=RequestMethod.GET)
+//	public String test(){
+//		return "mini/freeView";
+//		
+//	}
 }

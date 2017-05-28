@@ -22,25 +22,25 @@
 	</delete>
 	
 	<!-- 홈페이지 결제 : 활성화기록 생성 -->
-	<update id="miniHomeInsertActiveStatement" parameterType="ActiveDate">
+	<insert id="miniHomeInsertActiveStatement" parameterType="string">
 		
-		insert into activedate(activeno,active_start,active_end,user_id) values(#{activeNo},sysdate,add_months(sysdate,1),#{userId})
-	</update>
+		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,1),#{userId})
+	</insert>
 	
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
-	<update id="miniHomeDecreaseUsersPoint" parameterType="hashmap">
-		update users set user_point=user_point-#{price} where user_id=#{userId}
+	<update id="miniHomeDecreaseUsersPoint" parameterType="string">
+		update users set user_point=user_point-30000 where user_id=#{userId}
 	</update>
 	
-	<!-- 홈페이지 결제 : 회원 활성화 -->
-	<update id="miniHomeActivateUser" parameterType="string">
-		update users set user_ishome=1 where user_id=#{userId}
+	<!-- 홈페이지 결제 : 홈페이지 활성화 -->
+	<update id="miniHomeActivateHome" parameterType="string">
+		 update home set home_active=1 where user_id=#{userId}
 	</update>
 	
 	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
 	<select id="miniHomeSelectSellerInformation" parameterType="string" resultType="MiniHomeInformation">
-		select u.user_name userName,u.user_mail userMail,u.user_phone userPhone,u.user_grade UserGrade,
-		h.home_introduce homeIntroduce from users u, home h 
+		select u.user_name ,u.user_mail ,u.user_phone ,u.user_grade ,
+		h.home_introduce, h.home_title  from users u, home h 
 		where u.user_id=h.user_id and u.user_id=#{userId}
 	</select>
 	

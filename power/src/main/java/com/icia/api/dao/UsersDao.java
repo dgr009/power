@@ -80,7 +80,7 @@ public class UsersDao {
 	}
 
 	// 주문내역보기
-	public List<OrderList> orderList( int start, int end,String orderId) {
+	public List<OrderList> orderList(int start, int end, String orderId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
@@ -126,7 +126,7 @@ public class UsersDao {
 	}
 
 	// 포인트 내역확인
-	public List<TradeStatement> tradeList(int start,int end,String userId) {
+	public List<TradeStatement> tradeList(int start, int end, String userId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
@@ -171,101 +171,102 @@ public class UsersDao {
 		return tpl.delete("api.dao.UsersDao.usersBasketDelete", map);
 	}
 
-	//회원 주문 내역 총 개수
+	// 회원 주문 내역 총 개수
 	public int orderListCnt(String userId) {
-		return tpl.selectOne("api.dao.UsersDao.usersOrderListCnt",userId);
+		return tpl.selectOne("api.dao.UsersDao.usersOrderListCnt", userId);
 	}
 
-	//회원 즐겨찾기 총 개수
+	// 회원 즐겨찾기 총 개수
 	public int bookmarkListCnt(String userId) {
-		return tpl.selectOne("api.dao.UsersDao.usersBookmarkListCnt",userId);
+		return tpl.selectOne("api.dao.UsersDao.usersBookmarkListCnt", userId);
 	}
 
-	//장바구니 총 개수
+	// 장바구니 총 개수
 	public int basketListCnt(String userId) {
-		return tpl.selectOne("api.dao.UsersDao.usersBasketListCnt",userId);
+		return tpl.selectOne("api.dao.UsersDao.usersBasketListCnt", userId);
 	}
 
-	//홈페이지 개설
-	public int homeRegister(MiniHome home){
-		return tpl.insert("api.dao.UsersDao.usersHomeRegister",home);
-	}
-	
-	//회원 홈페이지 개설함 업데이트
-	public int userIsHomeOk(String userId){
-		return tpl.update("api.dao.UsersDao.usersIsHomeOk",userId);
+	// 홈페이지 개설
+	public int homeRegister(MiniHome home) {
+		return tpl.insert("api.dao.UsersDao.usersHomeRegister", home);
 	}
 
-	//충전환급내역 총 개수
+	// 회원 홈페이지 개설함 업데이트
+	public int userIsHomeOk(String userId) {
+		return tpl.update("api.dao.UsersDao.usersIsHomeOk", userId);
+	}
+
+	// 충전환급내역 총 개수
 	public int tradeListCnt(String userId) {
-		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt",userId);
+		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt", userId);
 	}
 
 	public int bigTagRegister(String userId, String bigTag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
-		map.put("bigTag",bigTag);
-		return	tpl.insert("api.dao.UsersDao.usersBigTagRegister",map);
+		map.put("bigTag", bigTag);
+		return tpl.insert("api.dao.UsersDao.usersBigTagRegister", map);
 	}
 
 	public int smallTagRegister(String userId, String bigTag, String smallTag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
-		map.put("bigTag",bigTag);
-		map.put("smallTag",smallTag);
-		return	tpl.insert("api.dao.UsersDao.usersSmallTagRegister",map);
+		map.put("bigTag", bigTag);
+		map.put("smallTag", smallTag);
+		return tpl.insert("api.dao.UsersDao.usersSmallTagRegister", map);
 	}
 
-	//홈페이지 정보 가져오기
+	// 홈페이지 정보 가져오기
 	public MiniHome getHomeInfo(String userId) {
-		return tpl.selectOne("api.dao.UsersDao.usersGetHomeInfo",userId);
+		return tpl.selectOne("api.dao.UsersDao.usersGetHomeInfo", userId);
 	}
+
 	// 큰태그 가져오기
 	public List<BigKind> getBigTag(String userId) {
 		return tpl.selectList("api.dao.ProductDao.selectBigKind", userId);
 	}
 
-	//작은태그 가져오기
+	// 작은태그 가져오기
 	public List<SmallKind> getSmallTag(String userId) {
 		return tpl.selectList("api.dao.ProductDao.selectSmallKind", userId);
 	}
-	
-	//홈페이지 수정
+
+	// 홈페이지 수정
 	public int homeUpdate(MiniHome home) {
-		return tpl.update("api.dao.UsersDao.usersHomeUpdate",home);
+		return tpl.update("api.dao.UsersDao.usersHomeUpdate", home);
 	}
 
-	//큰태그 지우기
+	// 큰태그 지우기
 	public int deleteBigTag(String userId) {
-		return tpl.delete("api.dao.UsersDao.usersDeleteBigTag",userId);
-		
-	}
-	
-	//작은 태그 지우기
-	public int deleteSmallTag(String userId) {
-		return tpl.delete("api.dao.UsersDao.usersDeleteSmallTag",userId);
-		
+		return tpl.delete("api.dao.UsersDao.usersDeleteBigTag", userId);
+
 	}
 
-	//주문 취소시 인벤(재고) 증가
+	// 작은 태그 지우기
+	public int deleteSmallTag(String userId) {
+		return tpl.delete("api.dao.UsersDao.usersDeleteSmallTag", userId);
+
+	}
+
+	// 주문 취소시 인벤(재고) 증가
 	public int itemInvenUp(int orderNo) {
-		return tpl.update("api.dao.UsersDao.usersItemInvenUp",orderNo);
-		
+		return tpl.update("api.dao.UsersDao.usersItemInvenUp", orderNo);
+
 	}
 
 	// 주문취소 주문자 포인트 증가
 	public void orderPointUp(int orderNo) {
-		tpl.update("api.dao.UsersDao.orderPointUp",orderNo);
+		tpl.update("api.dao.UsersDao.orderPointUp", orderNo);
 	}
 
 	// 주문취소 판매자 포인트 감소
 	public void ownerPointDown(int orderNo) {
-		tpl.update("api.dao.UsersDao.ownerPointDown",orderNo);
+		tpl.update("api.dao.UsersDao.ownerPointDown", orderNo);
 	}
 
 	// 주문 확정 하기
 	public int orderComplete(int orderNo) {
-		return tpl.update("api.dao.UsersDao.orderComplete",orderNo);
+		return tpl.update("api.dao.UsersDao.orderComplete", orderNo);
 	}
 
 	// 회원 등급 가져오기
@@ -275,16 +276,41 @@ public class UsersDao {
 
 	// 회원등급 실버로 승급
 	public void ownerSilverGradeUp(int orderNo) {
-		tpl.update("api.dao.UsersDao.ownerSilverGradeUp",orderNo);
+		tpl.update("api.dao.UsersDao.ownerSilverGradeUp", orderNo);
 	}
 
 	// 회원등급 골드로 승급
 	public void ownerGoldGradeUp(int orderNo) {
-		tpl.update("api.dao.UsersDao.ownerGoldGradeUp",orderNo);
+		tpl.update("api.dao.UsersDao.ownerGoldGradeUp", orderNo);
 	}
 
 	// 회원 총 판매량 가져오기
 	public int getTotalSellPoint(int orderNo) {
 		return tpl.selectOne("api.dao.UsersDao.getTotalSellPoint", orderNo);
+	}
+
+	// 랭크 가져오기
+	public List<MiniHome> getRankSide() {
+		return tpl.selectList("api.dao.UsersDao.getRankSide");
+	}
+
+	// 즐겨찾기 확인하기
+	public int bookmarkCheck(String orderId, String ownerId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("orderId", orderId);
+		map.put("ownerId", ownerId);
+		return tpl.selectOne("api.dao.UsersDao.getBookmark", map);
+	}
+
+	// 리뷰 작성 하기
+	public int insertReview(ItemReview review, int orderNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("reviewContent", review.getReviewContent());
+		map.put("reviewScore", review.getReviewScore());
+		map.put("orderNo", orderNo);
+		System.out.println("-------------------");
+		System.out.println("dao : "+ review);
+		System.out.println("-------------------");
+		return tpl.insert("api.dao.UsersDao.insertReview", map);
 	}
 }

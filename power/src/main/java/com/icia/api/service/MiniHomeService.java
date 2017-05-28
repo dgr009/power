@@ -28,14 +28,17 @@ public class MiniHomeService {
 	
 	//홈페이지 결제
 	@Transactional//포인트 없을경우 조치필요
-	public void miniHomePay(ActiveDate active, String userId){
+	public void miniHomePay(String userId){
+		dao.miniHomeDecreaseUsersPoint(userId);//회원 포인트 차감
+		System.out.println("회원 포인트 차감 완료");
 		
-		dao.miniHomeInsertActiveStatement(active);//활성화 기록 생성
-		
-		dao.miniHomeActivateUser(userId);//회원 활성화
-		
-		dao.miniHomeDecreaseUsersPoint(30000, userId);//회원 포인트 차감
-
+		dao.miniHomeActivateHome(userId);//홈페이지 활성화
+		System.out.println("홈페이지 활성화 완료");
+	}
+	
+	//홈페이지 결제 기록생성
+	public int insertActiveDate(String userId){
+		return dao.miniHomeInsertActiveStatement(userId);
 	}
 	
 	//판매자(홈페이지 주인) 회원정보조회

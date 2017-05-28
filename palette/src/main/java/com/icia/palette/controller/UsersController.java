@@ -37,7 +37,8 @@ public class UsersController {
 
 	// 로그인페이지로
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginStart() {
+	public String loginStart(Model model) {
+		model.addAttribute("rank", service.getRankSide());
 		return "users/usersLogin";
 	}
 
@@ -250,7 +251,8 @@ public class UsersController {
 
 	// 메인으로
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String ma() {
+	public String mamamain(Model model) {
+		model.addAttribute("rank", service.getRankSide());
 		return "main/main";
 	}
 
@@ -269,4 +271,10 @@ public class UsersController {
 		return "users/orderStatement";
 	}
 	
+	// 리뷰로
+		@RequestMapping(value = "/review", method = RequestMethod.GET)
+		public String review(Model model,@RequestParam int orderNo) {
+			model.addAttribute("orderNo",orderNo);
+			return "users/itemReview";
+		}
 }

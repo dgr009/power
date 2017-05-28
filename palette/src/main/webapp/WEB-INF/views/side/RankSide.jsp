@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <div class="col-lg-2 col-md-2 col-sm-2">
@@ -10,21 +11,11 @@
 
 								<div class="pricingContent">
 										<ul>
+										<c:forEach items="${rank }" var="r" >
 											<li>
-												<span><img alt="" src="<c:url value="/resources/images/content/recent_1.png"/>"></span> 이수민<strong>님</strong>
+												<span><img alt="" src="<c:url value="/homeimg/${r.homeImg} }"/>"></span> ${r.userId }<strong>님</strong>
 											</li>
-											<li>
-												<span><img alt="" src="<c:url value="/resources/images/content/recent_1.png"/>"></span> 김상연<strong>님</strong>
-											</li>
-											<li>
-												<span><img alt="" src="<c:url value="/resources/images/content/recent_1.png"/>"></span> 전준민<strong>님</strong>
-											</li>
-											<li>
-												<span><img alt="" src="<c:url value="/resources/images/content/recent_1.png"/>"></span> 김금명<strong>님</strong>
-											</li>
-											<li>
-												<span><img alt="" src="<c:url value="/resources/images/content/recent_1.png"/>"></span> 최복민<strong>님</strong>
-											</li>
+										</c:forEach>
 										</ul>
 								</div><!-- /  CONTENT BOX-->
 

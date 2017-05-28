@@ -160,5 +160,31 @@ public class ProductService {
 		
 		
 	}
+	//상품카테고리로 검색
+	public Map<String, Object> productSelectKind(Map<String, Object> map) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/productSelectKind", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		Map<String, Object> s=new Gson().fromJson(result, Map.class);
+		
+		return s;
+	}
+	//이름으로 상품검색
+	public Map<String, Object> productSearch(Map<String, Object> map) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/miniHome/productSearch", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+		Map<String, Object> s=new Gson().fromJson(result, Map.class);
+		
+		return s;
+	}
 
 }

@@ -217,6 +217,16 @@ public class UsersController {
 			return result + "";
 	}
 
+	// 회원 즐겨찾기 확인하기
+	@RequestMapping(value = "/bookmarkCheck", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String bookmarkCheck(@RequestParam String orderId, @RequestParam String ownerId) {
+		int result = service.bookmarkCheck(orderId, ownerId);
+		if (result == 1)
+			return result + "";
+		else
+			return result + "";
+	}
+
 	// 회원 장바구니 보기
 	@RequestMapping(value = "/basketList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 	public String basketList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
@@ -301,4 +311,28 @@ public class UsersController {
 		return new ResponseEntity<String>("수정 성공", HttpStatus.OK);
 	}
 
+	// 회원 메인 랭킹 가져오기
+	@RequestMapping(value = "/main", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String mamamain() {
+		List<MiniHome> list = service.getRankSide();
+		return new Gson().toJson(list);
+	}
+
+	// 아이템 리뷰작성하기
+	@RequestMapping(value = "/review", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public String insertReview(@RequestParam String orderNo,@RequestParam String reviewScore,@RequestParam String reviewContent) {
+		System.out.println("-------------------");
+		System.out.println("contro : "+ reviewContent);
+		System.out.println("-------------------");
+		System.out.println(orderNo);
+		ItemReview review = new ItemReview();
+		review.setReviewContent(reviewContent);
+		review.setReviewScore(Integer.parseInt(reviewScore));
+		int result = service.insertReview(review, Integer.parseInt(orderNo));
+		if (result == 1)
+			return "성공";
+		else
+			return "실패";
+
+	}
 }

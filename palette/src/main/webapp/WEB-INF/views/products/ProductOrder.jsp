@@ -39,8 +39,8 @@
 <script>
 $(function(){
 	$("#orderBtn").on("click",function(){			
-		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize})	
-			$("#orderForm").submit();
+		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize}){
+			$("#orderForm").submit();}
 		else if(<%=user1.getUserPoint()%><${itemPrice*itemSize}){
 			alert("포인트를 충전해주세요");
 		}else if(${itemInven}<${itemSize}){
@@ -65,11 +65,7 @@ $(function(){
         <div class="container">
             <div class="row">
                 <!-- Logo / Mobile Menu -->
-                 <div  class="col-lg-3 col-sm-3 ">
-                    <div id="logo">
-
-                    </div>
-                </div>
+                <%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
                     <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                     <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
