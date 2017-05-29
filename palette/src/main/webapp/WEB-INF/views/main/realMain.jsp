@@ -285,6 +285,7 @@
 </head>
 <body>
 <header id="header">
+<!-- 로그인 헤더 -->
  <div class="header-top">
         <div class="container">
             <div class="row">
@@ -292,12 +293,14 @@
                     <span><i class="fa fa-unlock"></i>로그인</span>
                     <span class="hidden-sm"><i class="fa fa-user-plus"></i>회원가입</span>
                 </div>
- 			<div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
- 				<span class="hidden-sm"><i class="fa fa-calendar-o"></i>이벤트</span>
+ 				<div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
+ 					<span class="hidden-sm"><i class="fa fa-calendar-o"></i>이벤트</span>
  				</div>
             </div>
         </div>
     </div>
+    <!-- 로그인헤더 끝 -->
+    <!-- 로고 헤더 -->
 <div class="col-lg-12 col-md-12 col-sm-12">
 <div class="col-lg-1 col-md-1 col-sm-1"></div>
 <div class="col-lg-10 col-md-10 col-sm-10" style="padding: 0;">
@@ -348,6 +351,7 @@
 </div>
 <div class="col-lg-1 col-md-1 col-sm-1"></div>
 
+<!-- 메인 랭킹 시작 -->
 <div class="col-lg-12 col-md-12 col-sm-12" style="border-bottom: 1px solid #727cb6;">
 	<div class="navbar-collapse collapse" style="width: 1050px; margin-right: 110px; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402" >
@@ -479,7 +483,7 @@
 	</div>
 </div>
 <div class="col-lg-1 col-md-1 col-sm-1"></div>
-<div class="col-lg-7 col-md-7 col-sm-7">
+<div class="col-lg-7 col-md-7 col-sm-7" >
        <div class="carousel-intro">
                     <div class="col-md-11"  style="padding-left: 0; margin-left: 15px; margin-top: 18px;">
                         <div class="dividerHeading">

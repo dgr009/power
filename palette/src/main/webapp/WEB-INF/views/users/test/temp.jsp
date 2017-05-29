@@ -282,3 +282,14 @@ var tagData = new FormData();
 
 <!-- 				 }) -->
 				 
+				 
+				 //////////////////////////  홈페이지 세션확인 만들기 수정
+				 
+				 <%if(session.getAttribute("user")!=null){ %>
+                               		 </li>
+                               		   <li><a href="#" onclick=openHome()>회원 홈페이지</a>
+                                    </li>
+                                    </li>
+                               		   <li><a href="#" onclick=openHomeUp()>홈페이지 수정</a>
+                                    </li>
+                                    <%} %>
