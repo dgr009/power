@@ -1,7 +1,6 @@
 <%@page import="com.icia.palette.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%Users user1=(Users)session.getAttribute("user"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,21 +13,19 @@
 						
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/register" class="btn btn-block btn-default">상품 판매등록</a>
+									<a href="/palette/miniHome/admin/register" class="btn btn-block btn-default">상품 판매등록</a>
 								</div>
 									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/inquiryList" class="btn btn-block btn-default">상품문의 관리</a>
+									<a href="/palette/miniHome//admin/inquiryList" class="btn btn-block btn-default">상품문의 관리</a>
 								</div>
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/registerList" class="btn btn-block btn-default">내 상품조회리스트</a>
+									<a href="/palette/miniHome/admin/registerList" class="btn btn-block btn-default">내 상품조회리스트</a>
 								</div>
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 결제</a>
 								</div>
-									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/users/homeUpdate" class="btn btn-block btn-default">홈페이지 수정</a>
-								</div>
+								
 
 							</div>
 </body>
