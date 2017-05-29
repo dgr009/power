@@ -324,5 +324,14 @@ public class UserService {
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
 		return map;
 	}
+	//검색해서 아이템,홈페이지가져오기
+		public Map<String,Object> search(String search) {
+			RestTemplate tpl = new RestTemplate();
+			HttpHeaders headers = new HttpHeaders();
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(search),headers);
+			String result = tpl.exchange("http://localhost:8087/api/users/search",HttpMethod.GET, requestEntity, String.class).getBody();
+			Map<String,Object> map = new Gson().fromJson(result, Map.class);
+			return map;
+		}
 
 }

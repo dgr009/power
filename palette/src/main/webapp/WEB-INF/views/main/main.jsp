@@ -316,14 +316,14 @@
                         
                         <!-- Recent Work Item -->
                         <c:forEach items="${list.recent1 }" var="recent1"  varStatus="index">
-                        <a href="/palette/miniHome/${recent1.userId }/productMain/${recent1.itemNo.intValue()}">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
+                        	<a href="/palette/miniHome/${recent1.userId }/productMain/${recent1.itemNo.intValue()}">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
                             <img src="<c:url value="/productImg/${recent1.imgName }"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;" class="effect"/>
 							
                             </figure>
+                            </a>
                         </li>
-                        </a>
 						</c:forEach>
 
                     </ul>
@@ -351,10 +351,12 @@
                          <!-- Recent Work Item -->
                         <c:forEach items="${list.recent2 }" var="recent2"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
+                            <a href="/palette/miniHome/${recent2.userId }/productMain/${recent2.itemNo.intValue()}">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
                             <img src="<c:url value="/productImg/${recent2.imgName }"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
 
                             </figure>
+                            </a>
                         </li>
 						</c:forEach>
                      
@@ -386,11 +388,13 @@
                         <!-- Recent Work Item -->
                          <c:forEach items="${list.inven }" var="inven"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
+                            <a href="/palette/miniHome/${inven.userId }/productMain/${inven.itemNo.intValue()}">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
                             <img src="<c:url value="/productImg/${inven.imgName }"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
 
                               
                             </figure>
+                            </a>
                         </li>
 						</c:forEach>
                     
@@ -428,11 +432,12 @@
                         <!-- Recent Work Item -->
                         <c:forEach items="${list.score }" var="score"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
+                          
+							<a href="/palette/miniHome/${score.userId }/productMain/${score.itemNo.intValue()}">	
+							 <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
                              <img src="<c:url value="/productImg/${score.imgName }"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
-							
-                             
                             </figure>
+                            </a>
                         </li>
 						</c:forEach>
                      

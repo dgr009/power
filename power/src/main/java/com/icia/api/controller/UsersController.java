@@ -335,4 +335,11 @@ public class UsersController {
 			return "실패";
 
 	}
+	//검색해서 홈페이지,상품가져오기
+	@RequestMapping(value = "/search", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String search(@RequestParam String search) {
+		Map<String,Object> map = service.search(search);
+		return new Gson().toJson(map);
+	}
+	
 }

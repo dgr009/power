@@ -290,13 +290,13 @@
 	
 	
 	<!-- 아이템 검색 개수 -->
-	<select id="productSearchCnt" parameterType="hashmap" resultType="int">
+	<select id="productSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
 		select count(*) from item where item_name like '%' ||  #{search} || '%'
 		]]>
 	</select>
 	<!-- 아이템 검색 -->
-	<select id="selectItemByName" parameterType="hashmap" resultType="ItemList">
+	<select id="selectItemByName" parameterType="String" resultType="ItemList">
 		<![CDATA[
 		select * from
 		(select rownum rnum,b.* from 
@@ -306,13 +306,13 @@
 		]]>
 	</select>
 	<!-- 홈페이지 검색 개수 -->
-	<select id="hompageSearchCnt" parameterType="hashmap" resultType="int">
+	<select id="hompageSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
 		select count(*) from home where item_name like '%' ||  #{search} || '%'
 		]]>
 	</select>
 	<!-- 홈페이지 검색 -->
-	<select id="selectHomeByName" parameterType="hashmap" resultType="MiniHome">
+	<select id="selectHomeByName" parameterType="String" resultType="MiniHome">
 		<![CDATA[
 		select * from
 		(select rownum rnum,b.* from 
