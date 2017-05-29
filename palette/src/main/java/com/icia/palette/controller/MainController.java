@@ -11,14 +11,15 @@ import com.icia.palette.service.*;
 public class MainController {
 	@Autowired
 	private ProductService service;
+	
 	@RequestMapping(value="/main",method=RequestMethod.GET)
 	public String productRegister(){
 		return "main/realMain";
 		
 	}
-//	@RequestMapping(value="/test",method=RequestMethod.GET)
-//	public String test(){
-//		return "mini/freeView";
-//		
-//	}
+	@RequestMapping(value="/main/loginlogin",method=RequestMethod.GET)
+	public String test2(){
+		return "main/login";
+		
+	}
 }
