@@ -17,7 +17,7 @@ public class ProductDaoTest {
 	private ProductDao dao;
 	//@Test
 	public void  selectItemDetail(){
-		System.out.println(dao.selectItemDetail(4));
+		//System.out.println(dao.selectItemDetail(4));
 	}
 	//@Test
 	public void insertItem(){

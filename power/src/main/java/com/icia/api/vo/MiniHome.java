@@ -16,5 +16,6 @@ public class MiniHome {
 	private int homeHits;
 	private String homeIntroduce;
 	private String homeActive;
+	private String userGrade;
 	
 }

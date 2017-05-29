@@ -143,14 +143,14 @@
 										<div>
 											<button type="button"
 												 style="color: white;"
-												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
+												class="btn btn-default btn-lg" id="basket" style=width:30px;  >장바구니로</button> <input
 												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
-												href="/hooligan/product/evalutionList?product_no="><input
+												href="/palette/miniHome/${userId}/productInquiryList/${result.item.itemNo.intValue()}"><input
 												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
-												value="상품평가"></a>
+												value="상품문의"></a>
 
 											<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
 										</div>
@@ -160,7 +160,47 @@
 					</div>
 
 </form>
-
+	<div>
+	<!-- 리뷰를 넣어보자 --> 
+	<h1>상품리뷰</h1>
+					<table class="table table-striped table-hover" style="text-align: center;border: double;color:#9F81F7;">
+                    <div style="font: ">
+                    <thead style="font: bold;color: black;">
+                    <tr>
+						<th style="text-align: center;  width: 120px;">번호</th>
+						<th style="text-align: center;  width: 120px;">점수</th>
+						<th style="text-align: center;">내용</th>	<!-- 댓글수 -->	
+						<th style="text-align: center;  width: 120px;">작성자</th>		
+						<th style="text-align: center; width: 150px;">작성일</th>
+					</tr>
+                    </thead>
+                    
+                    <tbody id="review" style="font:lighter;color: black;">
+                    <c:forEach items="${result.review}" var="free">
+							<tr>			
+								<td>
+								${free.reviewNo.intValue()}
+								</td>
+								<td>
+								${free.reviewScore.intValue()}점
+								</td>
+								<td style="text-align: left; ">
+								${free.reviewContent}
+								</td>
+								<td>
+								 ${free.userId}
+								</td>
+								<td>
+								${free.reviewDate}
+								</td>
+							</tr>
+								
+								</c:forEach>
+								</tbody>
+								</div>
+                </table>
+	
+	</div>
 
 
 
@@ -168,10 +208,6 @@
 				</div>
 
 
-				<div class="row sub_content">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
 
 
 

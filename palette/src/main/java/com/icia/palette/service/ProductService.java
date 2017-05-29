@@ -89,11 +89,11 @@ public class ProductService {
 		return s;
 	}
 	//상품메인보기
-	public Map<String, Object> productMain(int itemNo) {
+	public Map<String, Object> productMain(Map<String, Object> map) {
 		RestTemplate tpl=new RestTemplate();
 		HttpHeaders headers=new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(itemNo), headers);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
 		String result = tpl
 				.exchange("http://localhost:8087/api/miniHome/productMain", HttpMethod.POST, requestEntity, String.class)
 				.getBody();
@@ -185,6 +185,71 @@ public class ProductService {
 		Map<String, Object> s=new Gson().fromJson(result, Map.class);
 		
 		return s;
+	}
+	//문의게시판리스트
+	public Map<String, Object> InquiryList(Map<String, Object> map) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map),headers);
+		String result = tpl.exchange("http://localhost:8087/api/miniHome/inquiryList", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map1 = new Gson().fromJson(result, Map.class);
+		System.out.println(map1);
+		return map1;
+	}
+	//상품문의글 작성
+	public void inquiryRegister(InquiryBoard i) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(i), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/inquiryRegister", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
+	//상품문의글보기
+	public Map<String, Object> productInquiryView(Map<String, Object> map1) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map1),headers);
+		String result = tpl.exchange("http://localhost:8087/api/miniHome/inquiryView", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
+	}
+	//상품문의글삭제
+	public void inquiryDelete(int inquiryNo) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(inquiryNo), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/inquiryDelete", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
+	//상품문의 글수정
+	public void inquiryUpdate(InquiryBoard i) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(i), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/inquiryUpdate", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
+	//미니홈피주인문의관리리스트
+	public Map<String, Object> adminInquiryList(Map<String, Object> map) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map),headers);
+		String result = tpl.exchange("http://localhost:8087/api/miniHome/adminInquiryList", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map1 = new Gson().fromJson(result, Map.class);
+		System.out.println("야 여기찍어봐"+map1);
+		
+		return map1;
+	}
+	//홈피주인이문의댓글작성
+	public void inquiryRepleRegister(InquiryReple i) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers=new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(i), headers);
+		tpl.exchange("http://localhost:8087/api/miniHome/inquiryRepleRegister", HttpMethod.POST, requestEntity, String.class).getBody();		
 	}
 
 }
