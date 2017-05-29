@@ -20,7 +20,7 @@ public class RevenueController {
 		private AdminService service;
 		//매출내역페이지로
 		@RequestMapping(value = "/revenueList", method = RequestMethod.GET)
-		public String revenueList(Model model) {
+		public String revenueList() {
 			return "admin/RevenueList";
 		} 
 
