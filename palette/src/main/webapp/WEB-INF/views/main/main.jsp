@@ -665,21 +665,26 @@
         </div>
 <div class="col-lg-1 col-md-1 col-sm-1"></div>
 
+
+<!-- Footer Start-->
+
+
+
 <div class="col-lg-12 col-md-12 col-sm-12" style="padding: 0;"><br><br><br><br><br>
 <section class="promo_box" style="background: #C5C5E6;">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-9" >
                         <div class="promo_content">
-                            <h3>지금 바로 당신의 개인 쇼핑몰을 만드십시오!</h3>
+                            <h3>지금 바로 당신의 개인 쇼핑몰을 꾸미십시오!</h3>
                             <p>무료 회원가입으로 당신만의 홈페이지를 운영하세요 </p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="pb_action">
-                            <a class="btn btn-lg btn-default" href="#fakelink">
+                            <a class="btn btn-lg btn-default" href="#fakelink" onclick=openHome()>
                                 <i class="fa fa-file-text"></i>
-                               홈페이지 제작
+                               홈페이지 관리
                             </a>
                         </div>
                     </div>

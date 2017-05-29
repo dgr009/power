@@ -16,7 +16,7 @@
 <div class="col-lg-10 col-md-10 col-sm-10" style="padding: 0;">
 <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: right; padding: 0;">
         <div class="ab" style="margin-top: 23px; margin-right: 60px;">
-        	<h1><a href="index.html"><img alt="" src="<c:url value="/resources/images/로고5.png"/>" style="width:230px; height: 60px;"></a></h1>
+        	<h1><a href="/palette/users/main"><img alt="" src="<c:url value="/resources/images/로고5.png"/>" style="width:230px; height: 60px;"></a></h1>
         </div><br>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4" style="padding: 0;">

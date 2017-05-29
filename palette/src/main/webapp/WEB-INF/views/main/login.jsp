@@ -83,16 +83,17 @@
 	<br><br><br><br>
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
 	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center;">
-	
+	 <form  action="/palette/users/login"  novalidate="novalidate" method="post">
 		<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:230px; height: 60px;"><br><br><br><br>
-		<input type="text" style="height: 50px; width: 370px; padding-left: 15px;" placeholder="아이디"><br>
-		<input type="password" name="" style="padding-left: 15px; height: 50px; margin-left:5px;  width: 370px;border-right:  1px solid gray; border-left:  1px solid gray; border-top:  0px solid gray; border-bottom:  1px solid gray;"placeholder="비밀번호">
+		<input type="text" name="userId" style="height: 50px; width: 370px; padding-left: 15px;" placeholder="아이디"><br>
+		<input type="password" name="userPwd" style="padding-left: 15px; height: 50px; margin-left:5px;  width: 370px;border-right:  1px solid gray; border-left:  1px solid gray; border-top:  0px solid gray; border-bottom:  1px solid gray;"placeholder="비밀번호">
 		<br><br>
-			<p style="text-align: right;  color:gray; font-size: 0.85em; width:230px; margin-left :45%; height: 15px;"><span id="d1"><a href="#">아이디 찾기</a></span> <sapn class="bar">ㅣ</sapn> <span id="d2"><a href="#">비밀번호 찾기</a></span> <sapn class="bar">ㅣ</sapn> <span id="d3"><a href="#">회원가입</a></span>&nbsp;&nbsp;</p>
+			<p style="text-align: right;  color:gray; font-size: 0.85em; width:230px; margin-left :45%; height: 15px;"><span id="d1"><a href="/palette/users/findId">아이디 찾기</a></span> <sapn class="bar">ㅣ</sapn> <span id="d2"><a href="/palette/users/findPwd">비밀번호 찾기</a></span> <sapn class="bar">ㅣ</sapn> <span id="d3"><a href="#">회원가입</a></span>&nbsp;&nbsp;</p>
 				<br>
 			
-				<button type="button" id="btnLogin" title="로그인 " class="btn_login03"style="text-align: center; margin-left: 5px;"><span id="login">로그인</span></button>
+				<button type="submit" id="btnLogin" title="로그인 " class="btn_login03"style="text-align: center; margin-left: 5px;"><span id="login">로그인</span></button>
 				
+	</form>				
 				<br>
 				<br>
 				<br>

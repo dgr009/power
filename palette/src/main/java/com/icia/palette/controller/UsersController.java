@@ -38,8 +38,7 @@ public class UsersController {
 	// 로그인페이지로
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginStart(Model model) {
-		model.addAttribute("rank", service.getRankSide());
-		return "users/usersLogin";
+		return "main/login";
 	}
 
 	// 로그인
