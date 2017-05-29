@@ -204,7 +204,7 @@ input[type="button"] {
 							method="post">
              						 <div class="col-lg-11 col-md-11 col-sm-11">
              						  <input type="hidden" value="${result.inquiry.inquiryNo.intValue()}" name="inquiryNo">
-             						 <input type="hidden" value='<%=user.getUserId()%>' name="userId'">
+             						 <input type="hidden" value='<%=user1.getUserId()%>' name="userId'">
              						<textarea rows="3" cols="" id="inquiryRepleContent" name="inquiryRepleContent"></textarea>
              						</div>
 										&nbsp;&nbsp;<input type="submit" id="btn1" data-loading-text="Loading..." 

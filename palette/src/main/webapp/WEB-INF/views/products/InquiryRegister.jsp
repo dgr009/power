@@ -115,7 +115,7 @@ input[type="button"] {
               						  </table>
 					
               		   <textarea rows="15" cols="" name="inquiryContent" ></textarea>
-						<input type="hidden" name="userId" id="userId" value=<%=user.getUserId()%>>
+						<input type="hidden" name="userId" id="userId" value=<%=user1.getUserId()%>>
 						<br>		
               		   			<div id="id"></div>
               		   <div class="col-sm-12 text-center"><br>

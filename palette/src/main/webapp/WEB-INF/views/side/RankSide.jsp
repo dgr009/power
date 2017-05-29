@@ -9,7 +9,7 @@
 			<a href="#" style="color: #C5C5E6;" id="cup"><i class="fa fa-trophy fa-3x"></i></a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<span style="padding-bottom: 20px;  color: white; font-size: 1.4em; padding-top: 10px; position: absolute; top:3px; ">실시간 랭킹 순위</span>
-			<c:forEach items="${rank }" var="r" varStatus="index">
+			<c:forEach items="${list.rank }" var="r" varStatus="index">
 				<div class="ranked" id="rank${index.count }">
 					<c:choose>
 	    				<c:when test="${index.count }==1">

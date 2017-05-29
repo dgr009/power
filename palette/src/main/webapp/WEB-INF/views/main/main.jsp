@@ -292,11 +292,11 @@
  <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 </header>
 <!-- 메인 랭킹 시작 -->
-  <!-- 상품 인기순 -->
   <div class="col-lg-12 col-md-12 col-sm-12" >
 	<%@ include file="/WEB-INF/views/side/RankSide.jsp" %>
 
 <div class="col-lg-1 col-md-1 col-sm-1"></div>
+<!-- 상품 최신순으로 가져오기 -->
 <div class="col-lg-7 col-md-7 col-sm-7">
        <div class="carousel-intro">
                     <div class="col-md-11"  style="padding-left: 0; margin-left: 15px; margin-top: 18px;">
@@ -315,79 +315,16 @@
                     <ul class="jcarousel-list">
                         
                         <!-- Recent Work Item -->
-                        
+                        <c:forEach items="${list.recent1 }" var="recent1"  varStatus="index">
+                        <a href="/palette/miniHome/${recent1.userId }/productMain/${recent1.itemNo.intValue()}">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;" class="effect"/>
+                            <img src="<c:url value="/productImg/${recent1.imgName }"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;" class="effect"/>
 							
                             </figure>
                         </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/22222.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/33333.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/44444.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-
-                          <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/55555.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/66666.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-                          <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
+                        </a>
+						</c:forEach>
 
                     </ul>
         </div>
@@ -412,84 +349,22 @@
                     <ul class="jcarousel-list">
                         
                          <!-- Recent Work Item -->
-                        
+                        <c:forEach items="${list.recent2 }" var="recent2"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/55555.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
+                            <img src="<c:url value="/productImg/${recent2.imgName }"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
 
                             </figure>
                         </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/66666.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-
-
-                         <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-                        <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-                            <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 5px; width: 155px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; ">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
-
-
-                            </figure>
-                        </li>
-
+						</c:forEach>
+                     
                     </ul>
         </div>
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        
+        <!-- 상품 최신순으로 가져오기 끝-->
+        
             <!-- 마감임박순 -->
 <div class="col-lg-7 col-md-7 col-sm-7" style="margin-left: 105px; margin-top: 10px;">
        <div class="carousel-intro">
@@ -509,65 +384,15 @@
                     <ul class="jcarousel-list">
                         
                         <!-- Recent Work Item -->
-                        
+                         <c:forEach items="${list.inven }" var="inven"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                            <img src="<c:url value="/resources/images/77777.jpg"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
+                            <img src="<c:url value="/productImg/${inven.imgName }"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
 
                               
                             </figure>
                         </li>
-
-                     <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                            <img src="<c:url value="/resources/images/88888.jpg"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
-
-                              
-                            </figure>
-                        </li>
-
-
-                        <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
-
-                              
-                            </figure>
-                        </li>
-
-                     <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
-
-                              
-                            </figure>
-                        </li>
-
-                         <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
-
-                              
-                            </figure>
-                        </li>
-
-                     <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                            <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
-
-                              
-                            </figure>
-                        </li>
+						</c:forEach>
                     
 
                     </ul>
@@ -579,7 +404,9 @@
         
         
         </div>
-      <!-- 상품 인기순 -->
+        <!-- 마감 임박순 끝 -->
+        
+      <!-- 상품 많이 팔린순 -->
 <div class="col-lg-2 col-md-2 col-sm-2"></div>
 <div class="col-lg-10 col-md-10 col-sm-10" style="margin-left: 105px;"><br>
        <div class="carousel-intro">
@@ -599,72 +426,21 @@
                     <ul class="jcarousel-list" >
                         
                         <!-- Recent Work Item -->
-                        
+                        <c:forEach items="${list.score }" var="score"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
                             <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                             <img src="<c:url value="/resources/images/88888.jpg"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
+                             <img src="<c:url value="/productImg/${score.imgName }"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
 							
                              
                             </figure>
                         </li>
-
-                      <!-- Recent Work Item -->
-                        
-                       <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                             <img src="<c:url value="/resources/images/99999.jpg"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
-
-                             
-                            </figure>
-                        </li>
-
-
-
-                         <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                             <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
-
-                             
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                       <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                             <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
-
-                             
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        
-                        <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                             <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
-
-                             
-                            </figure>
-                        </li>
-
-                      <!-- Recent Work Item -->
-                        
-                       <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
-                             <img src="<c:url value="/resources/images/11111.jpg"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
-
-                             
-                            </figure>
-                        </li>
+						</c:forEach>
                      
                     </ul>
         </div>
         </div>
 <div class="col-lg-1 col-md-1 col-sm-1"></div>
-
+<!-- 상품 많이 팔린 순 끝 -->
 
 <!-- Footer Start-->
 

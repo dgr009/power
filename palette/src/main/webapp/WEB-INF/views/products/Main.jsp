@@ -41,8 +41,10 @@
         <div id="menu-bar">
             <div class="container">
                 <div class="row">
-                	<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
-                   
+                <%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
+                <%if(session.getAttribute("user")!=null){ %>
+                	<%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
+                 <%} %>
   <!-- =====================메인 메뉴(우측상단) 시작============================= -->
             <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
