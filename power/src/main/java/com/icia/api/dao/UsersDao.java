@@ -334,5 +334,15 @@ public class UsersDao {
 		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByScore");
 	}
 	
+	// 상품 검색 개수 가져오기
+	
+	// 홈페이지 검색 개수 가져오기
+	
+	// 상품 검색 가져오기
+	
+	// 홈페이지 검색 개수 가져오기
+	
+	
+	
 	
 }

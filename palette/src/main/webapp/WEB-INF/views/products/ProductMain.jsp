@@ -25,6 +25,7 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -57,6 +58,9 @@
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
 					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
+					<%if(session.getAttribute("user")!=null){ %>
+					<%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
+					<%} %>
 					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
   <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
 	<!-- =====================메인 메뉴(우측상단) 끝============================= -->
@@ -141,9 +145,12 @@
 									<p></p> <!-- 즐겨찾기 주문하기 상품평가 상세보기 --> <br>
 									<div>
 										<div>
+										<%if(session.getAttribute("user")!=null){ %>
 											<button type="button"
 												 style="color: white;"
-												class="btn btn-default btn-lg" id="basket" style=width:30px;  >장바구니로</button> <input
+												class="btn btn-default btn-lg" id="basket" style=width:30px; data-userId="<%=user1.getUserId() %>" >장바구니로</button> 
+											<%} %>
+												<input
 												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
@@ -499,7 +506,7 @@
 			$.ajax({
 				url:"/api/miniHome/basket",
 				type:"post",
-				data : {"userId": '<%=user1.getUserId()%>', "itemNo" : $("#itemNo").val() },
+				data : {"userId": $(this).data("userId"), "itemNo" : $("#itemNo").val() },
 				dataType: 'JSON',
 				complete:function(r){
 				if(r.responseText==1)

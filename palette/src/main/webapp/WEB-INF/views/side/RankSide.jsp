@@ -27,7 +27,7 @@
 	    				</c:otherwise>
 					</c:choose>
 						
-					<span><a href="/palette/miniHome/${userId }/main"><img src="<c:url value="/homeimg/${r.homeImg}"/>" alt="" class="info"></a></span>
+					<span><a href="/palette/miniHome/${r.userId }/main"><img src="<c:url value="/homeimg/${r.homeImg}"/>" alt="" class="info"></a></span>
 					<span class="usersName">${r.userId }</span>
 				</div>
 			</c:forEach>
