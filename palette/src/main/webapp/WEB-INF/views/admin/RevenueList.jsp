@@ -1,11 +1,8 @@
-<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%Users users=(Users)session.getAttribute("user"); %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -24,7 +21,8 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"media="screen" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
+	media="screen" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -59,27 +57,35 @@
     	
     }
 </style>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	 <link rel="stylesheet" href="jquery-ui.min.css">
+  <script src="jquery-3.1.1.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <link  href="resources/jqueryui/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet">
+<script src="resources/jqueryui/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script>
 
-	
-
+</script>
 </head>
 <body>
 	<!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-		</header>
+ <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
+				</div>
+				</div>
+				</div>
 					<!-- Logo / Mobile Menu -->
-					<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
-					
-					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
 		<!--start wrapper-->
@@ -89,81 +95,52 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                            <h2>직원 마이페이지</h2>
+                            <h2>관리자 마이페이지</h2>
                         </div>
                     </div>
                 </div>
             </div>
              </section>
             
-
+ 
            
             <div class="col-lg-12 col-md-12 col-sm-12">
             <br><br>
-					
-							<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
+					<%@include file="/WEB-INF/views/MainAdminMenu.jsp" %>
+							
 							<div class="col-lg-9 col-md-9 col-sm-9">
-							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
+							<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;"><h3><i class="fa fa-leaf"></i> 매출내역관리 &nbsp;&nbsp;</h3>
+							<div class="col-lg-12 col-md-12 col-sm-12">
+							 <div id="godate" style="display:inline-block"></div>
+<div id="backdate" style="display:inline-block"></div>
+							
+							<p><input type="date" placeholder="시작일">~<input type="date" placeholder="마감일"><button type="submit">조회</button></p>
+							<table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th></th>
+						<th></th>
+						<th></th>
 						
+                    </tr>
+                    </thead>
+                    <tbody id=productList>
+					
+                    </tbody>
+                </table>
+                 <!--페이징 시작 -->
+                <div class="col-sm-12 text-center"  id="pagination" >
+                </div>
+            </div> <!--페이징 끝 -->
 							
-							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-								<tbody>
-									
-									<tr><td>상품명</td></tr>	
-									<tr><td>상품 종류</td></tr>
-									<tr><td>상품 수량</td></tr>
-									<tr><td>판매 가격</td></tr>
-									<tr><td>상품 옵션</td></tr>
-									
-								</tbody>
-							</table>
-							</div>
 							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table >
-									<tbody >
-										<tr><td><input type="text"  name="itemName"></td></tr>
-										<tr><td><select name="smallKind">
-										<c:forEach items="${result.kind}" var="free">
-										<option value="${free.smallKind}">${free.smallKind}</option>
-										</c:forEach>
-										
-										</select></td></tr>
-										
-										<tr><td><input type="text"  name="itemSize"></td></tr>
-										<tr><td><input type="text"  name="itemPrice"></td></tr>
-										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>
-										<td><a href="#fakelink" class="btn btn-sm btn-social-facebook" id="addOption">추가</a></td></tr >
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-									<tbody>
-
-										<tr><td>상품 이미지</td></tr>
-										<tr><td>상품 내용</td></tr>
-
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="file" name="imgName" id="imgName" multiple></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:200px;" name="itemContent" id="itemContent"></textarea></td></tr>
-										</tbody>
-								</table>
-								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+							
+							
 							
 							</div>
+							
+							
                             
-						</form>
 							
 									
 							</div>
@@ -171,7 +148,7 @@
 							
 							</div>
 							
-							</div></div>
+							
 					
 
            
@@ -196,7 +173,6 @@
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-
 
 					<script type="text/javascript">
 						$(document)
@@ -447,61 +423,8 @@
 													});
 										});
 					</script>
-					<script>
-	$(function(){
-		var i = 1;
-
-		$("#addOption").on("click", function(){
-			if( i<4){
-				i= i+1;
-				$("#space").after('<tr $(function() {              
-		                 
-			               //datepicker 한국어로 사용하기 위한 언어설정
-			               $.datepicker.setDefaults($.datepicker.regional['ko']); 
-			               
-			               // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
-			               // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
-			 
-			               //시작일.
-			               $('#fromDate').datepicker({
-			                    //dateFormat: "yy-mm-dd",
-			                    //monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-			                    //dayNamesMin:["일","월","화","수","목","금","토"],
-			                   //buttonImage: "/jdAdmin/images/calendar.png", // 버튼 이미지
-			                   //buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
-			                   //buttonText: "날짜선택",             // 버튼의 대체 텍스트
-			                   dateFormat: "yy-mm-dd",             // 날짜의 형식
-			                   changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
-			                       maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-			                   onClose: function( selectedDate ) {    
-			                       // 시작일(fromDate) datepicker가 닫힐때
-			                       // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-			                       $("#toDate").datepicker( "option", "minDate", selectedDate );
-			                   }                
-			               });
-			 
-			               //종료일
-			               $('#toDate').datepicker({
-			                    //dateFormat: "yy-mm-dd",
-			                    //monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-			                    //dayNamesMin:["일","월","화","수","목","금","토"], 
-			                   dateFormat: "yy-mm-dd",
-			                   changeMonth: true,
-			                   maxDate: 0, // 오늘 이후 날짜 선택 불가
-			                   onClose: function( selectedDate ) {
-			                       // 종료일(toDate) datepicker가 닫힐때
-			                       // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-			                       $("#fromDate").datepicker( "option", "maxDate", selectedDate );
-			                   }                
-			               });
-			               
-			               
-			               
-			           });
-		})
-	})
 	
-</script>
-					<script src="<c:url value="/resources/js/main.js"/>"></script>
+    </script>
+				<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>
