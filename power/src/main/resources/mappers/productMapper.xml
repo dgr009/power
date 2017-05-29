@@ -103,7 +103,7 @@ where rownum<=9) where rnum>=1
 select * from
 (select rownum rnum,b.* from 
 (select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
-from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
+from item i,item_img m where i.item_no=m.item_no and i.item_inven!=0 and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
 where rownum<=9) where rnum>=1 
 ]]>
 </select>
@@ -116,7 +116,7 @@ select b2.* from
       from item i,item_review r,item_img m 
       where m.img_no in(select min(img_no) from item_img group by item_no) and i.item_no=r.item_no(+) and i.item_no=m.item_no
       group by i.item_no,i.item_name,m.img_name 
-      order by avg(r.review_score) desc)b )b2 where rnum<=9;
+      order by avg(r.review_score) desc)b )b2 where rnum<=9
       ]]>
 </select>
 <!-- 등록상품삭제 -->

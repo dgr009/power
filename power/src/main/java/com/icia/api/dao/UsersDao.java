@@ -313,4 +313,26 @@ public class UsersDao {
 		System.out.println("-------------------");
 		return tpl.insert("api.dao.UsersDao.insertReview", map);
 	}
+	
+	// 최신 상품 첫번쨰 줄 가져오기
+	public List<ItemList> selectItemListOrderByDate1(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByDate1");
+	}
+	
+	// 최신 상품 두번째 줄 가져오기
+	public List<ItemList> selectItemListOrderByDate2(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByDate2");
+	}
+	
+	// 마감임박 상품 가져오기
+	public List<ItemList> selectItemListOrderByInven(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByInven");
+	}
+	
+	// 베스트 상품 가져오기
+	public List<ItemList> selectItemListOrderByScore(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByScore");
+	}
+	
+	
 }

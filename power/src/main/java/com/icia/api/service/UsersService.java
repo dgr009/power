@@ -270,4 +270,15 @@ public class UsersService {
 	public int insertReview(ItemReview review, int orderNo) {
 		return dao.insertReview(review, orderNo);
 	}
+	
+	//메인 랭킹, 아이템 리스트 가져오기
+	public Map<String,Object> mainList(){
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("recent1", dao.selectItemListOrderByDate1());
+		map.put("recent2", dao.selectItemListOrderByDate2());
+		map.put("inven", dao.selectItemListOrderByInven());
+		map.put("score", dao.selectItemListOrderByScore());
+		map.put("rank", dao.getRankSide());
+		return map;
+	}
 }

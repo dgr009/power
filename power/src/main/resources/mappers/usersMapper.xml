@@ -237,4 +237,75 @@
 		
 		insert into item_review values(#{reviewNo},#{reviewContent},#{reviewScore},sysdate,(select user_id from order_statement where order_no=#{orderNo}),(select item_no from order_statement where order_no=#{orderNo}))
 	</insert>
+	<!-- 메인 최신 상품 가져오기 8개씩-->
+	<select id="selectItemListOrderByDate1" resultType="ItemList">
+		<![CDATA[
+		select * from
+		(select rownum rnum,b.* from 
+		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
+		from item i,item_img m where i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
+		where rownum<=8) where rnum>=1
+		]]>  
+	</select>
+	<select id="selectItemListOrderByDate2" resultType="ItemList">
+		<![CDATA[
+		select * from
+		(select rownum rnum,b.* from 
+		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
+		from item i,item_img m where i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
+		where rownum<=16) where rnum>=9
+		]]>
+	</select>
+	<!--홈메인 상품재고순으로6개 -->
+	<select id="selectItemListOrderByInven" resultType="ItemList">
+		<![CDATA[
+select * from
+(select rownum rnum,b.* from 
+(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
+from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
+where rownum<=6) where rnum>=1 
+]]>
+	</select>
+	
+	<!-- 홈메인 상품베스트6개 -->
+<select id="selectItemListOrderByScore" resultType="ItemList">
+<![CDATA[
+select * from
+(select rownum rnum,b.* from 
+(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id
+from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
+where rownum<=6) where rnum>=1
+      ]]>
+</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
