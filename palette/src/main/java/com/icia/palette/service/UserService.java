@@ -320,6 +320,7 @@ public class UserService {
 		HttpHeaders headers = new HttpHeaders();
 		HttpEntity requestEntity = new HttpEntity(headers);
 		String result = tpl.exchange("http://localhost:8087/api/users/main",HttpMethod.GET, requestEntity, String.class).getBody();
+		System.out.println("ddddd");
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
 		return map;
 	}
