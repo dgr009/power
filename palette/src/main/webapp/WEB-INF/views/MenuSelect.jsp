@@ -18,7 +18,6 @@
                                     <ul class="dropdown-menu">
                                     <li><a href="/palette/miniHome/${userId}/main">홈으로</a> </li>
                                     <li><a href="/palette/miniHome/${userId}/Info">홈소개</a> </li>
-                                    <li><a href="/palette/miniHome/${userId}/admin/registerList">직원</a></li>
                                     </ul>
                                 </li>
                      
