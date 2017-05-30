@@ -1,4 +1,4 @@
-package com.icia.api.vo;
+package com.icia.palette.vo;
 
 import java.sql.*;
 
@@ -8,8 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 public class MainFreeReple {
 	private int mainFreeRepleNo;
-	private int mainArticleNo;
+	private String mainFreeRepleName;
 	private String mainFreeRepleContent;
 	private Date mainFreeRepleDate;
-	private String mainFreeRepleName;
+	private int mainArticleNo;
 }

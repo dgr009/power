@@ -52,7 +52,7 @@ public class MainDao {
 	}
 	//자유게시판 댓글 개수를 1증가
 	public void incrementFreeRepleCnt(int mainArticleNo){
-		tpl.update("api.dao.MainFreeBoardDao.incrementFreeRepleCnt",mainArticleNo);
+		tpl.update("api.dao.MainFreeBoardDao.incrementMainFreeRepleCnt",mainArticleNo);
 	}
 	
 	//자유게시판 댓글 수정
@@ -69,21 +69,19 @@ public class MainDao {
 	}
 	//자유게시판 댓글 개수를 1감소
 	public void decrementMainFreeRepleCnt(int mainFreeRepleNo){
-		tpl.update("api.dao.MainFreeBoardDao.decrementFreeRepleCnt",mainFreeRepleNo);
+		tpl.update("api.dao.MainFreeBoardDao.decrementMainFreeRepleCnt",mainFreeRepleNo);
 	}
 	//자유게시판 댓글 개수를 1증가
 	public void incrementMainFreeRepleCnt(int mainFreeRepleNo){
 		tpl.update("api.dao.MainFreeBoardDao.incrementMainFreeRepleCnt",mainFreeRepleNo);
 	}
 	//자유게시판 전체 댓글 보기
-	public List<MainFreeReple> MainFreeRepleAllCnt(int mainArticleNo){
-		return tpl.selectOne("api.dao.MainFreeBoardDao.MainFreeRepleAllCnt",mainArticleNo);
+	public List<MainFreeReple> mainFreeRepleAllCnt(int mainArticleNo){
+		return tpl.selectList("api.dao.MainFreeBoardDao.mainFreeRepleAllCnt",mainArticleNo);
 	}
-	//자유게시판 댓글 하나보기
-	public MainFreeReple MainFreeRepleOne(int mainFreeRepleNo){
-		return tpl.selectOne("api.dao.MainFreeBoardDao.MainFreeRepleOne",mainFreeRepleNo);
+	public int mainRepleCnt(int mainFreeRepleNo){
+		return tpl.selectOne("api.dao.MainFreeBoardDao.mainRepleCnt",mainFreeRepleNo);
 	}
-	
 	/*---------------------------공지 게시판 ------------------------------*/
 	//공지게시판 전체개수
 	public int mainNoticeCnt(){

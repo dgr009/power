@@ -25,30 +25,31 @@ public class MainService {
 	public String mainFreeBoardRegister(MainFreeBoard free) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (new Gson().toJson(free), headers);
 		String result=tpl.exchange("http://localhost:8087/api/main/freeboard/register", HttpMethod.POST, requestEntity, String.class).getBody();
 		return result;
 	}
+	
 	//자유게시판 뷰
-	public MainFreeBoard mainFreeBoardView(HttpSession session,int mainArticleNo) {
+	public Map<String,Object> mainFreeBoardView(HttpSession session,int mainArticleNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
+		
 		HttpEntity requestEntity = new HttpEntity(headers);
 		String result = tpl.exchange("http://localhost:8087/api/main/freeboard/view/{mainArticleNo}", HttpMethod.GET, requestEntity, String.class,mainArticleNo).getBody();
-		MainFreeBoard free = new Gson().fromJson(result, MainFreeBoard.class);
-		return free;
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 		}
 	
 	
 	//자유게시판 수정
-	public void miniHomeUpdateFree(HttpSession session,MainFreeBoard free) {
+	public void mainFreeUpdate(HttpSession session,MainFreeBoard free,int mainArticleNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("token", (String) session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(free), headers);
-		String result = tpl.exchange("http://localhost:8087/api/main/maiupdate", HttpMethod.PUT, requestEntity, String.class).getBody();
+		String result = tpl.exchange("http://localhost:8087/api/main/freeboard/update/{mainArticleNo}", HttpMethod.PUT, requestEntity, String.class,mainArticleNo).getBody();
 		System.out.println(result);
 	}
 	
@@ -62,10 +63,9 @@ public class MainService {
 		return map;		
 	}
 	//자유게시판 삭제
-	public void mainFreeBoardDelete(HttpSession session,int mainArticleNo){
+	public void mainFreeBoardDelete(int mainArticleNo){
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("token", (String)session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity =  new  HttpEntity (headers);
 		String result=tpl.exchange("http://localhost:8087/api/main/freeboard/delete/{mainArticleNo}", HttpMethod.DELETE, requestEntity, String.class,mainArticleNo).getBody();

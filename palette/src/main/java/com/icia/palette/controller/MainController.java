@@ -16,6 +16,22 @@ public class MainController {
 	@Autowired
 	private MainService service;
 	
+	//업데이트 뷰
+		@RequestMapping(value="/freeboard/update/{mainArticleNo}",method = RequestMethod.GET)
+		public String updateStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
+			model.addAttribute("main", service.mainFreeBoardView(session, mainArticleNo));
+			return "main/mainFreeBoardUpdate";
+		}
+		
+		//업데이트 처리
+		@RequestMapping(value="/freeboard/update/{mainArticleNo}",method = RequestMethod.POST)
+		public String updateEnd(HttpSession session,@ModelAttribute MainFreeBoard free,@PathVariable int mainArticleNo){
+			service.mainFreeUpdate(session, free,mainArticleNo);;
+			System.out.println(session+" ===="+free+"===== "+mainArticleNo);
+			return "redirect:/main/freeboard/list?pageNo=1";
+		}
+	
+	
 	//메인게시판 작성페이지로
 	@RequestMapping(value="/freeboard/register",method=RequestMethod.GET)
 	public String freeBoardRegisterStart(HttpSession session,Model model){
@@ -28,14 +44,15 @@ public class MainController {
 	public String freeBoardRegisterEnd(@ModelAttribute MainFreeBoard free){
 		String result = service.mainFreeBoardRegister(free);
 		System.out.println(result);
-		return "main";	
+		return "redirect:list?pageNo=1";	
 	}
 	//삭제
-	@RequestMapping(value="/freeboard/delete/{mainArticleNo}",method=RequestMethod.POST)
-	public String delete(HttpSession session,@PathVariable int mainArticleNo){
-		service.mainFreeBoardDelete(session, mainArticleNo);
-		return "redirect:main/freeboard/list?pageNo=1";
+	@RequestMapping(value="/freeboard/delete/{mainArticleNo}",method = {RequestMethod.GET, RequestMethod.POST})
+	public String delete(HttpSession session,@PathVariable int mainArticleNo,Model model){
+		service.mainFreeBoardDelete(mainArticleNo);
+		return "redirect:/main/freeboard/list?pageNo=1";
 	}
+	
 	//자유게시판 뷰
 	@RequestMapping(value="/freeboard/view/{mainArticleNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
@@ -81,4 +98,9 @@ public class MainController {
 		return "main/mainNoticeBoardList";
 	}*/
 	
+//	@RequestMapping(value="/test",method=RequestMethod.GET)
+//	public String test(){
+//		return "mini/freeView";
+//		
+//	}
 }

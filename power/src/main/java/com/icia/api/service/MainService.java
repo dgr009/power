@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
+import com.google.gson.*;
 import com.icia.api.dao.*;
 import com.icia.api.util.*;
 import com.icia.api.vo.*;
@@ -41,35 +42,59 @@ public class MainService {
 	}
 	//메인 자유게시판 뷰
 	@Transactional
-	public MainFreeBoard mainFreeBoardView(int mainArticleNo){
+	public Map<String,Object> mainFreeBoardView(int mainArticleNo){
 		dao.mainFreeBoardHitsCnt(mainArticleNo);
-		return dao.mainFreeBoardView(mainArticleNo);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("home", dao.mainFreeBoardView(mainArticleNo));
+		map.put("reple", dao.mainFreeRepleAllCnt(mainArticleNo));
+		System.out.println("찍어봐시발년아"+map.get("reple").toString());
+		return map;
 		
-	}
-	//메인 자유게시판 댓글하나 조회
-	public MainFreeReple mainFreeRepleOne(int mainFreeRepleNo){
-		return dao.MainFreeRepleOne(mainFreeRepleNo);
 	}
 	
 	//메인 자유게시판 모든 댓글 조회
 	public List<MainFreeReple> MainFreeRepleAllCnt(int mainArticleNo){
-		return dao.MainFreeRepleAllCnt(mainArticleNo);
+		return dao.mainFreeRepleAllCnt(mainArticleNo);
 	}
 	//메인 자유게시판 댓글 생성
 	@Transactional
-	public void MainFreeRepleInsert(int mainFreeRepleNo,MainFreeReple mainFreeReple){
-		dao.incrementFreeRepleCnt(mainFreeRepleNo);
+	public String MainFreeRepleInsert(MainFreeReple mainFreeReple){
+		dao.incrementFreeRepleCnt(mainFreeReple.getMainArticleNo());
 		dao.mainFreeBoardRepleInsert(mainFreeReple);
+		int result = dao.mainRepleCnt(mainFreeReple.getMainFreeRepleNo());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free",dao.mainFreeBoardView(mainFreeReple.getMainArticleNo()));
+		map.put("reple",dao.mainFreeRepleAllCnt(mainFreeReple.getMainArticleNo()));
+		map.put("cnt",result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
 	//메인 자유게시판 댓글 수정
-	public void MainFreeRepleUpdate(MainFreeReple mainFreeReple){
+	@Transactional
+	public String MainFreeRepleUpdate(MainFreeReple mainFreeReple){
 		dao.mainFreeBoardRepleUpdate(mainFreeReple);
+		int result = dao.mainRepleCnt(mainFreeReple.getMainFreeRepleNo());
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("free", dao.mainFreeBoardView(mainFreeReple.getMainArticleNo()));
+		map.put("reple", dao.mainFreeRepleAllCnt(mainFreeReple.getMainArticleNo()));
+		map.put("cnt", result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
 	}
+	
 	//자유게시판 댓글 삭제
 	@Transactional
-	public void mainFreeRepleDelete(int mainArticleNo, int mainFreeRepleNo){
+	public String mainFreeRepleDelete(int mainArticleNo, int mainFreeRepleNo){
 		dao.decrementMainFreeRepleCnt(mainArticleNo);
 		dao.mainFreeBoardRepleDelete(mainFreeRepleNo);
+		int result = dao.mainRepleCnt(mainArticleNo);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("free", dao.mainFreeBoardView(mainArticleNo));
+		map.put("reple", dao.mainFreeRepleAllCnt(mainArticleNo));
+		map.put("cnt", result);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(map);
+		
 	}
 	//자유게시판 댓글 모두삭제
 	public void mainFreeRepleAllDelete(int mainArticleNo){

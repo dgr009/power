@@ -10,7 +10,6 @@ import lombok.*;
 public class MainFreeBoard {
 	private int mainArticleNo;
 	private String mainArticleTitle;
-	private String mainArticleName; //작성자
 	private int mainArticleHits;
 	private String mainArticleContent;
 	private	Date mainArticleDate;
