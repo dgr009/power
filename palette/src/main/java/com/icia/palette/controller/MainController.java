@@ -2,8 +2,8 @@ package com.icia.palette.controller;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.*;
+import org.springframework.web.bind.annotation.*;
 
 import com.icia.palette.service.*;
 
@@ -22,8 +22,8 @@ public class MainController {
 		return "main/login";
 	}
 	@RequestMapping(value="/main/search",method=RequestMethod.GET)
-	public String search(){
-		
+	public String search(@RequestParam String search,Model model){
+		model.addAttribute("result", service1.search(search));
 		return "main/search";
 	}
 	
