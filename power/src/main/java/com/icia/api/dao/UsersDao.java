@@ -200,7 +200,8 @@ public class UsersDao {
 	public int tradeListCnt(String userId) {
 		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt", userId);
 	}
-
+	
+	// 
 	public int bigTagRegister(String userId, String bigTag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
