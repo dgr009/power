@@ -298,11 +298,11 @@
 	<!-- 아이템 검색 -->
 	<select id="selectItemByName" parameterType="String" resultType="ItemList">
 		<![CDATA[
-		select * from
-		(select rownum rnum,b.* from 
-		(select i.item_no,i.item_price,i.item_name,m.img_name ,i.item_inven
-		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)) b
-		where rownum<=#{end}) where rnum>=#{start} 
+		
+		
+		select i.item_no,i.item_price,i.item_name,m.img_name ,i.item_inven,i.user_id
+		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
+		
 		]]>
 	</select>
 	<!-- 홈페이지 검색 개수 -->
@@ -314,11 +314,11 @@
 	<!-- 홈페이지 검색 -->
 	<select id="selectHomeByName" parameterType="String" resultType="MiniHome">
 		<![CDATA[
-		select * from
-		(select rownum rnum,b.* from 
-		(select * 
-		from home where user_id like '%' ||  #{search} || '%' ) b
-		where rownum<=#{end}) where rnum>=#{start} 
+		
+		
+		select * 
+		from home where user_id like '%' ||  #{search} || '%' 
+	 
 		]]>
 	</select>
 	

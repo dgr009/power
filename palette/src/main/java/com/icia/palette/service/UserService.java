@@ -328,8 +328,14 @@ public class UserService {
 		public Map<String,Object> search(String search) {
 			RestTemplate tpl = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
-			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(search),headers);
-			String result = tpl.exchange("http://localhost:8087/api/users/search",HttpMethod.GET, requestEntity, String.class).getBody();
+			Map<String, Object> map1=new HashMap<String, Object>();
+			map1.put("search", search);
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map1),headers);
+			System.out.println("여기까진오잖아??");
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/mainSearch", HttpMethod.POST, requestEntity, String.class)
+					.getBody();
 			Map<String,Object> map = new Gson().fromJson(result, Map.class);
 			return map;
 		}

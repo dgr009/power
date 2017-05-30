@@ -11,6 +11,7 @@ import com.icia.palette.service.*;
 public class MainController {
 	@Autowired
 	private ProductService service;
+	@Autowired
 	private UserService service1;
 	@RequestMapping(value="/main",method=RequestMethod.GET)
 	public String productRegister(){
@@ -21,6 +22,7 @@ public class MainController {
 	public String test2(){
 		return "main/login";
 	}
+	//상품및홈페이지 검색하기
 	@RequestMapping(value="/main/search",method=RequestMethod.GET)
 	public String search(@RequestParam String search,Model model){
 		model.addAttribute("result", service1.search(search));
