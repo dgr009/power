@@ -14,14 +14,13 @@ public class RevenueController {
 	@Autowired
 	private RevenueService service;
 
-	/*
+	
 	// 관리자 매출내역 보기
-	@RequestMapping(value = "/tradeList", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-	public String tradeList(@RequestHeader("token") String token, @RequestParam int pageNo) {
-		String userId = service.getUserIdByToken(token);
-		Map<String, Object> map = service.tradeList(userId, pageNo);
+	@RequestMapping(value = "/revenueList", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public String tradeList(@RequestBody Map<String, Object> map) {
+		Map<String, Object> maps = service.selectRevenueList(map,(Integer)map.get("pageNo"));
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-		return gson.toJson(map);
+		return gson.toJson(maps);
 
-	}*/
+	}
 }

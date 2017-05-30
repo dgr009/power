@@ -14,10 +14,10 @@ import com.icia.api.vo.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MiniHomeDaoTest {
 	
-	@Autowired
+	//@Autowired
 	public MiniHomeBoardDao dao;
 	
-	@Autowired
+	//@Autowired
 	public MiniHomeDao dao2;
 	
 	private Logger logger = LoggerFactory.getLogger(MiniHomeDaoTest.class);
@@ -104,7 +104,7 @@ public class MiniHomeDaoTest {
 		System.out.println(dao2.miniHomeSelectSellerInformation("qhrals8"));
 	}
 	
-	@Test
+	//@Test
 	public void selectAllReple(){
 		System.out.println(dao.miniHomeSelectAllFreeReple(2));
 	}

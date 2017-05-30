@@ -2,14 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="api.dao.MainsDao">
-	<select id="recentItemList1" resultType="ItemList">
-		<![CDATA[
-		select b.* from (select rownum rnum, a.*  from (select * from item order by item_date desc) a) b where rnum<=8
-		]]>  
-	</select>
-	<select id="recentItemList2" resultType="ItemList">
-		<![CDATA[
-		select b.* from (select rownum rnum, a.*  from (select * from item order by item_date desc) a) b where rnum<=16 and rnum>8
-		]]>
-	</select>
+	
 </mapper>

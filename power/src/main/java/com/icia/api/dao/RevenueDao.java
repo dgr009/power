@@ -22,6 +22,24 @@ public class RevenueDao {
 		map.put("startDate", startDate);
 		map.put("end", end);
 		map.put("endDate", endDate);
-		return tpl.selectList("api.dao.RevenueDao.selectItemListOrderByScore",map);
+		System.out.println("서비스 될까?");
+		return tpl.selectList("api.dao.RevenueDao.selectRevenueListByDate",map);
+	}
+	//기간별 매출내역 개수
+	public int selectRevenueListByDateCnt(Date startDate,Date endDate){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("endDate",endDate);
+		map.put("startDate", startDate);
+		return tpl.selectOne("api.dao.RevenueDao.selectRevenueListByDateCnt",map);
+	}
+	public int selectRevenueListByDateCnt(Map<String, Object> map) {
+		return tpl.selectOne("api.dao.RevenueDao.selectRevenueListByDateCnt",map);
+	}
+	public Object selectRevenueListByDate(Map<String, Object> map) {
+		return tpl.selectList("api.dao.RevenueDao.selectRevenueListByDate",map);
+	}
+	
+	public int selectRevenueSum(Map<String,Object> map){
+		return tpl.selectOne("api.dao.RevenueDao.selectRevenueSum",map);
 	}
 }

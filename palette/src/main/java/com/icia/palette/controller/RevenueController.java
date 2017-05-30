@@ -1,5 +1,7 @@
 package com.icia.palette.controller;
 
+import java.sql.*;
+
 import javax.servlet.*;
 
 import org.slf4j.*;
@@ -17,10 +19,18 @@ public class RevenueController {
 		@Autowired
 		private ServletContext ctx;
 		@Autowired
-		private AdminService service;
+		private RevenueService service;
 		//매출내역페이지로
 		@RequestMapping(value = "/revenueList", method = RequestMethod.GET)
-		public String revenueList() {
+		public String revenueList(Model model,@RequestParam(required=false) Date startDate,@RequestParam(required=false) Date endDate,@RequestParam(defaultValue="1") int pageNo) {
+			if(startDate!=null)
+				model.addAttribute("r", service.selectRevenueList(startDate,endDate,pageNo));
+			return "admin/RevenueList";
+		} 
+		
+		@RequestMapping(value = "/revenueList", method = RequestMethod.POST)
+		public String revenueListEnd(Model model,@RequestParam Date startDate,@RequestParam Date endDate,@RequestParam(defaultValue="1") int pageNo) {
+			model.addAttribute("r", service.selectRevenueList(startDate,endDate,pageNo));
 			return "admin/RevenueList";
 		} 
 
