@@ -24,9 +24,9 @@
 	    <div class="ab" style="margin-top: 30px; margin-left: 60px;">
 	        <div class="widget widget_search" style="border: 2px solid #727cb6; border-radius: 15px; height: 45px; width: 300px;">
 				<div class="site-search-area" >
-					<form method="get" id="site-searchform" action="/palette/users/search">
+					<form method="get" id="site-searchform" action="/palette/main/search">
 						<div style=" border-radius: 6px;">
-							<input style="color:#727cb6; border-bottom-left-radius:10px; border-top-left-radius:10px; background-color:transparent;border:0 solid black;" class="input-text" name="s" id="s" placeholder="상품명 검색..." type="text">
+							<input style="color:#727cb6; border-bottom-left-radius:10px; border-top-left-radius:10px; background-color:transparent;border:0 solid black;" class="input-text" name="search" id="s" placeholder="상품명 검색..." type="text">
 							<input id="searchsubmit" value="Search" type="submit" style=" border-bottom-right-radius: 10px; border-top-right-radius: 10px;">
 						</div>
 					</form>

@@ -272,6 +272,7 @@ public class UsersService {
 	}
 	
 	//메인 랭킹, 아이템 리스트 가져오기
+	@Transactional
 	public Map<String,Object> mainList(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("recent1", dao.selectItemListOrderByDate1());
@@ -281,6 +282,13 @@ public class UsersService {
 		map.put("rank", dao.getRankSide());
 		return map;
 	}
-	
+	//메인 검색해서 아이템,홈페이지리스트가져오기
+	@Transactional
+	public Map<String, Object> search(String search){
+	Map<String, Object> result=new HashMap<String, Object>();
+	result.put("itemList", dao.selectItemByName(search));
+	result.put("homePage", dao.selectHomeByName(search));
+		return result;
+	}
 	
 }

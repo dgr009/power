@@ -335,4 +335,14 @@ public class UsersController {
 			return "실패";
 
 	}
+	//검색해서 홈페이지,상품가져오기
+	@RequestMapping(value = "/mainSearch", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public String mainSearch(@RequestBody Map<String, Object> map1) {
+		System.out.println("안되지??api서버");
+		String search=(String) map1.get("search");
+		
+		Map<String, Object> map = service.search(search);
+		return new Gson().toJson(map);
+	}
+	
 }

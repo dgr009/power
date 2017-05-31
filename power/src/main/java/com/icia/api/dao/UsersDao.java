@@ -336,13 +336,21 @@ public class UsersDao {
 	}
 	
 	// 상품 검색 개수 가져오기
-	
+	public int productSearchCnt(String search){
+		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
+	}
 	// 홈페이지 검색 개수 가져오기
-	
+	public int homepageSearchCnt(String search){
+		return tpl.selectOne("api.dao.UsersDao.homepageSearchCnt", search);
+	}
 	// 상품 검색 가져오기
-	
-	// 홈페이지 검색 개수 가져오기
-	
+	public List<ItemList> selectItemByName(String search){
+		return tpl.selectList("api.dao.UsersDao.selectItemByName", search);
+		}
+	// 홈페이지 검색 가져오기
+	public List<MiniHome> selectHomeByName(String search){
+		return tpl.selectList("api.dao.UsersDao.selectHomeByName", search);
+		}
 	
 	
 	
