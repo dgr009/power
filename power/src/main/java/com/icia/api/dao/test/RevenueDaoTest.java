@@ -1,5 +1,7 @@
 package com.icia.api.dao.test;
 
+import java.sql.*;
+
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
@@ -10,13 +12,12 @@ import com.icia.api.dao.*;
 
 @ContextConfiguration("dao-test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class AdminDaoTest {
+public class RevenueDaoTest {
 	//@Autowired
-	public AdminDao dao;
+	RevenueDao dao;
 	
-	//회원정보 조회
-		//@Test 
-		public void selectss(){
-			System.out.println(dao.DeleteUser("qhrals8"));
-		}
+	//@Test
+	public void select(){
+		System.out.println(dao.selectRevenueListByDateCnt(new Date(2017,05,15),new Date(2017,05,20)));
+	}
 }

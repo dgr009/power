@@ -29,4 +29,27 @@ public class MainController {
 		return "main/search";
 	}
 	
+	//유저 정보 테스트
+	@RequestMapping(value="/main/infoinfo",method=RequestMethod.GET)
+	public String test3(){
+		return "main/usersInfo";
+	}
+	
+	//테스트
+	@RequestMapping(value="/main/book",method=RequestMethod.GET)
+	public String test4(){
+		return "main/bookmark";
+	}
+	
+	//테스트
+	@RequestMapping(value="/main/search2",method=RequestMethod.GET)
+	public String test5(){
+		return "main/search2";
+	}
+	
+	//테스트
+	@RequestMapping(value="/main/main",method=RequestMethod.GET)
+	public String test6(){
+		return "mini/Main";
+	}
 }
