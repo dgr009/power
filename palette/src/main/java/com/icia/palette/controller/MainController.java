@@ -52,4 +52,10 @@ public class MainController {
 	public String test6(){
 		return "mini/Main";
 	}
+	
+	//테스트
+	@RequestMapping(value="/main/shopping",method=RequestMethod.GET)
+	public String test7(){
+		return "main/shoppingBasket";
+	}
 }

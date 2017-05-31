@@ -49,6 +49,7 @@
 </script>
 </head>
 <body>
+<body>
 <header id="header">
  <div class="header-top">
         <div class="container">
@@ -71,15 +72,15 @@
 	<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;">
 	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style="padding-bottom: 15px; margin-left: 120px;">
-                                <li><a href="#" style=" width: 85px; text-align: center; color:black;  border-radius: 35px; font-size: 1.1em;">내 정보보기</a>
+                                <li><a href="#" style=" width: 85px; text-align: center; color:black;  border-radius: 35px;">내 정보보기</a>
 
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; font-size: 1.15em; color:#727cb6; font-weight:bold;">즐겨찾기</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; ">즐겨찾기</a>
 
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em;">장바구니</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; font-size: 1.15em; color:#727cb6; font-weight:bold;">장바구니</a>
 
                                 </li>
 
@@ -108,77 +109,74 @@
 	<div style="width: 1000px; height: 540px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
 	
 	<p style="padding-top:30px; padding-left: 30px;">
-		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;">qhrals8</span>님의 <span class="highlight light">즐겨찾기</span> 추가 목록 
+		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;">qhrals8</span>님의 <span class="highlight light">장바구니</span> 추가 목록 
 	</p>
-	<p style="font-weight: bold; padding-left: 30px;">총 <span class="highlight default">10</span>개</p>
+	<p style="font-weight: bold; padding-left: 30px;">총 <span class="highlight default">3</span>개</p>
 	<br>
-		<div class="well" style="height: 45px; padding-top: 12px; ">		
-		<table>
+		<div class="well" style="height: 45px; padding-top: 12px; ">
+				
+		<table style="margin-left: 3px;">
 			<thead>
 				<tr>
-					<th style="width:100px; border-right: 1px dashed black; padding-right: 25px;">NO</th>
-					<th style="width:200px; border-right: 1px dashed black;">프로필 사진</th>
-					<th style="width:400px; border-right: 1px dashed black; ">홈페이지 이름</th>
-					<th style="width:250px; padding-left: 20px; ">주인장 ID</th>
+					<th style="width:200px; border-right: 1px dashed black; padding-right: 25px;">상품 이미지</th>
+					<th style="width:400px; border-right: 1px dashed black; ">상품명</th>
+					<th style="width:200px; border-right: 1px dashed black;">판매가</th>
+					<th style="width:150px; border-right: 1px dashed black;">재고</th>
+					<th style="width:150px;  border-right: 1px dashed black; padding-left: 20px; padding-right: 20px;">판매자</th>
+					<th style="width:100px; padding-right: 25px;"></th>
 				</tr>
 			</thead>
 		</table>
 		</div>
 		
-	<table style="">
+	<table style=" ">
 		
 		<tbody>
-			<tr style="padding-left: 50px ;">
-				<td style="width:120px;  padding-bottom: 10px;">1</td>
-				<td style="width:200px;  padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:400px;  padding-bottom: 10px;">김금명의 XL 쇼핑몰 사이트</td>
-				<td style="width:270px;  padding-bottom: 10px;">rlarmaaud</td>
-			</tr>
-			
-			<tr style="">
-				<td style="width:120px; padding-bottom: 10px; ">2</td>
-				<td style="width:200px; padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
-				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
-			</tr>
-				<tr style="">
-				<td style="width:120px; padding-bottom: 10px; ">2</td>
-				<td style="width:200px; padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
-				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
-			</tr>
-				<tr style="">
-				<td style="width:120px; padding-bottom: 10px; ">2</td>
-				<td style="width:200px; padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
-				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
-			</tr>
-				<tr style="">
-				<td style="width:120px; padding-bottom: 10px; ">2</td>
-				<td style="width:200px; padding-bottom: 10px;">
-					<img src="<c:url value="/resources/images/11111.jpg"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-					width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;">
+			<tr>
+				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">반팔 티셔츠</td>
+				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
+				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
+				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
+				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
+					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
 				</td>
-				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
-				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
 			</tr>
 			
+			<tr>
+				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">도라에몽 어디로든문</td>
+				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
+				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
+				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
+				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
+					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">삼겹살 목살 샤브샤브</td>
+				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
+				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
+				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
+				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
+					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
+				</td>
+			</tr>
 			
-		
 
 			
 		</tbody>
 	</table>
-	
+
 		<div style="width: 1000px; border-top:1px dashed silver; position: absolute; bottom:70px;">
 
 	    </div>
 	    
-	    	<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+	    			<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
 		        <li><a href="#">«</a></li>
 		        <li class="active"><a href="#">1</a></li>
 		        <li><a href="#">2</a></li>
@@ -187,8 +185,7 @@
 		        <li><a href="#">5</a></li>
 		        <li><a href="#">»</a></li> <br><br> <br><br>
 		    </ul>
-	    </div>
-	
+	</div>
 	
 	
 	
@@ -219,7 +216,6 @@
 	
 	
 	
-
 
 </body>
  <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
