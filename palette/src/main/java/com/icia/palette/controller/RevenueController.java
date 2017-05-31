@@ -27,13 +27,7 @@ public class RevenueController {
 				model.addAttribute("r", service.selectRevenueList(startDate,endDate,pageNo));
 			return "admin/RevenueList";
 		} 
-		
-		@RequestMapping(value = "/revenueList", method = RequestMethod.POST)
-		public String revenueListEnd(Model model,@RequestParam Date startDate,@RequestParam Date endDate,@RequestParam(defaultValue="1") int pageNo) {
-			model.addAttribute("r", service.selectRevenueList(startDate,endDate,pageNo));
-			return "admin/RevenueList";
-		} 
-
+	
 		//메인한달매출리스트
 				
 		//메인전체매출리스트
