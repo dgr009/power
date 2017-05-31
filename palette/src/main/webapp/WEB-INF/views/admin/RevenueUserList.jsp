@@ -129,7 +129,8 @@
 							<div class="col-lg-12 col-md-12 col-sm-12">
 							 <div id="godate" style="display:inline-block"></div>
 							<div id="backdate" style="display:inline-block"></div>
-							<form action="/palette/admin/revenueList" method="get">
+							<form action="/palette/admin/revenueUserList" method="get">
+							<p>회원 아이디 : <input type="text" id="userId" name="userId"></p>
 							<p><input type="date" id="startDate" name="startDate" placeholder="시작일">~<input type="date" id="endDate" name="endDate" placeholder="마감일"><button type="submit" id="btn">조회</button></p>
 							</form>
 							
