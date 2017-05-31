@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="hidden-xs col-lg-6 col-sm-6 top-info" style="margin-left: 70px; ">
                     	<span><a href="/palette/users/login" style="color:white"><i class="fa fa-unlock"></i>로그인</a></span>
-                    	<span class="hidden-sm"><a href="#"  data-toggle="modal" data-target="#registerModal" style="color:white"><i class="fa fa-user-plus"></i>회원가입</a></span>
+                    	<span class="hidden-sm"><a data-toggle="modal" data-target="#registerModal" style="color:white"><i class="fa fa-user-plus"></i>회원가입</a></span>
                	 	</div>
                     	<div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
  							<span class="hidden-sm"><i class="fa fa-calendar-o"></i>이벤트</span>

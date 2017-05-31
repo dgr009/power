@@ -290,5 +290,34 @@ public class UsersService {
 	result.put("homePage", dao.selectHomeByName(search));
 		return result;
 	}
+
+	// 토큰으로 홈 이미지 얻어오기
+	public String getHomeImgByToken(String token) {
+		String userId = null;
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_USER")) {
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return dao.getHomeImg(userId);
+	}
+
+	public int updateMailUser(Users user) {
+		return dao.userMailUpdate(user);
+	}
+
+	public int updatePhoneUser(Users user) {
+		return dao.userPhoneUpdate(user);
+	}
+
+	public int updateAddressUser(Users user) {
+		return dao.userAddressUpdate(user);
+	}
+
+	public int updatePwdUser(Users user) {
+		return dao.userPwdUpdate(user);
+	}
 	
 }

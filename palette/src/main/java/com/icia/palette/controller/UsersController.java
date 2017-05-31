@@ -81,6 +81,7 @@ public class UsersController {
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session, Model model) {
 		model.addAttribute("user", service.userInfo(session));
+		model.addAttribute("homeImg", service.getHomeImg(session));
 		return "users/info";
 	}
 
@@ -110,6 +111,31 @@ public class UsersController {
 		service.updateUser(session, user);
 		return "redirect:/users/main";
 	}
+	// 회원 정보 메일 수정하기
+		@RequestMapping(value = "/mailUpdate", method = RequestMethod.POST)
+		public String updateMailEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updateMailUser(session, user);
+			return "redirect:/users/info";
+		}
+		// 회원 정보 폰 수정하기
+		@RequestMapping(value = "/phoneUpdate", method = RequestMethod.POST)
+		public String updatePhoneEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updatePhoneUser(session, user);
+			return "redirect:/users/info";
+		}
+		// 회원 정보 주소 수정하기
+		@RequestMapping(value = "/addressUpdate", method = RequestMethod.POST)
+		public String updateAddressEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updateAddressUser(session, user);
+			return "redirect:/users/info";
+		}
+		// 회원 정보 비밀번호 수정하기
+		@RequestMapping(value = "/pwdUpdate", method = RequestMethod.POST)
+		public String updatePwdEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updatePwdUser(session, user);
+			return "redirect:/users/main";
+		}
+		
 
 	// 포인트 충전하기 페이지
 	@RequestMapping(value = "/chargePoint", method = RequestMethod.GET)
