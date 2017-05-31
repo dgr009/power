@@ -26,6 +26,7 @@ public class MainController {
 	@RequestMapping(value="/main/search",method=RequestMethod.GET)
 	public String search(@RequestParam String search,Model model){
 		model.addAttribute("result", service1.search(search));
+		model.addAttribute("search", search);
 		return "main/search";
 	}
 	

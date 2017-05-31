@@ -351,6 +351,16 @@ public class UsersDao {
 	public List<MiniHome> selectHomeByName(String search){
 		return tpl.selectList("api.dao.UsersDao.selectHomeByName", search);
 		}
+
+	//상품개수검사
+	public int selectItemByNameCnt(String search) {
+		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
+	}
+	//홈페이지개수검사
+
+	public int selectHomeByNameCnt(String search) {
+		return tpl.selectOne("api.dao.UsersDao.hompageSearchCnt", search);
+	}
 	
 	
 	

@@ -18,6 +18,6 @@ public class RevenueDaoTest {
 	
 	//@Test
 	public void select(){
-		System.out.println(dao.selectRevenueListByDateCnt(new Date(2017,05,15),new Date(2017,05,20)));
+	//	System.out.println(dao.selectRevenueListByDateCnt(new Date(2017,05,15),new Date(2017,05,20)));
 	}
 }
