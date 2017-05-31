@@ -303,7 +303,7 @@ public class UserService {
 		session.setAttribute("user", userInfo(session));
 		return result;
 	}
-
+/*
 	//메인 랭킹 표시
 	public List<MiniHome> getRankSide() {
 		RestTemplate tpl = new RestTemplate();
@@ -312,6 +312,32 @@ public class UserService {
 		String result = tpl.exchange("http://localhost:8087/api/users/main",HttpMethod.GET, requestEntity, String.class).getBody();
 		List<MiniHome> list = new Gson().fromJson(result, List.class);
 		return list;
+	}*/
+
+	//메인 아이템 리스트 표시
+	public Map<String,Object> getItemList() {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/main",HttpMethod.GET, requestEntity, String.class).getBody();
+		System.out.println("ddddd");
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 	}
+	//검색해서 아이템,홈페이지가져오기
+		public Map<String,Object> search(String search) {
+			RestTemplate tpl = new RestTemplate();
+			HttpHeaders headers = new HttpHeaders();
+			Map<String, Object> map1=new HashMap<String, Object>();
+			map1.put("search", search);
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map1),headers);
+			System.out.println("여기까진오잖아??");
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/mainSearch", HttpMethod.POST, requestEntity, String.class)
+					.getBody();
+			Map<String,Object> map = new Gson().fromJson(result, Map.class);
+			return map;
+		}
 
 }

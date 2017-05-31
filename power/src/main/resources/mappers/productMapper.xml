@@ -103,7 +103,7 @@ where rownum<=9) where rnum>=1
 select * from
 (select rownum rnum,b.* from 
 (select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
-from item i,item_img m where i.item_no=m.item_no and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
+from item i,item_img m where i.item_no=m.item_no and i.item_inven!=0 and i.user_id=#{userId} and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
 where rownum<=9) where rnum>=1 
 ]]>
 </select>
@@ -116,7 +116,7 @@ select b2.* from
       from item i,item_review r,item_img m 
       where m.img_no in(select min(img_no) from item_img group by item_no) and i.item_no=r.item_no(+) and i.item_no=m.item_no
       group by i.item_no,i.item_name,m.img_name 
-      order by avg(r.review_score) desc)b )b2 where rnum<=9;
+      order by avg(r.review_score) desc)b )b2 where rnum<=9
       ]]>
 </select>
 <!-- 등록상품삭제 -->
@@ -139,8 +139,6 @@ select count(*) from item where user_id=#{userId} and item_name=%#{itemName}%
 </select>
 
 
-
-
 <!-- 이미지리스트가져오기 -->
 <select id="selectItemImg" parameterType="int" resultType="ItemImg">
 select *from Item_img where item_no=#{itemNo}
@@ -156,19 +154,19 @@ select *from (select ROWNUM rnum, b.* from (select u.user_id,u.user_name,u.user_
 ]]>
 </select>
 <!-- 상품상세조회 -->
-<select id="selectItemDetail" parameterType="int" resultType="Item">
-select *from item where item_no=#{itemNo}
+<select id="selectItemDetail" parameterType="hashmap" resultType="Item">
+select *from item where item_no=#{itemNo} and user_id=#{userId}
 </select>
 <!-- 상품옵션가져오기-->
 <select id="selectProductOption" parameterType="int" resultType="itemOption">
 select *from item_option where item_no=#{itemNo}
 </select>
 <!-- 상품문의 작성 -->
-<insert id="InsertInquiry" parameterType="InquiryBoard">
+<insert id="insertInquiry" parameterType="InquiryBoard">
 <selectKey keyProperty="inquiryNo" resultType="int" order="BEFORE">
-select inquiryno_seq.nextval from dual
+select inquiry_board_seq.nextval from dual
 </selectKey>
-insert into inquiry_board values(#{inquiryNo},#{inquiryTitle},#{inquiryContent},sysdate,#{itemNo},#{userId})
+insert into inquiry_board values(#{inquiryNo},#{inquiryTitle},#{inquiryContent},sysdate,#{itemNo},#{userId},0)
 </insert>
 <!-- 상품문의수정 -->
 <update id="updateInquiry" parameterType="InquiryBoard">
@@ -182,12 +180,33 @@ delete inquiry_board where inquiry_no=#{inquiryNo}
 <!-- 상품문의 페이지 -->
 <select id="selectInquiry" parameterType="hashmap" resultType="InquiryBoard">
 <![CDATA[
-select * from(select rownum rnum b.*  from(select *from inquiry_board where item_no=#{itemNo})b where rownum<=#{start}) where rnum>=#{end}
+select * from 
+(select rownum rnum,b.*  from
+(select i.*from item t,inquiry_board i where t.item_no=i.item_no and i.item_no=#{itemNo} and t.user_id=#{userId} order by i.inquiry_no desc)b
+ where rownum>=#{start}) where rnum<=#{end}
 ]]>
 </select>
+
+<!-- 미답변 상품문의 글페이지개수 -->
+<select id="adminInquiryCnt" parameterType="String" resultType="int">
+select  count(*) from inquiry_board i,item m where i.inquiry_cnt=0 and i.item_no=m.item_no and m.user_id=#{userId}
+</select>
+<!-- 미답변 상품문의 글페이지 -->
+<select id="adminInquiryList" parameterType="hashmap" resultType="InquiryBoard">
+<![CDATA[
+select *from
+(select rownum rnum,b.* from
+(select i.* from inquiry_board i,item m where i.inquiry_cnt=0 and i.item_no=m.item_no and m.user_id=#{userId} order by i.inquiry_date desc)b 
+where rownum>=#{start}) where rnum<=#{end}
+]]>
+</select>
+<!--상품문의 글보기 -->
+<select id="selectInquiryView" parameterType="hashmap" resultType="InquiryBoard"> 
+select *from inquiry_board i,item t where i.item_no=t.item_no and i.inquiry_no=#{inquiryNo} and t.user_id=#{userId}
+</select>
 <!-- 상품문의 페이지 개수 -->
-<select id="selectInquiryCnt" parameterType="int" resultType="int">
-select count(*) cnt from inquiry_board where item_no=#{itemNo}
+<select id="selectInquiryCnt" parameterType="hashmap" resultType="int">
+select count(*) from inquiry_board i,item t where i.item_no=#{itemNo} and i.item_no=t.item_no and t.user_id=#{userId}
 </select>
 <!-- 상품문의 댓글가져오기 -->
 <select id="selectInquiryReple" parameterType="int" resultType="InquiryReple">
@@ -198,8 +217,13 @@ select *from inquiry_reple where inquiry_no=#{inquiryNo}
 <selectKey keyProperty="inquiryRepleNo" resultType="int" order="BEFORE">
 select inquiryrepleno_seq.nextval from dual
 </selectKey>
-insert into inquiry_reple values(#{inquiryRepleNo},#{inquiryRepleContent},sysdate,#{userId}),#{inquiryNo}
+
+insert into inquiry_reple values(#{inquiryRepleNo},#{inquiryRepleContent},sysdate,#{userId},#{inquiryNo})
 </insert>
+<!-- 상품문의글 댓글수증가 -->
+<update id="incrementInquiryCnt" parameterType="int">
+update inquiry_board set inquiry_cnt=inquiry_cnt+1 where inquiry_no=#{inquiryNo}
+</update>
 <!-- 상품문의 댓글수정 -->
 <update id="updateInquiryReple" parameterType="InquiryReple">
 update inquiry_reple set inquiry_reple_content=#{inquiryRepleContent} where inquiry_reple_no=#{inquiryRepleNo}
@@ -224,10 +248,8 @@ update item_review set review_content=#{reviewContent},review_score=#{reviewScor
 delete item_review where review_no=#{reviewNo}
 </delete>
 <!-- 상품평가리스트 -->
-<select id="selectReview" parameterType="hashmap" resultType="ItemReview">
-<![CDATA[
-select * from(select rownum rnum b.*  from(select *from item_review where item_no=#{itemNo})b where rownum<=#{start}) where rnum>=#{end}
-]]>
+<select id="selectReview" parameterType="int" resultType="ItemReview">
+select *from item_review where item_no=#{itemNo} order by review_no
 </select>
 <!-- 상품평가리스트 개수 -->
 <select id="selectReviewCnt" parameterType="int" resultType="int">
@@ -302,6 +324,8 @@ select *from small_kind where user_id=#{userId} order by small_kind_no asc
 <select id="selectBigKind" parameterType="String" resultType="BigKind">
 select*from big_kind where user_id=#{userId} order by big_kind_no asc
 </select>
-<!-- 메뉴창 bigKind 가져오기 -->
-
+<!-- 홈페이지 세팅 -->
+<select id="getHome" parameterType="String" resultType="MiniHome"> 
+select h.home_title,h.home_img,u.user_grade from users u,home h where u.user_id=h.user_id and u.user_id=#{userId}
+</select>
 </mapper>
