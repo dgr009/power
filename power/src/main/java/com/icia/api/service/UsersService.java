@@ -145,7 +145,7 @@ public class UsersService {
 	// 회원 즐겨찾기 보기
 	public Map<String, Object> userBookmarkList(String userId, int pageNo) {
 		int cnt = dao.bookmarkListCnt(userId);
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil5.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.bookmarkList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
@@ -165,7 +165,7 @@ public class UsersService {
 	// 장바구니 조회하기
 	public Map<String, Object> userBasketList(String userId, int pageNo) {
 		int cnt = dao.basketListCnt(userId);
-		Pagination pagination = PagingUtil3.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil5.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.basketList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
