@@ -23,23 +23,30 @@ public class AdminController {
 	private AdminService service;
 	@Autowired
 	private UserService uservice;
-	// 테스트
-		
+	
+	// 회원이름으로 조회
+		@RequestMapping(value="/userName", method= RequestMethod.GET)
+		public String findUserName(Model model,HttpSession session) {
+			model.addAttribute("user",service.findUserName(session));
+			return "admin/UserName";
+		}
+	
 	// 전체회원목록
-		@RequestMapping(value = "/all", method = RequestMethod.GET)
-		public String AllUser(Model model) {
-			model.addAttribute("user");
-			return "admin/AllUser";
-		} 
+		@RequestMapping(value="/all", method=RequestMethod.GET)
+	    public String totalUser(Model model, @ModelAttribute Users user){
+			model.addAttribute("result", service.totalUser(user));
+		    return "admin/AllUser";
+		    }
 	// 홈페이지 개설회원 조회 
 		@RequestMapping(value = "/openPage", method = RequestMethod.GET)
 		public String OpenPageUser() {
 			return "admin/OpenPageUser";
 		}
 	// 회원상세조회
-		@RequestMapping(value = "/detailUser", method = RequestMethod.GET)
-		public String DetailUser(Model model, Users user) {
-			model.addAttribute("user" , user);
+		
+		@RequestMapping(value = "/detail", method = RequestMethod.GET)
+		public String DetailUser(Model model, String userId) {
+			model.addAttribute("user" , service.detailUser(userId));
 			return "admin/DetailUser";
 		}
 	// 회원삭제
