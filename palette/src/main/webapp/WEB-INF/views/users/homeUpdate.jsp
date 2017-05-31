@@ -144,8 +144,8 @@
 						 	type:"post",
 						 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
 						 	complete:function(result){
-						 		alert(result)
-						 		self.close();
+						 		alert("수정 완료")
+						 		window.location.href="/palette/users/main";
 							}
 
 						 })

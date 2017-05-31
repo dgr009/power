@@ -61,6 +61,21 @@ public class UserService {
 		System.out.println(result);
 	}
 
+	//회원 홈 이미지 가져오기
+	public String getHomeImg(HttpSession session) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String) session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		System.out.println(requestEntity);
+		String result = tpl
+				.exchange("http://localhost:8087/api/users/homeImg", HttpMethod.GET, requestEntity, String.class)
+				.getBody();
+		String img = new Gson().fromJson(result, String.class);
+
+		return img;
+	}
+	
 	// 회원 정보보기
 	public Users userInfo(HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
@@ -96,6 +111,81 @@ public class UserService {
 		}
 	}
 
+	// 회원 정보 메일 수정
+		public void updateMailUser(HttpSession session, Users user) {
+			RestTemplate tpl = new RestTemplate();
+			System.out.println("Service User" + user);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("token", (String) session.getAttribute("token"));
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/mailUpdate", HttpMethod.PUT, requestEntity, String.class)
+					.getBody();
+
+			System.out.println(result);
+			if (!result.equals("수정 실패")) {
+				Users users = userInfo(session);
+				session.setAttribute("user", users);
+			}
+		}
+		
+		// 회원 정보 전화번호 수정
+		public void updatePhoneUser(HttpSession session, Users user) {
+			RestTemplate tpl = new RestTemplate();
+			System.out.println("Service User" + user);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("token", (String) session.getAttribute("token"));
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/phoneUpdate", HttpMethod.PUT, requestEntity, String.class)
+					.getBody();
+
+			System.out.println(result);
+			if (!result.equals("수정 실패")) {
+				Users users = userInfo(session);
+				session.setAttribute("user", users);
+			}
+		}
+		
+		// 회원 정보 주소 수정
+		public void updateAddressUser(HttpSession session, Users user) {
+			RestTemplate tpl = new RestTemplate();
+			System.out.println("Service User" + user);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("token", (String) session.getAttribute("token"));
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/addressUpdate", HttpMethod.PUT, requestEntity, String.class)
+					.getBody();
+
+			System.out.println(result);
+			if (!result.equals("수정 실패")) {
+				Users users = userInfo(session);
+				session.setAttribute("user", users);
+			}
+		}
+		
+		// 회원 정보 비밀번호 수정
+		public void updatePwdUser(HttpSession session, Users user) {
+			RestTemplate tpl = new RestTemplate();
+			System.out.println("Service User" + user);
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("token", (String) session.getAttribute("token"));
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(user), headers);
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/pwdUpdate", HttpMethod.PUT, requestEntity, String.class)
+					.getBody();
+
+			System.out.println(result);
+			if (!result.equals("수정 실패")) {
+				session.removeAttribute("token");
+				session.removeAttribute("user");
+			}
+		}
 	// 포인트 충전하기
 	public void chargePoint(HttpSession session, String userId, int tradePoint) {
 		RestTemplate tpl = new RestTemplate();
@@ -303,7 +393,7 @@ public class UserService {
 		session.setAttribute("user", userInfo(session));
 		return result;
 	}
-
+/*
 	//메인 랭킹 표시
 	public List<MiniHome> getRankSide() {
 		RestTemplate tpl = new RestTemplate();
@@ -312,6 +402,32 @@ public class UserService {
 		String result = tpl.exchange("http://localhost:8087/api/users/main",HttpMethod.GET, requestEntity, String.class).getBody();
 		List<MiniHome> list = new Gson().fromJson(result, List.class);
 		return list;
+	}*/
+
+	//메인 아이템 리스트 표시
+	public Map<String,Object> getItemList() {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity requestEntity = new HttpEntity(headers);
+		String result = tpl.exchange("http://localhost:8087/api/users/main",HttpMethod.GET, requestEntity, String.class).getBody();
+		System.out.println("ddddd");
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 	}
+	//검색해서 아이템,홈페이지가져오기
+		public Map<String,Object> search(String search) {
+			RestTemplate tpl = new RestTemplate();
+			HttpHeaders headers = new HttpHeaders();
+			Map<String, Object> map1=new HashMap<String, Object>();
+			map1.put("search", search);
+			headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+			HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map1),headers);
+			System.out.println("여기까진오잖아??");
+			String result = tpl
+					.exchange("http://localhost:8087/api/users/mainSearch", HttpMethod.POST, requestEntity, String.class)
+					.getBody();
+			Map<String,Object> map = new Gson().fromJson(result, Map.class);
+			return map;
+		}
 
 }

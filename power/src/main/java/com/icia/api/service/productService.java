@@ -85,18 +85,62 @@ public class productService {
 		}
 		//제품상세정보보기
 		@Transactional
-		public String selectItemDetail(int itemNo){
-			Item item=dao.selectItemDetail(itemNo);
+		public String selectItemDetail(Map<String, Object> map){
+			int itemNo=(Integer)map.get("itemNo");
+			Item item=dao.selectItemDetail(map);
+			if(item==null)return null;
 			List<ItemImg> imgList=dao.selectItemImg(itemNo);
 			List<ItemOption> itemOption=dao.selectProductOption(itemNo);
 			HashMap<String,  Object> result=new HashMap<String, Object>();
 			result.put("item", item);
 			result.put("itemImg", imgList);
 			result.put("itemOption", itemOption);
+			result.put("review",dao.selectReview(itemNo));
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			return gson.toJson(result);	
 			
 		}
+		//홈피주인문의 관리리스트
+		public String adminInquiryList(Map<String, Object> map) {
+		Map<String, Object> result=new HashMap<String, Object>();
+		int pageNo=(Integer) map.get("pageNo");
+		String userId=(String) map.get("userId");
+		Pagination p=PagingUtil.setPageMaker(pageNo, dao.adminInquiryCnt(userId));
+		map.put("start", p.getStartArticle());
+		map.put("end", p.getEndArticle());
+		result.put("result", dao.adminInquiryList(map));
+		result.put("pagination", p);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(result);	
+		}
+		//문의게시판리스트
+		@Transactional
+		public String inquiryList(Map<String, Object> map) {
+			Map<String, Object> result=new HashMap<String, Object>();
+			int itemNo=(Integer) map.get("itemNo");
+			int pageNo=(Integer)map.get("pageNo");
+			
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(map));
+			map.put("start", p.getStartArticle());
+			map.put("end", p.getEndArticle());
+			result.put("result", dao.selectInquiry(map));
+			System.out.println(dao.selectInquiry(map).toString());
+			result.put("pagination", p);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		//상품문의글보기,리플도
+		@Transactional
+		public String inquiryView(Map<String, Object> map) {
+			Map<String, Object> result=new HashMap<String, Object>();
+			result.put("inquiry", dao.selectInquiryView(map));
+			if(dao.selectInquiryView(map)!=null){
+			result.put("reple", dao.selectInquiryReple(map));
+			}
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		
 	//상품문의작성
 	public void insertInquiry(InquiryBoard i){
 		dao.insertInquiry(i);
@@ -109,28 +153,13 @@ public class productService {
 	public void deleteInquiry(int inquiryNo){
 		dao.deleteInquiry(inquiryNo);
 	}
-	//상품문의 페이지로
-	@Transactional
-	public String selectInquiry(int itemNo,int pageNo){
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(itemNo));
-		map.put("start", p.getStartArticle());
-		map.put("end", p.getEndArticle());
-		map.put("itemNo", itemNo);
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectInquiry(map));
-		result.put("pagination", p);
-		return new Gson().toJson(result);	
-	}
-	//상품문의 리플 다가져오기
-	public String selectInquiryReple(int inquiryNo){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectInquiryReple(inquiryNo));
-		return new Gson().toJson(result);
-	}
+
 	//상품문의 댓글작성
+	@Transactional
 	public void insertInquiryReple(InquiryReple i){
 		dao.insertInquiryReple(i);
+		int inquiryNo=i.getInquiryNo();
+		dao.incrementInquiryCnt(inquiryNo);
 	}
 	//상품문의 댓글수정
 	public void updateInquiryReple(InquiryReple i){
@@ -161,7 +190,7 @@ public class productService {
 		map.put("end", p.getEndArticle());
 		map.put("itemNo", itemNo);
 		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectReview(map));
+		result.put("result", dao.selectReview(itemNo));
 		result.put("pagination", p);
 		return new Gson().toJson(result);	
 	}
@@ -231,6 +260,7 @@ public class productService {
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		result.put("bigKind", dao.selectbigKind(userId));
 		result.put("smallKind",dao.selectSmallKind(userId));
+		result.put("home", dao.selectMiniHome(userId));
 		return new Gson().toJson(result);
 	}
 	//배송하기
@@ -307,6 +337,8 @@ public class productService {
 			return new Gson().toJson(result);
 		}
 	
+	
+
 	
 	
 }

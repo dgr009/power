@@ -47,7 +47,6 @@ public class MiniHomeController {
 		model.addAttribute("mini2", service.miniHomeSelectNoticeList(session, userId, pageNo));
 		return "mini/noticeList";
 	}
-	
 	//자유게시판 추가 시작
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.GET)
 	public String InsertStart(HttpSession session,@PathVariable String homeId, Model model){
@@ -62,7 +61,6 @@ public class MiniHomeController {
 	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free){
 		String result = service.miniHomeRegisterFree(session, free);
 		//return 값으로 freeNo를 넘겼으므로 result안에 들어있다
-		
 		return "redirect:freeView/"+result;
 	}
 	

@@ -11,11 +11,11 @@ import com.icia.api.dao.*;
 @ContextConfiguration("dao-test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class AdminDaoTest {
-	@Autowired
+	//@Autowired
 	public AdminDao dao;
 	
 	//회원정보 조회
-		@Test 
+		//@Test 
 		public void selectss(){
 			System.out.println(dao.DeleteUser("qhrals8"));
 		}

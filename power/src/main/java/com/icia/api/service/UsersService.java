@@ -145,7 +145,7 @@ public class UsersService {
 	// 회원 즐겨찾기 보기
 	public Map<String, Object> userBookmarkList(String userId, int pageNo) {
 		int cnt = dao.bookmarkListCnt(userId);
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil5.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.bookmarkList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
@@ -165,7 +165,7 @@ public class UsersService {
 	// 장바구니 조회하기
 	public Map<String, Object> userBasketList(String userId, int pageNo) {
 		int cnt = dao.basketListCnt(userId);
-		Pagination pagination = PagingUtil3.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil5.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.basketList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
@@ -270,4 +270,54 @@ public class UsersService {
 	public int insertReview(ItemReview review, int orderNo) {
 		return dao.insertReview(review, orderNo);
 	}
+	
+	//메인 랭킹, 아이템 리스트 가져오기
+	@Transactional
+	public Map<String,Object> mainList(){
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("recent1", dao.selectItemListOrderByDate1());
+		map.put("recent2", dao.selectItemListOrderByDate2());
+		map.put("inven", dao.selectItemListOrderByInven());
+		map.put("score", dao.selectItemListOrderByScore());
+		map.put("rank", dao.getRankSide());
+		return map;
+	}
+	//메인 검색해서 아이템,홈페이지리스트가져오기
+	@Transactional
+	public Map<String, Object> search(String search){
+	Map<String, Object> result=new HashMap<String, Object>();
+	result.put("itemList", dao.selectItemByName(search));
+	result.put("homePage", dao.selectHomeByName(search));
+		return result;
+	}
+
+	// 토큰으로 홈 이미지 얻어오기
+	public String getHomeImgByToken(String token) {
+		String userId = null;
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_USER")) {
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return dao.getHomeImg(userId);
+	}
+
+	public int updateMailUser(Users user) {
+		return dao.userMailUpdate(user);
+	}
+
+	public int updatePhoneUser(Users user) {
+		return dao.userPhoneUpdate(user);
+	}
+
+	public int updateAddressUser(Users user) {
+		return dao.userAddressUpdate(user);
+	}
+
+	public int updatePwdUser(Users user) {
+		return dao.userPwdUpdate(user);
+	}
+	
 }
