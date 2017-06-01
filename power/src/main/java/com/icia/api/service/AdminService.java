@@ -65,4 +65,29 @@ public class AdminService {
 	public List<OrderList> RevenueUserTotal(OrderList orderList) {
 		return dao.RevenueUserTotal(orderList); 
 	}
+	
+	//관리자 토큰 얻기
+	public String adminLogin(Admin admin) {
+		Admin rAdmin = dao.adminLogin(admin);
+		// 로그인에 실패하면 null이 돌아와 바로 비교하면 Null Pointer Exception
+		if (rAdmin != null) {
+			return TokenUtils.getTokenAdmin(rAdmin);
+		} else {
+			return null;
+		}
+	}
+	
+	//관리자 토큰으로 정보 얻기
+	public Admin getAdminByToken(String token) {
+		Admin admin = new Admin();
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_ADMIN")) {
+				admin.setAdminId(TokenUtils.get(token, "adminId"));
+				admin.setAdminPwd(TokenUtils.get(token, "adminPwd"));
+			}
+		}
+		return admin;
+	}
 }

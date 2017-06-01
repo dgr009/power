@@ -35,9 +35,15 @@ public class AdminController {
 		public String loginEnd(HttpSession session, @RequestParam String adminId, @RequestParam String adminPwd,
 				Model model) {
 			int result = service.login(adminId, adminPwd, session);
+			return "redirect:/admin/revenueList";
+		}
+		
+		//로그아웃
+		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		public String logout(HttpSession session) {
+			service.logout(session);
 			return "redirect:/users/main";
 		}
-	
 	// 회원이름으로 조회
 		@RequestMapping(value="/userName", method= RequestMethod.GET)
 		public String findUserName(Model model,HttpSession session) {

@@ -62,4 +62,11 @@ public class AdminDao {
 		public List<OrderList> RevenueUserTotal(OrderList orderList) {
 			return tpl.selectOne("api.dao.AdminDao.userTotalRevenue", orderList);
 		}
+		//관리자 로그인
+		public Admin adminLogin(Admin admin) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("adminId", admin.getAdminId());
+			map.put("adminPwd", admin.getAdminPwd());
+			return tpl.selectOne("api.dao.AdminDao.login", map);
+		}
 }

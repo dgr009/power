@@ -83,4 +83,10 @@
   		select sum(order_price) from order_statement 
   	]]>
   	</select>
+  	
+  	<!-- 관리자 로그인 -->
+  	<select id="login" parameterType="map" resultType="Admin">
+  		select * from admin where admin_id=#{adminId} and admin_pwd=#{adminPwd}
+  	</select>
+  	
 </mapper>

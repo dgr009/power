@@ -25,7 +25,7 @@
 		<div class="container">
 			<div class="row">
             <div class="col-sm-6">
-                <p class="copyright" style="color: black;">© Copyright 2015 Edge | Powered by  <a href="http://www.jqueryrain.com/">jQuery Rain</a></p>
+                <p class="copyright" style="color: black;">© Copyright 2015 Edge | Powered by  <a href="/palette/admin/login">jQuery Rain</a></p>
             </div>
 
             <div class="col-sm-6 ">

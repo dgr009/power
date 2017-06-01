@@ -29,7 +29,9 @@
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="#" class="btn btn-block btn-default">광고관리</a>
 								</div>
-								
+								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/admin/logout" class="btn btn-block btn-default">로그아웃</a>
+								</div>
 
 							</div>
 </body>
