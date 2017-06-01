@@ -71,17 +71,22 @@
 	<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;">
 	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style="padding-bottom: 15px; margin-left: 120px;">
-                                <li><a href="#" style=" width: 85px; text-align: center; color:black;  border-radius: 35px;">내 정보보기</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width:85px; text-align: center;  font-size: 1.1em;">내 정보보기</a>
 
                                 </li>
-                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; font-size: 1.15em; color:#727cb6; font-weight:bold;">즐겨찾기</a>
+
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em;">즐겨찾기</a>
 
                                 </li>
-                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center; font-size: 1.1em;">장바구니</a>
+
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em;">장바구니</a>
+
+                                </li>
+
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center; font-size: 1.1em;">주문내역</a>
 								</li>
-								 <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center; font-size: 1.1em;">주문내역</a>
-								</li>
-								 <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em;">거래내역</a>
+								
+								 <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.15em; color:#727cb6; font-weight:bold;">거래내역</a>
 								</li>
                                	</ul>
                         </div>
@@ -93,107 +98,138 @@
 </div>
 
 <!-- 회원 정보 -->
-<div class="col-xs-12 col-xs-12 col-xs-12" ><br><br>
+<div class="col-xs-12 col-xs-12 col-xs-12"  style=""><br><br>
 
 	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
 	
 	<div class="col-xs-10 col-xs-10 col-xs-10" >
 	
 	
-	<div style="width: 1000px; height: 500px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
+	<div style="width: 1000px; height: 200px; border : 1px solid silver;  position: relative;"> 
 	
-	<p style="padding-top:30px; padding-left: 30px;">
-		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;">qhrals8</span>님의 <span class="highlight light">즐겨찾기</span> 추가 목록 
-	</p>
-	<p style="font-weight: bold; padding-left: 30px;">총 <span class="highlight default">3</span>개</p>
-	<br>
-		<table style="width: 998px;"> 
+	<div style="width:355px; height: 114px; display: inline-block;  margin-left: 40px;  border-right: 1px dashed gray; position: absolute; bottom:40px;">
+	
+	<p style="padding-top: 5px; font-size: 1.4em; font-weight: bold;">&nbsp;&nbsp;&nbsp;팔레트 포인트 잔액 : 
+	<span style="color:#727cb6; font-size: 1.2em;">
+	10.000</span>&nbsp;원</p><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button type="button" id="btnLogin" class="btn_login03"style="border-radius:20px; text-align: center; width :95px; height :35px; border:0; background:#727cb6; margin-left: 10px; position: absolute; top: 50px;">
+	<span id="login" style="color:white; font-size: 0.9em; font-weight: bold;">
+				포인트 충전</span>
+	</button>
+	<button type="button" id="btnLogin" class="btn_login03"style="border-radius:20px; text-align: center; width :95px; height :35px; border:0; background:white; border:1px solid #727cb6; margin-left: 10px; position: absolute; top: 50px; left: 150px;">
+	<span id="login" style="color:#727cb6; font-size: 0.9em; font-weight: bold;">
+				포인트 환급</span>
+			</button>
+	</div>
+	<div style="width:550px; height : 114px; display: inline-block;  margin : 35px; margin-top: 50px; position: absolute; left:400px; margin-left: none; " >
+		<p>팔레트 포인트는 이용권을 구매하실 때 사용 하실 수 있습니다.</p>
+		<p>결제금액은 팔레트 충전금액에 부가가치세 10%가 포함된 실제 결제된 금액입니다.</p>
+		<p>팔레트 충전금액과 내역은 마이페이지 > 결제목록에서 확인 가능합니다.</p>
+	</div>
+	
+	
+	</div>
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+<br>	
+	<table style="width: 1000px;"> 
 		<thead >
 			<tr style="background: #fafafa;  border: 1px solid #e6e6e6; border-left: none; border-right: none; border-top: 2px solid silver;">
-				<th style="text-align: center; height: 35px; width: 65px;">NO</th>
-				<th style="text-align: center; width: 100px;">사진</th>
-				<th style="text-align: center;">홈페이지 이름</th>
-				<th style="text-align: center; width: 220px;"><i class="fa fa-user" style="color:gray;">&nbsp;</i>주인장 ID </th>
+				<th style="text-align: center; height: 35px;">NO</th>
+				<th style="text-align: center;">날짜</th>
+				<th style="text-align: center;">유형</th>
+				<th style="text-align: center;">금액</th>
 			</tr>
 		</thead>
 		<tbody style="border: 1px solid #e6e6e6; border-left: none;  border-right: none;">
 			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
 				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;">qhrals8</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 결제</td>
+				<td style="text-align: center;">100.000원</td>
 			</tr>
-			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
-				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;">qhrals8</td>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center;">100.000원</td>
 			</tr>
-			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
-				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;">qhrals8</td>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
 			</tr>
-			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
-				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;">qhrals8</td>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
 			</tr>
-			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
-				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;">qhrals8</td>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
 			</tr>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
+			</tr>
+			<tr>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">2</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">2015/11/11</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">포인트 환급</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">100.000원</td>
+			</tr>
+			
 		</tbody>
-	</table>
-
-	    
-	    			<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+	</table>	<br>
+	 	<ul class="pagination" style="margin-left: 380px;  bottom: 23px; height: 10px; ">
 		        <li><a href="#">«</a></li>
 		        <li class="active"><a href="#">1</a></li>
 		        <li><a href="#">2</a></li>
 		        <li><a href="#">3</a></li>
 		        <li><a href="#">4</a></li>
 		        <li><a href="#">5</a></li>
-		        <li><a href="#">»</a></li> <br><br> <br><br>
-		    </ul>
+		        <li><a href="#">»</a></li> 
+		    </ul>   
+	<br><br><br><br>
 	</div>
 	
-	
-	
-	
-	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
-	</div>
+	<div class="col-xs-12 col-xs-12 col-xs-12"  style="border-top: 1px solid silver; padding:0;">
+		<div class="navbar-collapse collapse" style="width: 700px; height:30px; display: inline-block; padding:0; ">
+            <ul class="nav navbar-nav sm"  style= "margin-left: 335px;">
+                <li>
+                	<a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; ">메인으로</a>
+                </li>
+                <li>
+                	<a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; ">고객센터</a>
+                </li>
+            </ul>
+        </div>
+	<br><br><br>
+	<div class="col-xs-12 col-xs-12 col-xs-12"  style="border-top: 1px solid #e6e6e6; bottom:10px; padding:0;"></div><br>
+		<p style="font-size: 0.85em; color:gray; text-align: center;">서울시 강남구 테헤란로 103길 17대표이사 신원수, 박성훈사업자등록번호 138-81-05876통신판매업 신고번호 제2011-서울강남-02008호</p>
+		<p style="font-size: 0.8em; color:gray;text-align: center;">
+		문의전화(평일 09:00~18:00) 1566-7727 (유료)이메일 : meloninformation@iloen.com© 2016. LOEN Entertainment, Inc. ALL RGIHTS RESERVED.</p>
+	<br>
 </div>
-<!-- 회원 정보 footer -->
-
-<div class="col-xs-12 col-xs-12 col-xs-12" >
-
-	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
-	
-	<div class="col-xs-10 col-xs-10 col-xs-10">
-	
-	
-	<div style="width: 1000px; height: 100px; background: #fbfbfb;  border : 1px solid silver; border-top: none; "> 	
-		<p style="padding : 37px; padding-left: 115px; font-size: 1.1em"> 쓰면 쓸 수록 커지는 등급별 혜택을 누리세요! &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span style="color:#727cb6; font-weight: bold;">홈페이지 결제권 구매하고 등급별 혜택 받기 !</span>
-		</p>
-	</div><br><br>
-	<br>
-	<br>
-	
-	</div>
-	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
-	</div>
-	
-	
-	
-
-
-
 </body>
  <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
