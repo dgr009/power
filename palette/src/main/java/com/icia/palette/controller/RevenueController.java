@@ -27,7 +27,13 @@ public class RevenueController {
 				model.addAttribute("r", service.selectRevenueList(startDate,endDate,pageNo));
 			return "admin/RevenueList";
 		} 
-	
+		//회원매출내역페이지로
+				@RequestMapping(value = "/revenueUserList", method = RequestMethod.GET)
+				public String revenueUserList(Model model,@RequestParam(defaultValue=" ") String userId,@RequestParam(required=false) Date startDate,@RequestParam(required=false) Date endDate,@RequestParam(defaultValue="1") int pageNo) {
+					if(startDate!=null)
+						model.addAttribute("r", service.selectRevenueUserList(userId,startDate,endDate,pageNo));
+					return "admin/RevenueUserList";
+				} 
 		//메인한달매출리스트
 				
 		//메인전체매출리스트

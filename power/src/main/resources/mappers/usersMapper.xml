@@ -126,6 +126,24 @@
 		update users set user_pwd=#{userPwd},user_address=#{userAddress},user_post=#{userPost},user_mail=#{userMail},
 			user_phone=#{userPhone} where user_id=#{userId}
 	</update>
+	
+	<!-- 개인 회원 정보 메일 변경 -->
+	<update id="usersMailUpdate" parameterType="Users">
+		update users set user_mail=#{userMail} where user_id=#{userId}
+	</update>
+	<!-- 개인 회원 정보 전화번호 변경 -->
+	<update id="usersPhoneUpdate" parameterType="Users">
+		update users set user_phone=#{userPhone} where user_id=#{userId}
+	</update>
+	<!-- 개인 회원 정보 주소 변경 -->
+	<update id="usersAddressUpdate" parameterType="Users">
+		update users set user_address=#{userAddress},user_post=#{userPost} where user_id=#{userId}
+	</update>
+	<!-- 개인 회원 정보 비밀번호 변경 -->
+	<update id="usersPwdUpdate" parameterType="Users">
+		update users set user_pwd=#{userPwd} where user_id=#{userId}
+	</update>
+	
 	<!-- 개인 회원 비활성화(탈퇴) -->
 	<update id="usersDelete" parameterType="string">
 		update users set enabled=0 where user_id=#{userId}
@@ -292,7 +310,8 @@
 	<!-- 아이템 검색 개수 -->
 	<select id="productSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
-		select count(*) from item where item_name like '%' ||  #{search} || '%'
+		select count(*)
+		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
 		]]>
 	</select>
 	<!-- 아이템 검색 -->
@@ -308,21 +327,20 @@
 	<!-- 홈페이지 검색 개수 -->
 	<select id="hompageSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
-		select count(*) from home where item_name like '%' ||  #{search} || '%'
+		select count(*) from home where user_id like '%' ||  #{search} || '%'
 		]]>
 	</select>
 	<!-- 홈페이지 검색 -->
 	<select id="selectHomeByName" parameterType="String" resultType="MiniHome">
 		<![CDATA[
-		
-		
 		select * 
 		from home where user_id like '%' ||  #{search} || '%' 
-	 
 		]]>
 	</select>
 	
-	
+	<select id="getHomeImg" parameterType="string" resultType="string">
+		select home_img from home where user_id=#{userId}
+	</select>
 	
 	
 	

@@ -14,7 +14,7 @@
 												<a href="/palette/users/info" class="btn btn-block btn-default">내 정보보기</a>
 											</li>
 											<li>
-												<a href="/palette/users/bookmarkList"" class="btn btn-block btn-default">내 즐겨찾기</a>
+												<a href="/palette/users/bookmarkList" class="btn btn-block btn-default">내 즐겨찾기</a>
 											</li>
 											<li>
 												<a href="/palette/users/basketList" class="btn btn-block btn-default">내 장바구니</a>

@@ -78,22 +78,44 @@
 	
 </script>
 </head>
-<body>
+<body style="background: #fafafa;">
 	<div class="col-xs-12 col-xs-12 col-xs-12" style="padding: 0; background: #727cb6; height: 15px;"></div>
 	<br><br><br><br>
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
-	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center;">
-	 <form  action="/palette/users/login"  novalidate="novalidate" method="post">
-		<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:230px; height: 60px;"><br><br><br><br>
-		<input type="text" name="userId" style="height: 50px; width: 370px; padding-left: 15px;" placeholder="아이디"><br>
-		<input type="password" name="userPwd" style="padding-left: 15px; height: 50px; margin-left:5px;  width: 370px;border-right:  1px solid gray; border-left:  1px solid gray; border-top:  0px solid gray; border-bottom:  1px solid gray;"placeholder="비밀번호">
-		<br><br>
-			<p style="text-align: right;  color:gray; font-size: 0.85em; width:230px; margin-left :45%; height: 15px;"><span id="d1"><a href="/palette/users/findId">아이디 찾기</a></span> <sapn class="bar">ㅣ</sapn> <span id="d2"><a href="/palette/users/findPwd">비밀번호 찾기</a></span> <sapn class="bar">ㅣ</sapn> <span id="d3"><a href="#">회원가입</a></span>&nbsp;&nbsp;</p>
+	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center; position: relative;">
+	
+		<img alt="" src="images/로고4.png" style="width:230px; height: 60px;"><br><br><br><br>
+		
+		<div style="width: 550px; height: 558px; display: inline-block;">
+		<div style="width: 550px; height: 72px; display: inline-block;">
+			<ul>
+				<li id="a" style="width: 273px; height: 72px; display: inline-block; padding-top: 20px; font-size: 1.70em;">
+					<a href="#" style="padding:20px; ">아이디 찾기</a>
+				</li>
+				<li id="a" style="width: 273px; height: 72px; display: inline-block; padding-top: 20px; font-size: 1.70em;">
+					<a href="#" style="padding:20px; border-bottom: 5px solid #727cb6; ">비밀번호 찾기</a>
+				</li>
+			</ul>
+		</div>
+		<div style="width: 550px; height: 700px; padding:50px;  border : 2px solid #e1e1e1; background:white; position: relative; margin: 0; display: inline-block;" >
+			<p style="text-align: left; font-size: 1.3em;">&nbsp;&nbsp;비밀번호를 찾고자 하는 아이디를 입력하세요</p><br>
+			<p style="text-align: left; font-size: 1.15em;">&nbsp;&nbsp;회원정보에 등록된 이메일과 입력하신 이메일이 같아야<br> &nbsp;&nbsp;비밀번호를 재설정 하실 수 있습니다.</p>
+			<br><br>
+			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;아이디&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="&nbsp;&nbsp;아이디 입력" style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p><br><br>
+			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="&nbsp;&nbsp;이름 입력(2자 이상)" style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p><br><br>
+			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" placeholder="&nbsp;&nbsp;이메일 입력"  style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p>
+			<br><br>
+			<div style="width: 400px; height:20px; color:gray; border-top: 1px solid silver; display: inline-block; position: absolute; text-align:left; left: 70px; padding-top: 20px;">
+				팔레트 아이디로 비밀번호를 재설정 가능합니다.
+			</div>
+			<br><br>
+			<br><br>
+			<button type="button" id="btnLogin" class="btn_login03"style="text-align: center; width :264px; height :66px; border:0; background:#727cb6; margin-left: 5px;"><span id="login" style="color:white;">
+				비밀번호 찾기</span>
+			</button>
+		</div>
+		</div>
 				<br>
-			
-				<button type="submit" id="btnLogin" title="로그인 " class="btn_login03"style="text-align: center; margin-left: 5px;"><span id="login">로그인</span></button>
-				
-	</form>				
 				<br>
 				<br>
 				<br>
@@ -102,198 +124,11 @@
 				<p id="en">이용약관 <sapn class="bar">ㅣ</sapn> 개인정보처리방침 <sapn class="bar">ㅣ</sapn> 
 				고객센터 <sapn class="bar">ㅣ</sapn> 배송문의 </p>
 				<br>
-				<p id="en2">© PALETTE Entertainment, Inc. All rights reserved.</p>
-	</div> 
+				<p id="en2">© PALETTE Entertainment, Inc. All rights reserved.</p><br>
+				<br>
+	</div> <br>
+				<br>
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
-	
-	
+	<br>
 </body>
- 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
-					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.cookie.js"/>"></script>
-					<!-- jQuery cookie -->
-					<script type="text/javascript" src="<c:url value="/resources/js/styleswitch.js"/>"></script>
-					<!-- Style Colors Switcher -->
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.smartmenus.min.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.smartmenus.bootstrap.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.jcarousel.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jflickrfeed.js"/>"></script>
-					<script type="text/javascript"
-						src="<c:url value="/resources/js/jquery.magnific-popup.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
-
-
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $.fn.carousel = function (op) {
-                                var op, ui = {};
-                                op = $.extend({
-                                    speed: 500,
-                                    autoChange: false,
-                                    interval: 5000
-                                }, op);
-                                ui.carousel = this;
-                                ui.items = ui.carousel.find('.carousel-item');
-                                ui.itemsLen = ui.items.length;
-
-                                // CREATE CONTROLS
-                                ui.ctrl = $('<div />', { 'class': 'carousel-control' });
-                                ui.prev = $('<div />', { 'class': 'carousel-prev' });
-                                ui.next = $('<div />', { 'class': 'carousel-next' });
-                                ui.pagList = $('<ul />', { 'class': 'carousel-pagination' });
-                                ui.pagItem = $('<li></li>');
-                                for (var i = 0; i < ui.itemsLen; i++) {
-                                    ui.pagItem.clone().appendTo(ui.pagList);
-                                }
-                                ui.prev.appendTo(ui.ctrl);
-                                ui.next.appendTo(ui.ctrl);
-                                ui.pagList.appendTo(ui.ctrl);
-                                ui.ctrl.appendTo(ui.carousel);
-                                ui.carousel.find('.carousel-pagination li').eq(0).addClass('active');
-                                ui.carousel.find('.carousel-item').each(function () {
-                                    $(this).hide();
-                                });
-                                ui.carousel.find('.carousel-item').eq(0).show().addClass('active');
-
-
-                                // CHANGE ITEM
-                                var changeImage = function (direction, context) {
-                                    var current = ui.carousel.find('.carousel-item.active');
-
-                                    if (direction == 'index') {
-                                        if (current.index() === context.index())
-                                            return false;
-
-                                        context.addClass('active').siblings().removeClass('active');
-
-                                        ui.items.eq(context.index()).addClass('current').fadeIn(op.speed, function () {
-                                            current.removeClass('active').hide();
-                                            $(this).addClass('active').removeClass('current');
-                                        });
-                                    }
-
-                                    if (direction == 'prev') {
-                                        if (current.index() == 0) {
-                                            ui.carousel.find('.carousel-item:last').addClass('current').fadeIn(op.speed, function () {
-                                                current.removeClass('active').hide();
-                                                $(this).addClass('active').removeClass('current');
-                                            });
-                                        }
-                                        else {
-                                            current.prev().addClass('current').fadeIn(op.speed, function () {
-                                                current.removeClass('active').hide();
-                                                $(this).addClass('active').removeClass('current');
-                                            });
-                                        }
-                                    }
-
-                                    if (direction == undefined) {
-                                        if (current.index() == ui.itemsLen - 1) {
-                                            ui.carousel.find('.carousel-item:first').addClass('current').fadeIn(300, function () {
-                                                current.removeClass('active').hide();
-                                                $(this).addClass('active').removeClass('current');
-                                            });
-                                        }
-                                        else {
-                                            current.next().addClass('current').fadeIn(300, function () {
-                                                current.removeClass('active').hide();
-                                                $(this).addClass('active').removeClass('current');
-                                            });
-                                        }
-                                    }
-                                    ui.carousel.find('.carousel-pagination li').eq(ui.carousel.find('.carousel-item.current').index()).addClass('active').siblings().removeClass('active');
-                                };
-
-                                ui.carousel
-                                    .on('click', 'li', function () {
-                                        changeImage('index', $(this));
-                                    })
-                                    .on('click', '.carousel-prev', function () {
-                                        changeImage('prev');
-                                    })
-                                    .on('click', '.carousel-next', function () {
-                                        changeImage();
-                                    });
-
-                                // AUTO CHANGE
-                                if (op.autoChange) {
-                                    var changeInterval = setInterval(changeImage, op.interval);
-                                    ui.carousel
-                                        .on('mouseenter', function () {
-                                            clearInterval(changeInterval);
-                                        })
-                                        .on('mouseleave', function () {
-                                            changeInterval = setInterval(changeImage, op.interval);
-                                        });
-                                }
-                                return this;
-                            };
-
-                            $('.porDetCarousel').each(function () {
-                                $(this).carousel({
-                                    autoChange: true
-                                });
-                            });
-                        });
-                    </script>
-                    <script>
-    (function ($) {
-        var $container = $('.masonry_wrapper'),
-                colWidth = function () {
-                    var w = $container.width(),
-                            columnNum = 1,
-                            columnWidth = 0;
-                    if (w > 1200) {
-                        columnNum  = 3;
-                    } else if (w > 900) {
-                        columnNum  = 3;
-                    } else if (w > 600) {
-                        columnNum  = 2;
-                    } else if (w > 300) {
-                        columnNum  = 1;
-                    }
-                    columnWidth = Math.floor(w/columnNum);
-                    $container.find('.item').each(function() {
-                        var $item = $(this),
-                                multiplier_w = $item.attr('class').match(/item-w(\d)/),
-                                multiplier_h = $item.attr('class').match(/item-h(\d)/),
-                                width = multiplier_w ? columnWidth*multiplier_w[1]-4 : columnWidth-4,
-                                height = multiplier_h ? columnWidth*multiplier_h[1]*0.5-4 : columnWidth*0.5-4;
-                        $item.css({
-                            width: width,
-                            height: height
-                        });
-                    });
-                    return columnWidth;
-                }
-
-        function refreshWaypoints() {
-            setTimeout(function() {
-            }, 1000);
-        }
-        function setPortfolio() {
-            setColumns();
-            $container.isotope('reLayout');
-        }
-
-        isotope = function () {
-            $container.isotope({
-                resizable: true,
-                itemSelector: '.item',
-                masonry: {
-                    columnWidth: colWidth(),
-                    gutterWidth: 0
-                }
-            });
-        };
-        isotope();
-        $(window).smartresize(isotope);
-    }(jQuery));
-</script>
-                   <script src="<c:url value="/resources/js/main.js"/>"></script>
 </html>

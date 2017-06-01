@@ -88,8 +88,8 @@ if(id === idid){
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
-							</h1>
+									    <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
+								</h1>
 						</div>
 					</div>
 					

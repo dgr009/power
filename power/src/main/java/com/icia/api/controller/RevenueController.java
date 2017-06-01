@@ -23,4 +23,13 @@ public class RevenueController {
 		return gson.toJson(maps);
 
 	}
+	
+	// 관리자 매출내역 보기
+		@RequestMapping(value = "/revenueUserList", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+		public String tradeUserList(@RequestBody Map<String, Object> map) {
+			Map<String, Object> maps = service.selectRevenueUserList(map,(Integer)map.get("pageNo"));
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+			return gson.toJson(maps);
+
+		}
 }

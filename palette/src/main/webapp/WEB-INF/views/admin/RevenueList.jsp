@@ -91,7 +91,6 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
- <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 </header>
 	<!-- End Header -->
 		<div id="menu-bar">
@@ -129,7 +128,7 @@
 							<div class="col-lg-12 col-md-12 col-sm-12">
 							 <div id="godate" style="display:inline-block"></div>
 							<div id="backdate" style="display:inline-block"></div>
-							<form action="/palette/admin/revenueList" method="post">
+							<form action="/palette/admin/revenueList" method="get">
 							<p><input type="date" id="startDate" name="startDate" placeholder="시작일">~<input type="date" id="endDate" name="endDate" placeholder="마감일"><button type="submit" id="btn">조회</button></p>
 							</form>
 							

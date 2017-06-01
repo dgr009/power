@@ -145,7 +145,7 @@ public class UsersService {
 	// 회원 즐겨찾기 보기
 	public Map<String, Object> userBookmarkList(String userId, int pageNo) {
 		int cnt = dao.bookmarkListCnt(userId);
-		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil5.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.bookmarkList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
@@ -165,7 +165,7 @@ public class UsersService {
 	// 장바구니 조회하기
 	public Map<String, Object> userBasketList(String userId, int pageNo) {
 		int cnt = dao.basketListCnt(userId);
-		Pagination pagination = PagingUtil3.setPageMaker(pageNo, cnt);
+		Pagination pagination = PagingUtil5.setPageMaker(pageNo, cnt);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.basketList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
@@ -286,9 +286,40 @@ public class UsersService {
 	@Transactional
 	public Map<String, Object> search(String search){
 	Map<String, Object> result=new HashMap<String, Object>();
+	result.put("itemListCnt", dao.selectItemByNameCnt(search));
+	result.put("homePageCnt", dao.selectHomeByNameCnt(search));
 	result.put("itemList", dao.selectItemByName(search));
 	result.put("homePage", dao.selectHomeByName(search));
 		return result;
+	}
+
+	// 토큰으로 홈 이미지 얻어오기
+	public String getHomeImgByToken(String token) {
+		String userId = null;
+		if (TokenUtils.isValid(token)) {
+			String role = TokenUtils.get(token, "ROLE");
+			System.out.println(role);
+			if (role.equals("ROLE_USER")) {
+				userId = TokenUtils.get(token, "userId");
+			}
+		}
+		return dao.getHomeImg(userId);
+	}
+
+	public int updateMailUser(Users user) {
+		return dao.userMailUpdate(user);
+	}
+
+	public int updatePhoneUser(Users user) {
+		return dao.userPhoneUpdate(user);
+	}
+
+	public int updateAddressUser(Users user) {
+		return dao.userAddressUpdate(user);
+	}
+
+	public int updatePwdUser(Users user) {
+		return dao.userPwdUpdate(user);
 	}
 	
 }

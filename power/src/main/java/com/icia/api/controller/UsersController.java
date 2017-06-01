@@ -101,6 +101,48 @@ public class UsersController {
 			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
 
 	}
+	
+	//회원 메일 수정
+	@RequestMapping(value = "/mailUpdate", method = RequestMethod.PUT, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersMailUpdateEnd(@RequestBody Users user) throws BindException {
+		int result = service.updateMailUser(user);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공 ", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+
+	}
+	//회원 전화번호 수정
+	@RequestMapping(value = "/phoneUpdate", method = RequestMethod.PUT, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersPhoneUpdateEnd(@RequestBody Users user) throws BindException {
+		int result = service.updatePhoneUser(user);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공 ", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+
+	}
+	//회원 주소 수정
+	@RequestMapping(value = "/addressUpdate", method = RequestMethod.PUT, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersAddressUpdateEnd(@RequestBody Users user) throws BindException {
+		int result = service.updateAddressUser(user);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공 ", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+
+	}
+	//회원 비밀번호 수정
+	@RequestMapping(value = "/pwdUpdate", method = RequestMethod.PUT, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public ResponseEntity<String> usersPwdUpdateEnd(@RequestBody Users user) throws BindException {
+		int result = service.updatePwdUser(user);
+		if (result == 1)
+			return new ResponseEntity<String>("수정 성공 ", HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
+
+	}
+	
 
 	// 회원 포인트 충전
 	@RequestMapping(value = "/chargePoint", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
@@ -124,6 +166,14 @@ public class UsersController {
 
 	}
 
+	// 회원 토큰으로 정보 얻기
+		@RequestMapping(value = "/homeImg", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+		public String getHomeImgByToken(@RequestHeader("token") String token) {
+			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+			String homeImg = service.getHomeImgByToken(token);
+			return homeImg;
+		}
+	
 	// 회원 토큰으로 정보 얻기
 	@RequestMapping(value = "/getUserId", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public String getUserIdByToken(@RequestHeader("token") String token) {
@@ -175,7 +225,7 @@ public class UsersController {
 	public String orderList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
 		String userId = service.getUserIdByToken(token);
 		Map<String, Object> map = service.userOrderList(userId, pageNo);
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		return gson.toJson(map);
 	}
 

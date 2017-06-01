@@ -34,16 +34,17 @@ public class RevenueService {
 
 	// 회원별 기간으로 매출 조회하기
 	public Map<String, Object> selectRevenueUserList(Map<String, Object> map, int pageNo) {
-		int cnt = dao.selectRevenueListByDateCnt(map);
+		int cnt = dao.selectRevenueUserListByDateCnt(map);
 		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
 		Map<String, Object> maps = new HashMap<String, Object>();
 		maps.put("pagination", pagination);
 		map.put("start", pagination.getStartArticle());
 		map.put("end", pagination.getEndArticle());
-		maps.put("sum", dao.selectRevenueSum(map));
+		maps.put("sum", dao.selectRevenueUserSum(map));
 		maps.put("sDate", map.get("startDate"));
 		maps.put("eDate", map.get("endDate"));
-		maps.put("list", dao.selectRevenueListByDate(map));
+		maps.put("ownerId", map.get("ornerId"));
+		maps.put("list", dao.selectRevenueUserListByDate(map));
 		return maps;
 	}
 
