@@ -24,7 +24,26 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+<script>
+$(function(){
+	$("#findu").on("click",function(){
+		$.ajax({
+			url:"/api/users/findId",
+			type:"post",
+			data : {"userName":$("#userName").val(), "userMail":$("#userMail").val() },
+			dataType: 'JSON',
+			success: function(result) {
+				alert("정보와 일치하는 아이디를 찾을 수 없습니다.");
+			},
+			error:function(request){
+		      alert("아이디 : "+request.responseText);
+		     }
+
+		})
+		
+	})
+})
+</script>
   
   <style>    
  
@@ -84,7 +103,7 @@
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
 	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center; position: relative;">
 	
-		<img alt="" src="<c:url value='/resources/images/로고4.png'/>" style="width:230px; height: 60px;"><br><br><br><br>
+		<a href="/palette/users/main"><img alt="" src="<c:url value='/resources/images/로고4.png'/>" style="width:230px; height: 60px;"></a><br><br><br><br>
 		
 		<div style="width: 550px; height: 558px; display: inline-block;">
 		<div style="width: 550px; height: 72px; display: inline-block;">
@@ -101,15 +120,15 @@
 			<p style="text-align: left; font-size: 1.3em;">&nbsp;&nbsp;회원 정보에 등록된 이메일</p><br>
 			<p style="text-align: left; font-size: 1.15em;">&nbsp;&nbsp;회원정보에 등록된 이메일과 입력하신 이메일이 같아야<br> &nbsp;&nbsp;아이디를 찾으실 수 있습니다.</p>
 			<br><br>
-			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="&nbsp;&nbsp;이름 입력(2자 이상)" style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p><br><br>
-			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" placeholder="&nbsp;&nbsp;이메일 입력"  style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p>
+			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="userName" placeholder="&nbsp;&nbsp;이름 입력(2자 이상)" style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p><br><br>
+			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" id="userMail" placeholder="&nbsp;&nbsp;이메일 입력"  style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p>
 			<br><br>
 			<div style="width: 400px; height:20px; border-top: 1px solid silver; display: inline-block; position: absolute; text-align:left; left: 70px; padding-top: 20px;">
 				아직 팔레트 회원이 아닌가요?&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">회원가입</a>
 			</div>
 			<br><br>
 			<br><br>
-			<button type="button" id="btnLogin" class="btn_login03"style="text-align: center; width :264px; height :66px; border:0; background:#727cb6; margin-left: 5px;"><span id="login" style="color:white;">아이디 찾기</span></button>
+			<button type="button" id="findu" class="btn_login03"style="text-align: center; width :264px; height :66px; border:0; background:#727cb6; margin-left: 5px;"><span id="login" style="color:white;">아이디 찾기</span></button>
 		</div>
 		</div>
 				<br>

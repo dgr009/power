@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
+                            <a href="/palette/miniHome/${userId }/main"><h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1></a>
                         </div>
                     </div>
                      <!-- Navigation
@@ -61,7 +61,7 @@
 
                                 <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
 
-                                <a href="" class="slider-read FromLeft">상세 보기</a>
+                                <%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
                             </div>
                             <div class="flex_caption2 FromRight">
                             	 <img src="<c:url value='http://localhost:8087/palette/homeimg/${kind.home.homeImg}'/>" style="width:100%;  min-width: 293px;max-width: 293px; min-height: 320px;max-height: 320px; vertical-align: middle;"/>
