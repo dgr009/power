@@ -85,16 +85,22 @@ public class UsersController {
 		return "users/info";
 	}
 
+	// 회원아이디 비밀번호 찾기 페이지로
+		@RequestMapping(value = "/findIdAndPwd", method = RequestMethod.GET)
+		public String findIdAndPwdStart() {
+			return "main/findId";
+		}
+	
 	// 회원아이디 찾기 페이지로
 	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findIdStart() {
-		return "users/findId";
+		return "main/findId";
 	}
 
 	// 회원 비밀번호 찾기 페이지로
 	@RequestMapping(value = "/findPwd", method = RequestMethod.GET)
 	public String findPwdStart() {
-		return "users/findPwd";
+		return "main/findPwd";
 	}
 
 	// 회원 정보수정하기 페이지로
