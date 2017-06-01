@@ -225,7 +225,7 @@ public class UsersController {
 	public String orderList(@RequestHeader("token") String token, @RequestParam(defaultValue = "1") int pageNo) {
 		String userId = service.getUserIdByToken(token);
 		Map<String, Object> map = service.userOrderList(userId, pageNo);
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
 		return gson.toJson(map);
 	}
 

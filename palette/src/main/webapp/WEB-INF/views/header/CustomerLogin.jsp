@@ -53,7 +53,7 @@
                                 <form class="search-bar">
                                     <label for="search" class="search-label">
                                         <button class="search-button"><i class="fa fa-search"></i></button><!-- Fix the break-row-bug
-                                        --><input type="text" id="search" class="search-input" />
+                                        --><input type="text" id="search"  class="search-input" placeholder="First name">
                                     </label>
                                 </form>
                             </li>

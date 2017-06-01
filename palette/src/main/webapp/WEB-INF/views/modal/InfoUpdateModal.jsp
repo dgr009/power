@@ -160,7 +160,7 @@ function upPostCode() {
           </div>
   
       </div>
-      </div>
+</div>
       
 
 <!-- 메일 모달 -->

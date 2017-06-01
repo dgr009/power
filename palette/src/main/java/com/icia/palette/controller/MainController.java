@@ -26,6 +26,7 @@ public class MainController {
 	@RequestMapping(value="/main/search",method=RequestMethod.GET)
 	public String search(@RequestParam String search,Model model){
 		model.addAttribute("result", service1.search(search));
+		model.addAttribute("search", search);
 		return "main/search";
 	}
 	
@@ -35,9 +36,38 @@ public class MainController {
 		return "main/usersInfo";
 	}
 	
-	//유저 정보 테스트
+	//테스트
 	@RequestMapping(value="/main/book",method=RequestMethod.GET)
 	public String test4(){
 		return "main/bookmark";
 	}
+	
+	//테스트
+	@RequestMapping(value="/main/search2",method=RequestMethod.GET)
+	public String test5(){
+		return "main/search2";
+	}
+	
+	//테스트
+	@RequestMapping(value="/main/main",method=RequestMethod.GET)
+	public String test6(){
+		return "mini/Main";
+	}
+	
+	//테스트
+	@RequestMapping(value="/main/shopping",method=RequestMethod.GET)
+	public String test7(){
+		return "main/shoppingBasket";
+	}
+	//테스트
+		@RequestMapping(value="/main/order",method=RequestMethod.GET)
+		public String test8(){
+			return "main/orderList";
+		}
+		
+		//테스트
+		@RequestMapping(value="/main/trade",method=RequestMethod.GET)
+		public String test9(){
+			return "main/tradeList";
+		}
 }

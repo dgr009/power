@@ -13,16 +13,21 @@ import com.icia.api.vo.*;
 public class AdminDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
+		//	회원이름별 조회
+		public String FindUserName(String username){
+		return tpl.selectOne("usersMapper.findUserName", username);
+	}
 		// 홈페이지 개설회원 조회	
 		public String FindOpenPageUser(String userId) {
 			return tpl.selectOne("api.dao.AdminDao.findPageUser", userId);
 		}
 		// 전체회원목록조회  
-		public String FindTotalUser(Users user) {
-			return tpl.selectOne("api.dao.AdminDao.totalUserFind", user);
-		}
+		public List<Users> totalUser() {
+	        return tpl.selectList("api.dao.AdminDao.totalUser");
+	    }
+
 		// 회원상세조회 
-	  	public Users DetailUser(String userId) {
+	  	public HashMap<String, Object> DetailUser(String userId) {
 	  		return tpl.selectOne("api.dao.AdminDao.userDetail", userId);
 	  	}
 		// 회원삭제 
@@ -56,5 +61,12 @@ public class AdminDao {
 		// 전체매출보기 
 		public List<OrderList> RevenueUserTotal(OrderList orderList) {
 			return tpl.selectOne("api.dao.AdminDao.userTotalRevenue", orderList);
+		}
+		//관리자 로그인
+		public Admin adminLogin(Admin admin) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("adminId", admin.getAdminId());
+			map.put("adminPwd", admin.getAdminPwd());
+			return tpl.selectOne("api.dao.AdminDao.login", map);
 		}
 }

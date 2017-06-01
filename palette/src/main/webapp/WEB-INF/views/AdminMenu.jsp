@@ -24,7 +24,7 @@
 									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/registerList" class="btn btn-block btn-default">내 상품조회리스트</a>
 								</div>
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 결제</a>
+									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/pay" class="btn btn-block btn-default">홈페이지 결제</a>
 								</div>
 									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/users/homeUpdate" class="btn btn-block btn-default">홈페이지 수정</a>

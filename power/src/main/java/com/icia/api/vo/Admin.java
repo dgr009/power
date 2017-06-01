@@ -1,13 +1,11 @@
 package com.icia.api.vo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Admin {
 	String adminId;
-	String adminPwd; 
+	String adminPwd;
 }
