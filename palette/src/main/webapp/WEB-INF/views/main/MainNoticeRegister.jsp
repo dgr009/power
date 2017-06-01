@@ -1,16 +1,12 @@
-<%@page import="com.icia.palette.vo.Users"%>
+<%@page import="com.icia.palette.vo.Admin"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%Users users=(Users)session.getAttribute("user"); %>
-
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<%
+	//Admin admin=(Admin)session.getAttribute("admin");%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,19 +14,21 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
+	
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
-
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"media="screen" />
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
+	media="screen" />
+<link rel="stylesheet" href="https://use.fontawesome.com/f4a7d32a7d.css">
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 
 
@@ -43,48 +41,40 @@
 
 
 .well {
-    min-height: 360px;
+    min-height: 290px;
     padding : 0;
     padding-left: 50px;
     }
-    tr{
-    	font-size: 1.1em;
-    	height: 28px;
-    	line-height: 28px;
-    }
     
-    .form-control{
-    height: 20px;
-    	line-height: 20px;
-    	
-    }
+input[type="submit"] {
+	font-family:FontAwesome;
+}
+
+input[type="button"] {
+	font-family:FontAwesome;
+}     
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
-
+<script>
+</script>
 </head>
 <body>
-	<!--Start Header-->
+<!--Start Header-->
 	<header id="header">
 		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-		</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>					
-					
+		
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
+		</header>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -92,96 +82,68 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                            <h2>직원 마이페이지</h2>
+                           <h2> 공지사항 게시판</h2>
                         </div>
                     </div>
                 </div>
             </div>
+            
              </section>
             
-
-           
+ 
             <div class="col-lg-12 col-md-12 col-sm-12">
-            <br><br>
-					
-							<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
-							<div class="col-lg-9 col-md-9 col-sm-9">
-							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
+							<br><br>
 						
 							
-							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-								<tbody>
-									
-									<tr><td>상품명</td></tr>	
-									<tr><td>상품 종류</td></tr>
-									<tr><td>상품 수량</td></tr>
-									<tr><td>판매 가격</td></tr>
-									<tr><td>상품 옵션</td></tr>
-									
-								</tbody>
-							</table>
-							</div>
-							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table >
-									<tbody >
-										<tr><td><input type="text"  name="itemName"></td></tr>
-										<tr><td><select name="smallKind">
-										<c:forEach items="${result.kind}" var="free">
-										<option value="${free.smallKind}">${free.smallKind}</option>
-										</c:forEach>
-										
-										</select></td></tr>
-										
-										<tr><td><input type="text"  name="itemSize"></td></tr>
-										<tr><td><input type="text"  name="itemPrice"></td></tr>
-										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>
-										<td><a href="#fakelink" class="btn btn-sm btn-social-facebook" id="addOption">추가</a></td></tr >
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-									<tbody>
+							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
+							<div class="col-lg-1 col-md-1 col-sm-1">
+              		   </div>
+							<div class="col-lg-10 col-md-10 col-sm-10">
+							<h3><i class="fa fa-info-circle"></i>&nbsp; 공지사항 작성</h3>
+								<table class="table table-striped table-hover" style="text-align: center;">
+				                    <thead>
+				                    <tr>
+										<form  action="/palette/main/notice/register" method="post">
+										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="mainNoticeArticleTitle">
 
-										<tr><td>상품 이미지</td></tr>
-										<tr><td>상품 내용</td></tr>
+									</tr>
+                  					  </thead>
 
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="file" name="imgName" id="imgName" multiple></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:200px;" name="itemContent" id="itemContent"></textarea></td></tr>
-										</tbody>
-								</table>
-								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+              						  </table>
+					
+              		   <textarea rows="15" cols="" name="mainNoticeArticleContent" ></textarea>
+						<br>		
+              		   			<div id="id"></div>
+              		   <div class="col-sm-12 text-center"><br>
+ 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
+                  			 &nbsp;&nbsp;
+                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
+           				 </div>
 							
-							</div>
+						
+						
+					</form>		
+							
+						
                             
-						</form>
 							
 									
-							</div>
 							
 							
 							</div>
 							
 							</div></div>
 					
+ 
+           
+							
+							
+					
 
            
 			
 
-
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
@@ -450,19 +412,6 @@
 													});
 										});
 					</script>
-					<script>
-					$(function(){
-					      var i = 1;
-					      $("#addOption").on("click", function(){
-					         if( i<4){
-					            i= i+1;
-					            $("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
-					         }
-					         
-					      })
-					   })
-					   
-</script>
 					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>

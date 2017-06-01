@@ -133,7 +133,8 @@
 						<c:forEach items="${result.result}" var="free">
 						<tr><td>${free.orderNo.intValue()}번</td><td>${free.userId}</td><td>${free.orderSize.intValue()}개</td><td>${free.orderPrice.intValue()}P</td><td>${free.orderDate}</td>
 						<td><input type="hidden" id="orderNo" value="${free.orderNo}" ></td>
-						<td><c:if test="${free.orderState=='배송준비중'}"><button type="button"   id="bb" data-toggle="modal"  data-target="#insertDeliveryModal">배송하기</button>			<div class="modal"  id="insertDeliveryModal" role="dialog" data-backdrop="false" >
+						<td><c:if test="${free.orderState=='배송준비중'}"><button type="button"   id="bb" data-toggle="modal"  data-target="#insertDeliveryModal">배송하기</button>			
+						<div class="modal"  id="insertDeliveryModal" role="dialog" data-backdrop="false" >
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -144,7 +145,8 @@
               <form  id='registerform' action="/palette/miniHome/admin/insertDelivery" method="post">
               <div class="modal-body">
                   <div class="form-group">
-                      <label for="InputEmail">주문번호</label>
+                      <label for="InputEmail">주문번호
+                      </label>
                       <input type="hidden" class="form-control" name="itemNo" value="${free.itemNo.intValue()}">
                       <input type="text" class="form-control" name="orderNo" placeholder="주문번호">
                   </div>
@@ -158,12 +160,12 @@
                      </div>
                   </div>
                   
+                  
               </form>
           </div>
           </div>
       </div>
-					
-      </c:if>
+					</c:if>
     
 						<c:if test="${free.orderState=='배송중'}">배송중</c:if>
 						<c:if test="${free.orderState=='주문완료'}">주문완료</c:if>

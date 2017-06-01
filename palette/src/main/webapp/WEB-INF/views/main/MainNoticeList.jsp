@@ -1,16 +1,9 @@
-<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%Users users=(Users)session.getAttribute("user"); %>
-
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" class="no-js" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
-<html class="no-js" lang="en">
-<!--<![endif]-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,19 +11,21 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1" />
+	
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
-
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"media="screen" />
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
+	media="screen" />
+<link rel="stylesheet" href="https://use.fontawesome.com/f4a7d32a7d.css">
+	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 
 
@@ -43,48 +38,71 @@
 
 
 .well {
-    min-height: 360px;
+    min-height: 290px;
     padding : 0;
     padding-left: 50px;
     }
-    tr{
-    	font-size: 1.1em;
-    	height: 28px;
-    	line-height: 28px;
-    }
     
-    .form-control{
-    height: 20px;
-    	line-height: 20px;
-    	
-    }
+/* input[type="submit"] { */
+/* 	font-family:FontAwesome; */
+/* } */
+
+/* input[type="button"] { */
+/* 	font-family:FontAwesome; */
+/* }      */
+
+a:LINK {
+	color :  threeddarkshadow;
+}
+a:VISITED {
+	color :  threeddarkshadow;
+}
+
+#under:HOVER {
+	text-decoration: underline;
+/* 	border-bottom:3px solid black; */
+}
+
+#rc{
+	color:orange;
+}
+
+#rc span{
+	font-weight: bold;
+}
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
+<script>
 
+	//최초 페이지가 로딩되면 한번만 새로고침
+	if (self.name != 'reload') {
+	    self.name = 'reload';
+	    self.location.reload(true);
+	}
+	else self.name = ''; 
+	
+	
+	
+</script>
 </head>
 <body>
-	<!--Start Header-->
+<!--Start Header-->
 	<header id="header">
 		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-		</header>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>					
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
+		</header>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -92,96 +110,95 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                            <h2>직원 마이페이지</h2>
+                           <h2>공지사항</h2>
                         </div>
                     </div>
                 </div>
             </div>
+            
              </section>
             
-
-           
-            <div class="col-lg-12 col-md-12 col-sm-12">
-            <br><br>
-					
-							<%@include file="/WEB-INF/views/AdminMenu.jsp" %>
-							<div class="col-lg-9 col-md-9 col-sm-9">
-							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
+ 
+            
+                 <div class="col-lg-12 col-md-12 col-sm-12">
+							<br><br>
+							
+							
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     문의게시판 글 목록</h3>
 						
-							
-							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-								<tbody>
+				<table class="table table-striped table-hover" style="text-align: center;">
+                    <thead>
+                    <tr>
+						<th style="text-align: center;  width: 120px;">번호</th>
+						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
+						<th style="text-align: center;  width: 120px;">작성자</th>	
+						<th style="text-align: center;  width: 120px;">조회수</th>		
+						<th style="text-align: center; width: 150px;">작성일</th>
+					</tr>
+                    </thead>
+                    
+                    <tbody id="free">
+                    	<c:forEach items="${result.result}" var="free">
+							<tr>			
+								<td>
+									${free.mainNoticeArticleNo.intValue() }
+								</td>
+								<td style="text-align: left; ">
+									<a href="/palette/main/notice/view/${free.mainNoticeArticleNo.intValue()}" id="under">
+										${free.mainNoticeArticleTitle}
+									</a>
+								</td>
+								<td>
+									관리자
+								</td>
+								<td>${free.mainNoticeArticleHits.intValue()}</td>
+								<td>
+									${free.mainNoticeArticleDate }
+								</td>
+							</tr>
+						</c:forEach>
+                </table>
+                	<div id="pagination" style="text-align: center;">
+			         <ul class='pagination' style='height: 20px;' >
+			         	<c:if test="${result.pagination.prev>0 }">
+							<li><a href="/palette/main/customerCenter/list?pageNo=${result.pagination.prev.intValue()}">이전</a></li>
+						</c:if>
+						
+						<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+							<li><a href="/palette/main/notice/list?pageNo=${i}">${i} </a></li>
+						</c:forEach>
+						
+						<c:if test="${result.pagination.next>0 }">
+							<a href="/palette/main/notice/list?pageNo=${result.pagination.next.intValue()}">다음</a>
+						</c:if>
+					</ul>
+                 </div>
+                 
+              	<div class="col-lg-9 col-md-9 col-sm-9">
+              		   		<a href="../notice/list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
+              		   </div>  
+              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/main/notice/register'"  style="color:white;"/></div>
+                
+					<br>  <br>
+                </div>
+                 <br>  <br><br>  <br>
+            </div>	
+				                     
+                
+            
+             
 									
-									<tr><td>상품명</td></tr>	
-									<tr><td>상품 종류</td></tr>
-									<tr><td>상품 수량</td></tr>
-									<tr><td>판매 가격</td></tr>
-									<tr><td>상품 옵션</td></tr>
 									
-								</tbody>
-							</table>
-							</div>
-							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table >
-									<tbody >
-										<tr><td><input type="text"  name="itemName"></td></tr>
-										<tr><td><select name="smallKind">
-										<c:forEach items="${result.kind}" var="free">
-										<option value="${free.smallKind}">${free.smallKind}</option>
-										</c:forEach>
-										
-										</select></td></tr>
-										
-										<tr><td><input type="text"  name="itemSize"></td></tr>
-										<tr><td><input type="text"  name="itemPrice"></td></tr>
-										<tr id="space" ><td><input type="text"  name="optionName" id="optionName"></td>
-										<td><a href="#fakelink" class="btn btn-sm btn-social-facebook" id="addOption">추가</a></td></tr >
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-							<table>
-									<tbody>
-
-										<tr><td>상품 이미지</td></tr>
-										<tr><td>상품 내용</td></tr>
-
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table>
-									<tbody>
-										<tr><td><input type="file" name="imgName" id="imgName" multiple></td></tr>
-										<tr><td><textarea rows="4" cols="3" style="width:200px;" name="itemContent" id="itemContent"></textarea></td></tr>
-										</tbody>
-								</table>
-								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
-							
-							</div>
-                            
-						</form>
-							
-									
-							</div>
+           
 							
 							
-							</div>
-							
-							</div></div>
 					
 
            
 			
 
-
-					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
@@ -450,19 +467,6 @@
 													});
 										});
 					</script>
-					<script>
-					$(function(){
-					      var i = 1;
-					      $("#addOption").on("click", function(){
-					         if( i<4){
-					            i= i+1;
-					            $("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
-					         }
-					         
-					      })
-					   })
-					   
-</script>
 					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>
 </html>

@@ -61,7 +61,7 @@
 
                                 <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
 
-                                <a href="" class="slider-read FromLeft">상세 보기</a>
+                                <a href="/palette/miniHome/sysy/Info" class="slider-read FromLeft">상세 보기</a>
                             </div>
                             <div class="flex_caption2 FromRight">
                             	 <img src="<c:url value='http://localhost:8087/palette/homeimg/${kind.home.homeImg}'/>" style="width:100%;  min-width: 293px;max-width: 293px; min-height: 320px;max-height: 320px; vertical-align: middle;"/>

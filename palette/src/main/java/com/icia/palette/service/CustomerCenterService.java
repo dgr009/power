@@ -73,6 +73,62 @@ public class CustomerCenterService {
 		tpl.exchange("http://localhost:8087/api/main/customerCenterDelete", HttpMethod.POST, requestEntity, String.class).getBody();
 		
 	}
+	//공지사항 글등록
+	public void noticeRegister(MainNotice m) {
+		RestTemplate tpl=new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(m), headers);
+		String result = tpl
+				.exchange("http://localhost:8087/api/main/notice/register", HttpMethod.POST, requestEntity, String.class)
+				.getBody();
+	}
+	//공지사항리스트
+	public Map<String, Object> noticeList(int pageNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(pageNo),headers);
+		String result = tpl.exchange("http://localhost:8087/api/main/notice/list", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map1 = new Gson().fromJson(result, Map.class);
+		return map1;
+	}
+	//공지사항 뷰
+	public Map<String, Object> noticeView(int mainNoticeArticleNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(mainNoticeArticleNo),headers);
+		String result = tpl.exchange("http://localhost:8087/api/main/notice/view", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map1 = new Gson().fromJson(result, Map.class);
+		return map1;
+	}
+		//공지사항업데이트
+	public void noticeUpdate(MainNotice m) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(m),headers);
+		tpl.exchange("http://localhost:8087/api/main/notice/update", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
+	//공지사항 업데이트 뷰가져오기
+	public Map<String, Object> noticeupdateStart(int mainNoticeArticleNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(mainNoticeArticleNo),headers);
+		String result = tpl.exchange("http://localhost:8087/api/main/notice/updateStart", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String,Object> map1 = new Gson().fromJson(result, Map.class);
+		return map1;
+	}
+	//공지사항 삭제
+	public void noticeDelete(int mainNoticeArticleNo) {
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(mainNoticeArticleNo),headers);
+		tpl.exchange("http://localhost:8087/api/main/notice/delete", HttpMethod.POST, requestEntity, String.class).getBody();
+	}
 	
 	
 	
