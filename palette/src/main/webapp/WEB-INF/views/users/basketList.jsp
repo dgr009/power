@@ -116,8 +116,11 @@
 	</div>
 </div>
  
- <!-- 회원 정보 footer -->
+ <!-- 회원 아래 박스 -->
 <%@ include file="/WEB-INF/views/footer/InfoFooter.jsp" %>
+
+<!-- footer -->
+<%@include file="/WEB-INF/views/footer/normalFooter.jsp" %>
 
 </body>
 	

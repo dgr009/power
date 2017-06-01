@@ -95,8 +95,13 @@
 	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
 	</div>
 </div>
-<!-- 회원 정보 footer -->
+<!-- 회원 정보 아래박스 -->
 <%@ include file="/WEB-INF/views/footer/InfoFooter.jsp" %>
+
+<!-- footer -->
+<%@include file="/WEB-INF/views/footer/normalFooter.jsp" %>
+
+
 </body>
 	
 	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
