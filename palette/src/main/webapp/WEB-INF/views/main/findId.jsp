@@ -84,16 +84,16 @@
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
 	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center; position: relative;">
 	
-		<img alt="" src="images/로고4.png" style="width:230px; height: 60px;"><br><br><br><br>
+		<img alt="" src="<c:url value='/resources/images/로고4.png'/>" style="width:230px; height: 60px;"><br><br><br><br>
 		
 		<div style="width: 550px; height: 558px; display: inline-block;">
 		<div style="width: 550px; height: 72px; display: inline-block;">
 			<ul>
 				<li id="a" style="width: 273px; height: 72px; display: inline-block; padding-top: 20px; font-size: 1.70em;">
-					<a href="#" style="padding:20px; border-bottom: 5px solid #727cb6;">아이디 찾기</a>
+					<a href="/palette/users/findId" style="padding:20px; border-bottom: 5px solid #727cb6;">아이디 찾기</a>
 				</li>
-				<li id="a" style="width: 273px; height: 72px; display: inline-block; padding-top: 20px; font-size: 1.70em;">
-					<a href="#" style="padding:20px;  position: ">비밀번호 찾기</a>
+				<li id="a" style="width: 270px; height: 72px; display: inline-block; padding-top: 20px; font-size: 1.70em;">
+					<a href="/palette/users/findPwd" style="padding:20px;  position: ">비밀번호 찾기</a>
 				</li>
 			</ul>
 		</div>
