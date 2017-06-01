@@ -45,7 +45,7 @@ public class ProductController {
 		model.addAttribute("kind", service.productKind(userId));
 		model.addAttribute("item", service.getMain(userId));
 		model.addAttribute("userId", userId);
-		return "products/Main";
+		return "mini/Main";
 	}
 	//상품등록창으로
 	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
@@ -62,7 +62,7 @@ public class ProductController {
 		map.put("itemNo", itemNo);
 		model.addAttribute("kind",service.productRegisterReady(userId));//홈페이지small가져오기
 		model.addAttribute("userId", userId);
-		model.addAttribute("result", service.productMain(map));//상품정보다가져오기
+		model.addAttribute("item", service.productMain(map));//상품정보다가져오기
 		System.out.println(service.productRegisterReady(userId).get("kind"));
 		return "products/ProductUpdate";
 	}
