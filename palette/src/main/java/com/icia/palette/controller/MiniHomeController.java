@@ -21,16 +21,19 @@ public class MiniHomeController {
 	
 	@Autowired
 	private MiniHomeService service2;
-	
+	@Autowired
+	private ProductService service1;
 	//자유게시판 뷰
 	@RequestMapping(value="/{userId}/freeView/{freeNo}",method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session,@PathVariable String userId,@PathVariable int freeNo,Model model){
 		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo, userId));
+		model.addAttribute("kind", service1.productKind(userId));
 		return "mini/freeView";
 	}
 	//공지 뷰
 	@RequestMapping(value="/{userId}/noticeView/{noticeArticleNo}",method = RequestMethod.GET)
 	public String noticeView(HttpSession session,@PathVariable String userId,@PathVariable int noticeArticleNo ,Model model){
+		model.addAttribute("kind", service1.productKind(userId));
 		model.addAttribute("mini", service.miniHomeSelectNoticeView(session, noticeArticleNo, userId));
 		return "mini/noticeView";
 	}
@@ -38,18 +41,21 @@ public class MiniHomeController {
 	//자유 리스트
 	@RequestMapping(value="/{userId}/freeList",method = RequestMethod.GET)
 	public String userInfo(HttpSession session,@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo){
+		model.addAttribute("kind", service1.productKind(userId));
 		model.addAttribute("mini2", service.miniHomeSelectFreeList(session,userId,pageNo));
 		return "mini/freeList";
 	}
 	//공지 리스트
 	@RequestMapping(value="/{userId}/noticeList",method = RequestMethod.GET)
 	public String noticeList(HttpSession session,@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo){
+		model.addAttribute("kind", service1.productKind(userId));
 		model.addAttribute("mini2", service.miniHomeSelectNoticeList(session, userId, pageNo));
 		return "mini/noticeList";
 	}
 	//자유게시판 추가 시작
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.GET)
 	public String InsertStart(HttpSession session,@PathVariable String homeId, Model model){
+		model.addAttribute("kind", service1.productKind(homeId));
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
@@ -68,6 +74,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{homeId}/noticeRegister",method = RequestMethod.GET)
 	public String InsertNoticeStart(HttpSession session,@PathVariable String homeId, Model model){
 		model.addAttribute("homeId", homeId);
+		model.addAttribute("kind", service1.productKind(homeId));
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
 		return "mini/noticeRegister";
@@ -83,6 +90,7 @@ public class MiniHomeController {
 	//업데이트 뷰
 	@RequestMapping(value="/{homeId}/freeUpdate/{freeNo2}",method = RequestMethod.GET)
 	public String updateStart(HttpSession session,@PathVariable String homeId,@PathVariable int freeNo2,Model model){
+		model.addAttribute("kind", service1.productKind(homeId));
 		model.addAttribute("mini", service.miniHomeSelectFreeView(session, freeNo2, homeId));
 		return "mini/freeUpdate";
 	}
@@ -97,6 +105,7 @@ public class MiniHomeController {
 	//공지 업데이트 뷰
 	@RequestMapping(value="/{homeId}/noticeUpdate/{noticeArticleNo2}",method = RequestMethod.GET)
 	public String noticeUpdateStart(HttpSession session,@PathVariable String homeId,@PathVariable int noticeArticleNo2,Model model){
+		model.addAttribute("kind", service1.productKind(homeId));
 		model.addAttribute("mini", service.miniHomeSelectNoticeView(session, noticeArticleNo2, homeId));
 		return "mini/noticeUpdate";
 	}
@@ -126,13 +135,15 @@ public class MiniHomeController {
 	//판매자 정보 조회+홈페이지
 	@RequestMapping(value="/{userId}/Info",method = RequestMethod.GET)
 	public String miniHomeSelectSellerInformation(HttpSession session,@PathVariable String userId,Model model){
+		model.addAttribute("kind", service1.productKind(userId));
 		model.addAttribute("mini", service2.miniHomeSelectSellerInformation(session, userId));
 		return "mini/sellerInfo";
 	}
 	
 	//결제 시작
-	@RequestMapping(value="/{homeId}/pay",method = RequestMethod.GET)
+	@RequestMapping(value="/{homeId}/admin/pay",method = RequestMethod.GET)
 	public String payStart(HttpSession session,@PathVariable String homeId, Model model){
+		model.addAttribute("kind", service1.productKind(homeId));
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));

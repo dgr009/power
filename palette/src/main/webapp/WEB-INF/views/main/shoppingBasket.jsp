@@ -49,109 +49,173 @@
 </script>
 </head>
 <body>
+<body>
 <header id="header">
-<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+ <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="hidden-xs col-lg-7 col-sm-5 top-info" style="margin-left: 70px; ">
+                    <span><i class="fa fa-unlock"></i>로그인</span>
+                    <span class="hidden-sm"><i class="fa fa-user-plus"></i>회원가입</span>
+                    
+                </div>
+ 			<div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
+ 				<span class="hidden-sm"><i class="fa fa-calendar-o"></i>이벤트</span>
+ 				</div>
+            </div>
+        </div>
+    </div>
 </header>
+<div class="col-xs-12 col-xs-12 col-xs-12"  style="border-bottom: 1px solid silver;"><br>
+<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+<div class="col-xs-10 col-xs-10 col-xs-10" >
+	<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;">
+	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
+                            <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style="padding-bottom: 15px; margin-left: 120px;">
+                                <li><a href="#" style=" width: 85px; text-align: center; color:black;  border-radius: 35px;">내 정보보기</a>
 
-<div class="col-xs-12 col-xs-12 col-xs-12" style="padding:0;">
+                                </li>
 
-<div class="col-xs-1 col-xs-1 col-xs-1"></div><!-- 여백 -->
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; ">즐겨찾기</a>
 
-<div class="col-xs-10 col-xs-10 col-xs-10">
-<br>
-	<blockquote class="default" style="border-top-right-radius: 30px; height:60px; border-bottom-right-radius: 30px; position: relative;">
-		<p style="font-size: 1.2em; position: absolute; bottom:0.1in;"><span style="font-weight: bold; font-size:1.2em; color:#727cb6; text-decoration: underline;">
-	${search}</span> 에 대한 상품&nbsp;<span style="font-size: 1.1em">${result.itemListCnt.intValue()}</span>건 홈페이지  <span style="font-size: 1.1em">${result.homePageCnt.intValue()}</span>건&nbsp; 의 검색 결과입니다 &nbsp;<i class="fa fa-search-plus " style="color:#727cb6;"></i></p> 
-	<nav id="breadcrumbs" style="position: absolute; bottom: 17px; left:850px; border-radius: 30px;">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>메인으로</li>
-        </ul>
-    </nav>
-	</blockquote>
-	
-	
-	<div class="row sub_content" style="padding-top: 0;">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-								<h4><span>검색된 <span class="highlight default">상품</span> 목록</span></h4>
-							</div>
-							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
+                                </li>
 
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
-                        <ul class="jcarousel-list" style="left: 0px;">
-                            <!-- Recent Work Item -->
-                                    <c:forEach items="${result.itemList}" var="free">
-                            <li class="col-sm-3 col-md-3 col-lg-3" style="width:342px; margin-left: 10px;">
-                                <figure class="touching effect-bubba" style="border-radius: 10px;" >
-                                    <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive"
-                                     style="width:100%;  min-width: 322px;max-width: 322px; min-height: 243px;max-height: 243px; vertical-align: middle;">
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; font-size: 1.15em; color:#727cb6; font-weight:bold;">장바구니</a>
 
-                                    <div class="option">
-                                           <a href="/palette/miniHome/${free.userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
-                                    </div>
-                                    <figcaption class="item-description">
-                                        <h5>${free.itemName}</h5>
-                                        <p>${free.itemPrice.intValue()}원</p>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-				</div>
-				
-			<div class="row sub_content" style="padding-top: 0;">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-								<h4><span>검색된 <span class="highlight default">홈페이지</span> 목록</span></h4>
-							</div>
-							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
+                                </li>
 
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
-                        <ul class="jcarousel-list" style="left: 0px;">
-                         <c:forEach items="${result.homePage}" var="free">
-                            <!-- Recent Work Item -->
-                            <li class="col-sm-3 col-md-3 col-lg-3" style="width:205px; margin-left: 13px;">
-                                <figure class="touching effect-bubba" style="border-radius: 10px;">
-                                    <img src="<c:url value='http://localhost:8087/palette/homeimg/${free.homeImg }'/>" alt="" class="img-responsive" 
-                                    style="width:100%;  min-width: 185px;max-width: 185px; min-height: 139px;max-height: 139px; vertical-align: middle;">
-
-                                    <div class="option">
-										<a href="/palette/miniHome/${free.userId}/main" class="fa fa-link"></a>
-                                    </div>
-                                    <figcaption class="item-description">
-                                        <h5>${free.userId}</h5>
-                                        <p>${free.homeTitle}</p>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            </c:forEach>
-                        </ul>
-                    </div><br><br>
-
-				</div>
-				
-				    
+                                <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center; font-size: 1.1em;">주문내역</a>
+								</li>
+								
+								 <li><a href="#" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em;">충전내역</a>
+								</li>
+                               	</ul>
+                        </div>
+                        <br>
+                        <br>
+                       
+</div>
+<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
 </div>
 
+<!-- 회원 정보 -->
+<div class="col-xs-12 col-xs-12 col-xs-12" ><br><br>
 
-<div class="col-xs-1 col-xs-1 col-xs-1"></div><!-- 여백 -->
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+	<div class="col-xs-10 col-xs-10 col-xs-10" >
+	
+	
+	<div style="width: 1000px; height: 540px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
+	
+	<p style="padding-top:30px; padding-left: 30px;">
+		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;">qhrals8</span>님의 <span class="highlight light">장바구니</span> 추가 목록 
+	</p>
+	<p style="font-weight: bold; padding-left: 30px;">총 <span class="highlight default">3</span>개</p>
+	<br>
+		<div class="well" style="height: 45px; padding-top: 12px; ">
+				
+		<table style="margin-left: 3px;">
+			<thead>
+				<tr>
+					<th style="width:200px; border-right: 1px dashed black; padding-right: 25px;">상품 이미지</th>
+					<th style="width:400px; border-right: 1px dashed black; ">상품명</th>
+					<th style="width:200px; border-right: 1px dashed black;">판매가</th>
+					<th style="width:150px; border-right: 1px dashed black;">재고</th>
+					<th style="width:150px;  border-right: 1px dashed black; padding-left: 20px; padding-right: 20px;">판매자</th>
+					<th style="width:100px; padding-right: 25px;"></th>
+				</tr>
+			</thead>
+		</table>
+		</div>
+		
+	<table style=" ">
+		
+		<tbody>
+			<tr>
+				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">반팔 티셔츠</td>
+				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
+				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
+				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
+				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
+					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
+				</td>
+			</tr>
+			
+			<tr>
+				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">도라에몽 어디로든문</td>
+				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
+				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
+				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
+				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
+					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">삼겹살 목살 샤브샤브</td>
+				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
+				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
+				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
+				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
+					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
+				</td>
+			</tr>
+			
+
+			
+		</tbody>
+	</table>
+
+		<div style="width: 1000px; border-top:1px dashed silver; position: absolute; bottom:70px;">
+
+	    </div>
+	    
+	    			<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+		        <li><a href="#">«</a></li>
+		        <li class="active"><a href="#">1</a></li>
+		        <li><a href="#">2</a></li>
+		        <li><a href="#">3</a></li>
+		        <li><a href="#">4</a></li>
+		        <li><a href="#">5</a></li>
+		        <li><a href="#">»</a></li> <br><br> <br><br>
+		    </ul>
+	</div>
+	
+	
+	
+	
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	</div>
 </div>
+<!-- 회원 정보 footer -->
+
+<div class="col-xs-12 col-xs-12 col-xs-12" >
+
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+	<div class="col-xs-10 col-xs-10 col-xs-10">
+	
+	
+	<div style="width: 1000px; height: 100px; background: #fbfbfb;  border : 1px solid silver; border-top: none; "> 	
+		<p style="padding : 37px; padding-left: 115px; font-size: 1.1em"> 쓰면 쓸 수록 커지는 등급별 혜택을 누리세요! &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color:#727cb6; font-weight: bold;">홈페이지 결제권 구매하고 등급별 혜택 받기 !</span>
+		</p>
+	</div><br><br>
+	<br>
+	<br>
+	
+	</div>
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	</div>
+	
+	
+	
 
 </body>
  <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>

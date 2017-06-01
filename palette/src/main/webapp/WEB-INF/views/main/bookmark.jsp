@@ -71,7 +71,7 @@
 	<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;">
 	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style="padding-bottom: 15px; margin-left: 120px;">
-                                <li><a href="#" style=" width: 85px; text-align: center; color:black;  border-radius: 35px;">내 정보보기</a>
+                                <li><a href="#" style=" width: 85px; text-align: center; color:black;  border-radius: 35px; font-size: 1.1em;">내 정보보기</a>
 
                                 </li>
 
@@ -130,47 +130,55 @@
 		<tbody>
 			<tr style="padding-left: 50px ;">
 				<td style="width:120px;  padding-bottom: 10px;">1</td>
-				<td style="width:200px;  padding-bottom: 10px;"><img src="images/portfolio/portfolio_1_1.png" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;"></td>
+				<td style="width:200px;  padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
 				<td class="title" style="width:400px;  padding-bottom: 10px;">김금명의 XL 쇼핑몰 사이트</td>
 				<td style="width:270px;  padding-bottom: 10px;">rlarmaaud</td>
 			</tr>
 			
 			<tr style="">
 				<td style="width:120px; padding-bottom: 10px; ">2</td>
-				<td style="width:200px; padding-bottom: 10px;"><img src="images/portfolio/portfolio_1_1.png" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;"></td>
+				<td style="width:200px; padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
+				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
+			</tr>
+				<tr style="">
+				<td style="width:120px; padding-bottom: 10px; ">2</td>
+				<td style="width:200px; padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
+				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
+			</tr>
+				<tr style="">
+				<td style="width:120px; padding-bottom: 10px; ">2</td>
+				<td style="width:200px; padding-bottom: 10px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+				width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
+				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
+				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
+			</tr>
+				<tr style="">
+				<td style="width:120px; padding-bottom: 10px; ">2</td>
+				<td style="width:200px; padding-bottom: 10px;">
+					<img src="<c:url value="/resources/images/11111.jpg"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
+					width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;">
+				</td>
 				<td class="title" style="width:400px; padding-bottom: 10px; ">싼 가격에 드리는 중고 옷 판매사이트</td>
 				<td style="width:270px; padding-bottom: 10px; ">qhrals8</td>
 			</tr>
 			
-				<tr style="padding-left: 50px ;">
-				<td style="width:120px;  padding-bottom: 10px;">1</td>
-				<td style="width:200px;  padding-bottom: 10px;"><img src="images/portfolio/portfolio_1_1.png" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;"></td>
-				<td class="title" style="width:400px;  padding-bottom: 10px;">김금명의 XL 쇼핑몰 사이트</td>
-				<td style="width:270px;  padding-bottom: 10px;">rlarmaaud</td>
-			</tr>
-			
-				<tr style="padding-left: 50px ;">
-				<td style="width:120px;  padding-bottom: 10px;">1</td>
-				<td style="width:200px;  padding-bottom: 10px;"><img src="images/portfolio/portfolio_1_1.png" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;"></td>
-				<td class="title" style="width:400px;  padding-bottom: 10px;">김금명의 XL 쇼핑몰 사이트</td>
-				<td style="width:270px;  padding-bottom: 10px;">rlarmaaud</td>
-			</tr>
-			
-				<tr style="padding-left: 50px ;">
-				<td style="width:120px;  padding-bottom: 10px;">1</td>
-				<td style="width:200px;  padding-bottom: 10px;"><img src="images/portfolio/portfolio_1_1.png" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;"></td>
-				<td class="title" style="width:400px;  padding-bottom: 10px;">김금명의 XL 쇼핑몰 사이트</td>
-				<td style="width:270px;  padding-bottom: 10px;">rlarmaaud</td>
-			</tr>
 			
 		
 
 			
 		</tbody>
 	</table>
-	<br>
-		<div style="width: 1000px; border-top:1px dashed silver;"></div>
-			<ul class="pagination" style="margin-left: 380px; ">
+	
+		<div style="width: 1000px; border-top:1px dashed silver; position: absolute; bottom:70px;">
+
+	    </div>
+	    
+	    	<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
 		        <li><a href="#">«</a></li>
 		        <li class="active"><a href="#">1</a></li>
 		        <li><a href="#">2</a></li>
@@ -211,7 +219,6 @@
 	
 	
 	
-
 
 
 </body>

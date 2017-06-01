@@ -372,6 +372,14 @@ public class UsersDao {
 	public int userPwdUpdate(Users user) {
 		return tpl.update("api.dao.UsersDao.usersPwdUpdate", user);
 	}
+		//상품개수검사
+	public int selectItemByNameCnt(String search) {
+		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
+	}
+	//홈페이지개수검사
+	public int selectHomeByNameCnt(String search) {
+		return tpl.selectOne("api.dao.UsersDao.hompageSearchCnt", search);
+	}
 	
 	
 	
