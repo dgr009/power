@@ -10,14 +10,14 @@ import org.springframework.test.context.junit4.*;
 
 import com.icia.api.dao.*;
 
-@ContextConfiguration("dao-test-context.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
-public class RevenueDaoTest {
+//@ContextConfiguration("dao-test-context.xml")
+//@RunWith(SpringJUnit4ClassRunner.class)
+//public class RevenueDaoTest {
 	//@Autowired
-	RevenueDao dao;
+//	RevenueDao dao;
 	
 	//@Test
-	public void select(){
-		System.out.println(dao.selectRevenueListByDateCnt(new Date(2017,05,15),new Date(2017,05,20)));
-	}
-}
+//	public void select(){
+//		System.out.println(dao.selectRevenueListByDateCnt(new Date(2017,05,15),new Date(2017,05,20)));
+//	}
+//}
