@@ -69,4 +69,9 @@ public class AdminService {
 		      Users user = new Gson().fromJson(result, Users.class);
 		      return user;
 		}
+		// 
+		public int login(String adminId, String adminPwd, HttpSession session) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 }
