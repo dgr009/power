@@ -20,16 +20,16 @@ public class AdminController {
 	private AdminService service;
 	
 	//	회원이름으로 조회
-	@RequestMapping(value="/userName", method = RequestMethod.GET)
-	public String findUserName(@RequestParam String userName){
-		service.findUserName(userName);
-		return service.findUserName(userName);
+	@RequestMapping(value = "/userName", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public String findUserName(@RequestBody Map<String, Object> map){
+		Map<String, Object> maps = service.findUserName(map);
+		return new Gson().toJson(maps);
 	}
 	// 홈페이지 개설회원 조회
 	@RequestMapping(value="/OpenPageUser", method = RequestMethod.GET)
 	public String openPageUser(@RequestBody String userId) {
 		service.FindOpenPageUser(userId);
-		return null;
+		return new Gson().toJson(userId);
 	}
 	// 전체회원목록조회
 	 @RequestMapping(value="/all", method=RequestMethod.GET)

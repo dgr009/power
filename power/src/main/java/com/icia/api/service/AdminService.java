@@ -16,8 +16,9 @@ public class AdminService {
 	private AdminDao dao;
 	
 	//	회원이름으로 조회
-	public String findUserName(String userName){
-		return dao.FindUserName(userName);
+	public Map<String, Object> findUserName(Map<String, Object> map){
+		map.put("userName", map.get("userName"));
+		return map;
 	}
 	// 홈페이지 개설회원 조회
 	public String FindOpenPageUser(String userId) {

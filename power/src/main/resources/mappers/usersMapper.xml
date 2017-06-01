@@ -326,23 +326,23 @@
 	<!-- 홈페이지 검색 개수 -->
 	<select id="hompageSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
-		select count(*) from home where item_name like '%' ||  #{search} || '%'
+		select count(*) from home where user_id like '%' ||  #{search} || '%'
 		]]>
 	</select>
 	<!-- 홈페이지 검색 -->
 	<select id="selectHomeByName" parameterType="String" resultType="MiniHome">
 		<![CDATA[
-		
-		
 		select * 
 		from home where user_id like '%' ||  #{search} || '%' 
-	 
 		]]>
 	</select>
 	
+<<<<<<< HEAD
 	<select id="getHomeImg" parameterType="string" resultType="string">
 		select home_img from home where user_id=#{userId}
 	</select>
+=======
+>>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
 	
 	
 	

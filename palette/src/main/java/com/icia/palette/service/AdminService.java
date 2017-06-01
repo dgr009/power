@@ -18,14 +18,16 @@ import com.icia.palette.vo.*;
 public class AdminService {
 	
 	//	회원이름으로 조회
-	public Users findUserNamesssss(String userName) {
+	public Map<String,Object> findUserName(String userName) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("userN", userName.getBytes("userN"));
-		HttpEntity requestEntity = new HttpEntity(headers);
-		String result = tpl.exchange("http://localhost:8087/api/admin/userName", HttpMethod.GET, requestEntity, String.class).getBody();
-		Users user = new Gson().fromJson(result, Users.class);
-		return user;
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("userName", userName);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+		HttpEntity requestEntity = new HttpEntity(maps, headers);
+		String result = tpl.exchange("http://localhost:8087/api/admin/userName", HttpMethod.POST, requestEntity, String.class).getBody();
+		Map<String, Object> map = new Gson().fromJson(result, Map.class);
+		return map;
 	}
 	// 회원 정보보기
 		public String findUserName(HttpSession session) {

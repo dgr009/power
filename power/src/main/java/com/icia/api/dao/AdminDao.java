@@ -14,8 +14,8 @@ public class AdminDao {
 	@Autowired
 	private SqlSessionTemplate tpl;
 		//	회원이름별 조회
-		public String FindUserName(String username){
-		return tpl.selectOne("usersMapper.findUserName", username);
+		public Users FindUserName(Map<String, Object> map){
+		return tpl.selectOne("usersMapper.findUserName", map);
 	}
 		// 홈페이지 개설회원 조회	
 		public String FindOpenPageUser(String userId) {

@@ -286,6 +286,8 @@ public class UsersService {
 	@Transactional
 	public Map<String, Object> search(String search){
 	Map<String, Object> result=new HashMap<String, Object>();
+	result.put("itemListCnt", dao.selectItemByNameCnt(search));
+	result.put("homePageCnt", dao.selectHomeByNameCnt(search));
 	result.put("itemList", dao.selectItemByName(search));
 	result.put("homePage", dao.selectHomeByName(search));
 		return result;
