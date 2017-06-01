@@ -112,7 +112,7 @@
 		</c:forEach>
 		</tbody>
 	</table>	<br>
-	 	<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+	 <ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/orderList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
 				<li><a href="/palette/users/orderList?pageNo=${i}">${i} </a></li>
@@ -121,7 +121,7 @@
 	</ul>
 	<br><br><br><br>
 	</div>
-
+</div>
 <!-- footer -->
 <%@include file="/WEB-INF/views/footer/normalFooter.jsp" %>
 	
