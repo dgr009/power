@@ -286,9 +286,8 @@ public class UsersController {
 	}
 
 	// 회원 장바구니 취소하기
-	@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
-	public ResponseEntity<String> basketDelete(@RequestHeader("token") String token, @RequestParam int itemNo) {
-		String userId = service.getUserIdByToken(token);
+	@RequestMapping(value = "/basketDelete", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> basketDelete(@RequestParam String userId, @RequestParam int itemNo) {
 		int result = service.userBasketDelete(userId, itemNo);
 		if (result == 1)
 			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);

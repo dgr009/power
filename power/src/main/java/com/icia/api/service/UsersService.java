@@ -170,6 +170,7 @@ public class UsersService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);
 		map.put("list", dao.basketList(userId, pagination.getStartArticle(), pagination.getEndArticle()));
+		map.put("cnt", cnt);
 		return map;
 	}
 

@@ -23,36 +23,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<style>
+  <style>    
+ 	th{
+		text-align: center;
+	}
+	td{
+		text-align: center;
+	}
+	.title:HOVER{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+  }
 
-.name {
-	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
-}
-
-.well {
-    min-height: 360px;
-    padding : 0;
-    padding-left: 50px;
-    }
-    tr{
-    	font-size: 1.1em;
-    	height: 28px;
-    	line-height: 28px;
-    }
-    
-    .form-control{
-    height: 20px;
-    	line-height: 20px;
-    	
-    }
-       footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-</style>
+  </style>
 </head>
 <body>
 <!-- 헤더 -->
@@ -97,11 +81,11 @@
 	</table>
 	   
 	<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
-		 <c:if test="${r.pagination.prev>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}">이전으로</a></li></c:if>
+		 <c:if test="${r.pagination.prev>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${r.pagination.startPage}" end="${r.pagination.endPage}">
 				<li><a href="/palette/users/bookmarkList?pageNo=${i}">${i} </a></li>
 			</c:forEach>
-		<c:if test="${r.pagination.next>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.next}">다음으로</a></li></c:if>
+		<c:if test="${r.pagination.next>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.next}">»</a></li></c:if>
 	</ul>
 </div>
 	
@@ -111,7 +95,7 @@
 	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
 	</div>
 </div>
-
+<!-- 회원 정보 footer -->
 <%@ include file="/WEB-INF/views/footer/InfoFooter.jsp" %>
 </body>
 	
