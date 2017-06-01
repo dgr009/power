@@ -39,7 +39,7 @@
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select b.owner_id ownerId,h.home_title homeTitle from bookmark b,
+					(select b.owner_id ownerId,h.home_title homeTitle,h.home_img homeImg from bookmark b,
 					home h where b.owner_id=h.user_id and b.order_id=#{orderId}) a 
       			where rownum<=#{end}) 
  			where rnum>=#{start}

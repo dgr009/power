@@ -219,7 +219,7 @@ public class UsersController {
 	// 회원 즐겨찾기 조회
 	@RequestMapping(value = "/bookmarkList", method = RequestMethod.GET)
 	public String bookMarkList(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo) {
-		model.addAttribute("result", service.userBookmarkList(session, pageNo));
+		model.addAttribute("r", service.userBookmarkList(session, pageNo));
 		return "users/bookmarkList";
 	}
 

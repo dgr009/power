@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-    
+    <%Users bookUser = (Users) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,75 +53,66 @@
       padding: 15px;
     }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	
-</script>
 </head>
 <body>
 <!-- 헤더 -->
 <header id="header">
- <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MainInfoHeader.jsp" %>
 </header>
-<br><br><br><br><br><br>
 <!-- 헤더 끝 -->
-<div class="container text-center">    
-  <div class="row">
-  	<!-- 랭킹 -->
-    <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
-    <!-- 랭킹 끝 -->
-    
-	 <div class="col-sm-8"> 
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 600px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 즐겨찾기 목록</h3>
-	<table width="80%" class="table table-striped table-hover" >
-		<thead>
-			<tr >
-				<th style="text-align: center;">번호</th>
+<div class="col-xs-12 col-xs-12 col-xs-12" ><br><br>
+
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+	<div class="col-xs-10 col-xs-10 col-xs-10" >
+	
+	
+	<div style="width: 1000px; height: 500px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
+	
+	<p style="padding-top:30px; padding-left: 30px;">
+		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;"><%=bookUser.getUserId() %></span>님의 <span class="highlight light">즐겨찾기</span> 추가 목록 
+	</p>
+	<p style="font-weight: bold; padding-left: 30px;">총 <span class="highlight default">${r.cnt .intValue()}</span>개</p>
+	<br>
+		<table style="width: 998px;"> 
+		<thead >
+			<tr style="background: #fafafa;  border: 1px solid #e6e6e6; border-left: none; border-right: none; border-top: 2px solid silver;">
+				<th style="text-align: center; height: 35px; width: 65px;">NO</th>
+				<th style="text-align: center; width: 100px;">사진</th>
 				<th style="text-align: center;">홈페이지 이름</th>
-				<th style="text-align: center;">주인명</th>
+				<th style="text-align: center; width: 220px;"><i class="fa fa-user" style="color:gray;">&nbsp;</i>주인장 ID </th>
 			</tr>
 		</thead>
-		<tbody>
-			<c:forEach items="${result.list }" var="book"  varStatus="index">
-			<tr>			
-				<td>
-					${index.count }
-				</td>
-				<td>
-					<a href="/palette/miniHome/${book.ownerId}/main">${book.homeTitle}</a>
-				</td>
-				<td>
-					${book.ownerId }
-				</td>
+		<tbody style="border: 1px solid #e6e6e6; border-left: none;  border-right: none;">
+			<c:forEach items="${r.list }" var="b"  varStatus="i">
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${i.count.intValue() }</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><a href="/palette/miniHome/${b.ownerId}/main"><img src="<c:url value="/resources/images/${b.homeImg }"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${b.ownerId}/main">${b.homeTitle }</a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;"><a href="/palette/miniHome/${b.ownerId}/main">${b.ownerId }</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
 	</table>
-			<c:if test="${result.pagination.prev>0 }"><a href="/palette/users/bookmarkList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
-			
-			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/users/bookmarkList?pageNo=${i}">${i} </a>
+	   
+	<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+		 <c:if test="${r.pagination.prev>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}">이전으로</a></li></c:if>
+			<c:forEach var="i" begin="${r.pagination.startPage}" end="${r.pagination.endPage}">
+				<li><a href="/palette/users/bookmarkList?pageNo=${i}">${i} </a></li>
 			</c:forEach>
-			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/users/bookmarkList?pageNo=${result.pagination.next}">다음으로</a></c:if>
-		<br><br>
-	<button class="btn btn-default btn-lg btn-block" type="button" onclick="location.href='/palette/users/home'"> 
-							<i class="fa fa-rocket" ></i> 홈으로</button>
-                            </div>
-		</div>
-
-						 <!-- 광고 사이드 오른쪽-->
-    <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
-    <!-- 광고 사이드 오른쪽 끝 -->
-  </div>
+		<c:if test="${r.pagination.next>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.next}">다음으로</a></li></c:if>
+	</ul>
 </div>
-<br><br><br><br><br><br><br><br>
+	
+	
+	
+	
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	</div>
+</div>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
-
+<%@ include file="/WEB-INF/views/footer/InfoFooter.jsp" %>
 </body>
 	
 	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
