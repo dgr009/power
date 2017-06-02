@@ -109,60 +109,7 @@ public class MainController {
 			System.out.println(result);
 			return result;
 		}
-	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-	//공지 게시판생성
-	@RequestMapping(value = "/noticeboard/register", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
-	public ResponseEntity<String> noticeCreate(@RequestBody MainNoticeBoard mainNoticeBoard) throws BindException {
-		// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		int result = service.mainNoticeBoardInsert(mainNoticeBoard);
-		
-		if (result == 1) {
-			return new ResponseEntity<String>(mainNoticeBoard.toString(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>("작성 실패", HttpStatus.BAD_REQUEST);
-		}
-	}/*
-	// 공지게시판 수정
-	@RequestMapping(value = "/freeboard/update/{mainFreeArticleNo}", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
-	public ResponseEntity<String> noticeUpdate(@RequestBody MainFreeBoard mainFreeBoard)throws BindException {
-	// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-		int result = service.mainFreeBoardUpdate(mainFreeBoard);
-		if (result == 1) {
-			return new ResponseEntity<String>(mainFreeBoard.toString(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<String>("수정 실패", HttpStatus.BAD_REQUEST);
-		}
-
-	}
 	
-		
-		// 공지게시판 상세 보기
-		@RequestMapping(value = "/noticeboard/view/{mainNoticeArticleNo}", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
-		public String noticeView(@PathVariable int mainNoticeArticleNo) {
-			MainNoticeBoard result= service.mainNoticeBoardView(mainNoticeArticleNo);
-			return new Gson().toJson(result);
-		}
-		//공지게시판 리스트
-		@RequestMapping(value="/noticeboard/list", method=RequestMethod.GET, produces="text/html;charset=utf-8")
-		public String noticeList(@RequestParam int pageNo) {
-			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-			Map<String,Object> free = service.MainNoticeBoardList(pageNo);
-			return new Gson().toJson(free);
-		}
-		//공지게시판 삭제
-		@RequestMapping(value="/noticeboard/delete/{mainArticle}", method=RequestMethod.DELETE, produces="text/html;charset=utf-8", consumes="application/json")
-		public ResponseEntity<String> noticeDelete(@RequestHeader("token") String token, @PathVariable int mainNoticeArticleNo, @PathVariable String userId) throws BindException {
-			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
-			int result = service.mainNoticeBoardDalete(mainNoticeArticleNo);;
-				
-			if(result==1){
-				return new ResponseEntity<String>(HttpStatus.OK);
-				
-			}else{
-				return new ResponseEntity<String>("가입 실패",HttpStatus.BAD_REQUEST);
-				
-			}
-		}*/
 	
 	
 }

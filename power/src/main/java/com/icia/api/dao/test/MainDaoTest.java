@@ -14,7 +14,6 @@ import com.icia.api.vo.*;
 public class MainDaoTest {
 	
 	@Autowired
-	public MainFunctionDao dao;
 	//공지글 작성(+게시글수) 테스트
 	
 	//@Test
@@ -78,11 +77,5 @@ public class MainDaoTest {
 		//	System.out.println("추가 전 댓글수 :"+ dao.freeRepleCnt());
 		
 		}
-		@Test
-		public void repleUpdate(){
-			//System.out.println(dao.mainUserIdSearch(1, 10, "11"));
-			//System.out.println(dao.mainUserTitleSearch(1,10,"타이틀"));
-			//System.out.println(dao.mainUserTitleSearch(1, 10, "타이틀"));
-			System.out.println(dao.mainCategoryList(1, 10, "r"));
-		}
+	
 }
