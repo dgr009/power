@@ -2,6 +2,7 @@ package com.icia.palette.service;
 
 import java.util.*;
 
+import org.hibernate.validator.internal.util.logging.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -145,8 +146,7 @@ public class ProductService {
 		System.out.println("안녕들어왔냐"+itemList.toString());
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(itemList), headers);
 		tpl.exchange("http://localhost:8087/api/miniHome/productUpdate", HttpMethod.POST, requestEntity, String.class).getBody();
-	
-		
+
 	
 	}
 	//상품주문하기
