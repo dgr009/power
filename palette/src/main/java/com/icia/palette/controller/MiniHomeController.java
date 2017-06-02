@@ -52,6 +52,12 @@ public class MiniHomeController {
 		model.addAttribute("mini2", service.miniHomeSelectNoticeList(session, userId, pageNo));
 		return "mini/noticeList";
 	}
+	//이용권 구매 리스트
+	@RequestMapping(value="/payList",method = RequestMethod.GET)
+	public String payList(HttpSession session,Model model,@RequestParam(defaultValue="1") int pageNo){
+		model.addAttribute("mini2", service2.payList(session, pageNo));
+		return "mini/payList";
+	}
 	//자유게시판 추가 시작
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.GET)
 	public String InsertStart(HttpSession session,@PathVariable String homeId, Model model){

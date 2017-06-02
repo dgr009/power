@@ -113,7 +113,11 @@
 		<button class="btn btn-default btn-lg btn-block" type="button" data-toggle="modal" data-target="#pwdModal" style="border:1px solid #727cb6; color:#727cb6;"> 
 		<i class="fa fa-rotate-right"></i> 비밀번호 변경</button>
 	</div>
-
+	<div class="col-xs-12 col-xs-12 col-xs-12" >
+		<br><br><br><br>	
+	</div>
+	<!-- footer -->
+	<%@include file="/WEB-INF/views/footer/normalFooter.jsp" %>
 </body>
 	
 	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>

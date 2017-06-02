@@ -49,13 +49,12 @@
                			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</span>
                			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</span>
                			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
-                       	  <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
-                       	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
-                        <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         
                       </div>
                     <div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
- 							<span class="hidden-sm"><i class="fa fa-calendar-o"></i>이벤트</span>
+                    	<span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
+                       	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
+                        <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
  						</div>
                 </div>
 

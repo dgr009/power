@@ -54,10 +54,11 @@
 </style>
 <script>
 	$(function(){
-			$("#charge").on("click",function(){
+			$("#charge").on("click",function(e){
+				e.preventDefault();
 				$("#chargeForm").submit();
-				alert("충전완료");
-
+				opener.parent.location.reload();
+				
 			})
 	})
 </script>
@@ -65,6 +66,7 @@
 <body>
 <!-- 헤더 -->
 <!-- 헤더 끝 -->
+<div class="modal"  id="chargeModal" role="dialog" data-backdrop="false" >
 <div class="container text-center">    
   <div class="row">
 	<section class="page_head">
@@ -81,7 +83,7 @@
              </section>
             
  
-           <form id="chargeForm" action="/palette/users/chargePoint"  method="post">
+           <form id="chargeForm" action="/palette/users/chargePoint" method="post">
             <br><br>
 					<div class="col-lg-1 col-md-1 col-sm-1">
 
@@ -202,14 +204,14 @@
 							<div class="col-lg-8 col-md-8 col-sm-8" style="text-align: center;"><br>
 							
 								
-								<input type="submit"  id="charge" data-loading-text="Loading..." class="btn btn-default btn-lg" value="충전하기">
+								<input type="button"  id="charge" data-loading-text="Loading..." class="btn btn-default btn-lg" value="충전하기">
 							</div>
 							
 							<div class="col-lg-2 col-md-2 col-sm-2"><br><br><br><br><br><br><br><br></div>
 							
 							</form>
 	 </div>
-	</div>
+		</div>
 		
 		
 <br><br><br><br><br><br><br><br>
@@ -217,7 +219,7 @@
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
-
+</div>
 </body>
 	
 	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>

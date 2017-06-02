@@ -46,6 +46,16 @@ public class MiniHomeService {
 		return dao.miniHomeSelectSellerInformation(userId);
 	}
 	
+	//이용권 기록 리스트 
+	public HashMap<String,Object> selectActiveList(String userId, int pageNo){
+		int cnt = dao.countActiveDate(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.selectActiveDate(userId,pagination.getEndArticle(),pagination.getStartArticle()));
+		return map;
+	}
+
 	
 	
 	

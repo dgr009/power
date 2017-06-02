@@ -65,7 +65,7 @@
 	<div class="col-xs-10 col-xs-10 col-xs-10" >
 	
 	
-	<div style="width: 1000px; height: 500px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
+	<div style="width: 1000px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
 	
 	<p style="padding-top:30px; padding-left: 30px;">
 		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;"><%=basketUser.getUserId() %></span>님의 <span class="highlight light">장바구니</span> 추가 목록 
@@ -99,14 +99,16 @@
 		</tbody>
 	</table>
 
-	    
-	<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+	    <br><br>
+	  <div style="width:1000px; height:30px;">
+	<ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/basketList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
 				<li><a href="/palette/users/basketList?pageNo=${i}">${i} </a></li>
 			</c:forEach>
 		<c:if test="${result.pagination.next>0 }"><li><a href="/palette/users/basketList?pageNo=${result.pagination.next}">»</a></li></c:if>
 	</ul>
+	</div>
 	</div>
 	
 	

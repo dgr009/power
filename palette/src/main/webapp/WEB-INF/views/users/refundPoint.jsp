@@ -31,7 +31,7 @@
 }
 
 .well {
-    min-height: 360px;
+    min-height: 300px;
     padding : 0;
     padding-left: 50px;
     }
@@ -42,7 +42,7 @@
     }
     
     .form-control{
-    height: 20px;
+    	height: 20px;
     	line-height: 20px;
     	
     }
@@ -52,22 +52,22 @@
       padding: 15px;
     }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 	$(function(){
 		$("#point").on("blur",function(){
 			$("#after").html(<%=users.getUserPoint()%>-$("#point").val())
 		})
+		
+		$("#refund").on("click",function(e){
+				e.preventDefault();
+				$("#refundForm").submit();
+				alert("환급완료");
+			})
+		
 	})
 </script>
 </head>
 <body>
-<!-- 헤더 -->
-<header id="header">
- <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
-</header>
-<br><br><br><br><br><br>
 <!-- 헤더 끝 -->
 <div class="container text-center">    
   <div class="row">
@@ -85,7 +85,7 @@
              </section>
             
  
-           <form action="/palette/users/refundPoint"  method="post">
+           <form id="refundForm" action="/palette/users/refundPoint"  method="post">
             <br><br>
 					<div class="col-lg-1 col-md-1 col-sm-1">
 
@@ -111,51 +111,19 @@
 							<td><input type="text" name="tradePoint" id="point" class="form-control"  placeholder="0"></td>
 							<td><span class="after" id="after"><%=users.getUserPoint()%></span></td>			       
 					</tr>
-									
-								
-                    
-                    
-                    
                 </table>
+                
+                <div class="col-lg-8 col-md-8 col-sm-8" style="text-align: center;"><br>
+						<input type="button" id="refund" data-loading-text="Loading..." class="btn btn-default btn-lg" value="환급하기">
+				</div>
+			</div>
 									
-									 
-									
-									
-									</div>
-									
-									
-									<div class="col-lg-1 col-md-1 col-sm-1">
-
-
-									</div>
 							
-								
-								 <div class="col-lg-12 col-md-12 col-sm-12">
-            <br><br>
-							
-
-							</div>
-							
-							<div class="col-lg-2 col-md-2 col-sm-2"></div>
-							
-							<div class="col-lg-8 col-md-8 col-sm-8" style="text-align: center;"><br>
-							
-								
-								<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="환급하기">
-							</div>
-							
-							<div class="col-lg-2 col-md-2 col-sm-2"><br><br><br><br><br><br><br><br></div>
-							
-							</form>
+		</form>
 	 </div>
-		</div>
-		
-		
-<br><br><br><br><br><br><br><br>
+</div>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+		
 
 </body>
 	
@@ -177,4 +145,5 @@
 			<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
+			<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </html>
