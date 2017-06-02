@@ -23,7 +23,6 @@
                     	<span class="hidden-sm"><a data-toggle="modal" data-target="#registerModal" style="color:white"><i class="fa fa-user-plus"></i>회원가입</a></span>
                	 	</div>
                     	<div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
- 							<span class="hidden-sm"><i class="fa fa-calendar-o"></i>이벤트</span>
  						</div>
                     
                 </div>
