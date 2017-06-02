@@ -65,7 +65,21 @@
 
 
 
-
+<c:if test="${userId!=null}">
+                     <div class="col-lg-5 col-sm-7 top-info clearfix">
+                        <ul>
+                            <li>
+                                <form name="searchForm" action="/palette/miniHome/${userId}/productSearch"  method="get" class="search-bar">
+                                    <label for="search" class="search-label">
+                                        <button class="search-button" type="button"><i class="fa fa-search"></i></button>
+                                        <!-- Fix the break-row-bug-->
+                                        <input type="text"  id="search" name="itemName" class="search-input" onkeydown="javascript:if(event.keyCode==13){goPage('1'); return false;}">
+                                    </label>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    </c:if>
 
 
 

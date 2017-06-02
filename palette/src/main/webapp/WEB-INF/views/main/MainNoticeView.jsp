@@ -107,7 +107,7 @@ input[type="button"] {
 							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
 							
 							<!-- 게시물 제목 -->
-							     ${result.inquiry.mainNoticeArticleTitle }</h3>
+							     ${result.result.mainNoticeArticleTitle }</h3>
 							     <!-- 댓글 수 -->
 		
 							      

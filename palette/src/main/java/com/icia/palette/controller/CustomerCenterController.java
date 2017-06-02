@@ -85,6 +85,7 @@ public class CustomerCenterController {
 		//공지사항 글수정하기
 		@RequestMapping(value="/notice/update",method=RequestMethod.POST)
 		public String noticeUpdateEnd(@ModelAttribute MainNotice m){
+			System.out.println("d오잖아??");
 			service.noticeUpdate(m);
 			return "redirect:/main/notice/list";
 	}

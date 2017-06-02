@@ -59,4 +59,15 @@ public class MainController {
 	public String test7(){
 		return "main/shoppingBasket";
 	}
+	//테스트
+		@RequestMapping(value="/main/order",method=RequestMethod.GET)
+		public String test8(){
+			return "main/orderList";
+		}
+		
+		//테스트
+		@RequestMapping(value="/main/trade",method=RequestMethod.GET)
+		public String test9(){
+			return "main/tradeList";
+		}
 }

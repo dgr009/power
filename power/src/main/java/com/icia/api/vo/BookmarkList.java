@@ -8,4 +8,5 @@ import lombok.*;
 public class BookmarkList {
 	private String ownerId;
 	private String homeTitle;
+	private String homeImg;
 }

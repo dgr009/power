@@ -103,15 +103,13 @@ input[type="button"] {
             <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
 						
-							<form 
-							action="/palette/main/notice/update"
-							method="post">
+							<form action="/palette/main/notice/update" method="post">
 							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
 							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
 							
 							<!-- 게시물 제목 -->
-							     <input type="text" name="faqTitle" style="width:730px;" value="${result.result.mainNoticeArticleTitle }"></h3>
-							     <input type="hidden" name="faqNo" value="${result.result.mainNoticeArticle.intValue()}">
+							     <input type="text" name="mainNoticeArticleTitle" style="width:730px;" value="${result.result.mainNoticeArticleTitle }"></h3>
+							     <input type="hidden" name="mainNoticeArticleNo" value="${result.result.mainNoticeArticleNo.intValue()}">
 							     <!-- 댓글 수 -->
 		
 							      
@@ -132,7 +130,7 @@ input[type="button"] {
 				                    <!-- 작성자 및 시간 -->
 				                    
 				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>관리자</th>
-										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${result.result.mainNoticleArticleDate}</th>
+										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${result.result.mainNoticeArticleDate}</th>
 									</tr>
                   					  </thead>
                    

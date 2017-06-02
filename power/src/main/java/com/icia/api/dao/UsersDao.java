@@ -352,16 +352,34 @@ public class UsersDao {
 		return tpl.selectList("api.dao.UsersDao.selectHomeByName", search);
 		}
 
-	//상품개수검사
+	//홈페이지 이미지 가져오기
+	public String getHomeImg(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.getHomeImg",userId);
+	}
+
+	public int userMailUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersMailUpdate", user);
+	}
+
+	public int userPhoneUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersPhoneUpdate", user);
+	}
+
+	public int userAddressUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersAddressUpdate", user);
+	}
+
+	public int userPwdUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersPwdUpdate", user);
+	}
+		//상품개수검사
 	public int selectItemByNameCnt(String search) {
 		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
 	}
 	//홈페이지개수검사
-
 	public int selectHomeByNameCnt(String search) {
 		return tpl.selectOne("api.dao.UsersDao.hompageSearchCnt", search);
 	}
-	
 	
 	
 }

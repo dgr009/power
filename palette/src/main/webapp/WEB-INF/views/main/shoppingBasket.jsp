@@ -49,7 +49,6 @@
 </script>
 </head>
 <body>
-<body>
 <header id="header">
  <div class="header-top">
         <div class="container">
@@ -106,75 +105,74 @@
 	<div class="col-xs-10 col-xs-10 col-xs-10" >
 	
 	
-	<div style="width: 1000px; height: 540px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
+	<div style="width: 1000px; height: 500px; border : 1px solid silver; border-bottom: none; ; position: relative;"> 
 	
 	<p style="padding-top:30px; padding-left: 30px;">
 		<span style="font-size: 1.15em; font-weight: bold; color:#727cb6;">qhrals8</span>님의 <span class="highlight light">장바구니</span> 추가 목록 
 	</p>
 	<p style="font-weight: bold; padding-left: 30px;">총 <span class="highlight default">3</span>개</p>
 	<br>
-		<div class="well" style="height: 45px; padding-top: 12px; ">
-				
-		<table style="margin-left: 3px;">
-			<thead>
-				<tr>
-					<th style="width:200px; border-right: 1px dashed black; padding-right: 25px;">상품 이미지</th>
-					<th style="width:400px; border-right: 1px dashed black; ">상품명</th>
-					<th style="width:200px; border-right: 1px dashed black;">판매가</th>
-					<th style="width:150px; border-right: 1px dashed black;">재고</th>
-					<th style="width:150px;  border-right: 1px dashed black; padding-left: 20px; padding-right: 20px;">판매자</th>
-					<th style="width:100px; padding-right: 25px;"></th>
-				</tr>
-			</thead>
-		</table>
-		</div>
-		
-	<table style=" ">
-		
-		<tbody>
-			<tr>
-				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">반팔 티셔츠</td>
-				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
-				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
-				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
-				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
-					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
-				</td>
+		<table style="width: 998px;"> 
+		<thead >
+			<tr style="background: #fafafa;  border: 1px solid #e6e6e6; border-left: none; border-right: none; border-top: 2px solid silver;">
+				<th style="text-align: center; height: 35px; width: 65px;">NO</th>
+				<th style="text-align: center; width: 100px;">이미지</th>
+				<th style="text-align: center;">상품명</th>
+				<th style="text-align: center; width: 120px;">판매가</th>
+				<th style="text-align: center; width: 65px;">재고</th>
+				<th style="text-align: center; width: 140px;">판매자</th>
+				<th style="text-align: center;width: 85px;">비고</th>
 			</tr>
-			
-			<tr>
-				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">도라에몽 어디로든문</td>
-				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
-				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
-				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
-				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
-					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
-				</td>
+		</thead>
+		<tbody style="border: 1px solid #e6e6e6; border-left: none;  border-right: none;">
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">100.000<i class="fa fa-krw" style="color: #727cb6;"></i></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">24</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">qhrals8</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;"><span class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:6px; font-size: 0.9em; color:gray;  text-align: center;  ">삭제</span></td>
 			</tr>
-			<tr>
-				<td style="width:190px;  padding-bottom: 10px; padding-left: 5px;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style=" width: 63px; height: 43px; border-radius: 43px;
-									width:100%;  min-width: 63px;max-width:63px; min-height: 43px;max-height: 43px; vertical-align: middle;"></td>
-				<td class="title" style="width:350px;  padding-bottom: 10px; padding-left: 35px; ">삼겹살 목살 샤브샤브</td>
-				<td style="width:170px;  padding-bottom: 10px; padding-right: 12px; padding-left: 50px;">150.000 <i class="fa fa-krw"style="color: #727cb6;"></i></td>
-				<td style="width:130px;  padding-bottom: 10px; padding-right: 20px; padding-left: 40px;">232</td>
-				<td style="width:150px;  padding-bottom: 10px; padding-right: 10px; padding-left: 15px;">rlarmaaud</td>
-				<td style="width:100px;  padding-bottom: 10px; padding-left: 10px;">
-					<button class="btn btn-default btn-xs btn-block" type="button" style="width:70px; color:#727cb6; border : 1px solid #727cb6;">삭제하기</button>
-				</td>
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">100.000<i class="fa fa-krw" style="color: #727cb6;"></i></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">24</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">qhrals8</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;"><span class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:6px; font-size: 0.9em; color:gray;  text-align: center;  ">삭제</span></td>
 			</tr>
-			
-
-			
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">100.000<i class="fa fa-krw" style="color: #727cb6;"></i></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">24</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">qhrals8</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;"><span class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:6px; font-size: 0.9em; color:gray;  text-align: center;  ">삭제</span></td>
+			</tr>
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">100.000<i class="fa fa-krw" style="color: #727cb6;"></i></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">24</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">qhrals8</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;"><span class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:6px; font-size: 0.9em; color:gray;  text-align: center;  ">삭제</span></td>
+			</tr>
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">1</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><img src="<c:url value="/resources/images/portfolio/portfolio_1_1.png"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;">알록달록 색연필 세트</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">100.000<i class="fa fa-krw" style="color: #727cb6;"></i></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">24</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">qhrals8</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;"><span class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:6px; font-size: 0.9em; color:gray;  text-align: center;  ">삭제</span></td>
+			</tr>
 		</tbody>
 	</table>
 
-		<div style="width: 1000px; border-top:1px dashed silver; position: absolute; bottom:70px;">
-
-	    </div>
 	    
 	    			<ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
 		        <li><a href="#">«</a></li>
@@ -216,6 +214,8 @@
 	
 	
 	
+
+
 
 </body>
  <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>

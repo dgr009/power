@@ -60,6 +60,4 @@
 	})
 </script>
     
-<div class="col-md-1 col-sm-1">
-	<div><a id='bookTarget'></a></div>
-</div>
+<a id='bookTarget' class="slider-read FromLeft"></a>
