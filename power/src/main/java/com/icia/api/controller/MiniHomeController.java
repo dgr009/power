@@ -190,9 +190,18 @@ public class MiniHomeController {
 			return new ResponseEntity<String>("실패",HttpStatus.BAD_REQUEST);
 			
 		}
+		
 	}
 	
 	
+	//이용내역 리스트
+	@RequestMapping(value="/payList", method=RequestMethod.GET, produces="text/html;charset=utf-8")
+	public String payList(@RequestHeader("token") String token, @RequestParam int pageNo) {
+		String userId = service.getUserIdByToken(token);
+		Map<String,Object> active = service2.selectActiveList(userId, pageNo);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(active);
+	}	
 
 	
 	

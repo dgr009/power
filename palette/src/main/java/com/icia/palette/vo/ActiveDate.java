@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class ActiveDate {
 	private int activeNo;
-	private Date homeStart;
-	private Date homeEnd;
+	private Date activeStart;
+	private Date activeEnd;
 	private String userId;
 }

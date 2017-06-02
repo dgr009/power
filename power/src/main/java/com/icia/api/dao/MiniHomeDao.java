@@ -49,5 +49,18 @@ public class MiniHomeDao {
 		return tpl.selectOne("api.dao.HomeDao.miniHomeSelectSellerInformation",userId);
 	}
 	
+	//유저 이용권 내역 조회
+	public List<ActiveDate> selectActiveDate(String userId, int end, int start){
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("end", end);
+		map.put("start", start);
+		return tpl.selectList("api.dao.HomeDao.selectActiveDate",map);
+	}
+	//(개인)공지게시판 총 게시글 수
+	public int countActiveDate(String userId){
+		return tpl.selectOne("api.dao.HomeDao.countActiveDate",userId);
+	}
+
 	
 }
