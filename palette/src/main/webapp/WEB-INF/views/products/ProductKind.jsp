@@ -75,15 +75,7 @@
 <!--Start Header-->
     <header id="header">
   <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
-        <div id="menu-bar">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>                    <!-- Navigation
+                        <!-- Navigation
                     ================================================== -->
                   <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
         <!--End Header-->

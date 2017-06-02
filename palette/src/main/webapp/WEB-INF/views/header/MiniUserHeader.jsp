@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 
 	function openHome(){
@@ -51,12 +51,22 @@
                			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
                         
                       </div>
-                    <div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
+                    <div class="hidden-xs col-lg-5 col-sm-7 top-info" style="text-align: right;">
                     	<span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
                        	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
+                         
+                                <form name="searchForm" action="/palette/miniHome/${userId}/productSearch"  method="get" class="search-bar">
+                                    <label for="search" class="search-label">
+                                        <button class="search-button" type="button"><i class="fa fa-search"></i></button>
+                                        <!-- Fix the break-row-bug-->
+                                        <input type="text"  id="search" name="itemName" class="search-input" onkeydown="javascript:if(event.keyCode==13){goPage('1'); return false;}">
+                                    </label>
+                                </form>
+                        
  					</div>
                 </div>
 
             </div>
         </div>
+<script src="<c:url value="/resources/js/main.js"/>"></script>
