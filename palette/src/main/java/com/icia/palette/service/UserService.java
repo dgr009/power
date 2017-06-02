@@ -38,7 +38,6 @@ public class UserService {
 			session.setAttribute("user", user);
 			return 1;
 		}
-
 	}
 
 	// 회원 로그아웃

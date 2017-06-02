@@ -337,30 +337,7 @@
 		from home where user_id like '%' ||  #{search} || '%' 
 		]]>
 	</select>
-	
 	<select id="getHomeImg" parameterType="string" resultType="string">
 		select home_img from home where user_id=#{userId}
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>
