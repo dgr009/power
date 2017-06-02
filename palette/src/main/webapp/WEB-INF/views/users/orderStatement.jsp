@@ -24,6 +24,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>    
+	a,a:hover,a:link,a:VISITED{
+		text-decoration: none;
+	}
+	
  	th{
 		text-align: center;
 	}
@@ -62,12 +66,12 @@
 	<%=orderUser.getUserPoint() %></span>&nbsp;원</p><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<button type="button" id="btnLogin" class="btn_login03"style="border-radius:20px; text-align: center; width :95px; height :35px; border:0; background:#727cb6; margin-left: 10px; position: absolute; top: 50px;">
-	<span id="login" style="color:white; font-size: 0.9em; font-weight: bold;">
-				이용권 구매</span>
+	<a href="/palette/miniHome/<%=orderUser.getUserId() %>/admin/pay" onclick="window.open(this.href, '_blank', 'width=600,height=600,toolbars=no,scrollbars=no'); return false"><span id="login" style="color:white; font-size: 0.9em; font-weight: bold;">
+				이용권 구매</span></a>
 	</button>
 	<button type="button" id="btnLogin" class="btn_login03"style="border-radius:20px; text-align: center; width :110px; height :35px; border:0; background:white; border:1px solid #727cb6; margin-left: 5px; position: absolute; top: 50px; left: 150px;">
-	<span id="login" style="color:#727cb6; font-size: 0.9em; font-weight: bold;">
-				이용권 구매내역</span>
+	<a href="/palette/miniHome/payList" onclick="window.open(this.href, '_blank', 'width=700,height=600,toolbars=no,scrollbars=no'); return false"><span id="login" style="color:#727cb6; font-size: 0.9em; font-weight: bold;">
+				이용권 구매내역</span></a>
 			</button>
 	</div>
 	<div style="width:550px; height : 114px; display: inline-block;  margin : 35px; margin-top: 50px; position: absolute; left:400px; margin-left: none; " >
@@ -112,7 +116,7 @@
 		</c:forEach>
 		</tbody>
 	</table>	<br>
-	 <ul class="pagination" style="margin-left: 380px; position: absolute; bottom: 23px; height: 10px;">
+	 <ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/orderList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
 				<li><a href="/palette/users/orderList?pageNo=${i}">${i} </a></li>

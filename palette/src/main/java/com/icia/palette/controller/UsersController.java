@@ -154,7 +154,7 @@ public class UsersController {
 	public String chargePointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.chargePoint(session, userId, tradePoint);
-		return "redirect:/users/main";
+		return "users/close";
 	}
 
 	// 포인트 환급하기 페이지
@@ -168,7 +168,7 @@ public class UsersController {
 	public String refundPointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.refundPoint(session, userId, tradePoint);
-		return "redirect:/users/main";
+		return "users/close";
 	}
 
 	// 포인트 충전 환급 조회
