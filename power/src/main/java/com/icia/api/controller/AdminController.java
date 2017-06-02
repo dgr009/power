@@ -5,8 +5,8 @@ import java.util.*;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.ui.*;
+import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.*;
 
 import com.google.gson.*;
 import com.icia.api.service.*;
@@ -19,24 +19,48 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	// 전체회원목록조회
+		 @RequestMapping(value="/all", method=RequestMethod.GET)
+		    public String totalUser(@RequestParam(defaultValue = "1") int pageNo){
+			 Map<String,Object> map = service.totalUser(pageNo);
+			 return new Gson().toJson(map);
+		    }
+		 
+	// 홈페이지 개설회원 조회
+		@RequestMapping(value="/openUser", method = RequestMethod.GET)
+			public String openPageUser() {
+				Map<String, Object> map = service.FindOpenPageUser();
+				return new Gson().toJson(map);
+			}
+			
+	//관리자 로그인
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	public String login(@RequestBody Admin admin) throws BindException {
+		String token = service.adminLogin(admin);
+		if (token == null)
+			return "로그인 실패";
+		else
+			return token;
+	}
+	
+	// 관리자 토큰으로 정보 얻기
+		@RequestMapping(value = "/info", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+		public String read(@RequestHeader("token") String token) {
+			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
+			Admin admin = service.getAdminByToken(token);
+			return new Gson().toJson(admin);
+		}
+	
+	//관리자 로그아웃
+	
 	//	회원이름으로 조회
 	@RequestMapping(value = "/userName", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
 	public String findUserName(@RequestBody Map<String, Object> map){
 		Map<String, Object> maps = service.findUserName(map);
 		return new Gson().toJson(maps);
 	}
-	// 홈페이지 개설회원 조회
-	@RequestMapping(value="/OpenPageUser", method = RequestMethod.GET)
-	public String openPageUser(@RequestBody String userId) {
-		service.FindOpenPageUser(userId);
-		return new Gson().toJson(userId);
-	}
-	// 전체회원목록조회
-	 @RequestMapping(value="/all", method=RequestMethod.GET)
-	    public String totalUser(){
-	       List<Users> list = service.totalUser();
-	        return new Gson().toJson(list);
-	    }
+	
+	
 	// 회원상세조회
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public String userDetail(@RequestParam String userId) {

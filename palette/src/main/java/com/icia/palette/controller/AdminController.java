@@ -21,28 +21,50 @@ public class AdminController {
 	private ServletContext ctx;
 	@Autowired
 	private AdminService service;
-	@Autowired
-	private UserService uservice;
 	
-	// 회원이름으로 조회
-		@RequestMapping(value="/userName", method= RequestMethod.GET)
+		// 전체회원목록
+		@RequestMapping(value="/all", method=RequestMethod.GET)
+	    public String totalUser(Model model, HttpSession session, @RequestParam(defaultValue="1")int pageNo){
+			model.addAttribute("result", service.totalUser(session, pageNo)); 
+			return "admin/AllUser";
+		}
+		
+		// 홈페이지 개설회원 조회 
+		@RequestMapping(value = "/openPage", method = RequestMethod.GET)
+		public String OpenPageUser(Model model, HttpSession session) {
+			model.addAttribute("result", service.openPageUser(session));
+			return "admin/OpenPageUser";
+		}
+		
+		// 로그인페이지로
+		@RequestMapping(value = "/login", method = RequestMethod.GET)
+		public String loginStart(Model model) {
+			return "admin/login";
+		}
+
+		// 로그인
+		@RequestMapping(value = "/login", method = RequestMethod.POST)
+		public String loginEnd(HttpSession session, @RequestParam String adminId, @RequestParam String adminPwd,
+				Model model) {
+			int result = service.login(adminId, adminPwd, session);
+			return "redirect:/admin/revenueList";
+		}
+		//로그아웃
+		@RequestMapping(value = "/logout", method = RequestMethod.GET)
+		public String logout(HttpSession session) { 
+			service.logout(session);
+			return "redirect:/users/main";
+		}
+		// 회원이름으로 조회
+		/*
+		 @RequestMapping(value="/userName", method= RequestMethod.GET)
 		public String findUserName(Model model,@RequestParam(defaultValue=" ") String userName) {
 			if(userName!=null) 
 				model.addAttribute("userName", service.findUserName(userName));
 			return "admin/UserName";
 		}
-	
-	// 전체회원목록
-		@RequestMapping(value="/all", method=RequestMethod.GET)
-	    public String totalUser(Model model, @ModelAttribute Users user){
-		    return "admin/AllUser";
-		    }
+		*/
 		
-	// 홈페이지 개설회원 조회 
-		@RequestMapping(value = "/openPage", method = RequestMethod.GET)
-		public String OpenPageUser() {
-			return "admin/OpenPageUser";
-		}
 	// 회원상세조회
 		@RequestMapping(value = "/detail", method = RequestMethod.GET)
 		public String DetailUser(Model model, String userId) {

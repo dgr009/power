@@ -310,7 +310,8 @@
 	<!-- 아이템 검색 개수 -->
 	<select id="productSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
-		select count(*) from item where item_name like '%' ||  #{search} || '%'
+		select count(*)
+		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
 		]]>
 	</select>
 	<!-- 아이템 검색 -->
@@ -336,33 +337,7 @@
 		from home where user_id like '%' ||  #{search} || '%' 
 		]]>
 	</select>
-	
-<<<<<<< HEAD
 	<select id="getHomeImg" parameterType="string" resultType="string">
 		select home_img from home where user_id=#{userId}
 	</select>
-=======
->>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>

@@ -33,29 +33,7 @@
 <body class="home">
     <header id="header">
         <!-- Start header-top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <div class="hidden-xs col-lg-7 col-sm-5 top-info">
-                        <span><i class="fa fa-phone"></i>Phone: (123) 456-7890</span>
-                        <span class="hidden-sm"><i class="fa fa-envelope"></i>123</span>
-                    </div>
-                    <div class="col-lg-5 col-sm-7 top-info clearfix">
-                        <ul>
-                            <li>
-                                <form class="search-bar">
-                                    <label for="search" class="search-label">
-                                        <button class="search-button"><i class="fa fa-search"></i></button><!-- Fix the break-row-bug
-                                        --><input type="text" id="search" class="search-input" />
-                                    </label>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
         <!--/.header-top -->
 
         <div id="menu-bar">
@@ -63,97 +41,12 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">홈페이지 이름</h1>
+                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
                         </div>
                     </div>
                      <!-- Navigation
                     ================================================== -->
-                    <div class="col-lg-9 col-sm-9 navbar navbar-default navbar-static-top container" role="navigation">
-                        <!--  <div class="container">-->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="index.html">브랜드</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index_2.html">브랜드1</a></li>
-                                        <li><a href="index_3.html">브랜드2</a></li>
-                                        <li><a href="index_4.html">브랜드3</a></li>
-                                        <li><a href="index_5.html">브랜드4</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="#">의류</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="elements.html">Elements</a></li>
-                                        <li><a href="columns.html">Columns</a></li>
-                                        <li><a href="typography.html">Typography</a></li>
-                                        <li><a href="pricing-tables.html">Pricing Tables</a></li>
-                                        <li><a href="icons.html">Icons</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="#">수제품</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="about.html">About</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="about.html">About Us 1</a></li>
-                                                <li><a href="about-2.html">About Us 2</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        <li><a href="sidebar-right.html">Right Sidebar</a></li>
-                                        <li><a href="sidebar-left.html">Left Sidebar</a></li>
-                                        <li><a href="404-page.html">404 Page</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="#">식품</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Portfolio Classic</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="portfolio_2.html">Portfolio 2</a></li>
-                                                <li><a href="portfolio_3.html">Portfolio 3</a></li>
-                                                <li><a href="portfolio_4.html">Portfolio 4</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="portfolio_masonry_3.html">Portfolio Masnory</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="portfolio_masonry_2.html">Masonry portfolio 2</a></li>
-                                                <li><a href="portfolio_masonry_3.html">Masonry portfolio 3</a></li>
-                                                <li><a href="portfolio_masonry_4.html">Masonry portfolio 4</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li>
-                                            <a href="portfolio_single.html">Portfolio Single</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="portfolio_single.html">Portfolio Single 1</a></li>
-                                                <li><a href="portfolio_single_2.html">Portfolio Single 2</a></li>
-                                                <li><a href="portfolio_single_3.html">Portfolio Single 3</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                     <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
             <!--/.container -->
         </div>
         <!--/#menu-bar -->
@@ -164,14 +57,14 @@
                         <div class="container">
                             <div class="flex_caption1">
 
-                                <p class="slide-heading FromTop">qhrals8의 '홈페이지 제목'</p><br/>
+                                <p class="slide-heading FromTop">${kind.home.homeTitle}</p><br/>
 
-                                <p class="sub-line FromBottom">홈페이지 소개 내용</p><br/>
+                                <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
 
                                 <a href="" class="slider-read FromLeft">상세 보기</a>
                             </div>
                             <div class="flex_caption2 FromRight">
-                            	 <img src="../UandMe/images/88888.jpg" style="width:100%;  min-width: 293px;max-width: 293px; min-height: 320px;max-height: 320px; vertical-align: middle;"/>
+                            	 <img src="<c:url value='http://localhost:8087/palette/homeimg/${kind.home.homeImg}'/>" style="width:100%;  min-width: 293px;max-width: 293px; min-height: 320px;max-height: 320px; vertical-align: middle;"/>
                             </div>
                         </div>
                     </li>
@@ -204,314 +97,27 @@
 
                 <div class="jcarousel recent-work-jc">
                     <ul class="jcarousel-list">
-                    
                         <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
+                           <c:forEach items="${item.recent}" var="free">
+                         <li class="col-sm-3 col-md-3 col-lg-3">
+                            <figure class="touching effect-bubba">
+                                <img style="width: 200	px; height: 150px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
                                 <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                    
+                                    <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
                                 </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
+                                 <figcaption class="item-description">
+                                    <h5>${free.itemName}</h5>
+                                    <p>${free.itemPrice.intValue()}</p>
                                 </figcaption>
                             </figure>
                         </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                         <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                          <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                          <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                    
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-<!--Start recent work-->
-<!--Start recent work-->
-    <section class="latest_work" style="padding:0;">
-        <div class="container">
-            <div class="row sub_content" style="padding-bottom: 20px;">
-                <div class="carousel-intro">
-                    <div class="col-md-12">
-                        <div class="dividerHeading">
-                            <h4><span  class="highlight default">마감 임박</span> 상품</h4>
-                        </div>
-                        <div class="carousel-navi">
-                            <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
-                            <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
 
-                <div class="jcarousel recent-work-jc">
-                    <ul class="jcarousel-list">
-                    
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                    
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                         <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                          <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                          <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width: 214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                           <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" >
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 214px;max-width:214px; min-height: 161px;max-height: 161px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description" style="border-radius: 10px;">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                    
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 <!--Start recent work-->
 
     <section class="latest_work">
@@ -520,7 +126,7 @@
                 <div class="carousel-intro">
                     <div class="col-md-12">
                         <div class="dividerHeading">
-                            <h4><span class="highlight default">인기</span> 상품</h4>
+                            <h4><span class="highlight default">마감</span> 상품</h4>
                         </div>
                         <div class="carousel-navi">
                             <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
@@ -533,140 +139,24 @@
                 <div class="jcarousel recent-work-jc">
                     <ul class="jcarousel-list">
                         <!-- Recent Work Item -->
+                      <c:forEach items="${item.inven}" var="free">
                         <li class="col-sm-3 col-md-3 col-lg-3"style="width:390px;">
                             <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
+                                <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive"
                                  style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
 
                                 <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_1.png" class="fa fa-search mfp-image"></a>
+                                 <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
                                 </div>
                                 <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
+                                    <h5>${free.itemName}</h5>
+                                    <p>${free.itemPrice.intValue()}</p>
                                 </figcaption>
                             </figure>
                         </li>
+                        </c:forEach>
 
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_2.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_3.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_4.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_5.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba" >
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_6.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_7.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
-
-                        <!-- Recent Work Item -->
-                        <li class="col-sm-3 col-md-3 col-lg-3" style="width:390px;">
-                            <figure class="touching effect-bubba">
-                                <img src="<c:url value="/resources/images/portfolio/portfolio_1.png"/>" alt="" class="img-responsive"
-                                style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
-
-                                <div class="option">
-                                    <a href="portfolio_single.html" class="fa fa-link"></a>
-                                    <a href="images/portfolio/portfolio_8.png" class="fa fa-search mfp-image"></a>
-                                </div>
-                                <figcaption class="item-description">
-                                    <h5>Touch and Swipe</h5>
-                                    <p>Technology</p>
-                                </figcaption>
-                            </figure>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>

@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Portfolio Single - Edge Responsive Multipurpose Template</title>
 	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
+	<meta name="viewport" content="width=1280">
 <!-- CSS FILES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
@@ -28,133 +27,86 @@
   
   
   <style>    
- 	th{
-		text-align: center;
+ 
+.bar{
+		color:silver;
+		opacity: 0.6;
 	}
-	td{
-		text-align: center;
-	}
-	.title:HOVER{
+	#d1:HOVER{
 		text-decoration: underline;
 		cursor: pointer;
 	}
-  }
+	#d2:HOVER{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	#d3:HOVER{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+	#btnLogin{
+		width:370px;
+		height:60px;
+		background: white;
+		border : 2px solid #727cb6;
+	}
+	
+	#login{
+		font-size: 1.5em;
+		color:#727cb6;
+	}
+	#en{
+		text-align: center;
+		font-size: 0.9em;
+	}
+	#en2{
+		text-align: center;
+		font-size: 0.8em;
+	}
+	a:link {text-decoration: none; color:gray;}
+	a:visited {text-decoration: none; color:gray;}
+	a:active {text-decoration: none; color:gray;}
+	a:hover {text-decoration: underline; color:gray;}
 
+
+ 
   </style>
 
-
-
 <script type="text/javascript">
-
+	
 </script>
 </head>
 <body>
-<header id="header">
-<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
-</header>
-
-<div class="col-xs-12 col-xs-12 col-xs-12" style="padding:0;">
-
-<div class="col-xs-1 col-xs-1 col-xs-1"></div><!-- 여백 -->
-
-<div class="col-xs-10 col-xs-10 col-xs-10">
-<br>
-	<blockquote class="default" style="border-top-right-radius: 30px; height:60px; border-bottom-right-radius: 30px; position: relative;">
-		<p style="font-size: 1.2em; position: absolute; bottom:0.1in;"><span style="font-weight: bold; font-size:1.2em; color:#727cb6; text-decoration: underline;">
-	${search}</span> 에 대한 상품&nbsp;<span style="font-size: 1.1em">${result.itemListCnt.intValue()}</span>건 홈페이지  <span style="font-size: 1.1em">${result.homePageCnt.intValue()}</span>건&nbsp; 의 검색 결과입니다 &nbsp;<i class="fa fa-search-plus " style="color:#727cb6;"></i></p> 
-	<nav id="breadcrumbs" style="position: absolute; bottom: 17px; left:850px; border-radius: 30px;">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li>메인으로</li>
-        </ul>
-    </nav>
-	</blockquote>
+	<div class="col-xs-12 col-xs-12 col-xs-12" style="padding: 0; background: #727cb6; height: 15px;"></div>
+	<br><br><br><br>
+	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
+	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center;">
+	 <form  action="/palette/admin/login"  novalidate="novalidate" method="post">
+		<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:230px; height: 60px;"><br><br><br><br>
+		<input type="text" name="adminId" style="height: 50px; width: 370px; padding-left: 15px;" placeholder="아이디"><br>
+		<input type="password" name="adminPwd" style="padding-left: 15px; height: 50px; margin-left:5px;  width: 370px;border-right:  1px solid gray; border-left:  1px solid gray; border-top:  0px solid gray; border-bottom:  1px solid gray;"placeholder="비밀번호">
+		<br><br>
+			<p style="text-align: right;  color:gray; font-size: 0.85em; width:230px; margin-left :45%; height: 15px;"><sapn class="bar">ㅣ</sapn><span id="d1">관리자</span><sapn class="bar">ㅣ</sapn>&nbsp;&nbsp;</p>
+				<br>
+			
+				<button type="submit" id="btnLogin" title="로그인 " class="btn_login03"style="text-align: center; margin-left: 5px;"><span id="login">로그인</span></button>
+				
+	</form>				
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<p id="en">이용약관 <sapn class="bar">ㅣ</sapn> 개인정보처리방침 <sapn class="bar">ㅣ</sapn> 
+				고객센터 <sapn class="bar">ㅣ</sapn> 배송문의 </p>
+				<br>
+				<p id="en2">© PALETTE Entertainment, Inc. All rights reserved.</p>
+	</div> 
+	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
 	
 	
-	<div class="row sub_content" style="padding-top: 0;">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-								<h4><span>검색된 <span class="highlight default">상품</span> 목록</span></h4>
-							</div>
-							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
-                        <ul class="jcarousel-list" style="left: 0px;">
-                            <!-- Recent Work Item -->
-                                    <c:forEach items="${result.itemList}" var="free">
-                            <li class="col-sm-3 col-md-3 col-lg-3" style="width:342px; margin-left: 10px;">
-                                <figure class="touching effect-bubba" style="border-radius: 10px;" >
-                                    <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive"
-                                     style="width:100%;  min-width: 322px;max-width: 322px; min-height: 243px;max-height: 243px; vertical-align: middle;">
-
-                                    <div class="option">
-                                           <a href="/palette/miniHome/${free.userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
-                                    </div>
-                                    <figcaption class="item-description">
-                                        <h5>${free.itemName}</h5>
-                                        <p>${free.itemPrice.intValue()}원</p>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-				</div>
-				
-			<div class="row sub_content" style="padding-top: 0;">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-								<h4><span>검색된 <span class="highlight default">홈페이지</span> 목록</span></h4>
-							</div>
-							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
-                        <ul class="jcarousel-list" style="left: 0px;">
-                         <c:forEach items="${result.homePage}" var="free">
-                            <!-- Recent Work Item -->
-                            <li class="col-sm-3 col-md-3 col-lg-3" style="width:205px; margin-left: 13px;">
-                                <figure class="touching effect-bubba" style="border-radius: 10px;">
-                                    <img src="<c:url value='http://localhost:8087/palette/homeimg/${free.homeImg }'/>" alt="" class="img-responsive" 
-                                    style="width:100%;  min-width: 185px;max-width: 185px; min-height: 139px;max-height: 139px; vertical-align: middle;">
-
-                                    <div class="option">
-										<a href="/palette/miniHome/${free.userId}/main" class="fa fa-link"></a>
-                                    </div>
-                                    <figcaption class="item-description">
-                                        <h5>${free.userId}</h5>
-                                        <p>${free.homeTitle}</p>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            </c:forEach>
-                        </ul>
-                    </div><br><br>
-
-				</div>
-				
-				    
-</div>
-
-
-<div class="col-xs-1 col-xs-1 col-xs-1"></div><!-- 여백 -->
-</div>
-
 </body>
- <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+ 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>

@@ -326,6 +326,6 @@ select*from big_kind where user_id=#{userId} order by big_kind_no asc
 </select>
 <!-- 홈페이지 세팅 -->
 <select id="getHome" parameterType="String" resultType="MiniHome"> 
-select h.home_title,h.home_img,u.user_grade from users u,home h where u.user_id=h.user_id and u.user_id=#{userId}
+select h.home_title,h.home_img,h.home_introduce,h.user_id,u.user_grade from users u,home h where u.user_id=h.user_id and u.user_id=#{userId}
 </select>
 </mapper>

@@ -1,3 +1,4 @@
+<%@page import="com.icia.palette.vo.Users"%>
 <%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -32,33 +33,14 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<style>
-.name {
-	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
-}
-
-.well {
-	min-height: 360px;
-	padding: 0;
-	padding-left: 50px;
-}
-
-tr {
-	font-size: 1.1em;
-	height: 28px;
-	line-height: 28px;
-}
-
-.form-control {
-	height: 20px;
-	line-height: 20px;
-}
-</style>
 <script>
 
 </script>
+<style>
+	#userTable {
+		font-size: 15px;
+	}
+</style>
 </head>
 <body>
 	<!--Start Header-->
@@ -68,7 +50,8 @@ tr {
 	<!-- End Header -->
 	<div id="menu-bar">
 		<div class="container">
-			<div class="row"></div>
+			<div class="row">
+			</div>
 		</div>
 	</div>
 	<!-- Logo / Mobile Menu -->
@@ -93,29 +76,47 @@ tr {
 		<div class="col-lg-9 col-md-9 col-sm-9">
 			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; height: 625px;">
 				<h3>
-					<i class="fa fa-leaf"></i> 전체회원 조회 &nbsp;&nbsp;
+					<i class="fa fa-leaf"></i> 전체회원 조회
 				</h3>
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<div id="godate" style="display: inline-block"></div>
 					<div id="backdate" style="display: inline-block"></div>
-					<form action="/palette/admin/revenueUserList" method="get">
-						<p>
-							회원 아이디 : <input type="text" id="userId" name="userId">
-						</p>
+					<form action="/palette/admin/detail" method="get">
+						<p> 회원 아이디 : <input type="text" id="userId" name="userId"></p>
 					</form>
+				</div>
+				<div id="userTable">
+					<table>
+						<thead>
+							<tr>
+								<td>번호&emsp;&emsp;</td>
+								<td>아이디</td>
+								<td>이름</td>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${result.list }" var="u" varStatus="index">
+								<tr>
+									<td>${u.rnum.intValue()}</td>&emsp;
+									<td>${u.userId }</td>
+									<td>${u.userName }
+									<td><a href="/palette/api/${u.userId}">
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 				<!--페이징 시작 -->
 				<div class="col-sm-12 text-center" id="pagination">
-					<c:if test="${r.pagination.prev>0 }">
-						<a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}&startDate=${r.sDate}&endDate=${r.eDate}">이전으로</a>
+					<c:if test="${result.pagination.prev>0 }">
+						<a href="/palette/admin/all?pageNo=${result.pagination.prev}">이전으로</a>
 					</c:if>
-
-					<c:forEach var="i" begin="${r.pagination.startPage}" end="${r.pagination.endPage}">
-						<a href="/palette/admin/revenueList?pageNo=${i}&startDate=${r.sDate}&endDate=${r.eDate}">${i}
+					<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+						<a href="/palette/admin/all?pageNo=${i}">${i}
 						</a>
 					</c:forEach>
-					<c:if test="${r.pagination.next>0 }">
-						<a href="/palette/admin/revenueList?pageNo=${r.pagination.next}&startDate=${r.sDate}&endDate=${r.eDate}">다음으로</a>
+					<c:if test="${result.pagination.next>0 }">
+						<a href="/palette/admin/all?pageNo=${result.pagination.next}&startDate=${result.sDate}&endDate=${result.eDate}">다음으로</a>
 					</c:if>
 				</div>
 			</div>

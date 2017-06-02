@@ -101,8 +101,9 @@
 		</c:forEach>
 		</tbody>
 </table>
-<c:if test="${result.pagination.prev>0 }"><a href="/palette/users/tradeList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
-			
+<c:if test="${result.pagination.prev>0 }">
+	<a href="/palette/users/tradeList?pageNo=${result.pagination.prev}">이전으로</a>
+</c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
 				<a href="/palette/users/tradeList?pageNo=${i}">${i} </a>
 			</c:forEach>

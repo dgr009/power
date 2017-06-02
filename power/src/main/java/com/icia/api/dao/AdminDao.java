@@ -12,19 +12,25 @@ import com.icia.api.vo.*;
 @Repository
 public class AdminDao {
 	@Autowired
-	private SqlSessionTemplate tpl;
+	private SqlSessionTemplate tpl;	
+		// 전체회원목록조회  
+		public List<Users> totalUser(int start, int end) {
+			Map<String, Object> map = new HashMap<String, Object>();
+				map.put("start", start);
+				map.put("end", end);
+		        return tpl.selectList("api.dao.AdminDao.totalUser",map);
+		    }
+	
+		// 홈페이지 개설회원 조회	
+		public List<Users> FindOpenPageUser() {
+			return tpl.selectList("api.dao.AdminDao.findPageUser");
+			}
+		
 		//	회원이름별 조회
 		public Users FindUserName(Map<String, Object> map){
 		return tpl.selectOne("usersMapper.findUserName", map);
 	}
-		// 홈페이지 개설회원 조회	
-		public String FindOpenPageUser(String userId) {
-			return tpl.selectOne("api.dao.AdminDao.findPageUser", userId);
-		}
-		// 전체회원목록조회  
-		public List<Users> totalUser() {
-	        return tpl.selectList("api.dao.AdminDao.totalUser");
-	    }
+		
 
 		// 회원상세조회 
 	  	public HashMap<String, Object> DetailUser(String userId) {
@@ -61,5 +67,16 @@ public class AdminDao {
 		// 전체매출보기 
 		public List<OrderList> RevenueUserTotal(OrderList orderList) {
 			return tpl.selectOne("api.dao.AdminDao.userTotalRevenue", orderList);
+		}
+		//관리자 로그인
+		public Admin adminLogin(Admin admin) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("adminId", admin.getAdminId());
+			map.put("adminPwd", admin.getAdminPwd());
+			return tpl.selectOne("api.dao.AdminDao.login", map);
+		}
+//전체회원수
+		public int allUser() {
+			return tpl.selectOne("api.dao.AdminDao.userCnt");
 		}
 }

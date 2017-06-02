@@ -351,8 +351,6 @@ public class UsersDao {
 	public List<MiniHome> selectHomeByName(String search){
 		return tpl.selectList("api.dao.UsersDao.selectHomeByName", search);
 		}
-
-<<<<<<< HEAD
 	//홈페이지 이미지 가져오기
 	public String getHomeImg(String userId) {
 		return tpl.selectOne("api.dao.UsersDao.getHomeImg",userId);
@@ -372,18 +370,13 @@ public class UsersDao {
 
 	public int userPwdUpdate(Users user) {
 		return tpl.update("api.dao.UsersDao.usersPwdUpdate", user);
-=======
-	//상품개수검사
+	}
+		//상품개수검사
 	public int selectItemByNameCnt(String search) {
 		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
 	}
 	//홈페이지개수검사
-
 	public int selectHomeByNameCnt(String search) {
 		return tpl.selectOne("api.dao.UsersDao.hompageSearchCnt", search);
->>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
 	}
-	
-	
-	
 }
