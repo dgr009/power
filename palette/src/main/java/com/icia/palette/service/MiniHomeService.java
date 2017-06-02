@@ -58,6 +58,18 @@ public class MiniHomeService {
 
 	      return user;
 	   }
+	//이용권 리스트
+	public Map<String,Object> payList(HttpSession session,int pageNo){
+		RestTemplate tpl = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("token", (String)session.getAttribute("token"));
+		HttpEntity requestEntity = new HttpEntity(headers);
+		System.out.println(requestEntity);
+		String result=tpl.exchange("http://localhost:8087/api/miniHome/payList?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
+		Map<String,Object> map = new Gson().fromJson(result, Map.class);
+		
+		return map;		
+	}
 }
 
 

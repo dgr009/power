@@ -22,7 +22,7 @@
 	</delete>
 	<!-- 홈페이지 결제 : 활성화기록 생성 -->
 	<insert id="miniHomeInsertActiveStatement" parameterType="string">
-		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,1),#{userId})
+		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,3),#{userId})
 	</insert>
 	
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
@@ -42,6 +42,22 @@
 		where u.user_id=h.user_id and u.user_id=#{userId}
 	</select>
 	
+	<!-- 이용권 구매내역 -->
+	<select id="selectActiveDate" parameterType="hashmap" resultType="ActiveDate">
+	<![CDATA[
+			select b2.* from
+			(select rownum rnum, b.* from
+			(select activeno, active_start, active_end, user_id from activedate where user_id=#{userId} 
+			order by activeno desc) b where rownum<=#{end} ) b2 where rnum>=#{start}
+	]]>
+	</select>
+	
+	
+	<!-- 총 게시글 수 -->
+	<select id="countActiveDate" resultType="int" parameterType="string">
+		select count(*) from activedate where user_id=#{userId}
+	</select>
+
 	
 	
 </mapper>
