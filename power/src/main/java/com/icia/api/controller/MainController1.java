@@ -14,8 +14,8 @@ import com.icia.api.vo.*;
 
 @RestController
 @RequestMapping("/main")
-public class MainController {
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+public class MainController1 {
+	private static final Logger logger = LoggerFactory.getLogger(MainController1.class);
 
 	@Autowired
 	private MainService service;

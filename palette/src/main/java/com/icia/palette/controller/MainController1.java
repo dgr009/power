@@ -12,7 +12,7 @@ import com.icia.palette.vo.*;
 
 @Controller
 @RequestMapping("/main")
-public class MainController {
+public class MainController1 {
 	@Autowired
 	private MainService service;
 	
