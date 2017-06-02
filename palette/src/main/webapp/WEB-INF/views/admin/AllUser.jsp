@@ -65,7 +65,7 @@
 					<div class="page_title">
 						<h2>관리자 마이페이지</h2>
 					</div>
-				</div>
+				</div>  
 			</div>
 		</div>
 	</section>
