@@ -228,4 +228,13 @@
 				order by sum(o.order_price) desc) a where rownum<=5
 		]]>
 	</select>
+	
+	<!-- 상품평가작성 -->
+	<insert id="insertReview" parameterType="hashmap">
+		<selectKey keyProperty="reviewNo"  resultType="int" order="BEFORE">
+			select reviewno_seq.nextval from dual
+		</selectKey>
+		
+		insert into item_review values(#{reviewNo},#{reviewContent},#{reviewScore},sysdate,(select user_id from order_statement where order_no=#{orderNo}),(select item_no from order_statement where order_no=#{orderNo}))
+	</insert>
 </mapper>

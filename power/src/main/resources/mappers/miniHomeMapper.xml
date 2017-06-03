@@ -26,8 +26,6 @@
 		
 		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,1),#{userId})
 	</insert>
-
-	
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
 	<update id="miniHomeDecreaseUsersPoint" parameterType="string">
 		update users set user_point=user_point-30000 where user_id=#{userId}

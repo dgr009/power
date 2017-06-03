@@ -127,7 +127,7 @@ public class MiniHomeController {
 	@RequestMapping(value="/{userId}/Info",method = RequestMethod.GET)
 	public String miniHomeSelectSellerInformation(HttpSession session,@PathVariable String userId,Model model){
 		model.addAttribute("mini", service2.miniHomeSelectSellerInformation(session, userId));
-		return "mini/testSellerInfo";
+		return "mini/sellerInfo";
 	}
 	
 	//결제 시작
@@ -136,7 +136,7 @@ public class MiniHomeController {
 		model.addAttribute("homeId", homeId);
 		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
-		return "mini/testPayPay";
+		return "mini/homePay";
 	}
 	
 	//결제 처리

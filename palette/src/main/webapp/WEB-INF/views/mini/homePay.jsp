@@ -1,4 +1,11 @@
-
+<%@page import="com.fasterxml.jackson.annotation.JsonInclude.Include"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@page import="com.icia.palette.vo.Users"%>
+<%
+	Users userMini = (Users) session.getAttribute("user");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +24,8 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
 <link rel="stylesheet" href="https://use.fontawesome.com/f4a7d32a7d.css">
+<!-- fortAwesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 	
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,19 +55,120 @@ input[type="submit"] {
 
 input[type="button"] {
 	font-family:FontAwesome;
-}     
+}
+
+.read:HOVER{
+	cursor: pointer;
+}
+#read1:HOVER, #read2:HOVER, #read3:HOVER {
+	cursor: pointer;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://use.fontawesome.com/f4a7d32a7d.js"></script>
 	
 <script>
+	$(function(){
+		var x = <%=userMini.getUserPoint() %>;
+		
+		
+		//3만원 결제시
+		$("#read1").on("click",function(){
+			$("#btnPay").empty();
+			$("#minus").text("30000P");	
+			
+			var a = $("#minus").text().split("P")
+			var aa = a[0];
+			var b = x-a[0]
+			
+			$("#result").text(b);
+			$("#result").append("P")
+			$(".ddd").attr("class","highlight light");
+			
+			if(<%=userMini.getUserPoint() %><30000){
+				alert("포인트가 부족합니다. 충전이 필요합니다")
+				$("#btnPay").text("※불가능")
+				$("#btnPay").css("color","red");
+				
+			}
+			else{
+				$("#btnPay").append("<form action='/palette/miniHome/<%=userMini.getUserId() %>/pay' method='post'><button type='submit' class='btn btn-sm btn-social-pinterest dddd'><i class='fa fa-fw' aria-hidden='true' title='Copy to use diamond'></i> &nbsp;결제하기 </button><input type='hidden' value='<%=userMini.getUserId() %>' name='userId'></form>")
+			}
+			
+		})
+		
+		//5만원 결제시
+		$("#read2").on("click",function(){
+			$("#btnPay").empty();
+			$("#minus").text("50000P");
+			
+			var a = $("#minus").text().split("P")
+			var aa = a[0];
+			var b = x-a[0]
+			
+			$("#result").text(b);
+			$("#result").append("P")
+			$(".ddd").attr("class","highlight light");
+			
+			if(<%=userMini.getUserPoint() %><50000){
+				alert("포인트가 부족합니다. 충전이 필요합니다")
+				$("#btnPay").text("※불가능")
+				$("#btnPay").css("color","red");
+				
+			}
+			else{
+				$("#btnPay").append("<form action='/palette/miniHome/<%=userMini.getUserId() %>/pay' method='post'><button type='submit' class='btn btn-sm btn-social-pinterest dddd'><i class='fa fa-fw' aria-hidden='true' title='Copy to use diamond'></i> &nbsp;결제하기 </button><input type='hidden' value='<%=userMini.getUserId() %>' name='userId'></form>")
+			}
+			
+		})
+		
+		//10만원 결제시
+		$("#read3").on("click",function(){
+			$("#btnPay").empty();
+			$("#minus").text("100000P");
+			
+			var a = $("#minus").text().split("P")
+			var aa = a[0];
+			var b = x-a[0]
+			
+			$("#result").text(b);
+			$("#result").append("P")
+			$(".ddd").attr("class","highlight light");
+			
+			if(<%=userMini.getUserPoint() %><100000){
+				alert("포인트가 부족합니다. 충전이 필요합니다")
+				$("#btnPay").text("※불가능")
+				$("#btnPay").css("color","red");
+			}
+			else{
+				$("#btnPay").append("<form action='/palette/miniHome/<%=userMini.getUserId() %>/pay' method='post'><button type='submit' class='btn btn-sm btn-social-pinterest dddd'><i class='fa fa-fw' aria-hidden='true' title='Copy to use diamond'></i> &nbsp;결제하기 </button><input type='hidden' value='<%=userMini.getUserId() %>' name='userId'></form>")
+			}
+			
+		})
+
+		
+		
+		
+		
+		
+		
+		$("#btnPay").on("click",".dddd",function(){
+			
+			var con_test = confirm("결제 하시겠습니까?");
+			
+			if(con_test == true){ 
+			 	alert("결제가 성공적으로 완료되었습니다!")
+			}
+		})
+		
+	})
 </script>
 </head>
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
+		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
 		<div id="menu-bar">
 			<div class="container">
@@ -81,63 +191,97 @@ input[type="button"] {
 		<section class="page_head">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    
 
                         <div class="page_title">
-                           <h2>자유 게시판 글 수정</h2>
+                           <h2>홈페이지 결제</h2>
                         </div>
                     </div>
                 </div>
             </div>
-            
              </section>
-            
- 
-            <div class="col-lg-12 col-md-12 col-sm-12">
-							<br><br>
-						
-							
-							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
-							<div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-							<div class="col-lg-10 col-md-10 col-sm-10">
-							<h3><i class="fa fa-info-circle"></i>&nbsp; 자유 게시판 글 작성</h3>
-								<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr>
-										<form action="/palette/miniHome/${mini.free.userId }/freeUpdate/${mini.free.freeNo.intValue()}" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   value="${mini.free.freeTitle}" style="width:730px;"name="freeTitle" >
-
-									</tr>
-                  					  </thead>
-
-              						  </table>
-	
-              		   <textarea rows="15" cols="" name="freeContent" >${mini.free.freeContent}</textarea>
-              		   <input type="hidden" value="${mini.free.freeNo.intValue() }" name="freeNo">
-						<input type="hidden" value="${mini.free.userId }" name="userId">
-						<br>		
-              		   			<div id="id"></div>
-              		   <div class="col-sm-12 text-center"><br>
-                  			 <a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
-                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료" id="update">
-           				 	</form>
-           				 </div>
-							
-						
-						
-
-							</div>
-							
-							</div></div>
-					
- 
-           
-	
-			
-	
-							
+             <br><br>
+                    <div class="col-sm-6 col-lg-3" style="margin-left: 150px;">
+                        <div class="serviceBox_5">
+                            <div class="service-image">
+                                <img src="<c:url value="/resources/images/사암만원.png"/>">
+                            </div>
+                            <div class="service-content bg2" id="read1">
+                                <div class="internal">
+                                    <div class="item_content">
+                                        <div class="service-icon">
+                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
+                                        </div>
+                                       <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;" id="price1">30.000원</sapn><br>
+                                        3개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
+                                        <a class="read" href="#">구입하기 !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_5">
+                            <div class="service-image">
+                                <img src="<c:url value="/resources/images/오오만원.png"/>">
+                            </div>
+                            <div class="service-content bg3 "id="read2" >
+                                <div class="internal">
+                                    <div class="item_content">
+                                        <div class="service-icon">
+                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
+                                        </div>
+                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">50.000원</sapn><br>
+                                        6개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
+                                        <a class="read" href="">구입하기 !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_5">
+                            <div class="service-image">
+                                <img src="<c:url value="/resources/images/시입마너언.png"/>">
+                            </div>
+                            <div class="service-content "id="read3">
+                                <div class="internal">
+                                    <div class="item_content">
+                                        <div class="service-icon">
+                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
+                                        </div>
+                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">100.000원</sapn><br>
+                                        12개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
+                                        <a class="read" href="">구입하기 !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-sm-12 col-md-12 col-lg-12"><br><br>
+                    	<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                    	<div class="col-sm-10 col-md-10 col-lg-10">
+                    		<blockquote class="default" style="text-align: center; ">
+                    			<table>
+                    				<thead style="text-align: center;">
+                    					<tr id="dda">
+	                    					<th style="width: 300px; text-align: center;"><span class="highlight default"><%=userMini.getUserId() %></span>&nbsp;님 보유 포인트 &nbsp;:&nbsp;<span class="highlight light"><%=userMini.getUserPoint() %>P</span></th>
+	                    					<th style="width: 300px; text-align: center;">차감 될 포인트 &nbsp;:&nbsp;<span class="ddd" id="minus"></span></th>
+	                    					<th style="width: 300px; text-align: center;">결제 후 포인트 &nbsp;:&nbsp;<span class="ddd" id="result"></span></th>
+	                    					<th style="width: 65px; text-align: center;" id="btnPay">
+	                    					
+	                    					</th>
+	                    					
+	                    				</tr>
+                    				</thead>
+                    			</table>
+                    		</blockquote>
+						</div>
+						<div class="col-sm-1 col-md-1 col-lg-1"></div>
+					</div>
+							<br><br><br><br><br>
 					
 
            
