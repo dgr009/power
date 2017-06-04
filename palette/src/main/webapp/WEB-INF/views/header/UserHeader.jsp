@@ -32,7 +32,7 @@
 	}
 	function openHomeAd(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/admin/register","_blank");
+	    	window.open("http://localhost:8087/palette/miniHome/admin/<%=user.getUserId()%>/register","_blank");
 		else{
 			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
 		}
@@ -49,26 +49,13 @@
                			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</span>
                			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</span>
                			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
-                       	  <span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
-                       	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
-                        <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
                         
                       </div>
-                    <c:if test="${userId!=null}">
-                     <div class="col-lg-5 col-sm-7 top-info clearfix">
-                        <ul>
-                            <li>
-                                <form name="searchForm" action="/palette/miniHome/${userId}/productSearch"  method="get" class="search-bar">
-                                    <label for="search" class="search-label">
-                                        <button class="search-button" type="button"><i class="fa fa-search"></i></button>
-                                        <!-- Fix the break-row-bug-->
-                                        <input type="text"  id="search" name="itemName" class="search-input" onkeydown="javascript:if(event.keyCode==13){goPage('1'); return false;}">
-                                    </label>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                    </c:if>
+                    <div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
+                    	<span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
+                       	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
+                        <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>
+ 						</div>
                 </div>
 
             </div>

@@ -39,7 +39,7 @@
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select b.owner_id ownerId,h.home_title homeTitle from bookmark b,
+					(select b.owner_id ownerId,h.home_title homeTitle,h.home_img homeImg from bookmark b,
 					home h where b.owner_id=h.user_id and b.order_id=#{orderId}) a 
       			where rownum<=#{end}) 
  			where rnum>=#{start}
@@ -60,7 +60,7 @@
 					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_date orderDate,
 					o.order_price orderPrice,i.item_name itemName,i.user_id userId, o.option_name optionName,o.item_no itemNo
 					 from order_statement o,users u,item i 
-					 where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId} order by o.order_date) a 
+					 where o.item_no=i.item_no and o.user_id=u.user_id and u.user_id=#{orderId} order by o.order_date desc) a 
       			where rownum<=#{end})
  			where rnum>=#{start}
 		]]>
@@ -126,6 +126,24 @@
 		update users set user_pwd=#{userPwd},user_address=#{userAddress},user_post=#{userPost},user_mail=#{userMail},
 			user_phone=#{userPhone} where user_id=#{userId}
 	</update>
+	
+	<!-- 개인 회원 정보 메일 변경 -->
+	<update id="usersMailUpdate" parameterType="Users">
+		update users set user_mail=#{userMail} where user_id=#{userId}
+	</update>
+	<!-- 개인 회원 정보 전화번호 변경 -->
+	<update id="usersPhoneUpdate" parameterType="Users">
+		update users set user_phone=#{userPhone} where user_id=#{userId}
+	</update>
+	<!-- 개인 회원 정보 주소 변경 -->
+	<update id="usersAddressUpdate" parameterType="Users">
+		update users set user_address=#{userAddress},user_post=#{userPost} where user_id=#{userId}
+	</update>
+	<!-- 개인 회원 정보 비밀번호 변경 -->
+	<update id="usersPwdUpdate" parameterType="Users">
+		update users set user_pwd=#{userPwd} where user_id=#{userId}
+	</update>
+	
 	<!-- 개인 회원 비활성화(탈퇴) -->
 	<update id="usersDelete" parameterType="string">
 		update users set enabled=0 where user_id=#{userId}
@@ -237,4 +255,112 @@
 		
 		insert into item_review values(#{reviewNo},#{reviewContent},#{reviewScore},sysdate,(select user_id from order_statement where order_no=#{orderNo}),(select item_no from order_statement where order_no=#{orderNo}))
 	</insert>
+	<!-- 메인 최신 상품 가져오기 8개씩-->
+	<select id="selectItemListOrderByDate1" resultType="ItemList">
+		<![CDATA[
+		select * from
+		(select rownum rnum,b.* from 
+		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
+		from item i,item_img m where i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
+		where rownum<=8) where rnum>=1
+		]]>  
+	</select>
+	<select id="selectItemListOrderByDate2" resultType="ItemList">
+		<![CDATA[
+		select * from
+		(select rownum rnum,b.* from 
+		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
+		from item i,item_img m where i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
+		where rownum<=16) where rnum>=9
+		]]>
+	</select>
+	<!--홈메인 상품재고순으로6개 -->
+	<select id="selectItemListOrderByInven" resultType="ItemList">
+		<![CDATA[
+		select * from
+		(select rownum rnum,b.* from 
+		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
+		from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
+		where rownum<=6) where rnum>=1 
+		]]>
+	</select>
+	
+	<!-- 홈메인 상품베스트6개 -->
+	<select id="selectItemListOrderByScore" resultType="ItemList">
+		<![CDATA[
+		select * from
+		(select rownum rnum,b.* from 
+		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id
+		from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
+		where rownum<=6) where rnum>=1
+		      ]]>
+	</select>
+	
+	<select id="searchItem" parameterType="string" resultType="ItemList">
+		<![CDATA[
+			select * from
+			(select rownum rnum,b.* from 
+			(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id
+			from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
+			where rownum<=6) where rnum>=1
+	      ]]>
+	</select>
+	
+	
+	<!-- 아이템 검색 개수 -->
+	<select id="productSearchCnt" parameterType="String" resultType="int">
+		<![CDATA[
+		select count(*)
+		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
+		]]>
+	</select>
+	<!-- 아이템 검색 -->
+	<select id="selectItemByName" parameterType="String" resultType="ItemList">
+		<![CDATA[
+		
+		
+		select i.item_no,i.item_price,i.item_name,m.img_name ,i.item_inven,i.user_id
+		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
+		
+		]]>
+	</select>
+	<!-- 홈페이지 검색 개수 -->
+	<select id="hompageSearchCnt" parameterType="String" resultType="int">
+		<![CDATA[
+		select count(*) from home where user_id like '%' ||  #{search} || '%'
+		]]>
+	</select>
+	<!-- 홈페이지 검색 -->
+	<select id="selectHomeByName" parameterType="String" resultType="MiniHome">
+		<![CDATA[
+		select * 
+		from home where user_id like '%' ||  #{search} || '%' 
+		]]>
+	</select>
+	
+	<select id="getHomeImg" parameterType="string" resultType="string">
+		select home_img from home where user_id=#{userId}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

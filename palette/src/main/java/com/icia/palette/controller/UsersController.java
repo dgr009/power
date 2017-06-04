@@ -28,7 +28,7 @@ public class UsersController {
 	private String path;
 	@Autowired
 	private UserService service;
-
+	
 	// 메인홈으로
 	@RequestMapping(value = "/home")
 	public String home() {
@@ -38,8 +38,7 @@ public class UsersController {
 	// 로그인페이지로
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginStart(Model model) {
-		model.addAttribute("rank", service.getRankSide());
-		return "users/usersLogin";
+		return "main/login";
 	}
 
 	// 로그인
@@ -82,19 +81,26 @@ public class UsersController {
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public String userInfoStart(HttpSession session, Model model) {
 		model.addAttribute("user", service.userInfo(session));
+		model.addAttribute("homeImg", service.getHomeImg(session));
 		return "users/info";
 	}
 
+	// 회원아이디 비밀번호 찾기 페이지로
+		@RequestMapping(value = "/findIdAndPwd", method = RequestMethod.GET)
+		public String findIdAndPwdStart() {
+			return "main/findId";
+		}
+	
 	// 회원아이디 찾기 페이지로
 	@RequestMapping(value = "/findId", method = RequestMethod.GET)
 	public String findIdStart() {
-		return "users/findId";
+		return "main/findId";
 	}
 
 	// 회원 비밀번호 찾기 페이지로
 	@RequestMapping(value = "/findPwd", method = RequestMethod.GET)
 	public String findPwdStart() {
-		return "users/findPwd";
+		return "main/findPwd";
 	}
 
 	// 회원 정보수정하기 페이지로
@@ -111,6 +117,31 @@ public class UsersController {
 		service.updateUser(session, user);
 		return "redirect:/users/main";
 	}
+	// 회원 정보 메일 수정하기
+		@RequestMapping(value = "/mailUpdate", method = RequestMethod.POST)
+		public String updateMailEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updateMailUser(session, user);
+			return "redirect:/users/info";
+		}
+		// 회원 정보 폰 수정하기
+		@RequestMapping(value = "/phoneUpdate", method = RequestMethod.POST)
+		public String updatePhoneEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updatePhoneUser(session, user);
+			return "redirect:/users/info";
+		}
+		// 회원 정보 주소 수정하기
+		@RequestMapping(value = "/addressUpdate", method = RequestMethod.POST)
+		public String updateAddressEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updateAddressUser(session, user);
+			return "redirect:/users/info";
+		}
+		// 회원 정보 비밀번호 수정하기
+		@RequestMapping(value = "/pwdUpdate", method = RequestMethod.POST)
+		public String updatePwdEnd(HttpSession session, @ModelAttribute Users user) {
+			service.updatePwdUser(session, user);
+			return "redirect:/users/main";
+		}
+		
 
 	// 포인트 충전하기 페이지
 	@RequestMapping(value = "/chargePoint", method = RequestMethod.GET)
@@ -123,7 +154,7 @@ public class UsersController {
 	public String chargePointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.chargePoint(session, userId, tradePoint);
-		return "redirect:/users/main";
+		return "users/close";
 	}
 
 	// 포인트 환급하기 페이지
@@ -137,7 +168,7 @@ public class UsersController {
 	public String refundPointEnd(HttpSession session, @RequestParam int tradePoint) {
 		String userId = service.getUserIdByToken(session);
 		service.refundPoint(session, userId, tradePoint);
-		return "redirect:/users/main";
+		return "users/close";
 	}
 
 	// 포인트 충전 환급 조회
@@ -188,7 +219,7 @@ public class UsersController {
 	// 회원 즐겨찾기 조회
 	@RequestMapping(value = "/bookmarkList", method = RequestMethod.GET)
 	public String bookMarkList(HttpSession session, Model model, @RequestParam(defaultValue = "1") int pageNo) {
-		model.addAttribute("result", service.userBookmarkList(session, pageNo));
+		model.addAttribute("r", service.userBookmarkList(session, pageNo));
 		return "users/bookmarkList";
 	}
 
@@ -252,7 +283,7 @@ public class UsersController {
 	// 메인으로
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mamamain(Model model) {
-		model.addAttribute("rank", service.getRankSide());
+		model.addAttribute("list", service.getItemList());
 		return "main/main";
 	}
 

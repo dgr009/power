@@ -200,7 +200,8 @@ public class UsersDao {
 	public int tradeListCnt(String userId) {
 		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt", userId);
 	}
-
+	
+	// 
 	public int bigTagRegister(String userId, String bigTag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
@@ -313,4 +314,72 @@ public class UsersDao {
 		System.out.println("-------------------");
 		return tpl.insert("api.dao.UsersDao.insertReview", map);
 	}
+	
+	// 최신 상품 첫번쨰 줄 가져오기
+	public List<ItemList> selectItemListOrderByDate1(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByDate1");
+	}
+	
+	// 최신 상품 두번째 줄 가져오기
+	public List<ItemList> selectItemListOrderByDate2(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByDate2");
+	}
+	
+	// 마감임박 상품 가져오기
+	public List<ItemList> selectItemListOrderByInven(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByInven");
+	}
+	
+	// 베스트 상품 가져오기
+	public List<ItemList> selectItemListOrderByScore(){
+		return tpl.selectList("api.dao.UsersDao.selectItemListOrderByScore");
+	}
+	
+	// 상품 검색 개수 가져오기
+	public int productSearchCnt(String search){
+		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
+	}
+	// 홈페이지 검색 개수 가져오기
+	public int homepageSearchCnt(String search){
+		return tpl.selectOne("api.dao.UsersDao.homepageSearchCnt", search);
+	}
+	// 상품 검색 가져오기
+	public List<ItemList> selectItemByName(String search){
+		return tpl.selectList("api.dao.UsersDao.selectItemByName", search);
+		}
+	// 홈페이지 검색 가져오기
+	public List<MiniHome> selectHomeByName(String search){
+		return tpl.selectList("api.dao.UsersDao.selectHomeByName", search);
+		}
+
+	//홈페이지 이미지 가져오기
+	public String getHomeImg(String userId) {
+		return tpl.selectOne("api.dao.UsersDao.getHomeImg",userId);
+	}
+
+	public int userMailUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersMailUpdate", user);
+	}
+
+	public int userPhoneUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersPhoneUpdate", user);
+	}
+
+	public int userAddressUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersAddressUpdate", user);
+	}
+
+	public int userPwdUpdate(Users user) {
+		return tpl.update("api.dao.UsersDao.usersPwdUpdate", user);
+	}
+		//상품개수검사
+	public int selectItemByNameCnt(String search) {
+		return tpl.selectOne("api.dao.UsersDao.productSearchCnt", search);
+	}
+	//홈페이지개수검사
+	public int selectHomeByNameCnt(String search) {
+		return tpl.selectOne("api.dao.UsersDao.hompageSearchCnt", search);
+	}
+	
+	
 }

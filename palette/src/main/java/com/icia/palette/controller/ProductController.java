@@ -45,29 +45,29 @@ public class ProductController {
 		model.addAttribute("kind", service.productKind(userId));
 		model.addAttribute("item", service.getMain(userId));
 		model.addAttribute("userId", userId);
-		return "products/Main";
+		return "mini/Main";
 	}
 	//상품등록창으로
-	@RequestMapping(value="/{userId}/admin/register",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/{userId}/register",method=RequestMethod.GET)
 	public String productRegister(@PathVariable String userId,Model model){
 		model.addAttribute("result",service.productRegisterReady(userId));
 		model.addAttribute("kind", service.productKind(userId));
 		return "products/ProductRegister";
 	}
 	//상품수정하기폼으로
-	@RequestMapping(value="/{userId}/admin/productUpdate/{itemNo}",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/{userId}/productUpdate/{itemNo}",method=RequestMethod.GET)
 	public String productUpdateStart(@PathVariable String userId,@PathVariable int itemNo,Model model){
 		Map<String, Object> map=new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("itemNo", itemNo);
 		model.addAttribute("kind",service.productRegisterReady(userId));//홈페이지small가져오기
 		model.addAttribute("userId", userId);
-		model.addAttribute("result", service.productMain(map));//상품정보다가져오기
+		model.addAttribute("item", service.productMain(map));//상품정보다가져오기
 		System.out.println(service.productRegisterReady(userId).get("kind"));
 		return "products/ProductUpdate";
 	}
 	//상품수정하기
-	@RequestMapping(value="/{userid}/admin/productUpdate/{itemNo}",method=RequestMethod.POST)
+	@RequestMapping(value="/admin/{userId}/productUpdate/{itemNo}",method=RequestMethod.POST)
 	public String productUpdateEnd(@PathVariable String userid,@PathVariable int itemNo,@ModelAttribute Item item,@RequestParam String optionName,@RequestParam String optionNo,MultipartHttpServletRequest req
 			) throws IOException{
 		System.out.println("여기와봐");
@@ -106,12 +106,12 @@ public class ProductController {
 			}
 		}
 		service.productUpdate(itemList);
-		String a="redirect:/miniHome/"+userid+"/admin/registerList";
+		String a="redirect:/miniHome/admin/"+userid+"/registerList";
 		return a;
 	}
 	
 	//상품등록하기
-	@RequestMapping(value = "/{userId}/admin/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/{userId}/register", method = RequestMethod.POST)
 	public String productRegister(@ModelAttribute Item item,@PathVariable String userId, MultipartHttpServletRequest req) throws IOException {
 		item.setUserId(userId);
 		 ArrayList<com.icia.palette.vo.ItemImg> list=new ArrayList<com.icia.palette.vo.ItemImg>();
@@ -125,12 +125,12 @@ public class ProductController {
 		item.setItemImgList(list);
 		System.out.println("메인에서 이름"+item.getItemName());
 		service.productRegister(item);
-		String a="redirect:/miniHome/"+userId+"/admin/registerList";
+		String a="redirect:/miniHome/admin/"+userId+"/registerList";
 		return a;
 	}
 	
 	//상품등록리스트
-	@RequestMapping(value = "/{userId}/admin/registerList", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/{userId}/registerList", method = RequestMethod.GET)
 	public String productRegisterList(@PathVariable String userId,@RequestParam(defaultValue = "1") int pageNo,Model model) {
 		model.addAttribute("result", service.productRegisterList(userId,pageNo));
 		model.addAttribute("userId", userId);
@@ -138,14 +138,14 @@ public class ProductController {
 		return "products/ProductRegisterList";
 	}
 	//상품삭제하기
-	@RequestMapping(value = "/{userId}/admin/productDelete/{itemNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/{userId}/productDelete/{itemNo}", method = RequestMethod.GET)
 	public String productDelete(@RequestParam int itemNo,@PathVariable String userId) {
 		service.productDelete(itemNo);
-		String a="redirect:/miniHome/"+userId+"/admin/registerList";
+		String a="redirect:/miniHome/admin/"+userId+"/registerList";
 		return a;
 	}
 	//상품주문자리스트
-	@RequestMapping(value = "/{userId}/admin/productOrderList/{itemNo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/{userId}/productOrderList/{itemNo}", method = RequestMethod.GET)
 	public String productOrderList(@PathVariable String userId,Model model,@PathVariable int itemNo,@RequestParam(defaultValue="1") int pageNo ) {
 		model.addAttribute("result", service.productOrderList(itemNo,pageNo));
 		model.addAttribute("itemNo",itemNo);
@@ -173,11 +173,11 @@ public class ProductController {
 			
 			System.out.println("여기값모냐"+itemNo);
 			service.deliveryInsert(map);
-			String a="redirect:/miniHome/"+user.getUserId()+"/admin/productOrderList/"+itemNo;
+			String a="redirect:/miniHome/admin/"+user.getUserId()+"/productOrderList/"+itemNo;
 			return a;
 		}
 		//상품주문하기페이지로
-		@RequestMapping(value = "/{userId}/productOrder/{itemNo}", method = RequestMethod.GET)
+		@RequestMapping(value = "/productOrder/{userId}/{itemNo}", method = RequestMethod.GET)
 		public String productOrder(@PathVariable String userId,@PathVariable int itemNo,@RequestParam String itemOption,@RequestParam int itemPrice,@RequestParam String itemName,@RequestParam int itemSize,int itemInven,Model model) {
 			Map<String, Object> map=new HashMap<String, Object>();
 			map.put("userId", userId);
@@ -195,7 +195,7 @@ public class ProductController {
 			return "products/ProductOrder";
 		}
 		//상품주문
-		@RequestMapping(value = "/{userId}/productOrder/{itemNo}", method = RequestMethod.POST)
+		@RequestMapping(value = "/productOrder/{userId}/{itemNo}", method = RequestMethod.POST)
 		public String productOrderEnd(@PathVariable int itemNo,@PathVariable String userId,@ModelAttribute OrderStatement o,HttpSession session) {
 			System.out.println(o.toString());
 			service.productOrder(o);
@@ -245,7 +245,7 @@ public class ProductController {
 					return "products/InquiryList";
 				}
 				//홈피주인 문의관리게시판페이지로
-				@RequestMapping(value = "/{userId}/admin/inquiryList", method = RequestMethod.GET)
+				@RequestMapping(value = "/admin/{userId}/inquiryList", method = RequestMethod.GET)
 				public String adminInquiry(@PathVariable String userId,Model model,@RequestParam(defaultValue="1") int pageNo) {
 					model.addAttribute("userId",userId);
 					Map<String, Object> map=new HashMap<String, Object>();

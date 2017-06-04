@@ -81,8 +81,11 @@ input[type="button"] {
 			<div class="container">
 				<div class="row">
 					<!-- Logo / Mobile Menu -->
-				      	<%@include file="/WEB-INF/views/MenuLogo.jsp"  %>
-					
+<div class="col-md-3 col-sm-3">
+                        <div id="logo">
+                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
+                        </div>
+                    </div>					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
@@ -204,7 +207,7 @@ input[type="button"] {
 							method="post">
              						 <div class="col-lg-11 col-md-11 col-sm-11">
              						  <input type="hidden" value="${result.inquiry.inquiryNo.intValue()}" name="inquiryNo">
-             						 <input type="hidden" value='<%=user.getUserId()%>' name="userId'">
+             						 <input type="hidden" value='<%=user1.getUserId()%>' name="userId'">
              						<textarea rows="3" cols="" id="inquiryRepleContent" name="inquiryRepleContent"></textarea>
              						</div>
 										&nbsp;&nbsp;<input type="submit" id="btn1" data-loading-text="Loading..." 

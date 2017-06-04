@@ -64,24 +64,8 @@ input[type="button"] {
 </head>
 <body>
 <!--Start Header-->
-<<<<<<< HEAD
-   <header id="header">
-      <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-   <!-- End Header -->
-      <div id="menu-bar">
-         <div class="container">
-            <div class="row">
-               <!-- Logo / Mobile Menu -->
-               <div class="col-lg-3 col-sm-3 ">
-                  <div id="logo">
-                     <h1>
-                        <a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
-                     </h1>
-                  </div>
-               </div>
-               
+ 
                 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-=======
 	<header id="header">
 		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
@@ -92,13 +76,16 @@ input[type="button"] {
 					<div class="col-lg-3 col-sm-3 ">
 						<div id="logo">
 							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
+							    <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
 							</h1>
 						</div>
 					</div>
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+<<<<<<< HEAD
 >>>>>>> branch 'sangyun' of https://github.com/dgr009/power.git
+=======
+>>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
       <!--End Header-->
