@@ -2,10 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users userMini = (Users) session.getAttribute("user");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,23 +61,7 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
-							</h1>
-						</div>
-					</div>
-					
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
+		<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 		<!--End Header-->
 		</header>
 		<!--start wrapper-->

@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users user = (Users) session.getAttribute("user");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -86,12 +83,14 @@ input[type="button"] {
 				str = str + "<input type='hidden' value='"+reply.mainFreeRepleName+"' name='mainFreeRepleName' class='mainFreeRepleName'>";
 				str = str + "<input type='hidden' value='"+reply.mainFreeRepleNo+"' name='mainFreeRepleNo' class='mainFreeRepleNo'>";
 				str = str + "<input type='hidden' value='"+reply.mainArticleNo+"' name='mainArticleNo' class='mainArticleNo'>";
-				
-				if(reply.mainFreeRepleName=="<%=user.getUserId()%>"){
+				<%if(session.getAttribute("user")!=null){ %>
+				<% Users mainUser = (Users) session.getAttribute("user");%>
+				if(reply.mainFreeRepleName=="<%=mainUser.getUserId()%>"){
 					str = str + "<td style='text-align: right;'><input type='button' id='updateReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg updateReple' data-content='"+reply.mainFreeRepleContent +"'data-nono='"+reply.mainFreeRepleNo +"' value='수정' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'>";
 					str = str + "&nbsp;<input type='button' id='deleteReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg deleteReple' data-cno='"+reply.mainFreeRepleNo+"' value='삭제' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'></td></tr></tbody>"
 					
 				}
+				<%} %>
 				$("#comment").append(str).trigger("create");
 				$("#mainFreeRepleContent").val("");
 				
@@ -217,25 +216,9 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/Noheader.jsp" %>
-	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-								<a href="/hooligan/main/index"><img src="<c:url value="/resources/images/logo.png" />"></a>
-							</h1>
-						</div>
-					</div>
-					
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
+		<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 		<!--End Header-->
-		</header>
+	</header>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -316,8 +299,9 @@ input[type="button"] {
               		   <div class="col-lg-9 col-md-9 col-sm-9">
               		   		<a href="../list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
               		   </div>  
-              		   
-              		   <c:set var="ddddd" value="<%=user.getUserId()%>" />
+              		   <%if(session.getAttribute("user")!=null){ %>
+						<% Users mainUser = (Users) session.getAttribute("user");%>
+              		   <c:set var="ddddd" value="<%=mainUser.getUserId()%>" />
 						<c:set var="ooooo" value="${main.home.userId }" />
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
 					
@@ -325,7 +309,6 @@ input[type="button"] {
 							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정하기">
 						</form>
 						</c:if>
-              		   		 
               		 		
 								
 								<c:if test="${ddddd eq ooooo}">
@@ -339,8 +322,9 @@ input[type="button"] {
 									</c:if>
 									
 							
-              		 		 
-              		   </div>  
+              		 
+              		   </div>
+              		   	<%} %>	   
 						<table class="table table-striped table-hover" style="text-align: center;">
 				                    <thead>
 				                    <tr >
@@ -378,7 +362,9 @@ input[type="button"] {
 												name="mainArticleNo" class="mainArticleNo">
              								<td style=" text-align: right;" class="rrr">
              								<!-- 버튼 -->
-             								<c:set var="name" value="<%=user.getUserId()%>" />
+             								<%if(session.getAttribute("user")!=null){ %>
+											<% Users mainUser = (Users) session.getAttribute("user");%>
+             								<c:set var="name" value="<%=mainUser.getUserId()%>" />
 											<c:set var="freeName" value="${reple.mainFreeRepleName }" />
 											<c:if test="${name eq freeName}">
 	             								
@@ -394,6 +380,7 @@ input[type="button"] {
 	             								style="margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;">
 	             								
              								</c:if>	
+             								<%} %>
              								</td>
              							</tr>
              							</tbody>
@@ -401,13 +388,16 @@ input[type="button"] {
               						  </table>
               						  
               						<!-- 댓글 -->
+              						<%if(session.getAttribute("user")!=null){ %>
+									<% Users mainUser = (Users) session.getAttribute("user");%>
              						<p>댓글 작성</p>
              						 <div class="col-lg-11 col-md-11 col-sm-11">
-             						 <input type="hidden" value='<%=user.getUserId() %>'name='mainFreeRepleName' id="mainFreeRepleName">
+             						 <input type="hidden" value='<%=mainUser.getUserId() %>'name='mainFreeRepleName' id="mainFreeRepleName">
              						<textarea rows="3" cols="" id="mainFreeRepleContent" name="mainFreeRepleContent"></textarea>
              						</div>
 										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
 										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
+										<%} %>
 									<br><br>
 									<br><br>
 								
