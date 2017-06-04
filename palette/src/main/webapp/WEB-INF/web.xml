@@ -61,7 +61,7 @@
   </filter>
   <filter-mapping>
     <filter-name>EmpLoginFilter</filter-name>
-    <url-pattern>/miniHome/admin/*</url-pattern>
+    <url-pattern>/miniHome/UserAdmin/*</url-pattern>
   </filter-mapping>
   <filter>
     <display-name></display-name>
@@ -79,6 +79,6 @@
   </filter>
   <filter-mapping>
     <filter-name>AdminLoginFilter</filter-name>
-    <url-pattern>/miniHome/admin/*</url-pattern>
+    <url-pattern>/admin/*</url-pattern>
   </filter-mapping>
 </web-app>

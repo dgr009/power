@@ -69,7 +69,7 @@ $(function(){
 	<!--start wrapper-->
 	
 		
-		 <form id="orderForm" action="/palette/miniHome/${userId}/productOrder/${itemNo}" method="POST" >
+		 <form id="orderForm" action="/palette/miniHome/productOrder/${userId}/${itemNo}" method="POST" >
                 <section class="wrapper">
         <section class="page_head">
             <div class="container">

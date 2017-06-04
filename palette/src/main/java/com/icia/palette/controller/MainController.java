@@ -15,6 +15,7 @@ import com.icia.palette.service.MainService;
 import com.icia.palette.service.ProductService;
 import com.icia.palette.service.UserService;
 import com.icia.palette.vo.MainFreeBoard;
+import com.icia.palette.vo.Users;
 
 @Controller
 public class MainController {
@@ -37,6 +38,23 @@ public class MainController {
 	public String Login(){
 		return "main/login";
 	}
+	// 로그인
+		@RequestMapping(value = "/login", method = RequestMethod.POST)
+		public String loginEnd(HttpSession session, @RequestParam String userId, @RequestParam String userPwd,
+				Model model) {
+			int result = service1.login(userId, userPwd, session);
+			if (result == 1) {
+				Users user = service1.userInfo(session);
+				model.addAttribute("user", user);
+				if (user.getEnabled().equals("0")) {
+					service1.logout(session);
+					return "users/usersReverse";
+				}
+			}
+			String destination=(String) session.getAttribute("destination");
+			if(destination!=null) return "redirect:"+destination;
+			return "redirect:/main";
+		}
 	//상품및홈페이지 검색하기
 	@RequestMapping(value="/main/search",method=RequestMethod.GET)
 	public String search(@RequestParam String search,Model model){

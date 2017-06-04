@@ -41,28 +41,13 @@ public class UsersController {
 		return "main/login";
 	}
 
-	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginEnd(HttpSession session, @RequestParam String userId, @RequestParam String userPwd,
-			Model model) {
-		int result = service.login(userId, userPwd, session);
-		if (result == 1) {
-			Users user = service.userInfo(session);
-			model.addAttribute("user", user);
-			if (user.getEnabled().equals("0")) {
-				service.logout(session);
-				return "users/usersReverse";
-			}
-		}
-		//String destination=(String) session.getAttribute("destination");
-		//if(destination!=null) return "redirect:"+destination;
-		return "redirect:/main";
-	}
+	
 
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		service.logout(session);
+		session.removeAttribute("destination");
 		return "redirect:/main";
 	}
 

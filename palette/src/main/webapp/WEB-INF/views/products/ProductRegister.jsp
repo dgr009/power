@@ -101,7 +101,7 @@
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
 							
-							<form action="/palette/miniHome/admin/<%=users.getUserId()%>/register" method="POST" enctype="multipart/form-data">
+							<form action="/palette/miniHome/UserAdmin/<%=users.getUserId()%>/register" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
