@@ -13,9 +13,12 @@ public class MainController {
 	private ProductService service;
 	@Autowired
 	private UserService service1;
+	
+	//메인으로 가기
 	@RequestMapping(value="/main",method=RequestMethod.GET)
-	public String productRegister(){
-		return "main/realMain";
+	public String goMain(Model model){
+		model.addAttribute("list", service1.getItemList());
+		return "main/main";
 		
 	}
 	@RequestMapping(value="/main/loginlogin",method=RequestMethod.GET)
