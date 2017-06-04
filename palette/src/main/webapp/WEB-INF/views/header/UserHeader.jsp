@@ -32,7 +32,7 @@
 	}
 	function openHomeAd(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/admin/register","_blank");
+	    	window.open("http://localhost:8087/palette/miniHome/UserAdmin/<%=user.getUserId()%>/register","_blank");
 		else{
 			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
 		}

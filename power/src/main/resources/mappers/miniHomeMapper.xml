@@ -20,11 +20,11 @@
 	<delete id="miniHomeDelete" parameterType="string">
 		delete from home where user_id=#{userId}
 	</delete>
+	
 	<!-- 홈페이지 결제 : 활성화기록 생성 -->
 	<insert id="miniHomeInsertActiveStatement" parameterType="string">
 		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,3),#{userId})
 	</insert>
-	
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
 	<update id="miniHomeDecreaseUsersPoint" parameterType="string">
 		update users set user_point=user_point-30000 where user_id=#{userId}

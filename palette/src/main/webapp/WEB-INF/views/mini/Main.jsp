@@ -52,7 +52,7 @@
 
                                 <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
 
-                                <a href="/palette/miniHome/sysy/Info" class="slider-read FromLeft">상세 보기</a>
+                                <a href="/palette/miniHome/${userId}/Info" class="slider-read FromLeft">상세 보기</a>
                                 <%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
                             </div>
                             <div class="flex_caption2 FromRight">
