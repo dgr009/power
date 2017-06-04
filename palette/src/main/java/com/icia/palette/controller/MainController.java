@@ -21,8 +21,9 @@ public class MainController {
 		return "main/main";
 		
 	}
-	@RequestMapping(value="/main/loginlogin",method=RequestMethod.GET)
-	public String test2(){
+	//로그인 페이지로
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public String Login(){
 		return "main/login";
 	}
 	//상품및홈페이지 검색하기
