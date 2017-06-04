@@ -97,55 +97,23 @@ tr {
 					<i class="fa fa-leaf"></i> 회원정보 상세보기 &nbsp;&nbsp;
 				</h3>
 				<div class="col-lg-12 col-md-12 col-sm-12">
-					<table width="90%" style="text-align: center;">
+					<table width="90%" style="text-align: center;" class="table table-striped table-hover" >
 						<thead>
-								<tr><td>아이디</td></tr>
-								<tr><td>비밀번호</td></tr>
-								<tr><td>이름</td></tr>
-								<tr><td>주소</td></tr>
-								<tr><td>우편번호</td></tr>
-								<tr><td>메일</td></tr>
-								<tr><td>전화번호</td></tr>
-								<tr><td>포인트</td></tr>
-								<tr><td>홈페이지개설여부</td></tr>
-								<tr><td>등급</td></tr>
+								<tr><th>아이디</th>	<td>${user.userId }</td></tr>
+								<tr><th>비밀번호</th>	<td>${user.userPwd }</td></tr>
+								<tr><th>이름</th>	<td>${user.userName }</td></tr>
+								<tr><th>주소</th><td>${user.userAddress }</td></tr>
+								<tr><th>우편번호</th>	<td>${user.userPost }</td></tr>
+								<tr><th>메일</th><td>${user.userMail }</td></tr>
+								<tr><th>전화번호</th><td>${user.userPhone }</td></tr>
+								<tr><th>포인트</th><td>${user.userPoint }</td></tr>
+								<tr><th>홈페이지개설여부</th><td>${user.userIsHome }</td></tr>
+								<tr><th>등급</th>	<td>${user.userGrade }</td></tr>
 						</thead>
-						<tbody>
-							<c:forEach items="${result.list }" var="basket"  varStatus="index">
-								<tr>			
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</c:forEach>
-						</tbody>
 					</table>
 					<button type="button" class="btn btn-primary btn-sm">수정</button>	
 					<button type="button" class="btn btn-primary btn-sm">삭제</button>
 				</div>
-				<!--페이징 시작 -->
-				<div class="col-sm-12 text-center" id="pagination">
-					<c:if test="${r.pagination.prev>0 }">
-						<a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}&startDate=${r.sDate}&endDate=${r.eDate}">이전으로</a>
-					</c:if>
-
-					<c:forEach var="i" begin="${r.pagination.startPage}" end="${r.pagination.endPage}">
-						<a href="/palette/admin/revenueList?pageNo=${i}&startDate=${r.sDate}&endDate=${r.eDate}">${i}
-						</a>
-					</c:forEach>
-					<c:if test="${r.pagination.next>0 }">
-						<a href="/palette/admin/revenueList?pageNo=${r.pagination.next}&startDate=${r.sDate}&endDate=${r.eDate}">다음으로</a>
-					</c:if>
-				</div>
-			</div>
-			<!--페이징 끝 -->
 		</div>
 	</div>
 

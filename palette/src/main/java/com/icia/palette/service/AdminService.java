@@ -21,38 +21,31 @@ public class AdminService {
 		public Map<String, Object> totalUser(HttpSession session, int pageNo){
 			RestTemplate tpl = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
-			headers.add("token",(String) session.getAttribute("token"));
 			HttpEntity requestEntity = new HttpEntity(headers);
 			String result = tpl.exchange("http://localhost:8087/api/admin/all?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
 		    Map<String,Object> map = new Gson().fromJson(result, Map.class);
-		    System.out.println("totalUser" + map);
 		    return map;
 			 }
 			
 	//	홈페이지 개설회원목록
-	public Map<String, Object> openPageUser(HttpSession session) {
+	public Map<String, Object> openPageUser(HttpSession session,int pageNo) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("token",(String) session.getAttribute("token"));
 		HttpEntity requestEntity = new HttpEntity(headers);
-		String result = tpl.exchange("http://localhost:8087/api/admin/openUser", HttpMethod.GET, requestEntity, String.class).getBody();
+		String result = tpl.exchange("http://localhost:8087/api/admin/openUser?pageNo="+pageNo, HttpMethod.GET, requestEntity, String.class).getBody();
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
 		return map;
 	}
 	// 회원 정보보기
-		public String findUserName(HttpSession session) {
+		public Users findUserName(String userId) {
 			RestTemplate tpl = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
-			headers.add("token", (String) session.getAttribute("token"));
 			HttpEntity requestEntity = new HttpEntity(headers);
-			System.out.println(requestEntity);
 			String result = tpl
-					.exchange("http://localhost:8087/api/admin/userName", HttpMethod.GET, requestEntity, String.class)
+					.exchange("http://localhost:8087/api/admin/userName?userId="+userId, HttpMethod.GET, requestEntity, String.class)
 					.getBody();
 			Users user = new Gson().fromJson(result, Users.class);
-			System.out.println("userInfo : " + user);
-
-			return result;
+			return user;
 		}
 	
 	public void updateUser(String userId) {
@@ -63,12 +56,12 @@ public class AdminService {
 				.getBody();
 		System.out.println(result);
 	}
-		
+		//회원 상세 조회 ( 미니홈)
 		public Users detailUser(String userId){
 			RestTemplate tpl = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
 			HttpEntity entity = new HttpEntity(headers);
-			String result = tpl.exchange("http://localhost:8087/api/admin/detail", HttpMethod.GET, entity, String.class).getBody();
+			String result = tpl.exchange("http://localhost:8087/api/admin/detail?userId="+userId, HttpMethod.GET, entity, String.class).getBody();
 		      Users user = new Gson().fromJson(result, Users.class);
 		      return user;
 		}

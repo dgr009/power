@@ -86,7 +86,7 @@
 					</form>
 				</div>
 				<div id="userTable">
-					<table>
+					<table class="table table-striped table-hover" >
 						<thead>
 							<tr>
 								<td>번호&emsp;&emsp;</td>
@@ -98,7 +98,7 @@
 						<tbody>
 							<c:forEach items="${result.list }" var="u" varStatus="index">
 								<tr>
-									<td>${index.count }</td>&emsp;
+									<td>${u.rnum.intValue() }</td>&emsp;
 									<td>${u.userId }</td>
 									<td>${u.userName }&emsp;
 									<td>${u.userIsHome }</td>
@@ -110,14 +110,14 @@
 				<!--페이징 시작 -->
 				<div class="col-sm-12 text-center" id="pagination">
 					<c:if test="${result.pagination.prev>0 }">
-						<a href="/palette/users/userList?pageNo=${result.pagination.prev}">이전으로</a>
+						<a href="/palette/admin/openPage?pageNo=${result.pagination.prev}">이전으로</a>
 					</c:if>
 					<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-						<a href="/palette/users/userList?pageNo=${i}">${i}
+						<a href="/palette/admin/openPage?pageNo=${i}">${i}
 						</a>
 					</c:forEach>
 					<c:if test="${result.pagination.next>0 }">
-						<a href="/palette/admin/revenueList?pageNo=${result.pagination.next}&startDate=${result.sDate}&endDate=${result.eDate}">다음으로</a>
+						<a href="/palette/admin/openPage?pageNo=${result.pagination.next}">다음으로</a>
 					</c:if>
 				</div>
 			</div>

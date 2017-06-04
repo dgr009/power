@@ -28,8 +28,8 @@ public class AdminController {
 		 
 	// 홈페이지 개설회원 조회
 		@RequestMapping(value="/openUser", method = RequestMethod.GET)
-			public String openPageUser() {
-				Map<String, Object> map = service.FindOpenPageUser();
+			public String openPageUser(@RequestParam(defaultValue = "1") int pageNo) {
+				Map<String, Object> map = service.FindOpenPageUser(pageNo);
 				return new Gson().toJson(map);
 			}
 			
@@ -53,19 +53,19 @@ public class AdminController {
 	
 	//관리자 로그아웃
 	
-	//	회원이름으로 조회
-	@RequestMapping(value = "/userName", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
-	public String findUserName(@RequestBody Map<String, Object> map){
-		Map<String, Object> maps = service.findUserName(map);
-		return new Gson().toJson(maps);
+	//	회원이름으로 조회 (전체)
+	@RequestMapping(value = "/userName", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
+	public String findUserName(@RequestParam String userId){
+		Users user = service.findUserName(userId);
+		return new Gson().toJson(user);
 	}
 	
 	
-	// 회원상세조회
-	@RequestMapping(value="/detail", method=RequestMethod.GET)
+	// 회원이름으로 조회 (홈있는)
+	@RequestMapping(value="/detail", method=RequestMethod.GET,produces = "text/html;charset=utf-8")
 	public String userDetail(@RequestParam String userId) {
-		service.DetailUser(userId);
-		return null;
+		Users user = service.DetailUser(userId);
+		return new Gson().toJson(user);
 	}
 	//회원삭제	
 	@RequestMapping(value="/DeleteUser", method=RequestMethod.DELETE)

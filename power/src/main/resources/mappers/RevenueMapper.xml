@@ -14,11 +14,16 @@
       select user_id, user_name from users
    ]]>
    </select>
-
-   <!-- 회원상세조회 -->
-   <select id="userDetail" parameterType="String" resultType="HashMap">
+ <!-- 회원상세조회 (전체)-->
+   <select id="findUserName" parameterType="String" resultType="Users">
    <![CDATA[
-      select user_id, user_name, user_address, user_post, user_mail, user_phone, user_point, user_ishome from users where user_id=#{userId}
+      select * from users where user_id=#{userId}
+   ]]>
+   </select>
+   <!-- 회원상세조회 (미니홈) -->
+   <select id="userDetail" parameterType="String" resultType="Users">
+   <![CDATA[
+      select * from users where user_id=#{userId} and user_ishome='1'
    ]]>
    </select>
 

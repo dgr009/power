@@ -22,31 +22,13 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script>
-	$(function() {
-		$("#find").on("click", function() {
-			$.ajax({
-				url:"/api/admin/userName",
-				type:"post",
-				data: {"userName": $("#userName").val()},
-				dataType: 'JSON',
-				success: function(result) {
-					alert("일치하는 아이디를 찾을 수 없습니다.")
-				},
-				error:function(request){
-					alert("아이디: "+request.responseText);
-				}
-			})
-		})
-	})
-	</script>
 </head>
 <body>
 	<div>
 		<p>회원 이름 : <input type="text" id="userName" name="useName"></p>
 	</div>
 	<div>
-				<table>
+				<table class="table table-striped table-hover" >
                     <thead>
 	                    <tr>
 	                        <th>회원 이름</th>
@@ -57,15 +39,13 @@
 	                    </tr>
                     </thead>
                     <tbody id=userList>
-						<c:forEach items="${userName.list }" var="a">
 							<tr>
-							<td>${a.userName }</td>
-							<td>${a.userId }</td>
-							<td>${a.password }</td>
-							<td>${a.address }</td>
-							<td>${a.openPage }</td>
+							<td>${user.userName }</td>
+							<td>${user.userId }</td>
+							<td>${user.userPwd }</td>
+							<td>${user.userAddress }</td>
+							<td>${user.userIsHome }</td>
 							</tr>
-						</c:forEach>
                     </tbody>
                 </table>
 	</div>

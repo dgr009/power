@@ -22,18 +22,26 @@ public class AdminDao {
 		    }
 	
 		// 홈페이지 개설회원 조회	
-		public List<Users> FindOpenPageUser() {
-			return tpl.selectList("api.dao.AdminDao.findPageUser");
+		public List<Users> FindOpenPageUser(int start,int end) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			return tpl.selectList("api.dao.AdminDao.findPageUser",map);
 			}
 		
+		//홈페이지 개설 회원 수
+				public int isHomeUserCnt() {
+					return tpl.selectOne("api.dao.AdminDao.userHomeCnt");
+				}
+		
 		//	회원이름별 조회
-		public Users FindUserName(Map<String, Object> map){
-		return tpl.selectOne("usersMapper.findUserName", map);
+		public Users FindUserName(String userId){
+		return tpl.selectOne("usersMapper.findUserName", userId);
 	}
 		
 
 		// 회원상세조회 
-	  	public HashMap<String, Object> DetailUser(String userId) {
+	  	public Users DetailUser(String userId) {
 	  		return tpl.selectOne("api.dao.AdminDao.userDetail", userId);
 	  	}
 		// 회원삭제 
