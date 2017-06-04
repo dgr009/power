@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
-<%@page import="com.icia.palette.vo.Users"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,6 +58,10 @@ a:VISITED {
 	color :  threeddarkshadow;
 }
 
+#under:HOVER {
+	text-decoration: underline;
+/* 	border-bottom:3px solid black; */
+}
 
 #rc{
 	color:orange;
@@ -69,10 +71,6 @@ a:VISITED {
 	font-weight: bold;
 }
 
-#under:HOVER {
-	text-decoration: underline;
-/* 	border-bottom:3px solid black; */
-}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -80,39 +78,23 @@ a:VISITED {
 	
 <script>
 
-$(function(){
-	var link = document.location.href; 
-	var sss = link.split('/');
-	var idid=sss[5];
- 	var id;
-	var address = "/palette/miniHome/"+idid+"/noticeRegister";
-	
-	//자신이 주인이면 게시글등록이 보여짐
-	<%if(session.getAttribute("user")!=null){%>
-	<%Users userMini = (Users) session.getAttribute("user"); %>
-	id = <%=userMini.getUserId()%>
-	if(id===idid){
-		
-		$("#meme").empty()
-		$("#meme").append("<form action='/palette/miniHome/"+idid+"/noticeRegister'><input type='submit' data-loading-text='Loading...' class='btn btn-default btn-lg' value='글 작성'/></form>")
-//			<input type="button" value="게시글 작성" onclick="window.location.href='/palette/miniHome/${userId }/noticeRegister'" />
+	//최초 페이지가 로딩되면 한번만 새로고침
+	if (self.name != 'reload') {
+	    self.name = 'reload';
+	    self.location.reload(true);
 	}
-	<%}%>
+	else self.name = ''; 
 	
-})
+	
+	
 </script>
 </head>
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-	<!-- End Header -->
-	
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
-        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
+		<%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 		<!--End Header-->
-		</header>
+	</header>
 		<!--start wrapper-->
 		<section class="page_head">
             <div class="container">
@@ -120,7 +102,7 @@ $(function(){
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="page_title">
-                           <h2>공지 게시판</h2>
+                           <h2>자유 게시판</h2>
                         </div>
                     </div>
                 </div>
@@ -134,61 +116,70 @@ $(function(){
 							<br><br>
 							
 							
-			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     공지게시판 글 목록</h3>
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     자유게시판 글 목록</h3>
 						
 				<table class="table table-striped table-hover" style="text-align: center;">
                     <thead>
                     <tr>
 						<th style="text-align: center;  width: 120px;">번호</th>
-						<th style="text-align: center;">제목</th>
+						<th style="text-align: center;">제목</th>	<!-- 댓글수 -->	
 						<th style="text-align: center;  width: 120px;">작성자</th>		
 						<th style="text-align: center; width: 150px;">작성일</th>
+						<th style="text-align: center; width: 80px;">조회</th>
 					</tr>
                     </thead>
                     
-                    <tbody id="notice">
-                    	<c:forEach items="${mini2.list }" var="notice">
+                    <tbody id="main">
+                    	<c:forEach items="${main.list }" var="main">
 							<tr>			
-								<td>${notice.noticeArticleNo.intValue() }</td>
+								<td>
+									${main.mainArticleNo.intValue() }
+								</td>
 								<td style="text-align: left; ">
-									<a href="/palette/miniHome/${userId }/noticeView/${notice.noticeArticleNo.intValue()}" id="under">
-										${notice.noticeArticleTitle }
+									<a href="/palette/main/freeboard/view/${main.mainArticleNo.intValue()}" id="under">
+										${main.mainArticleTitle }
+										<c:if test="${main.mainFreeRepleCnt.intValue()>0 }">
+										<span id="rc">&nbsp;&nbsp;(
+											<span>${main.mainArticleRepleCnt.intValue() }</span>&nbsp;)
+										</span>
+										</c:if>
 									</a>
 								</td>
 								<td>
-									${notice.userId }
+									${main.userId }
 								</td>
 								<td>
-									${notice.noticeArticleDate }
+									${main.mainArticleDate }
+								</td>
+								<td>
+									${main.mainArticleHits.intValue() }
 								</td>
 							</tr>
 						</c:forEach>
                 </table>
-                
-                	<div id="pagination" style="text-align: center;">
+                	<div  id="pagination" style="text-align: center;">
 			         <ul class='pagination' style='height: 20px;' >
-			         	<c:if test="${mini2.pagination.prev>0 }">
-							<li><a href="/palette/miniHome/${userId}/notcieList?pageNo=${mini2.pagination.prev.intValue()}">이전</a></li>
+			         	<c:if test="${main.pagination.prev>0 }">
+							<li ><a href="/palette/main/freeboard/list?pageNo=${main.pagination.prev}">이전</a></li>
+						
 						</c:if>
 						
-						<c:forEach var="i" begin="${mini2.pagination.startPage}"
-							end="${mini2.pagination.endPage}">
-							<li><a href="/palette/miniHome/${userId }/notcieList?pageNo=${i}">${i}
-							</a></li>
+						<c:forEach var="i" begin="${main.pagination.startPage}" end="${main.pagination.endPage}">
+							<li><a href="/palette/main/freeboard/list?pageNo=${i}">${i} </a></li>
 						</c:forEach>
-						
-						<c:if test="${mini2.pagination.next>0 }">
-							<li><a href="/palette/miniHome/${userId }/notcieList?pageNo=${mini2.pagination.next.intValue()}">다음</a></li>
+						<div>
+						<c:if test="${main.pagination.next>0 }">
+							<a href="/palette/main/freeboard/list?pageNo=${main.pagination.next}">다음</a>
 						</c:if>
 					</ul>
                  </div>
                  
               	<div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
-              		   </div>  
-              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;" id="meme">
-              		   </div>
-                
+              		   		<a href="../freeboard/list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
+              		   </div> 
+              		    
+              		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              			<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/main/freeboard/register'"  style="color:white;"/></div>
 					<br>  <br>
                 </div>
                  <br>  <br><br>  <br>

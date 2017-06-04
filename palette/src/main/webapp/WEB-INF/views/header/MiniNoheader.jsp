@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="hidden-xs col-lg-6 col-sm-6 top-info" style="margin-left: 70px; ">
-                    	<span><a href="/palette/users/login" style="color:white"><i class="fa fa-unlock"></i>로그인</a></span>
+                    	<span><a href="/palette/login" style="color:white"><i class="fa fa-unlock"></i>로그인</a></span>
                     	<span class="hidden-sm"><a data-toggle="modal" data-target="#registerModal" style="color:white"><i class="fa fa-user-plus"></i>회원가입</a></span>
                	 	</div>
                     	 <c:if test="${userId ne null}">
