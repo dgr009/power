@@ -1,11 +1,20 @@
 package com.icia.palette.controller;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
-import org.springframework.ui.*;
-import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
 
-import com.icia.palette.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.icia.palette.service.MainService;
+import com.icia.palette.service.ProductService;
+import com.icia.palette.service.UserService;
+import com.icia.palette.vo.MainFreeBoard;
 
 @Controller
 public class MainController {
@@ -13,6 +22,8 @@ public class MainController {
 	private ProductService service;
 	@Autowired
 	private UserService service1;
+	@Autowired
+	private MainService service2;
 	
 	//메인으로 가기
 	@RequestMapping(value="/main",method=RequestMethod.GET)
@@ -34,44 +45,54 @@ public class MainController {
 		return "main/search";
 	}
 	
-	//유저 정보 테스트
-	@RequestMapping(value="/main/infoinfo",method=RequestMethod.GET)
-	public String test3(){
-		return "main/usersInfo";
-	}
-	
-	//테스트
-	@RequestMapping(value="/main/book",method=RequestMethod.GET)
-	public String test4(){
-		return "main/bookmark";
-	}
-	
-	//테스트
-	@RequestMapping(value="/main/search2",method=RequestMethod.GET)
-	public String test5(){
-		return "main/search2";
-	}
-	
-	//테스트
-	@RequestMapping(value="/main/main",method=RequestMethod.GET)
-	public String test6(){
-		return "mini/Main";
-	}
-	
-	//테스트
-	@RequestMapping(value="/main/shopping",method=RequestMethod.GET)
-	public String test7(){
-		return "main/shoppingBasket";
-	}
-	//테스트
-		@RequestMapping(value="/main/order",method=RequestMethod.GET)
-		public String test8(){
-			return "main/orderList";
+	//메인 자유게시판 업데이트 뷰
+		@RequestMapping(value="/main/freeboard/update/{mainArticleNo}",method = RequestMethod.GET)
+		public String updateStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
+			model.addAttribute("main", service2.mainFreeBoardView(session, mainArticleNo));
+			return "main/mainFreeBoardUpdate";
+		}
+			
+		//메인자유게시판 업데이트 처리
+		@RequestMapping(value="/main/freeboard/update/{mainArticleNo}",method = RequestMethod.POST)
+		public String updateEnd(HttpSession session,@ModelAttribute MainFreeBoard free,@PathVariable int mainArticleNo){
+			service2.mainFreeUpdate(session, free,mainArticleNo);;
+			System.out.println(session+" ===="+free+"===== "+mainArticleNo);
+			return "redirect:/main/freeboard/list?pageNo=1";
 		}
 		
-		//테스트
-		@RequestMapping(value="/main/trade",method=RequestMethod.GET)
-		public String test9(){
-			return "main/tradeList";
+		
+		//메인자유게시판 작성페이지로
+		@RequestMapping(value="/main/freeboard/register",method=RequestMethod.GET)
+		public String freeBoardRegisterStart(HttpSession session,Model model){
+			String userId = service2.getUserId(session);
+			model.addAttribute("userId", userId);
+			return "main/mainFreeBoardRegister";	
 		}
+		//메인자유게시판 작성
+		@RequestMapping(value="/main/freeboard/register",method=RequestMethod.POST)
+		public String freeBoardRegisterEnd(@ModelAttribute MainFreeBoard free){
+			String result = service2.mainFreeBoardRegister(free);
+			System.out.println(result);
+			return "redirect:list?pageNo=1";	
+		}
+		//메인자유게시판 삭제
+		@RequestMapping(value="/main/freeboard/delete/{mainArticleNo}",method = {RequestMethod.GET, RequestMethod.POST})
+		public String delete(HttpSession session,@PathVariable int mainArticleNo,Model model){
+			service2.mainFreeBoardDelete(mainArticleNo);
+			return "redirect:/main/freeboard/list?pageNo=1";
+		}
+		
+		//메인자유게시판 뷰
+		@RequestMapping(value="/main/freeboard/view/{mainArticleNo}",method = RequestMethod.GET)
+		public String userInfoStart(HttpSession session,@PathVariable int mainArticleNo,Model model){
+			model.addAttribute("main", service2.mainFreeBoardView(session, mainArticleNo));
+			return "main/mainFreeBoardView";
+		}
+		//메인자유게시판 리스트
+		@RequestMapping(value="/main/freeboard/list",method = RequestMethod.GET)
+		public String userInfo(Model model,@RequestParam(defaultValue="1") int pageNo){
+			model.addAttribute("main", service2.mainFreeBoardList(pageNo));
+			return "main/mainFreeBoardList";
+		}
+
 }
