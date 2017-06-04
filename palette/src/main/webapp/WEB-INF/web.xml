@@ -65,6 +65,15 @@
   </filter-mapping>
   <filter>
     <display-name></display-name>
+    <filter-name>UserLoginFilter</filter-name>
+    <filter-class>com.icia.palette.filter.UserLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserLoginFilter</filter-name>
+    <url-pattern>/users/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <display-name></display-name>
     <filter-name>OrderLoginFilter</filter-name>
     <filter-class>com.icia.palette.filter.OrderLoginFilter</filter-class>
   </filter>
