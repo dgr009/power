@@ -92,12 +92,8 @@ a:VISITED {
 <body>
 <!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+		 <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
@@ -178,8 +174,9 @@ a:VISITED {
               		   		<a href="../notice/list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
               		   </div>  
               		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              		   <%if(session.getAttribute("admin")!=null){ %>
               		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/main/notice/register'"  style="color:white;"/></div>
-                
+                		<%} %>
 					<br>  <br>
                 </div>
                  <br>  <br><br>  <br>

@@ -64,12 +64,8 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+		 <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
 		
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
