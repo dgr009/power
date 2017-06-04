@@ -36,6 +36,9 @@ public class OrderLoginFilter implements Filter {
 		HttpSession session = req.getSession();
 		String uri = req.getRequestURI();
 		String go = uri;
+		int c=uri.indexOf("/", 3);
+		System.out.println("여기모냐"+c);
+		String destination=uri.substring(c+1);
 		Users user=(Users)session.getAttribute("user");
 		// 화이트리스트에 없는 로그인이 필요한 경로에 접근했고 로그인이 안된 경우
 		if((!whiteList.contains(uri)) && user==null) {
@@ -44,9 +47,9 @@ public class OrderLoginFilter implements Filter {
 			// 로그인을 한 다음 /board/view로 다시 이동해야 한다
 			// 따라서 로그인 후 다시 이동할 주소를 세션에 저장한 다음 로그인으로 이동
 			go = "/palette/users/login";
-			session.setAttribute("destination", uri);
-			//if(req.getParameter("bunho")!=null)
-				//session.setAttribute("bunho", req.getParameter("bunho"));
+			session.setAttribute("destination", destination);
+			if(req.getParameter("bunho")!=null)
+				session.setAttribute("bunho", req.getParameter("bunho"));
 			res.sendRedirect(go);
 		} else {
 		chain.doFilter(request, response);

@@ -99,9 +99,9 @@
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${trade.tradeContent}</td>
 				<td style="text-align: center;">${trade.tradePoint.intValue() }원</td>
 			</tr>
-			</c:forEach>
+		</c:forEach>
 		</tbody>
-	</table>	<br>
+</table>
 		<ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/tradeList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">

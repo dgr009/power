@@ -6,6 +6,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	$(function(){
+		<% if((session).getAttribute("user")!=null){ %>
 		book();
 		function book(){
 			$.ajax({
@@ -56,8 +57,9 @@
 			
 			book();
 		})
+		<%}%>
 		
 	})
 </script>
     
-<a id='bookTarget' class="slider-read FromLeft"></a>
+<a id='bookTarget' class="slider-read FromLeft">즐겨찾기</a>

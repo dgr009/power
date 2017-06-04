@@ -72,4 +72,13 @@
     <filter-name>OrderLoginFilter</filter-name>
     <url-pattern>/miniHome/productOrder/*</url-pattern>
   </filter-mapping>
+    <filter>
+    <display-name></display-name>
+    <filter-name>AdminLoginFilter</filter-name>
+    <filter-class>com.icia.palette.filter.AdminLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminLoginFilter</filter-name>
+    <url-pattern>/miniHome/admin/*</url-pattern>
+  </filter-mapping>
 </web-app>

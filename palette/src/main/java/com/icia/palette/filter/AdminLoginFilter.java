@@ -16,13 +16,15 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.userdetails.User;
 
+import com.icia.palette.vo.Admin;
 import com.icia.palette.vo.Users;
 
 
-@WebFilter("/miniHome/admin/*")
-public class EmpLoginFilter implements Filter {
+@WebFilter("/admin/*")
+public class AdminLoginFilter implements Filter {
 	private ArrayList<String> whiteList = new ArrayList();
-    public EmpLoginFilter() {
+    public AdminLoginFilter() {
+    	whiteList.add("/palette/admin/login");
     }
 	public void destroy() {
 	}
@@ -34,22 +36,16 @@ public class EmpLoginFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse)response;
 		HttpSession session = req.getSession();
 		String uri = req.getRequestURI();
-		int a=uri.indexOf("/", 21);
-		int b=uri.indexOf("/", 25);
-		String owner=uri.substring(a+1, b);
 		String go = uri;
-		int c=uri.indexOf("/", 3);
-		System.out.println("여기모냐"+c);
-		String destination=uri.substring(c+1);
-		Users user=(Users)session.getAttribute("user");
+		Admin admin=(Admin)session.getAttribute("admin");
 		// 화이트리스트에 없는 로그인이 필요한 경로에 접근했고 로그인이 안된 경우
-		if(((!whiteList.contains(uri)) && !user.getUserId().equals(owner))||user==null) {
+		if(((!whiteList.contains(uri)) && admin==null)) {
 			System.out.println("로그인 안됨");
 			// 예를 들어 /board/view를 요청했는데 로그인이 안된 경우
 			// 로그인을 한 다음 /board/view로 다시 이동해야 한다
 			// 따라서 로그인 후 다시 이동할 주소를 세션에 저장한 다음 로그인으로 이동
-			go = "/palette/users/login";
-			session.setAttribute("destination", destination);
+			go = "/palette/admin/login";
+			session.setAttribute("destination", go);
 			//if(req.getParameter("bunho")!=null)
 				//session.setAttribute("bunho", req.getParameter("bunho"));
 			res.sendRedirect(go);

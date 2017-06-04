@@ -35,20 +35,11 @@
         <!-- Start header-top -->
 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
         <!--/.header-top -->
-
-        <div id="menu-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <a href="/palette/miniHome/${userId }/main"><h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1></a>
-                        </div>
-                    </div>
                      <!-- Navigation
                     ================================================== -->
                      <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+                     
             <!--/.container -->
-        </div>
         <!--/#menu-bar -->
         <div class="slider_block">
             <div class="flexslider top_slider">
@@ -61,7 +52,7 @@
 
                                 <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
 
-                                <a href="/palette/miniHome/sysy/Info" class="slider-read FromLeft">상세 보기</a>
+                                <a href="/palette/miniHome/${userId}/Info" class="slider-read FromLeft">상세 보기</a>
                                 <%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
                             </div>
                             <div class="flex_caption2 FromRight">

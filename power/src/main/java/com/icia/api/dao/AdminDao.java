@@ -12,19 +12,25 @@ import com.icia.api.vo.*;
 @Repository
 public class AdminDao {
 	@Autowired
-	private SqlSessionTemplate tpl;
-		//	회원이름별 조회
-		public String FindUserName(String username){
-		return tpl.selectOne("usersMapper.findUserName", username);
-	}
-		// 홈페이지 개설회원 조회	
-		public String FindOpenPageUser(String userId) {
-			return tpl.selectOne("api.dao.AdminDao.findPageUser", userId);
-		}
+	private SqlSessionTemplate tpl;	
 		// 전체회원목록조회  
-		public List<Users> totalUser() {
-	        return tpl.selectList("api.dao.AdminDao.totalUser");
-	    }
+		public List<Users> totalUser(int start, int end) {
+			Map<String, Object> map = new HashMap<String, Object>();
+				map.put("start", start);
+				map.put("end", end);
+		        return tpl.selectList("api.dao.AdminDao.totalUser",map);
+		    }
+	
+		// 홈페이지 개설회원 조회	
+		public List<Users> FindOpenPageUser() {
+			return tpl.selectList("api.dao.AdminDao.findPageUser");
+			}
+		
+		//	회원이름별 조회
+		public Users FindUserName(Map<String, Object> map){
+		return tpl.selectOne("usersMapper.findUserName", map);
+	}
+		
 
 		// 회원상세조회 
 	  	public HashMap<String, Object> DetailUser(String userId) {
@@ -68,5 +74,9 @@ public class AdminDao {
 			map.put("adminId", admin.getAdminId());
 			map.put("adminPwd", admin.getAdminPwd());
 			return tpl.selectOne("api.dao.AdminDao.login", map);
+		}
+//전체회원수
+		public int allUser() {
+			return tpl.selectOne("api.dao.AdminDao.userCnt");
 		}
 }

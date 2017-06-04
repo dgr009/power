@@ -166,7 +166,7 @@ public class UsersController {
 
 	}
 
-	// 회원 토큰으로 정보 얻기
+	// 회원 토큰으로 홈이미지 얻기
 		@RequestMapping(value = "/homeImg", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 		public String getHomeImgByToken(@RequestHeader("token") String token) {
 			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
