@@ -1,5 +1,8 @@
 package com.icia.palette.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +44,7 @@ public class MainController {
 	// 로그인
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
 		public String loginEnd(HttpSession session, @RequestParam String userId, @RequestParam String userPwd,
-				Model model) {
+				Model model) throws UnsupportedEncodingException {
 			int result = service1.login(userId, userPwd, session);
 			if (result == 1) {
 				Users user = service1.userInfo(session);
@@ -52,6 +55,7 @@ public class MainController {
 				}
 			}
 			String destination=(String) session.getAttribute("destination");
+			//String destination1=URLEncoder.encode(destination, "UTF-8");
 			if(destination!=null) return "redirect:"+destination;
 			return "redirect:/main";
 		}

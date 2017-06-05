@@ -52,7 +52,7 @@ public class EmpLoginFilter implements Filter {
 			res.sendRedirect(go);
 		}
 		else if(!whiteList.contains(uri) &&!user.getUserId().equals(owner)){
-			go = "/palette/users/login";
+			go = "/palette/login";
 			session.setAttribute("destination", destination);
 			res.sendRedirect(go);
 		}
