@@ -80,7 +80,7 @@
 				</div>
 			</div>
 		</section>
-<form action="/palette/miniHome/${userId}/productOrder/${result.item.itemNo.intValue()}" method="get">
+<form action="/palette/miniHome/productOrder/${userId}/${result.item.itemNo.intValue()}" method="get">
 		<section class="content portfolio_single">
 			<div class="container">
 				<div class="row sub_content">

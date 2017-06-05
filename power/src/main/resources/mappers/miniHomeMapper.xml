@@ -20,11 +20,11 @@
 	<delete id="miniHomeDelete" parameterType="string">
 		delete from home where user_id=#{userId}
 	</delete>
+	
 	<!-- 홈페이지 결제 : 활성화기록 생성 -->
 	<insert id="miniHomeInsertActiveStatement" parameterType="string">
 		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,3),#{userId})
 	</insert>
-	
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
 	<update id="miniHomeDecreaseUsersPoint" parameterType="string">
 		update users set user_point=user_point-30000 where user_id=#{userId}
@@ -38,7 +38,7 @@
 	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
 	<select id="miniHomeSelectSellerInformation" parameterType="string" resultType="MiniHomeInformation">
 		select u.user_name ,u.user_mail ,u.user_phone ,u.user_grade ,
-		h.home_introduce  from users u, home h 
+		h.home_introduce, h.home_title  from users u, home h 
 		where u.user_id=h.user_id and u.user_id=#{userId}
 	</select>
 	

@@ -80,7 +80,7 @@
 								</div>
 							</div>
 						</section>
-						<form action="/palette/miniHome/<%=user1.getUserId()%>/admin/productUpdate/${item.item.itemNo.intValue()}" method="POST"
+						<form action="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/productUpdate/${item.item.itemNo.intValue()}" method="POST"
 							enctype="multipart/form-data">
 							<section class="content portfolio_single">
 								<div class="container">

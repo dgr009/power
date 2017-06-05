@@ -72,6 +72,10 @@ input[type="button"] {
 		
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+<<<<<<< HEAD
+>>>>>>> branch 'sangyun' of https://github.com/dgr009/power.git
+=======
+>>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
       <!--End Header-->

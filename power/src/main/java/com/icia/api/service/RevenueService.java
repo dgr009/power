@@ -43,7 +43,7 @@ public class RevenueService {
 		maps.put("sum", dao.selectRevenueUserSum(map));
 		maps.put("sDate", map.get("startDate"));
 		maps.put("eDate", map.get("endDate"));
-		maps.put("ownerId", map.get("ornerId"));
+		maps.put("ownerId", map.get("ownerId"));
 		maps.put("list", dao.selectRevenueUserListByDate(map));
 		return maps;
 	}

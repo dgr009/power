@@ -8,7 +8,7 @@
 <div class="col-lg-10 col-md-10 col-sm-10" style="padding: 0;">
 <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: right; padding: 0;">
         <div class="ab" style="margin-top: 23px; margin-right: 60px;">
-        	<h1><a href="/palette/users/main"><img alt="" src="<c:url value="/resources/images/로고5.png"/>" style="width:230px; height: 60px;"></a></h1>
+        	<h1><a href="/palette/main"><img alt="" src="<c:url value="/resources/images/로고5.png"/>" style="width:230px; height: 60px;"></a></h1>
         </div><br>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4" style="padding: 0;">
@@ -32,13 +32,13 @@
 
 <div class="col-lg-6 col-md-6 col-sm-6">
 	 <div class="ab" style="padding-left: 55px; margin-top: 23px; ">
-	<a href="../icon/id-card-o" style="color: #727cb6;"><i class="fa fa-money fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
+	<a href="#" style="color: #727cb6;"><i class="fa fa-money fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../icon/paypal" style="color: #727cb6;"><i class="fa fa-paypal fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
+<a href="/palette/users/tradeList" style="color: #727cb6;"><i class="fa fa-paypal fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="../icon/cart-arrow-down" style="color: #727cb6;"><i class="fa fa-cart-arrow-down fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
+    <a href="/palette/users/basketList" style="color: #727cb6;"><i class="fa fa-cart-arrow-down fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="../icon/sitemap" style="color: #727cb6;"><i class="fa fa-sitemap fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
+        <a href="#" style="color: #727cb6;"><i class="fa fa-sitemap fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style="font-weight: bold; color:#727cb6;">상품권 등록</span>

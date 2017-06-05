@@ -3,9 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users userMini = (Users) session.getAttribute("user");
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -86,18 +84,20 @@ $(function(){
 	var link = document.location.href; 
 	var sss = link.split('/');
 	var idid=sss[5];
-	var id='<%=userMini.getUserId() %>'
+ 	var id;
 	var address = "/palette/miniHome/"+idid+"/noticeRegister";
 	
 	//자신이 주인이면 게시글등록이 보여짐
-	
+	<%if(session.getAttribute("user")!=null){%>
+	<%Users userMini = (Users) session.getAttribute("user"); %>
+	id = <%=userMini.getUserId()%>
 	if(id===idid){
 		
 		$("#meme").empty()
 		$("#meme").append("<form action='/palette/miniHome/"+idid+"/noticeRegister'><input type='submit' data-loading-text='Loading...' class='btn btn-default btn-lg' value='글 작성'/></form>")
 //			<input type="button" value="게시글 작성" onclick="window.location.href='/palette/miniHome/${userId }/noticeRegister'" />
 	}
-	
+	<%}%>
 	
 })
 </script>
