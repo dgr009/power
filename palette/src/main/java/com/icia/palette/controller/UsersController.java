@@ -47,7 +47,6 @@ public class UsersController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		service.logout(session);
-		session.removeAttribute("destination");
 		return "redirect:/main";
 	}
 

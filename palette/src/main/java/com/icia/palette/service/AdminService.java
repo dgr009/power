@@ -95,6 +95,7 @@ public class AdminService {
 		public void logout(HttpSession session) {
 			session.removeAttribute("token");
 			session.removeAttribute("admin");
+			session.removeAttribute("destination");
 		}
 		
 		// 관리자 정보보기

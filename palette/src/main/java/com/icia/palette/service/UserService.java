@@ -44,6 +44,7 @@ public class UserService {
 	public void logout(HttpSession session) {
 		session.removeAttribute("token");
 		session.removeAttribute("user");
+		session.removeAttribute("destination");
 	}
 
 	// 회원 가입
