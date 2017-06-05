@@ -24,6 +24,11 @@ import com.icia.palette.vo.Users;
 public class UserLoginFilter implements Filter {
 	private ArrayList<String> whiteList = new ArrayList();
     public UserLoginFilter() {
+    	whiteList.add("/palette/users/insert");
+    	whiteList.add("/palette/users/findIdAndPwd");
+    	whiteList.add("/palette/users/find");
+    	whiteList.add("/palette/users/findPwd");
+    	whiteList.add("/palette/users/reverse/*");
     }
 	public void destroy() {
 	}

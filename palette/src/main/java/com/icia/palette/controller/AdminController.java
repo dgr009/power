@@ -47,6 +47,9 @@ public class AdminController {
 		public String loginEnd(HttpSession session, @RequestParam String adminId, @RequestParam String adminPwd,
 				Model model) {
 			int result = service.login(adminId, adminPwd, session);
+			String destination=(String) session.getAttribute("destination");
+			//String destination1=URLEncoder.encode(destination, "UTF-8");
+			if(destination!=null) return "redirect:"+destination;
 			return "redirect:/admin/revenueList";
 		}
 		//로그아웃

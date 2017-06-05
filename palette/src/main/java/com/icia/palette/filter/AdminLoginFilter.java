@@ -37,6 +37,8 @@ public class AdminLoginFilter implements Filter {
 		HttpSession session = req.getSession();
 		String uri = req.getRequestURI();
 		String go = uri;
+		int a=uri.indexOf("/", 9);
+		String destination=uri.substring(a+1);
 		Admin admin=(Admin)session.getAttribute("admin");
 		// 화이트리스트에 없는 로그인이 필요한 경로에 접근했고 로그인이 안된 경우
 		if(((!whiteList.contains(uri)) && admin==null)) {
@@ -45,7 +47,7 @@ public class AdminLoginFilter implements Filter {
 			// 로그인을 한 다음 /board/view로 다시 이동해야 한다
 			// 따라서 로그인 후 다시 이동할 주소를 세션에 저장한 다음 로그인으로 이동
 			go = "/palette/admin/login";
-			session.setAttribute("destination", go);
+			session.setAttribute("destination", destination);
 			//if(req.getParameter("bunho")!=null)
 				//session.setAttribute("bunho", req.getParameter("bunho"));
 			res.sendRedirect(go);

@@ -68,7 +68,7 @@ public class ProductController {
 	}
 	//상품수정하기
 	@RequestMapping(value="/UserAdmin/{userId}/productUpdate/{itemNo}",method=RequestMethod.POST)
-	public String productUpdateEnd(@PathVariable String userid,@PathVariable int itemNo,@ModelAttribute Item item,@RequestParam String optionName,@RequestParam String optionNo,MultipartHttpServletRequest req
+	public String productUpdateEnd(@PathVariable String userId,@PathVariable int itemNo,@ModelAttribute Item item,@RequestParam String optionName,@RequestParam String optionNo,MultipartHttpServletRequest req
 			) throws IOException{
 		System.out.println("여기와봐");
 		ArrayList<String> fileName=new ArrayList<String>();
@@ -106,7 +106,7 @@ public class ProductController {
 			}
 		}
 		service.productUpdate(itemList);
-		String a="redirect:/miniHome/admin/"+userid+"/registerList";
+		String a="redirect:/miniHome/UserAdmin/"+userId+"/registerList";
 		return a;
 	}
 	
@@ -125,7 +125,7 @@ public class ProductController {
 		item.setItemImgList(list);
 		System.out.println("메인에서 이름"+item.getItemName());
 		service.productRegister(item);
-		String a="redirect:/miniHome/admin/"+userId+"/registerList";
+		String a="redirect:/miniHome/UserAdmin/"+userId+"/registerList";
 		return a;
 	}
 	
@@ -139,9 +139,9 @@ public class ProductController {
 	}
 	//상품삭제하기
 	@RequestMapping(value = "/UserAdmin/{userId}/productDelete/{itemNo}", method = RequestMethod.GET)
-	public String productDelete(@RequestParam int itemNo,@PathVariable String userId) {
+	public String productDelete(@PathVariable int itemNo,@PathVariable String userId) {
 		service.productDelete(itemNo);
-		String a="redirect:/miniHome/admin/"+userId+"/registerList";
+		String a="redirect:/miniHome/UserAdmin/"+userId+"/registerList";
 		return a;
 	}
 	//상품주문자리스트
@@ -173,7 +173,7 @@ public class ProductController {
 			
 			System.out.println("여기값모냐"+itemNo);
 			service.deliveryInsert(map);
-			String a="redirect:/miniHome/admin/"+user.getUserId()+"/productOrderList/"+itemNo;
+			String a="redirect:/miniHome/UserAdmin/"+user.getUserId()+"/productOrderList/"+itemNo;
 			return a;
 		}
 		//상품주문하기페이지로

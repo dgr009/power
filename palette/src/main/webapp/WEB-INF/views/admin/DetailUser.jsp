@@ -63,7 +63,7 @@ tr {
 <body>
 	<!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
+	<%@include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
 	</header>
 	<!-- End Header -->
 	<div id="menu-bar">
