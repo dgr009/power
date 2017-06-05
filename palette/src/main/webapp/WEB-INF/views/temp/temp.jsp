@@ -2,6 +2,46 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+     <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_5">
+                            <div class="service-image">
+                                <img src="<c:url value="/resources/images/오오만원.png"/>">
+                            </div>
+                            <div class="service-content bg3 "id="read2" >
+                                <div class="internal">
+                                    <div class="item_content">
+                                        <div class="service-icon">
+                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
+                                        </div>
+                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">50.000원</sapn><br>
+                                        6개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
+                                        <a class="read" href="">구입하기 !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-sm-6 col-lg-3">
+                        <div class="serviceBox_5">
+                            <div class="service-image">
+                                <img src="<c:url value="/resources/images/시입마너언.png"/>">
+                            </div>
+                            <div class="service-content "id="read3">
+                                <div class="internal">
+                                    <div class="item_content">
+                                        <div class="service-icon">
+                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
+                                        </div>
+                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">100.000원</sapn><br>
+                                        12개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
+                                        <a class="read" href="">구입하기 !</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
 <!-- <div><a id='bookTarget'></a></div> -->
 
 <%-- <%Users user=(Users)session.getAttribute("user"); %> --%>

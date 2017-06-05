@@ -19,7 +19,11 @@
 		if(<%=user.getUserIsHome()%>==1)
 	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main","_blank");
 		else{
-			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
+			if(<%=user.getUserActiveHome()%>==0){
+				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=700,height=600,toolbars=no,scrollbars=no');
+			}else{
+				window.open("http://localhost:8087/palette/users/homeRegister","_blank");
+			}
 		}
 	}
 	
@@ -27,14 +31,22 @@
 		if(<%=user.getUserIsHome()%>==1)
 	    	window.open("http://localhost:8087/palette/users/homeUpdate","_blank");
 		else{
-			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
+			if(<%=user.getUserActiveHome()%>==0){
+				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=700,height=600,toolbars=no,scrollbars=no');
+			}else{
+			window.open("http://localhost:8087/palette/users/homeRegister","_blank");
+			}
 		}
 	}
 	function openHomeAd(){
 		if(<%=user.getUserIsHome()%>==1)
 	    	window.open("http://localhost:8087/palette/miniHome/UserAdmin/<%=user.getUserId()%>/register","_blank");
 		else{
-			window.open("http://localhost:8087/palette/users/homeRegister","_blank");	
+			if(<%=user.getUserActiveHome()%>==0){
+				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=700,height=600,toolbars=no,scrollbars=no');
+			}else{
+			window.open("http://localhost:8087/palette/users/homeRegister","_blank");
+			}
 		}
 	}
 	</script>

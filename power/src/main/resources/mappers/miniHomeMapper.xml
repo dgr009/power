@@ -32,13 +32,13 @@
 	
 	<!-- 홈페이지 결제 : 홈페이지 활성화 -->
 	<update id="miniHomeActivateHome" parameterType="string">
-		 update home set home_active=1 where user_id=${userId}
+		 update home set home_active=1 where user_id=#{userId}
 	</update>
 	
 	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
 	<select id="miniHomeSelectSellerInformation" parameterType="string" resultType="MiniHomeInformation">
-		select u.user_name ,u.user_mail ,u.user_phone ,u.user_grade ,
-		h.home_introduce, h.home_title  from users u, home h 
+		select u.user_name userName,u.user_mail userMail,u.user_phone userPhone,u.user_grade userGrade,
+		h.home_introduce homeIntroduce, h.home_title homeTitle from users u, home h 
 		where u.user_id=h.user_id and u.user_id=#{userId}
 	</select>
 	
@@ -58,7 +58,10 @@
 		select count(*) from activedate where user_id=#{userId}
 	</select>
 
-	
+	<!-- 회원 홈페이지 결제 완료 -->
+	<update id="userActiveHome" parameterType="string">
+		update users set user_activeHome='1' where user_id=#{userId}
+	</update>
 	
 </mapper>
 
