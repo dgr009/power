@@ -96,7 +96,6 @@ a:VISITED {
 		<!--End Header-->
 	</header>
 		<!--start wrapper-->
-		<section class="page_head">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -107,8 +106,6 @@ a:VISITED {
                     </div>
                 </div>
             </div>
-            
-             </section>
             
  
             
@@ -177,9 +174,11 @@ a:VISITED {
               	<div class="col-lg-9 col-md-9 col-sm-9">
               		   		<a href="../freeboard/list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
               		   </div> 
-              		    
+              		   <%if(session.getAttribute("user")!=null){ %> 
               		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              		   
               			<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/main/freeboard/register'"  style="color:white;"/></div>
+              			<%} %>
 					<br>  <br>
                 </div>
                  <br>  <br><br>  <br>

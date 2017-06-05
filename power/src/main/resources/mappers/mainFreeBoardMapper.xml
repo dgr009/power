@@ -9,7 +9,7 @@
 	<![CDATA[
 		 select * from  
 			(select rownum rnum, b1.* from
-				(select main_article_no, main_article_title,main_article_hits,main_article_date,main_article_reple_cnt from main_free_board order by main_article_no desc) b1
+				(select main_article_no, main_article_title,main_article_hits,main_article_date,main_article_reple_cnt,user_id userId from main_free_board order by main_article_no desc) b1
 			where rownum <=#{end}) b2
 		where rnum>=#{start}
 		]]>

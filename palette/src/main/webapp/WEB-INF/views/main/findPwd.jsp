@@ -98,7 +98,7 @@ $(function(){
 </script>
 </head>
 <body style="background: #fafafa;">
-   <div class="col-xs-12 col-xs-12 col-xs-12" style="padding: 0; background: #727cb6; height: 15px;"></div>
+   <%@include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
    <br><br><br><br>
    <div class="col-xs-2 col-xs-2 col-xs-2"></div>
    <div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center; position: relative;">

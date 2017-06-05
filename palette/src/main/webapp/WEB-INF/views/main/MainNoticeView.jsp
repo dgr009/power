@@ -78,7 +78,6 @@ input[type="button"] {
 		<!--End Header-->
 		</header>
 		<!--start wrapper-->
-		<section class="page_head">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -90,9 +89,6 @@ input[type="button"] {
                 </div>
             </div>
             
-             </section>
-            
- 
            
             <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>

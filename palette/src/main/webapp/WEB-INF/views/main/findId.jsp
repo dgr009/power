@@ -98,7 +98,7 @@ $(function(){
 </script>
 </head>
 <body style="background: #fafafa;">
-	<div class="col-xs-12 col-xs-12 col-xs-12" style="padding: 0; background: #727cb6; height: 15px;"></div>
+	<%@include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
 	<br><br><br><br>
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
 	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center; position: relative;">
@@ -124,7 +124,7 @@ $(function(){
 			<p style="text-align: left; font-size: 1.35em;">&nbsp;&nbsp;이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" id="userMail" placeholder="&nbsp;&nbsp;이메일 입력"  style="width: 311px; height: 53px; border-radius: 10px; border : 1px solid silver;"></p>
 			<br><br>
 			<div style="width: 400px; height:20px; border-top: 1px solid silver; display: inline-block; position: absolute; text-align:left; left: 70px; padding-top: 20px;">
-				아직 팔레트 회원이 아닌가요?&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">회원가입</a>
+				아직 팔레트 회원이 아닌가요?&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" data-target="#registerModal">회원가입</a>
 			</div>
 			<br><br>
 			<br><br>
