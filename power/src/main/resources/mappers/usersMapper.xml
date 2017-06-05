@@ -241,8 +241,8 @@
 	<select id="getRankSide" resultType="MiniHome">
 		<![CDATA[
 		select rownum, a.* from 
-			(select i.user_id userId,h.home_img homeImg from item i,order_statement o,home h
-				where h.user_id=i.user_id and o.item_no=i.item_no and i.user_id in(select i.user_id from order_statement o,item i where i.item_no=o.item_no) and o.order_state='주문완료'  group by i.user_id,o.order_state,h.home_img
+			(select i.user_id userId,h.home_img homeImg from item i,order_statement o,home h,users u
+				where h.user_id=i.user_id and u.enabled=1 and o.item_no=i.item_no and i.user_id in(select i.user_id from order_statement o,item i where i.item_no=o.item_no) and o.order_state='주문완료'  group by i.user_id,o.order_state,h.home_img
 				order by sum(o.order_price) desc) a where rownum<=5
 		]]>
 	</select>
@@ -261,7 +261,7 @@
 		select * from
 		(select rownum rnum,b.* from 
 		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
-		from item i,item_img m where i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
+		from item i,item_img m,users u where u.user_id=i.user_id and u.enabled=1 and i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
 		where rownum<=8) where rnum>=1
 		]]>  
 	</select>
@@ -270,7 +270,7 @@
 		select * from
 		(select rownum rnum,b.* from 
 		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
-		from item i,item_img m where i.item_no=m.item_no and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
+		from item i,item_img m,users u where u.user_id=i.user_id and i.item_no=m.item_no and u.enabled=1 and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_date desc) b
 		where rownum<=16) where rnum>=9
 		]]>
 	</select>
@@ -280,7 +280,7 @@
 		select * from
 		(select rownum rnum,b.* from 
 		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id 
-		from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
+		from item i,item_img m,users u where  u.user_id=i.user_id and i.item_no=m.item_no  and u.enabled=1 and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by i.item_inven asc) b
 		where rownum<=6) where rnum>=1 
 		]]>
 	</select>
@@ -291,7 +291,7 @@
 		select * from
 		(select rownum rnum,b.* from 
 		(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id
-		from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
+		from item i,item_img m,users u where u.user_id=i.user_id and i.item_no=m.item_no  and u.enabled=1 and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
 		where rownum<=6) where rnum>=1
 		      ]]>
 	</select>
@@ -301,7 +301,7 @@
 			select * from
 			(select rownum rnum,b.* from 
 			(select i.item_no,i.item_price,item_name,m.img_name,i.item_inven,i.user_id
-			from item i,item_img m where i.item_no=m.item_no  and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
+			from item i,item_img m,users u where u.user_id=i.user_id and i.item_no=m.item_no  and u.enabled=1 and i.item_inven !=0 and m.img_no in(select min(img_no) from item_img group by item_no) order by (i.item_size-i.item_inven) desc) b
 			where rownum<=6) where rnum>=1
 	      ]]>
 	</select>
@@ -311,7 +311,7 @@
 	<select id="productSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
 		select count(*)
-		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
+		from item i,item_img m,users u where i.item_no=m.item_no and u.enabled=1 and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
 		]]>
 	</select>
 	<!-- 아이템 검색 -->
@@ -320,21 +320,21 @@
 		
 		
 		select i.item_no,i.item_price,i.item_name,m.img_name ,i.item_inven,i.user_id
-		from item i,item_img m where i.item_no=m.item_no and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
+		from item i,item_img m,users u where i.item_no=m.item_no and u.enabled=1 and i.item_name like '%' ||  #{search} || '%'  and m.img_no in(select min(img_no) from item_img group by item_no)
 		
 		]]>
 	</select>
 	<!-- 홈페이지 검색 개수 -->
 	<select id="hompageSearchCnt" parameterType="String" resultType="int">
 		<![CDATA[
-		select count(*) from home where user_id like '%' ||  #{search} || '%'
+		select count(*) from home h,users u where u.enabled=1 and h.user_id like '%' ||  #{search} || '%'
 		]]>
 	</select>
 	<!-- 홈페이지 검색 -->
 	<select id="selectHomeByName" parameterType="String" resultType="MiniHome">
 		<![CDATA[
 		select * 
-		from home where user_id like '%' ||  #{search} || '%' 
+		from home h,users u where u.enabled=1 and user_id like '%' ||  #{search} || '%' 
 		]]>
 	</select>
 	<select id="getHomeImg" parameterType="string" resultType="string">
