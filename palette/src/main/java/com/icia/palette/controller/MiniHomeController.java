@@ -162,7 +162,7 @@ public class MiniHomeController {
 		System.out.println(userId+"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		service2.homePay(session, userId);
 		System.out.println("완료 완료 완료 완료");
-		return "redirect:/main";
+		return "redirect:/users/close";
 	}
 
 	

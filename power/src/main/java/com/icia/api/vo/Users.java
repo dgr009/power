@@ -21,6 +21,6 @@ public class Users {
 	private String userIsHome;
 	private String enabled;
 	private String userGrade;
-	
+	private String userActiveHome;
 	
 }
