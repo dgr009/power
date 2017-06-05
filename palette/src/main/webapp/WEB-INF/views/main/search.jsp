@@ -6,7 +6,6 @@
 <head>
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Portfolio Single - Edge Responsive Multipurpose Template</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
@@ -18,11 +17,10 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
 
-  <title>Bootstrap Example</title>
+  <title>서치</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<c:url value="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
@@ -78,17 +76,17 @@
 								<h4><span>검색된 <span class="highlight default">상품</span> 목록</span></h4>
 							</div>
 							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
+								<div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+                            	<div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 					</div>
 
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
+                    <div class="jcarousel recent-work-jc" style="height: 162px;">
                         <ul class="jcarousel-list" style="left: 0px;">
                             <!-- Recent Work Item -->
-                                    <c:forEach items="${result.itemList}" var="free">
+                            <c:forEach items="${result.itemList}" var="free">
                             <li class="col-sm-3 col-md-3 col-lg-3" style="width:342px; margin-left: 10px;">
                                 <figure class="touching effect-bubba" style="border-radius: 10px;" >
                                     <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive"
@@ -115,14 +113,14 @@
 								<h4><span>검색된 <span class="highlight default">홈페이지</span> 목록</span></h4>
 							</div>
 							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
+								<div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+                            	<div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 					</div>
 
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
+                    <div class="jcarousel recent-work-jc"  style="height: 162px;">
                         <ul class="jcarousel-list" style="left: 0px;">
                          <c:forEach items="${result.homePage}" var="free">
                             <!-- Recent Work Item -->
