@@ -26,7 +26,10 @@
 								</div>
 									
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="#" class="btn btn-block btn-default">광고관리</a>
+									<a href="/palette/main/notice/list" class="btn btn-block btn-default">공지사항 관리</a>
+								</div>
+								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/main/customerCenter/list" class="btn btn-block btn-default">FAQ 관리</a>
 								</div>
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/admin/logout" class="btn btn-block btn-default">로그아웃</a>

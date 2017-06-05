@@ -72,19 +72,14 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-	 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+	 <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
 		</header>
 		<!--start wrapper-->
-		<section class="page_head">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -96,9 +91,6 @@ input[type="button"] {
                 </div>
             </div>
             
-             </section>
-            
- 
            
             <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>

@@ -86,7 +86,7 @@
 					</form>
 				</div>
 				<div id="userTable">
-					<table>
+					<table class="table table-striped table-hover" >
 						<thead>
 							<tr>
 								<td>번호&emsp;&emsp;</td>

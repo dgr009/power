@@ -24,15 +24,15 @@ public class AdminController {
 	
 		// 전체회원목록
 		@RequestMapping(value="/all", method=RequestMethod.GET)
-	    public String totalUser(Model model, HttpSession session, @RequestParam(defaultValue="1")int pageNo){
+	    public String totalUser(Model model, HttpSession session, @RequestParam(defaultValue="1") int pageNo){
 			model.addAttribute("result", service.totalUser(session, pageNo)); 
 			return "admin/AllUser";
 		}
 		
 		// 홈페이지 개설회원 조회 
 		@RequestMapping(value = "/openPage", method = RequestMethod.GET)
-		public String OpenPageUser(Model model, HttpSession session) {
-			model.addAttribute("result", service.openPageUser(session));
+		public String OpenPageUser(Model model, HttpSession session,@RequestParam(defaultValue="1") int pageNo) {
+			model.addAttribute("result", service.openPageUser(session,pageNo));
 			return "admin/OpenPageUser";
 		}
 		
@@ -53,21 +53,21 @@ public class AdminController {
 		@RequestMapping(value = "/logout", method = RequestMethod.GET)
 		public String logout(HttpSession session) { 
 			service.logout(session);
-			return "redirect:/users/main";
+			return "redirect:/main";
 		}
 		// 회원이름으로 조회
-		/*
 		 @RequestMapping(value="/userName", method= RequestMethod.GET)
-		public String findUserName(Model model,@RequestParam(defaultValue=" ") String userName) {
+		public String findUserName(Model model,@RequestParam String userName) {
 			if(userName!=null) 
-				model.addAttribute("userName", service.findUserName(userName));
+				model.addAttribute("user", service.findUserName(userName));
 			return "admin/UserName";
 		}
-		*/
 		
 	// 회원상세조회
 		@RequestMapping(value = "/detail", method = RequestMethod.GET)
-		public String DetailUser(Model model, String userId) {
+		public String DetailUser(Model model,@RequestParam String userId) {
+			if(userId!=null) 
+				model.addAttribute("user", service.detailUser(userId));
 			return "admin/DetailUser";
 		}
 	// 회원삭제

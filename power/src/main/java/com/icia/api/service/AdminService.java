@@ -24,7 +24,6 @@ public class AdminService {
 	@Transactional
 		public HashMap<String, Object> totalUser(int pageNo){
 			int cnt = dao.allUser();
-			System.out.println("시발"+pageNo);
 			Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("pagination", pagination);
@@ -33,20 +32,23 @@ public class AdminService {
 		 }
 	
 		// 홈페이지 개설회원 조회
-		public HashMap<String, Object> FindOpenPageUser() {
+	@Transactional
+		public HashMap<String, Object> FindOpenPageUser(int pageNo) {
+			int cnt = dao.isHomeUserCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("list", dao.FindOpenPageUser());
+			map.put("pagination", pagination);
+			map.put("list", dao.FindOpenPageUser(pagination.getStartArticle(), pagination.getEndArticle()));
 			return map;
 		}
 		
-	//	회원이름으로 조회
-	public Map<String, Object> findUserName(Map<String, Object> map){
-		map.put("userName", map.get("userName"));
-		return map;
+	//	회원이름으로 조회 (전체)
+	public Users findUserName(String userId){
+		return dao.FindUserName(userId);
 	}
 	
-	// 회원상세조회
-	public HashMap<String, Object> DetailUser(String userId) {
+	// 회원이름으로 조회 (미니홈)
+	public Users DetailUser(String userId) {
 		return dao.DetailUser(userId);
 	}
 	

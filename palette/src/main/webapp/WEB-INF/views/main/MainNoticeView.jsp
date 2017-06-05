@@ -71,19 +71,13 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-	 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
+	 <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
 		</header>
 		<!--start wrapper-->
-		<section class="page_head">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -95,9 +89,6 @@ input[type="button"] {
                 </div>
             </div>
             
-             </section>
-            
- 
            
             <div class="col-lg-12 col-md-12 col-sm-12">
 							<br><br>
@@ -159,7 +150,7 @@ input[type="button"] {
               		
 						
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
-				
+						  <%if(session.getAttribute("admin")!=null){ %>
 						<a href="/palette/main/notice/update/${result.result.mainNoticeArticleNo.intValue()}"><button  data-loading-text="Loading..." class="btn btn-default btn-lg">수정하기</button></a>
 					
 						
@@ -171,7 +162,7 @@ input[type="button"] {
 								 <input type="hidden" name="mainNoticeArticleNo" value="${result.result.mainNoticeArticleNo.intValue()}">
 								 <input type="submit" style="font-size: 20px;" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
 								</form>
-					
+						<%} %>
 									
 							
               		 		 
