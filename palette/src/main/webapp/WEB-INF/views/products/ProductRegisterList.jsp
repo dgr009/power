@@ -71,18 +71,7 @@
  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 </header>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-							
-							</h1>
-						</div>
-					</div>
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+						 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                      <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
@@ -125,9 +114,10 @@
                     </thead>
                     <tbody id=productList>
 						<c:forEach items="${result.result}" var="free">
-						<tr><td>${free.itemDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productMain?itemNo=${free.itemNo.intValue()}">${free.itemName}</a></td><td>${free.itemInven.intValue()}</td>
-						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productDelete?itemNo=${free.itemNo.intValue()}'">상품삭제</button></td>
-						<td><button onclick="location.href='/palette/miniHome/<%=users.getUserId()%>/admin/productOrderList?itemNo=${free.itemNo.intValue()}'">구매자목록</button></td>
+						<tr><td>${free.itemDate}</td><td><a href="/palette/miniHome/<%=users.getUserId()%>/productMain/${free.itemNo.intValue()}">${free.itemName}</a></td><td>${free.itemInven.intValue()}개</td>
+						<td><button onclick="location.href='/palette/miniHome/UserAdmin/<%=users.getUserId()%>/productUpdate/${free.itemNo.intValue()}'">상품수정</button></td>
+						<td><button onclick="location.href='/palette/miniHome/UserAdmin/<%=users.getUserId()%>/productDelete/${free.itemNo.intValue()}'">상품삭제</button></td>
+						<td><button onclick="location.href='/palette/miniHome/UserAdmin/<%=users.getUserId()%>/productOrderList/${free.itemNo.intValue()}'">구매자목록</button></td>
 						</tr>
 						</c:forEach>
 						
@@ -135,13 +125,13 @@
                 </table>
                  <!--페이징 시작 -->
                 <div class="col-sm-12 text-center"  id="pagination" >
-                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
+                   	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/UserAdmin/<%=users.getUserId()%>/registerList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${i}">${i} </a>
+				<a href="/palette/miniHome/UserAdmin/<%=users.getUserId()%>/registerList?pageNo=${i}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/<%=users.getUserId()%>/admin/registerList?pageNo=${result.pagination.next}">다음으로</a></c:if>
+		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/UserAdmin/<%=users.getUserId()%>/registerList?pageNo=${result.pagination.next}">다음으로</a></c:if>
                 </div>
             </div> <!--페이징 끝 -->
 							

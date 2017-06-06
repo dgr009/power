@@ -25,6 +25,7 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -52,17 +53,7 @@
 	<header id="header">
  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 		<!--end Header-->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-							<!-- 이미지 --> 
-							</h1>
-						</div>
-					</div>
+		
 					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
   <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
 	<!-- =====================메인 메뉴(우측상단) 끝============================= -->
@@ -77,7 +68,7 @@
 						<nav id="breadcrumbs">
 							<ul>
 
-								<li><a href="index.html">Home</a></li>
+								<li><a href="/palette/miniHome/${userId}/main">Home</a></li>
 								<li>상품</li>
 							</ul>
 						</nav>
@@ -89,7 +80,7 @@
 				</div>
 			</div>
 		</section>
-
+<form action="/palette/miniHome/productOrder/${userId}/${result.item.itemNo.intValue()}" method="get">
 		<section class="content portfolio_single">
 			<div class="container">
 				<div class="row sub_content">
@@ -98,7 +89,7 @@
 						<div class="porDetCarousel">
 							<div class="carousel-content">
 							<c:forEach items="${result.itemImg }" var="img">
-							<img class="carousel-item" style="width:700px; height:500px;"
+							<img class="carousel-item" style="width:800px; height:500px;"
 									src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
 									</c:forEach>
 							</div>
@@ -118,6 +109,8 @@
 							<input type="hidden"  id="itemNo" name="itemNo" value="${result.item.itemNo.intValue()}">
 							<p>상품 가격<span></span> :${result.item.itemPrice.intValue()}원
 							</p>
+							<input type="hidden" name="itemPrice" value="${result.item.itemPrice.intValue()}">
+							<input type="hidden" name="itemName" value="${result.item.itemName}">
 							<p>상품 개수: <select name="itemSize">
 							<option value=1>1</option>
 							<option value=2>2</option>
@@ -136,7 +129,7 @@
 							<p>
 								상품종류<span></span> :${result.item.smallKind}</p>
 							<p>
-								남은수량<span></span> :${result.item.itemInven.intValue()}개</p>
+								남은수량<span></span> :<input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">${result.item.itemInven.intValue()}개</p>
 							<ul class="progress-skill-bar mrg-0">
 
 							
@@ -145,16 +138,19 @@
 									<p></p> <!-- 즐겨찾기 주문하기 상품평가 상세보기 --> <br>
 									<div>
 										<div>
+										<%if(session.getAttribute("user")!=null){ %>
 											<button type="button"
 												 style="color: white;"
-												class="btn btn-default btn-lg" id="basket" >장바구니로</button> <input
-												type="button"
+												class="btn btn-default btn-lg" id="basket" style=width:30px; data-userId="<%=user1.getUserId() %>" >장바구니로</button> 
+											<%} %>
+												<input
+												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
 												value="주문하기"> <a
-												href="/hooligan/product/evalutionList?product_no="><input
+												href="/palette/miniHome/${userId}/productInquiryList/${result.item.itemNo.intValue()}"><input
 												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
-												value="상품평가"></a>
+												value="상품문의"></a>
 
 											<!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
 										</div>
@@ -163,8 +159,48 @@
 						</div>
 					</div>
 
-
-
+</form>
+	<div>
+	<!-- 리뷰를 넣어보자 --> 
+	<h1>상품리뷰</h1>
+					<table class="table table-striped table-hover" style="text-align: center;border: double;color:#9F81F7;">
+                    <div style="font: ">
+                    <thead style="font: bold;color: black;">
+                    <tr>
+						<th style="text-align: center;  width: 120px;">번호</th>
+						<th style="text-align: center;  width: 120px;">점수</th>
+						<th style="text-align: center;">내용</th>	<!-- 댓글수 -->	
+						<th style="text-align: center;  width: 120px;">작성자</th>		
+						<th style="text-align: center; width: 150px;">작성일</th>
+					</tr>
+                    </thead>
+                    
+                    <tbody id="review" style="font:lighter;color: black;">
+                    <c:forEach items="${result.review}" var="free">
+							<tr>			
+								<td>
+								${free.reviewNo.intValue()}
+								</td>
+								<td>
+								${free.reviewScore.intValue()}점
+								</td>
+								<td style="text-align: left; ">
+								${free.reviewContent}
+								</td>
+								<td>
+								 ${free.userId}
+								</td>
+								<td>
+								${free.reviewDate}
+								</td>
+							</tr>
+								
+								</c:forEach>
+								</tbody>
+								</div>
+                </table>
+	
+	</div>
 
 
 
@@ -172,14 +208,10 @@
 				</div>
 
 
-				<div class="row sub_content">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
 
 
 
-									<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
+					<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 					<script src="<c:url value="/resources/js/jquery.easing.1.3.js"/>"></script>
 					<script src="<c:url value="/resources/js/retina-1.1.0.min.js"/>"></script>
@@ -467,7 +499,7 @@
 			$.ajax({
 				url:"/api/miniHome/basket",
 				type:"post",
-				data : {"userId": '<%=user1.getUserId()%>', "itemNo" : $("#itemNo").val() },
+				data : {"userId": $(this).data("userId"), "itemNo" : $("#itemNo").val() },
 				dataType: 'JSON',
 				complete:function(r){
 				if(r.responseText==1)

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css"/>" media="screen" data-name="skins">
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
-	media="screen" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>" media="screen" >
 	
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,8 +53,6 @@
       padding: 15px;
     }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 	
 </script>
@@ -62,14 +60,12 @@
 <body>
 <!-- 헤더 -->
 <header id="header">
- <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 </header>
 <br><br><br><br><br><br>
 <!-- 헤더 끝 -->
 <div class="container text-center">    
   <div class="row">
   	<!-- 랭킹 -->
-    <%@ include file="/WEB-INF/views/side/RankSide.jsp" %>
     <!-- 랭킹 끝 -->
 
                 <div class="col-sm-8"> 

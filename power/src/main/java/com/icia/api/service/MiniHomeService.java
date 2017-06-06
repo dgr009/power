@@ -28,14 +28,19 @@ public class MiniHomeService {
 	
 	//홈페이지 결제
 	@Transactional//포인트 없을경우 조치필요
-	public void miniHomePay(ActiveDate active, String userId){
+	public int miniHomePay(String userId){
+		dao.miniHomeDecreaseUsersPoint(userId);//회원 포인트 차감
+		System.out.println("회원 포인트 차감 완료");
 		
-		dao.miniHomeInsertActiveStatement(active);//활성화 기록 생성
-		
-		dao.miniHomeActivateUser(userId);//회원 활성화
-		
-		dao.miniHomeDecreaseUsersPoint(30000, userId);//회원 포인트 차감
-
+		dao.miniHomeActivateHome(userId);//홈페이지 활성화
+		System.out.println("홈페이지 활성화 완료");
+		dao.userActivateHome(userId);
+		return dao.miniHomeInsertActiveStatement(userId); //기록 생성
+	}
+	
+	//홈페이지 결제 기록생성
+	public int insertActiveDate(String userId){
+		return dao.miniHomeInsertActiveStatement(userId);
 	}
 	
 	//판매자(홈페이지 주인) 회원정보조회
@@ -43,6 +48,16 @@ public class MiniHomeService {
 		return dao.miniHomeSelectSellerInformation(userId);
 	}
 	
+	//이용권 기록 리스트 
+	public HashMap<String,Object> selectActiveList(String userId, int pageNo){
+		int cnt = dao.countActiveDate(userId);
+		Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("list", dao.selectActiveDate(userId,pagination.getEndArticle(),pagination.getStartArticle()));
+		return map;
+	}
+
 	
 	
 	

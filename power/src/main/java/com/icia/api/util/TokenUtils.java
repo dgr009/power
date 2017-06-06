@@ -29,6 +29,27 @@ public class TokenUtils {
 		}
 		return token;
 	}
+	
+	public static String getTokenAdmin(Admin admin) {
+		String token = "";
+		// 현재시간을 얻어 1시간을 더한다음 Date로 형변환
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR, cal.get(Calendar.HOUR_OF_DAY) + 1);
+		Date time = new Date(cal.getTimeInMillis());
+		Algorithm algorithm;
+		try {
+			algorithm = Algorithm.HMAC256("power-palette-secret-key");
+			token = JWT.create().withIssuer("POWER").withSubject("AccessToken")
+					.withExpiresAt(time).withClaim("ROLE", "ROLE_ADMIN").withClaim("adminId", admin.getAdminId())
+					.withClaim("adminPwd", admin.getAdminPwd()).sign(algorithm);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return token;
+	}
+	
 	private static DecodedJWT verify(String token) {
 		boolean result = true;
 		Algorithm algorithm;

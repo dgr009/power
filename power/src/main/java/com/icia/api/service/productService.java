@@ -43,37 +43,11 @@ public class productService {
 			dao.insertOption(o);
 		}
 	}
-	//등록상품변경
-	@Transactional
-	public void productUpdate(Item i,ArrayList<ItemOption> optionList,ArrayList<ItemImg> imgList){
-		dao.updateItem(i);
-		for (ItemImg itemImg : imgList) {
-			itemImg.setItemNo(i.getItemNo());
-			dao.updateItemImg(itemImg);
-		}
-		for (ItemOption itemOption : optionList) {
-			itemOption.setItemNo(i.getItemNo());
-			dao.updateOption(itemOption);
-		}
-	}//등록상품삭제
+
+	//등록상품삭제
 	public void deleteItem(int itemNo){
 		dao.deleteItem(itemNo);
 	}
-
-	//이름으로검색
-	@Transactional
-		public String selectItemByName(String userId,String itemName,int pageNo){
-		 HashMap<String, Object> map=new HashMap<String, Object>();
-		 map.put("userId",userId);
-		 map.put("itemName", itemName);
-		 Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectItemByNameCnt(map));
-		map.put("start", p.getStartArticle());
-		map.put("end", p.getEndArticle());
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemByName(map));
-		result.put("pagination", p);
-		 return new Gson().toJson(result);
-		}
 		
 	//
 	//상품신청리스트
@@ -102,7 +76,7 @@ public class productService {
 			map1.put("end", p.getEndArticle());
 			map1.put("userId", userId);
 			HashMap<String, Object> result=new HashMap<String, Object>();
-			List<ItemList> r=dao.selectItemListByKind(map1);
+			List<ItemList> r=dao.selectItemListByKind1(map1);
 			result.put("result", r);
 			result.put("pagination", p);
 			System.out.println("api서버"+result);
@@ -111,18 +85,62 @@ public class productService {
 		}
 		//제품상세정보보기
 		@Transactional
-		public String selectItemDetail(int itemNo){
-			Item item=dao.selectItemDetail(itemNo);
+		public String selectItemDetail(Map<String, Object> map){
+			int itemNo=(Integer)map.get("itemNo");
+			Item item=dao.selectItemDetail(map);
+			if(item==null)return null;
 			List<ItemImg> imgList=dao.selectItemImg(itemNo);
 			List<ItemOption> itemOption=dao.selectProductOption(itemNo);
 			HashMap<String,  Object> result=new HashMap<String, Object>();
 			result.put("item", item);
 			result.put("itemImg", imgList);
 			result.put("itemOption", itemOption);
+			result.put("review",dao.selectReview(itemNo));
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 			return gson.toJson(result);	
 			
 		}
+		//홈피주인문의 관리리스트
+		public String adminInquiryList(Map<String, Object> map) {
+		Map<String, Object> result=new HashMap<String, Object>();
+		int pageNo=(Integer) map.get("pageNo");
+		String userId=(String) map.get("userId");
+		Pagination p=PagingUtil.setPageMaker(pageNo, dao.adminInquiryCnt(userId));
+		map.put("start", p.getStartArticle());
+		map.put("end", p.getEndArticle());
+		result.put("result", dao.adminInquiryList(map));
+		result.put("pagination", p);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+		return gson.toJson(result);	
+		}
+		//문의게시판리스트
+		@Transactional
+		public String inquiryList(Map<String, Object> map) {
+			Map<String, Object> result=new HashMap<String, Object>();
+			int itemNo=(Integer) map.get("itemNo");
+			int pageNo=(Integer)map.get("pageNo");
+			
+			Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(map));
+			map.put("start", p.getStartArticle());
+			map.put("end", p.getEndArticle());
+			result.put("result", dao.selectInquiry(map));
+			System.out.println(dao.selectInquiry(map).toString());
+			result.put("pagination", p);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		//상품문의글보기,리플도
+		@Transactional
+		public String inquiryView(Map<String, Object> map) {
+			Map<String, Object> result=new HashMap<String, Object>();
+			result.put("inquiry", dao.selectInquiryView(map));
+			if(dao.selectInquiryView(map)!=null){
+			result.put("reple", dao.selectInquiryReple(map));
+			}
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm").create();
+			return gson.toJson(result);	
+		}
+		
 	//상품문의작성
 	public void insertInquiry(InquiryBoard i){
 		dao.insertInquiry(i);
@@ -135,28 +153,13 @@ public class productService {
 	public void deleteInquiry(int inquiryNo){
 		dao.deleteInquiry(inquiryNo);
 	}
-	//상품문의 페이지로
-	@Transactional
-	public String selectInquiry(int itemNo,int pageNo){
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		Pagination p=PagingUtil.setPageMaker(pageNo, dao.selectInquiryCnt(itemNo));
-		map.put("start", p.getStartArticle());
-		map.put("end", p.getEndArticle());
-		map.put("itemNo", itemNo);
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectInquiry(map));
-		result.put("pagination", p);
-		return new Gson().toJson(result);	
-	}
-	//상품문의 리플 다가져오기
-	public String selectInquiryReple(int inquiryNo){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectInquiryReple(inquiryNo));
-		return new Gson().toJson(result);
-	}
+
 	//상품문의 댓글작성
+	@Transactional
 	public void insertInquiryReple(InquiryReple i){
 		dao.insertInquiryReple(i);
+		int inquiryNo=i.getInquiryNo();
+		dao.incrementInquiryCnt(inquiryNo);
 	}
 	//상품문의 댓글수정
 	public void updateInquiryReple(InquiryReple i){
@@ -187,7 +190,7 @@ public class productService {
 		map.put("end", p.getEndArticle());
 		map.put("itemNo", itemNo);
 		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectReview(map));
+		result.put("result", dao.selectReview(itemNo));
 		result.put("pagination", p);
 		return new Gson().toJson(result);	
 	}
@@ -235,12 +238,13 @@ public class productService {
 	}
 	//주문하기
 	@Transactional
-	public void productOrder(OrderStatement o,String ownerId){
+	public void productOrder(OrderStatement o){
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		HashMap<String, Object> map1=new HashMap<String, Object>();
 		HashMap<String, Object> map2=new HashMap<String, Object>();
 		map.put("orderPrice",o.getOrderPrice());
 		map.put("userId", o.getUserId());
+		String ownerId=dao.getOwnerId(o.getItemNo());
 		dao.orderUserPoint(map);
 		map1.put("orderPrice", o.getOrderPrice());
 		map1.put("userId", ownerId);
@@ -251,29 +255,12 @@ public class productService {
 		dao.updateItemInven(map2);
 	}
 
-	//미니홈메인 상품등록순9개
-	public String selectItemListOrderByDate(String userId){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListOrderByDate(userId));
-		return new Gson().toJson(result);
-	}
-	//미니홈메인 상품재고순9개
-	public String selectItemListOrderByInven(String userId){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListOrderByInven(userId));
-		return new Gson().toJson(result);
-	}
-	//미니홈메인 베스트상품순9개
-	public String selectItemListOrderByScore(String userId){
-		HashMap<String, Object> result=new HashMap<String, Object>();
-		result.put("result", dao.selectItemListOrderByScore(userId));
-		return new Gson().toJson(result);
-	}
 	//카테고리메뉴가져오기
 	public String selectKind(String userId){
 		HashMap<String, Object> result=new HashMap<String, Object>();
 		result.put("bigKind", dao.selectbigKind(userId));
 		result.put("smallKind",dao.selectSmallKind(userId));
+		result.put("home", dao.selectMiniHome(userId));
 		return new Gson().toJson(result);
 	}
 	//배송하기
@@ -286,5 +273,72 @@ public class productService {
 		dao.updateOrderStatement(orderNo);
 		
 	}
+	//등록상품변경
+	@Transactional
+	public void productUpdate(List<Map<String, Object>> itemList) {
+		for (Map<String, Object> map : itemList) {
+			dao.updateOption(map);
+			System.out.println("야야야야");
+			dao.updateItemImg(map);
+			dao.updateItem(map);
+		}
 
+	}
+	//등록상품변경
+	/*@Transactional
+	public void productUpdate(Item i,ArrayList<ItemOption> optionList,ArrayList<ItemImg> imgList){
+		dao.updateItem(i);
+		for (ItemImg itemImg : imgList) {
+			itemImg.setItemNo(i.getItemNo());
+			dao.updateItemImg(itemImg);
+		}
+		for (ItemOption itemOption : optionList) {
+			itemOption.setItemNo(i.getItemNo());
+			dao.updateOption(itemOption);
+		}*/
+	//미니홈피메인 이미지파일
+	@Transactional
+	public String getMain(String userId) {
+		HashMap<String, Object> result=new HashMap<String, Object>();
+		result.put("recent", dao.selectItemListOrderByDate(userId));
+		result.put("inven", dao.selectItemListOrderByInven(userId));
+		//result.put("score", dao.selectItemListOrderByScore(userId));
+		return new Gson().toJson(result);
+	}
+	
+	//미니홈피카테고리로 검색하기
+	@Transactional
+	public String productSelectKind(Map<String, Object> map) {
+	Map<String, Object> result=new HashMap<String, Object>();
+	int pageNo=(Integer) map.get("pageNo");
+	Pagination p=PagingUtil2.setPageMaker(pageNo, dao.productSelectKindCnt(map));
+	System.out.println("여기한번찍어봐 수민아 개수야"+dao.productSelectKindCnt(map));
+	map.put("start", p.getStartArticle());
+	map.put("end", p.getEndArticle());
+	List<ItemList> list= dao.selectItemListByKind2(map);
+	result.put("result", list);
+	result.put("pagination", p);
+	System.out.println("찍어봐임마"+result.get("result").toString());
+		return new Gson().toJson(result);
+	}
+	//이름으로 상품검색
+	@Transactional
+	public String productSearch(Map<String, Object> map) {
+		Map<String, Object> result=new HashMap<String, Object>();
+		int pageNo=(Integer) map.get("pageNo");
+		Pagination p=PagingUtil2.setPageMaker(pageNo, dao.productSearchCnt(map));
+		System.out.println("여기한번찍어봐 수민아 개수야"+dao.productSearchCnt(map));
+		map.put("start", p.getStartArticle());
+		map.put("end", p.getEndArticle());
+		List<ItemList> list= dao.selectItemByName(map);
+		result.put("result", list);
+		result.put("pagination", p);
+		System.out.println("찍어봐임마"+result.get("result").toString());
+			return new Gson().toJson(result);
+		}
+	
+	
+
+	
+	
 }

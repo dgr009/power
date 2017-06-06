@@ -19,125 +19,107 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
-
-.name {
-	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
-}
-
-.well {
-    min-height: 360px;
-    padding : 0;
-    padding-left: 50px;
-    }
-    tr{
-    	font-size: 1.1em;
-    	height: 28px;
-    	line-height: 28px;
-    }
-    
-    .form-control{
-    height: 20px;
-    	line-height: 20px;
-    	
-    }
-       footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
+  .rrr:HOVER{
+  	cursor: pointer;
+  	text-decoration: underline;
+  }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 	
 </script>
 </head>
 <body>
-<!-- 헤더 -->
+<!--탑 헤더 -->
 <header id="header">
- <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
 </header>
-<br><br><br><br><br><br>
-<!-- 헤더 끝 -->
-<div class="container text-center">    
-  <div class="row">
-  	<!-- 랭킹 -->
-    <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
-    <!-- 랭킹 끝 -->
-    
- 
-			 <div class="col-sm-8">
-				<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 400px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 내 정보보기</h3>
-						
-					<div class="col-lg-3 col-md-3 col-sm-3">
-							<table class="table table-striped table-hover">
-								<tbody>
-									
-									<tr><th>이름</th></tr>
-									<tr><th>아이디</th></tr>
-									<tr><th>이메일</th></tr>
-									<tr><th>핸드폰</th></tr>
-									
-								</tbody>
-							</table>
-							</div>
-							
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table class="table table-striped table-hover">
-									<tbody>
-										<tr><td>${user.userName } </td></tr>
-										<tr><td>${user.userId}</td></tr>
-										<tr><td>${user.userMail}</td></tr>
-										<tr><td>${user.userPhone}</td></tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table class="table table-striped table-hover">
-								<tbody>
-									<tr><th>보유 포인트</th></tr>
-									<tr><th>우편번호</th></tr>
-									<tr><th>상세 주소</th></tr>
-								</tbody>
-							</table>
-							</div>
+<!--탑 헤더 끝 -->
+<!-- 메인 인포 헤더 시작 -->
+<%@ include file="/WEB-INF/views/header/MainInfoHeader.jsp" %>
 
-							<div class="col-lg-3 col-md-3 col-sm-3">
-								<table class="table table-striped table-hover">
-									<tbody>
-										<tr><td>${user.userPoint}</td></tr>
-										<tr><td>${user.userPost}</td></tr>
-										<tr><td>${user.userAddress}</td></tr>
-									</tbody>
-								</table>
-							
-							<br><br><br> </div>
-							<button class="btn btn-default btn-lg btn-block"  type="button" data-toggle="modal" data-target="#updateModal" > 
-							<i class="fa fa-rocket" ></i> 수정하기</button>
-							<button class="btn btn-default btn-lg btn-block"  type="button" data-toggle="modal" data-target="#deleteModal" > 
-							<i class="fa fa-rocket" ></i> 탈퇴하기</button>
-							<%@include file="/WEB-INF/views/users/update.jsp" %>
-							<%@include file="/WEB-INF/views/users/usersDelete.jsp" %>
-                           
-		</div>
+<!-- 바디 시작 -->
+<!-- 회원 정보 -->
+<div class="col-xs-12 col-xs-12 col-xs-12" ><br><br>
+
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+	<div class="col-xs-10 col-xs-10 col-xs-10" >
+	
+	
+	<div style="width: 1000px; height: 200px; border : 1px solid silver; border-bottom: none; position: relative;"> 
+	
+	<div style="width:355px; height: 114px; display: inline-block;  margin-left: 50px;  border-right: 1px dashed gray; position: absolute; bottom:40px;">
+	<c:if test="${homeImg eq null }">
+		<img src="<c:url value="/resources/images/그림자.png"/>" alt="" class="info" style=" width: 112px; float: left;height: 112px; border-radius: 112px;">
+	</c:if>
+	<c:if test="${homeImg ne null}">
+		<img src="<c:url value="/homeimg/${homeImg }"/>" alt="" class="info" style=" width: 112px; float: left;height: 112px; border-radius: 112px;">
+	</c:if>
+	<br>
+		<p style="padding-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.userName }님은 현재 팔레트<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.userGrade }등급 회원입니다</p>
+	</div>
+	<div style="width:271px; height : 114px; display: inline-block;  margin : 35px; margin-top: 50px; position: absolute; left:400px; margin-left: none; border-right: 1px dashed gray;" >
+		<p ><span class="highlight light">아이디</span> : <span id="usersId">${user.userId }</span> 
+		<p><span class="highlight light">이름</span> : <span id="usersName">${user.userName }</span></p>
+		<p style="position: relative;"><span class="highlight light">이메일</span> : <span id="email">${user.userMail }</span> <span class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:4px; font-size: 0.9em; color:gray; float: right; text-align: center; right:10px; bottom:1px;  position: absolute;"><a data-toggle="modal" data-target="#mailModal">수정</a></span></p>
+		<p><span class="highlight light">연락처</span> : <span id="phone">${user.userPhone }</span><span  class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:4px; font-size: 0.9em; color:gray; float: right; text-align: center; right:10px;  position: absolute;  bottom:1px;"><a data-toggle="modal" data-target="#phoneModal">수정</a></span></p>
+	</div>
+	
+	<div style="width:220px; height : 114px; display: inline-block;  margin : 35px; margin-top: 50px; position: absolute; left:700px; margin-left: none; " >
+	
+		<p ><span class="highlight light">보유 포인트</span> : <span id="usersPoint">${user.userPoint }</span>&nbsp;<span class="highlight default">P</span> 
+		<p><span class="highlight light">주소</span> : <span id="usersName">${user.userAddress }</span></p>
+		<p><span class="highlight light">우편 번호</span> : <span id="email">${user.userPost }</span><span  class="rrr" style="width:40px; border: 1px solid gray; border-radius: 30px; padding:4px; font-size: 0.9em; color:gray; float: right; text-align: center; right:1px;  position: absolute;  bottom:1px;"><a data-toggle="modal" data-target="#addressModal">수정</a></span></p>
+	
+	</div>
+	
+	</div>
+	
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	</div>
 </div>
-					 <!-- 광고 사이드 오른쪽-->
-    <%@ include file="/WEB-INF/views/side/AdsSide.jsp" %>
-    <!-- 광고 사이드 오른쪽 끝 -->
-  </div>
-</div>
-<br><br><br><br><br><br><br><br>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+<%@include file="/WEB-INF/views/modal/InfoUpdateModal.jsp" %>
 
+<!-- 회원 정보 footer -->
+
+<div class="col-xs-12 col-xs-12 col-xs-12" >
+
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+	<div class="col-xs-10 col-xs-10 col-xs-10">
+	
+	
+	<div style="width: 1000px; height: 100px; background: #fbfbfb;  border : 1px solid silver; border-top: none; "> 	
+		<p style="padding : 37px; padding-left: 115px; font-size: 1.1em"> 쓰면 쓸 수록 커지는 등급별 혜택을 누리세요! &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span style="color:#727cb6; font-weight: bold;">홈페이지 결제권 구매하고 등급별 혜택 받기 !</span>
+		</p>
+	</div>
+	
+	</div>
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	</div>
+	
+	
+	
+	<!-- 수정바튼 -->
+	
+	<div class="col-xs-2 col-xs-2 col-xs-2" style="margin-left: 525px;"><br><br>
+		<button class="btn btn-default btn-lg btn-block" type="button" data-toggle="modal" data-target="#pwdModal" style="border:1px solid #727cb6; color:#727cb6;"> 
+		<i class="fa fa-rotate-right"></i> 비밀번호 변경</button>
+		<button class="btn btn-default btn-lg btn-block" type="button" data-toggle="modal" data-target="#deleteModal" style="border:1px solid #727cb6; color:#727cb6;"> 
+		<i class="fa fa-rotate-right"></i> 회원 탈퇴</button>
+	</div>
+	<div class="col-xs-12 col-xs-12 col-xs-12" >
+		<br><br><br><br>	
+	</div>
+	<!-- footer -->
+	<%@include file="/WEB-INF/views/footer/normalFooter.jsp" %>
 </body>
 	
 	 		<script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>

@@ -11,22 +11,23 @@
 <body>
 <div class="col-lg-3 col-md-3 col-sm-3">
 
-							<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/update" class="btn btn-block btn-default">홈페이지 설정</a>
+						
+								
+								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/register" class="btn btn-block btn-default">상품 판매등록</a>
+								</div>
+									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/inquiryList" class="btn btn-block btn-default">상품문의 관리</a>
 								</div>
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/register" class="btn btn-block btn-default">상품 판매등록</a>
-								</div>
-								
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/miniHome/<%=user1.getUserId()%>/admin/registerList" class="btn btn-block btn-default">내 상품조회리스트</a>
+									<a href="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/registerList" class="btn btn-block btn-default">내 상품조회리스트</a>
 								</div>
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 결제</a>
+									<a href="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/pay" class="btn btn-block btn-default">홈페이지 결제</a>
 								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/hooligan/employee/delete" class="btn btn-block btn-default">홈페이지 폐쇄</a>
+									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/users/homeUpdate" class="btn btn-block btn-default">홈페이지 수정</a>
 								</div>
 
 							</div>

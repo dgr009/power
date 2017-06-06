@@ -14,10 +14,10 @@ import com.icia.api.vo.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MiniHomeDaoTest {
 	
-	@Autowired
+	//@Autowired
 	public MiniHomeBoardDao dao;
 	
-	@Autowired
+	//@Autowired
 	public MiniHomeDao dao2;
 	
 	private Logger logger = LoggerFactory.getLogger(MiniHomeDaoTest.class);
@@ -78,25 +78,25 @@ public class MiniHomeDaoTest {
 	}
 	//활성화기록 생성
 	//@Test
-	public void insertActiveStatement(){
-		ActiveDate date = new ActiveDate();
-		date.setActiveNo(6);
-		date.setUserId("aaaa");
-		dao2.miniHomeInsertActiveStatement(date);
-	}
+//	public void insertActiveStatement(){
+//		ActiveDate date = new ActiveDate();
+//		date.setActiveNo(6);
+//		date.setUserId("aaaa");
+//		dao2.miniHomeInsertActiveStatement(date);
+//	}
 	
-	//회원 포인트 차감
-	//@Test
-	public void decreasePoint(){
-		Users user = new Users();
-		int price = 10;
-		dao2.miniHomeDecreaseUsersPoint(price, "qhrals8");
-	}
+//	//회원 포인트 차감
+//	//@Test
+//	public void decreasePoint(){
+//		Users user = new Users();
+//		int price = 10;
+//		dao2.miniHomeDecreaseUsersPoint(price, "qhrals8");
+//	}
 	//회원 홈페이지 활성화
 	//@Test
-	public void activateHome(){
-		dao2.miniHomeActivateUser("qhrals8");
-	}
+//	public void activateHome(){
+//		dao2.miniHomeActivateUser("qhrals8");
+//	}
 	
 	//회원정보 조회
 	//@Test
@@ -104,7 +104,7 @@ public class MiniHomeDaoTest {
 		System.out.println(dao2.miniHomeSelectSellerInformation("qhrals8"));
 	}
 	
-	@Test
+	//@Test
 	public void selectAllReple(){
 		System.out.println(dao.miniHomeSelectAllFreeReple(2));
 	}

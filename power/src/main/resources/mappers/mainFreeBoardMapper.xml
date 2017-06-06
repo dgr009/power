@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="api.dao.MainFreeBoardDao">
+
+
+<!--자유게시판 리스트목록 얻어 오기(페이징) -->
+	<select id="mainFreeBoardList" parameterType="hashmap" resultType="MainFreeBoardList">
+	<![CDATA[
+		 select * from  
+			(select rownum rnum, b1.* from
+				(select main_article_no, main_article_title,main_article_hits,main_article_date,main_article_reple_cnt,user_id userId from main_free_board order by main_article_no desc) b1
+			where rownum <=#{end}) b2
+		where rnum>=#{start}
+		]]>
+	</select>
+	
+	<!-- 자유게시판 전체 글 개수 출력 -->
+	<select id="mainFreeBoardCnt"  resultType="int">
+			select count(*)from main_free_board  
+	</select>
+	
+	<!--  답글의 전체 개수 -->
+	<select id="freeRepleCnt" resultType="int">
+		select count(*) from main_free_reple
+	</select>
+	
+	<!--자유게시판 상세보기 -->
+	<select id="mainFreeBoardView" parameterType="int" resultType="MainFreeBoard">
+	select main_article_no,  main_article_title,main_article_hits,main_article_content,main_article_date,user_id,main_article_reple_cnt from main_free_board where main_article_no=#{mainArticleNo}
+	</select>
+	
+	<!--자유게시판 생성하기-->
+	<insert id="mainFreeBoardInsert" parameterType="MainFreeBoard">
+		<selectKey keyProperty="mainArticleNo" resultType="int" order="BEFORE">
+	    	select main_free_board_seq.nextval from dual
+	  	</selectKey>
+		insert into main_free_board 
+		values(#{mainArticleNo},#{mainArticleTitle},0,#{mainArticleContent},sysdate,#{userId},0)
+	</insert>
+	
+	<!-- 자유게시판 삭제하기 -->
+	<delete id="mainFreeBoardDelete" parameterType="int">
+	delete from main_free_board where main_article_no=#{mainArticleNo}
+	</delete>
+	
+	<!--자유게시판 수정하기-->
+	<update id="mainFreeBoardUpdate" parameterType="MainFreeBoard">
+		update main_free_board set main_article_title=#{mainArticleTitle},main_article_content=#{mainArticleContent} where main_article_no=#{mainArticleNo}
+	</update>	
+	
+	<!--자유게시판 조회수 증가 -->
+	<update id="mainFreeBoardHitsCnt" parameterType="int">
+		update  main_free_board set main_article_hits=main_article_hits+1 where main_article_no=#{mainArticleNo}
+	</update>
+	
+	<!-- 댓글 생성 -->
+	<insert id="mainFreeBoardRepleInsert" parameterType="MainFreeReple">
+  		<selectKey keyProperty="mainFreeRepleNo" resultType="int" order="BEFORE">
+  			select main_free_reple_seq.nextval from dual
+  		</selectKey>
+  			insert into main_free_reple
+  			values(#{mainFreeRepleNo},#{mainFreeRepleName},#{mainFreeRepleContent},sysdate,#{mainArticleNo})
+	</insert>	
+	<!--댓글 수정 -->
+	<update id="mainFreeBoardRepleUpdate" parameterType="MainFreeReple">
+		update main_free_reple set main_free_reple_content=#{mainFreeRepleContent}, main_free_reple_date=sysdate where main_free_reple_no=#{mainFreeRepleNo}
+	</update>
+	<!--댓글 삭제-->
+	<delete id="mainFreeBoardRepleDelete" parameterType="int">
+		delete from main_free_reple where main_free_reple_no=#{mainFreeRepleNo}
+	</delete>
+	<!--댓글 전체삭제 -->
+	<delete id="mainFreeBoardRepleAllDelete" parameterType="int">
+		delete from main_free_reple where main_article_no=#{mainArticleNo}
+	</delete>
+	<!-- 답글의 개수를 1 증가시킨다 -->
+	<update id="incrementMainFreeRepleCnt" parameterType="int">
+		update main_free_board set main_article_reple_cnt=main_article_reple_cnt+1 where main_article_no=#{mainArticleNo}
+	</update>	
+	<!--  자유게시판 전체 댓글 보기 -->
+	<select id="mainFreeRepleAllCnt"  parameterType="int" resultType="MainFreeReple">
+		select * from main_free_reple where main_article_no=#{mainArticleNo}
+	
+	</select>
+	<!--  답글의 개수를 1 감소시킨다 -->
+	<update id="decrementMainFreeRepleCnt" parameterType="int">
+		update main_free_board set main_article_reple_cnt=main_article_reple_cnt-1 where main_article_no=#{mainArticleNo}
+	</update>
+	
+	<!-- 게시물의 댓글 개수 출력 -->
+	<select id="mainRepleCnt" parameterType="int" resultType="int">
+		select count(*) from main_free_reple where main_article_no=#{mainArticleNo}
+	</select>
+
+</mapper>

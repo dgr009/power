@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="api.dao.AdminDao">
+
+	<!-- 전체회원목록조회 -->
+	<select id="totalUser" parameterType="hashmap" resultType="Users">
+	<![CDATA[
+select * from
+(select rownum rnum,b.* from 
+(select *
+from users) b
+where rownum<=#{end}) where rnum>=#{start}
+	]]>
+	</select>
+	
+	<!-- 홈페이지 개설회원 조회 -->
+	<select id="findPageUser" parameterType="hashmap" resultType="Users">
+	<![CDATA[
+	select * from
+	(select rownum rnum,b.* from 
+		(select * from users where user_ishome='1') b
+	where rownum<=#{end}) where rnum>=#{start}
+	]]>
+	</select>
+	
+	<!--  회원 이름별 조회 -->
+	<select id="findUserName" parameterType="String" resultType="Users" >
+		select * from users where user_id =#{userId}
+	</select>
+	<!-- 유저숫자보기 -->
+	<select id="userCnt" resultType="int">
+	select count(*) from users
+	</select>
+	<!-- 홈페이지 개설 유저 숫자보기 -->
+	<select id="userHomeCnt" resultType="int">
+		select count(*) from users where user_ishome='1'
+	</select>
+	<!-- 회원상세조회 -->
+	<select id="userDetail" parameterType="String" resultType="Users">
+	<![CDATA[
+		select * from users where user_id=#{userId}
+	]]>
+	</select>
+
+	<!-- 회원삭제 -->
+	<delete id="userDelete" parameterType="String">
+	<![CDATA[	
+		delete from users where user_id=#{userId}
+	]]>
+	</delete>
+	
+	<!-- 회원정보수정 -->
+	<update id="userUpdate" parameterType="Users">
+	<![CDATA[
+  		update users set user_id=#{userId}, user_pwd=#{userPwd}, user_name=#{userName}, user_address=#{userAddress}, user_post=#{userPost}, 
+  		user_mail=#{userMail}, user_phone=#{userPhone}, user_ishome=#{userIshome}, user_grade=#{userGrade} where user_id=#{userId} 
+  	]]>
+	</update>
+	
+	<!-- 홈페이지 삭제 -->
+	<delete id="userPageDelete" parameterType="String">
+	<![CDATA[
+		delete from home where user_id=#{userId}
+	]]>
+	</delete>
+	<!-- 일별매출보기 -->
+	<select id="userDayRevenue" parameterType="hashmap" resultType="OrderList">
+	<![CDATA[
+		select to_char(to_date(order_date,'yyyy-mm-dd'),'dd') as order_date, sum(order_price) as order_price 
+		from order_statement group by to_char(to_date(order_date,'yyyy-mm-dd'),'dd') order by order_date desc
+	]]>
+	</select>
+
+	<!-- 달별매출보기 -->
+  	<select id="userMonthRevenue" parameterType="hashmap" resultType="OrderList">
+  	<![CDATA[
+  		select to_char(to_date(order_date,'yyyy-mm-dd'),'mm') as order_date , sum(order_price) as order_price 
+  		from order_statement group by to_char(to_date(order_date,'yyyy-mm-dd'),'mm') order by order_date desc
+  	]]>
+  	</select>
+  	
+	<!-- 연간매출보기 -->
+ 	<select id="userYearRevenue" parameterType="hashmap" resultType="OrderList">
+ 	<![CDATA[
+ 		select to_char(to_date(order_date,'yyyy-mm-dd'),'yyyy') as order_date , sum(order_price) as order_price 
+		from order_statement group by to_char(to_date(order_date,'yyyy-mm-dd'),'yyyy') order by order_date desc
+ 	]]>
+ 	</select>
+ 	 
+ 	<!-- 회원별 매출보기, 합계보기 -->
+  	<select id="userAndTotalRevenue" parameterType="hashmap" resultType="OrderList">
+  	<![CDATA[
+  		select user_id, sum(order_price) from order_statement group by rollup(user_id)
+  	]]>
+  	</select>
+  	
+	<!-- 전체매출보기 -->
+  	<select id="userTotalRevenue" parameterType="hashmap" resultType="OrderList">
+  	<![CDATA[
+  		select sum(order_price) from order_statement 
+  	]]>
+  	</select>
+  	
+  	<!-- 관리자 로그인 -->
+  	<select id="login" parameterType="map" resultType="Admin">
+  		select * from admin where admin_id=#{adminId} and admin_pwd=#{adminPwd}
+  	</select>
+  	
+</mapper>

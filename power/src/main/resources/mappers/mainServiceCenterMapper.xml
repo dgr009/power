@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="api.dao.MainServiceCenter">
+	
+	<!-- 고객센터 게시판 전체 글 개수 출력 -->
+	<select id="mainServiceCenterCount"  resultType="int">
+			select count(*)	from service_center
+	</select>
+ 	
+ 	<!--고객센터 게시판 리스트목록 얻어 오기(페이징) -->
+	<select id="mainServiceCenterList" parameterType="hashmap" resultType="CustomerCenter">
+	<![CDATA[
+		 select * from  
+			(select rownum rnum, b1.* from
+				(select faq_no, faq_title,faq_content,faq_date from service_center order by faq_no desc) b1
+			where rownum <=#{end}) b2
+		where rnum>=#{start}
+		]]>
+	</select>
+	<!--고객센터 게시판 생성하기-->
+	<insert id="mainServiceCenterInsert" parameterType="CustomerCenter">
+		<selectKey keyProperty="faqNo" resultType="int" order="BEFORE">
+	    	select service_center_seq.nextval from dual
+	  	</selectKey>
+		insert into service_center values(#{faqNo},#{faqTitle},#{faqContent},sysdate)
+	</insert>
+	
+	<!--고객센터 게시판 상세보기 -->
+	<select id="mainServiceCenterView" parameterType="int" resultType="CustomerCenter">
+	select * from service_center where faq_no=#{faqNo}
+	</select>
+ 	
+ 	<!--고객센터 게시판 삭제 -->
+	<delete id="mainServiceCenterDelete" parameterType="int">
+	delete from service_center where faq_no=#{faqNo}
+	</delete>
+	
+	<!--고객센터 게시판 수정하기-->
+	<update id="mainServiceCenterUpdate" parameterType="CustomerCenter">
+		update service_center set 
+		 faq_title=#{faqTitle},faq_content=#{faqContent}
+		 where faq_no=#{faqNo}
+	</update>
+	<!-- 공지사항 게시판 전체 글 개수 출력 -->
+	<select id="noticeListCnt"  resultType="int">
+			select count(*)from main_notice_board
+	</select>
+ 	
+ 	<!--공지사항 게시판 리스트목록 얻어 오기(페이징) -->
+	<select id="noticeList" parameterType="hashmap" resultType="MainNotice">
+	<![CDATA[
+		 select * from  
+			(select rownum rnum, b1.* from
+				(select * from main_notice_board order by main_notice_article_no desc) b1
+			where rownum <=#{end}) b2
+		where rnum>=#{start}
+		]]>
+	</select>
+	<!--공지사항 게시판 생성하기-->
+	<insert id="noticeRegister" parameterType="MainNotice">
+		<selectKey keyProperty="mainNoticeArticleNo" resultType="int" order="BEFORE">
+	    	select main_notice_board_seq.nextval from dual
+	  	</selectKey>
+		insert into main_notice_board values(#{mainNoticeArticleNo},#{mainNoticeArticleTitle},#{mainNoticeArticleContent},sysdate,0)
+	</insert>
+	
+	<!--공지사항 게시판 상세보기 -->
+	<select id="noticeView" parameterType="int" resultType="MainNotice">
+	select * from main_notice_board where main_notice_article_no=#{mainNoticeArticleNo}
+	</select>
+ 	
+ 	<!--공지사항 게시판 삭제 -->
+	<delete id="noticeDelete" parameterType="int">
+	delete from main_notice_board where main_notice_article_no=#{mainNoticeArticleNo}
+	</delete>
+	
+	<!--공지사항 게시판 수정하기-->
+	<update id="noticeUpdate" parameterType="MainNotice">
+		update main_notice_board set 
+		 main_notice_article_title=#{mainNoticeArticleTitle},main_notice_article_content=#{mainNoticeArticleContent}
+		 where main_notice_article_no=#{mainNoticeArticleNo}
+	</update>
+	<!-- 공지사항 조회수증가 -->
+	<update id="noticeViewCnt" parameterType="int">
+	update main_notice_board set main_notice_article_hits=main_notice_article_hits+1 where main_notice_article_no=#{mainNoticeArticleNo} 
+	</update>
+
+</mapper>

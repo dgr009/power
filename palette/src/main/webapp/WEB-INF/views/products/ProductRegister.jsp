@@ -71,18 +71,7 @@
 		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 		</header>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-							
-							</h1>
-						</div>
-					</div>
-					
+						
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
@@ -112,7 +101,7 @@
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
 							
-							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
+							<form action="/palette/miniHome/UserAdmin/<%=users.getUserId()%>/register" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
@@ -454,18 +443,17 @@
 										});
 					</script>
 					<script>
-	$(function(){
-		var i = 1;
-
-		$("#addOption").on("click", function(){
-			if( i<4){
-				i= i+1;
-				$("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
-			}
-			
-		})
-	})
-	
+					$(function(){
+					      var i = 1;
+					      $("#addOption").on("click", function(){
+					         if( i<4){
+					            i= i+1;
+					            $("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
+					         }
+					         
+					      })
+					   })
+					   
 </script>
 					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>

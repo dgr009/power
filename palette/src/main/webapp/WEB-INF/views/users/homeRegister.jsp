@@ -109,6 +109,7 @@
 					 	type:"post",
 					 	data: formData,
 					 	complete:function(result){
+					 		opener.parent.location.reload();
 					 		self.close();
 						},
 					 		processData:false,

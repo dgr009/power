@@ -17,7 +17,7 @@ import com.icia.api.vo.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserDaoTest {
 	
-	@Autowired
+	//@Autowired
 	private UsersDao dao;
 	
 	//@Test

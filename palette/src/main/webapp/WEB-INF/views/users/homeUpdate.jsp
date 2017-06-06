@@ -47,7 +47,7 @@
 			i++;
 			var btag = $("<li id='smallKind"+i+"'>${big.bigKind}</li>");
 			var ultag = $("<ul id='smallTag"+i+"' class='pagination'></ul>");
-			ultag.append("<li><a href='#' id='insertSmallTag' data-sno='"+ i +"'>태그추가</a></li>");
+			ultag.append("<li><a href='#' id='insertSmallTag' data-sno='"+ i +"'>태그 추가</a></li>");
 			$("#smallTag").append(btag);
 				<c:forEach items="${result.smallKind}" var="small">
 					if('${small.bigKind}'=='${big.bigKind}'){
@@ -144,8 +144,8 @@
 						 	type:"post",
 						 	data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
 						 	complete:function(result){
-						 		alert(result)
-						 		self.close();
+						 		alert("수정 완료")
+						 		window.location.href="/palette/users/main";
 							}
 
 						 })
@@ -167,15 +167,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                      		<input type="hidden" class="form-control" name="userId" id="uid"  value="<%=users.getUserId()%>">
-                      		<input type="hidden" class="form-control" name="homeImg" id="hideImg"  value="${result.home.homeImg }">
-                      		<input type="file" class="form-control" name="homeImg" id="img">
-                      		<input type="text" class="form-control" name="homeTitle" value="${result.home.homeTitle}" id="title">
-                        </div>
+                      
                          <div id="logo2">
-                        	<img style="width:90%; height:90%;" 
-									src="<c:url value='http://localhost:8087/palette/homeimg/${result.home.homeImg}'/>">
+                        	<h1 style="color: white; margin-top: 30px;">${result.home.homeTitle}</h1>
                         </div>
                     </div>
   <!-- =====================메인 메뉴(우측상단) 시작============================= -->
@@ -201,32 +195,72 @@
             </div>
 </section>
  <div class="col-lg-12 col-md-12 col-sm-12">
+ <div class="col-lg-1 col-md-1 col-sm-1"></div>
+  <div class="col-lg-10 col-md-10col-sm-10">
+  <br><br>
  <div class="form-group">
          <label for="tag" >태그 소분류</label>
          <ul  id="smallTag"  >
          
          </ul>
  </div>
-				 <div class="form-group">
+  				  <div class="col-lg-6 col-md-6col-sm-6" style="padding:0;">
+				 
+                   <div class="form-group">
+	                      <label for="InputPassword2">홈페이지 제목</label>
+	                      <input type="text" class="form-control" name="homeTitle" value="${result.home.homeTitle}" id="title">
+                  		</div>
+                  </div>
+                  <div class="col-lg-6 col-md-6col-sm-6">
+                  	<div class="form-group">
                       <label for="InputPassword2">홈페이지 디자인 선택</label>
                       <select name="homeDesign" id="design" class="form-control" >
 							<option value="1">기본타입</option>
 							<option value="1">기본타입</option>
 					  </select>
+					  
                   </div>
+                  <br><br>
+                  </div>
+                  <div class="col-lg-4 col-md-4col-sm-4" style="padding:0;">
+                      			 <label for="InputPassword2">프로필 사진 선택</label>
+                  			<img style="width:300px; height:250px;" src="<c:url value='http://localhost:8087/palette/homeimg/${result.home.homeImg}'/>">
+									
+                      		<input type="hidden" class="form-control" name="userId" id="uid"  value="<%=users.getUserId()%>">
+                      		<input type="hidden" class="form-control" name="homeImg" id="hideImg"  value="${result.home.homeImg }">
+							<br>
+							 <label for="InputPassword2"> </label>
+                      		<input type="file" class="form-control" name="homeImg" value="업로드"  id="img" style="margin-top: 15px; ">
+                      		<div class="form-group">
+	                      <label for="InputPassword2">홈페이지 비활성화</label>
+	                      <select name="homeActive" id="active" class="form-control" >
+								<option value="0">아니오</option>
+								<option value="1">예</option>
+						  </select>
+                  		</div>
+                      		
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8">
                   <div class="form-group">
                       <label for="username">홈페이지 소개</label>
-                      <textarea class="form-control"  rows="20" cols="60" id='content'>${result.home.homeIntroduce}</textarea>
+                      <textarea class="form-control"  rows="20" cols="30" id='content'>${result.home.homeIntroduce}</textarea>
                   </div>
-                  <div class="form-group">
-                      <label for="InputPassword2">비활성화</label>
-                      <select name="homeActive" id="active" class="form-control" >
-							<option value="0">아니오</option>
-							<option value="1">예</option>
-					  </select>
-                  </div>
+                  <br><br>
+                 </div>
+                 <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
+                 <div class="col-lg-8 col-md-8 col-sm-8" style="margin-left: 75px;">
+                 	<div class="col-lg-4 col-md-4 col-sm-4">
+                 	<button id="complete"  class="btn btn-default btn-lg btn-block" >이전으로</button>
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-4" style="margin-left: 10px;">
+                 	<button id="complete"  class="btn btn-default btn-lg btn-block"  >수정완료</button>
+                 </div> <br><br> <br><br>
+                 <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
+                   <br><br>
+                  </div> 
+                   <div class="col-lg-1 col-md-1 col-sm-1"></div>
 </div>
-<button id="complete"  class="btn btn-default btn-lg btn-block" >완료</button>
+
 
 
 <!--
