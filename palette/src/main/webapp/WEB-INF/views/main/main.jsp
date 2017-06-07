@@ -311,7 +311,7 @@
                     </div>
                 </div>
 
-                <div class="jcarousel recent-work-jc" style="width:650px;">
+                <div class="jcarousel recent-work-jc" style="width:650px; margin-left: 3px;">
                     <ul class="jcarousel-list">
                         
                         <!-- Recent Work Item -->

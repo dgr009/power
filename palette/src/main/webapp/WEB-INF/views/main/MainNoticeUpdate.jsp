@@ -80,109 +80,45 @@ input[type="button"] {
 		<!--End Header-->
 		</header>
 		<!--start wrapper-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
 
-                        <div class="page_title">
-                           <h2>공지사항</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-           
-            <div class="col-lg-12 col-md-12 col-sm-12">
+
+  <div class="col-lg-11 col-md-11 col-sm-11" style="margin-left: 42px;">
 							<br><br>
 						
-							<form action="/palette/main/notice/update" method="post">
-							<div class="well well-lg" style=" padding-left: 35px; padding-right: 35px; margin-left: 15px; margin-right: 15px;">
-							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
 							
-							<!-- 게시물 제목 -->
-							     <input type="text" name="mainNoticeArticleTitle" style="width:730px;" value="${result.result.mainNoticeArticleTitle }"></h3>
-							     <input type="hidden" name="mainNoticeArticleNo" value="${result.result.mainNoticeArticleNo.intValue()}">
-							     <!-- 댓글 수 -->
-		
-							      
-							     <div style="font-size: 90%;">
-							     	<div style=" float: left; ">
-									&nbsp;&nbsp;&nbsp;글 번호 (&nbsp;${result.result.mainNoticeArticleNo.intValue()}&nbsp;)
-									</div>
-								
-							     </div>
-							     <!-- 조회수 -->
-							     
-							     	
-              				  		
-              				  		<table class="table table-striped table-hover" >
+							<div class="well well-lg" style="padding-right: 50px; padding-left:50px; margin-left : 80px; margin-right : 80px; height: 600px;">
+							<div class="col-lg-1 col-md-1 col-sm-1">
+              		   </div>
+							<div class="col-lg-10 col-md-10 col-sm-10">
+							<h3><i class="fa fa-info-circle"></i>&nbsp; 공지사항 수정</h3>
+								<table class="table table-striped table-hover" style="text-align: center;">
 				                    <thead>
-				                    <tr >
-				                    
-				                    <!-- 작성자 및 시간 -->
-				                    
-				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>관리자</th>
-										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${result.result.mainNoticeArticleDate}</th>
+				                    <tr>
+				                    <form action="/palette/main/notice/update" method="post">
+										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:650px;"name="mainNoticeArticleTitle" value="${result.result.mainNoticeArticleTitle }">
+ <input type="hidden" name="mainNoticeArticleNo" value="${result.result.mainNoticeArticleNo.intValue()}">
 									</tr>
                   					  </thead>
-                   
 
               						  </table>
-              						
-              		   <div class="col-lg-1 col-md-1 col-sm-1">
-              		   </div>
-              		   
-              		   <div class="col-lg-10 col-md-10 col-sm-10">
-              		   <br>
-              		   <!-- 게시물 내용 -->
-              		   <p style="max-height: 700px; min-height: 250px;">
-              		   <textarea rows="15" cols=""  name="mainNoticeArticleContent" >${result.result.mainNoticeArticleContent }
-							</textarea></p>
-							
-							
-              		   </div>
-              		   	
-              		   <div class="col-lg-1 col-md-1 col-sm-1">
-              		   		
-              		   </div>	
-              		   
-              		   <div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
-              		   </div>  
-              		   
-              		
-						
-						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
-							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료">
-              		   </div>  
-              		   	</form>
-						<table class="table table-striped table-hover" style="text-align: center;">
-				                    <thead>
-				                    <tr >
-										<th style="text-align: center;"></th>
-									</tr>
-                  					  </thead>
-                   
-
-              						  </table>
-              						  
-               			
-            
-									<br><br>
-									<br><br>
-								
-							
-							
-								
+					
+              		   <textarea rows="15" cols="" name="mainNoticeArticleContent" >${result.result.mainNoticeArticleContent }</textarea>
+						<br>		
+              		   			<div id="id"></div>
+              		   <div class="col-sm-12 text-center"><br>
+ 							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
+                  			 &nbsp;&nbsp;&nbsp;&nbsp;
+                  			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
+           				 </div>
 							
 						
-                            
-							
-									
+						
+					</form>		
 							</div>
 							
+							</div></div>					
+												
 							
-							</div>
 							
 							
 					

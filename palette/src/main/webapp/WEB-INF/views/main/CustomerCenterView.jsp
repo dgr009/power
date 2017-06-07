@@ -59,6 +59,9 @@ input[type="button"] {
 #repleCnt #rrrrr{
 	font-weight: bold;
 }
+.has-submenu{
+	font-size: 1.2em;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -75,21 +78,11 @@ input[type="button"] {
 		<!--End Header-->
 		</header>
 		<!--start wrapper-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                        <div class="page_title">
-                           <h2>고객센터 글</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
             
  
            
-            <div class="col-lg-12 col-md-12 col-sm-12">
+           <div class="col-lg-11 col-md-11 col-sm-11" style="margin-left: 47px;">
 							<br><br>
 						
 							
@@ -97,7 +90,7 @@ input[type="button"] {
 							<h3 style="display: inline-block;">&nbsp;&nbsp;<i class="fa fa-group"></i>&nbsp;&nbsp;
 							
 							<!-- 게시물 제목 -->
-							     ${result.inquiry.faqTitle }</h3>
+							      ${result.result.faqTitle }</h3>
 							     <!-- 댓글 수 -->
 		
 							      
@@ -150,7 +143,7 @@ input[type="button"] {
 						<%if(session.getAttribute("admin")!=null){ %>
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
 				
-						<a href="/palette/main/customerCenter/update/${result.result.faqNo.intValue()}"><button  data-loading-text="Loading..." class="btn btn-default btn-lg">수정하기</button></a>
+						<a href="/palette/main/customerCenter/update/${result.result.faqNo.intValue()}"><button  data-loading-text="Loading..." class="btn btn-default btn-lg" style="font-size: 1.1em;">수정하기</button></a>
 					
 						
               		   		 
@@ -159,7 +152,7 @@ input[type="button"] {
 								 <form style="display: inline-block;" action="/palette/main/customerCenter/Delete"method="post">
 								 &nbsp;
 								 <input type="hidden" name="faqNo" value="${result.result.faqNo.intValue()}">
-								 <input type="submit" style="font-size: 20px;" data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
+								 <input type="submit"  data-loading-text="Loading..." class="btn btn-default btn-lg" value="삭제하기">	
 								</form>
 					
 									
@@ -182,11 +175,7 @@ input[type="button"] {
                			
              					
               						  
-              						<!-- 댓글 -->
-            
-									<br><br>
-									<br><br>
-								
+              					
 							
 							
 								

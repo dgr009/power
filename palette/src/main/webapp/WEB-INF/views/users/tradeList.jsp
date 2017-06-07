@@ -58,7 +58,7 @@
 	
 	<div style="width:355px; height: 114px; display: inline-block;  margin-left: 40px;  border-right: 1px dashed gray; position: absolute; bottom:40px;">
 	
-	<p style="padding-top: 5px; font-size: 1.4em; font-weight: bold;">&nbsp;&nbsp;&nbsp;팔레트 포인트 잔액 : 
+	<p style="padding-top: 5px; font-size: 1.4em; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;팔레트 포인트 잔액 : 
 	<span style="color:#727cb6; font-size: 1.2em;">
 	<%=tradeUser.getUserPoint() %></span>&nbsp;원</p><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

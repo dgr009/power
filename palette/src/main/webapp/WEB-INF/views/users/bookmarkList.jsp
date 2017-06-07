@@ -81,7 +81,7 @@
 	</table>
 	<br><br>
 	  <div style="width:1000px; height:30px;">
-	<ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
+	<ul class="pagination" style="margin-left: 470px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${r.pagination.prev>0 }"><li><a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${r.pagination.startPage}" end="${r.pagination.endPage}">
 				<li><a href="/palette/users/bookmarkList?pageNo=${i}">${i} </a></li>

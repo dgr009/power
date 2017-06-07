@@ -101,7 +101,7 @@
 
 	    <br><br>
 	  <div style="width:1000px; height:30px;">
-	<ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
+	<ul class="pagination" style="margin-left: 470px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/basketList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
 				<li><a href="/palette/users/basketList?pageNo=${i}">${i} </a></li>

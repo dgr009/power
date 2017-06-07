@@ -70,6 +70,9 @@ a:VISITED {
 #rc span{
 	font-weight: bold;
 }
+.has-submenu{
+	font-size: 1.2em;
+}
 
 </style>
 <script
@@ -99,24 +102,15 @@ a:VISITED {
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
 		</header>
-		<!--start wrapper-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
 
-                        <div class="page_title">
-                           <h2>공지사항</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         
             
             
-                 <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-11 col-md-11 col-sm-11" style="margin-left: 42px;">
 							<br><br>
 							
 							
-			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     문의게시판 글 목록</h3>
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     공지게시판 글 목록</h3>
 						
 				<table class="table table-striped table-hover" style="text-align: center;">
                     <thead>

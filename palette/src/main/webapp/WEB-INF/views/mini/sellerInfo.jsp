@@ -139,14 +139,13 @@ input[type="button"] {
                                <i class="fa fa-briefcase"></i>
                             </div>
                             <h3 style="margin: 0; line-height: 3em;"><a href=""><i class="fa fa-align-center"></i>&nbsp;&nbsp;<span style="margin-bottom: 30px;">${mini.userGrade }</span></a></h3>
-                            <br>
                         </div>
                     </div>
                 </div>
             </div>
-
-		</section>
 		
+		</section>
+			
 		<section class="promo_box">
 			<div class="container">
 				<div class="row">
@@ -167,11 +166,7 @@ input[type="button"] {
 				</div>
 			</div>
 		</section>
-	</section>	<!--end wrapper-->
-
-
-	
-	<section class="footer_bottom">
+		<section class="footer_bottom">
 		<div class="container">
 			<div class="row">
             <div class="col-sm-6">
@@ -192,6 +187,9 @@ input[type="button"] {
         </div>
 		</div>
 	</section>
+
+	
+	
             
 	
 							

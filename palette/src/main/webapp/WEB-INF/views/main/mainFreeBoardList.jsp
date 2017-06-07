@@ -70,7 +70,9 @@ a:VISITED {
 #rc span{
 	font-weight: bold;
 }
-
+.has-submenu{
+	font-size: 1.2em;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -96,20 +98,9 @@ a:VISITED {
 		<!--End Header-->
 	</header>
 		<!--start wrapper-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                        <div class="page_title">
-                           <h2>자유 게시판</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
  
-            
-                 <div class="col-lg-12 col-md-12 col-sm-12">
+                 <div class="col-lg-11 col-md-11 col-sm-11" style="margin-left: 47px;">
 							<br><br>
 							
 							

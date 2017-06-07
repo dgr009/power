@@ -3,7 +3,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12" style="border-bottom: 1px solid #727cb6;">
 	<div class="navbar-collapse collapse" style="width: 1050px; margin-right: 110px; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402" >
-                                <li><a href="#" style="color:black; width: 100px; text-align: center; font-family: 'Nanum Gothic';">사이트 소개</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 100px; text-align: center; font-family: 'Nanum Gothic';">사이트 소개</a>
 
                                 </li>
 

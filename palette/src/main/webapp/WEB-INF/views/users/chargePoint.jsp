@@ -170,19 +170,19 @@
 									<br>
 									<div style="text-align: center;">
 										<a href="#"><img src="/palette/resources/images/가상계좌.png"></a>&nbsp;								
-										
 										<a href="#"><img src="/palette/resources/images/도서상품권.png"></a>&nbsp;
-										<a href="#"><img src="/palette/resources/images/모바일티머니.png"></a>&nbsp;
+										<a href="#"><img src="/palette/resources/images/모바일티머니.png"></a>&nbsp;<br><br>
 										<a href="#"><img src="/palette/resources/images/핸드폰.png"></a>&nbsp;
-										<a href="#"><img src="/palette/resources/images/해피머니.png"></a><br><br><br>
-									</div>
-									<div style="text-align: center;">
 										<a href="#"><img src="/palette/resources/images/컬쳐랜드.png"></a>&nbsp;
-										
+										<a href="#"><img src="/palette/resources/images/해피머니.png"></a>&nbsp;<br><br>
 										<a href="#"><img src="/palette/resources/images/비자.png"></a>&nbsp;
 										<a href="#"><img src="/palette/resources/images/OK캐시백.png"></a>&nbsp;
-										<a href="#"><img src="/palette/resources/images/캐시선물.png"></a>&nbsp;
-										<a href="#"><img src="/palette/resources/images/신용카드.png"></a>
+										<a href="#"><img src="/palette/resources/images/신용카드.png"></a>&nbsp;
+									</div>
+									<div style="text-align: center;">
+										
+										
+									
 									</div>
 										
 									
@@ -202,7 +202,7 @@
 							<div class="col-lg-8 col-md-8 col-sm-8" style="text-align: center;"><br>
 							
 								
-								<input type="submit"  id="charge" data-loading-text="Loading..." class="btn btn-default btn-lg" value="충전하기">
+								<input type="submit"  id="charge" data-loading-text="Loading..." class="btn btn-default btn-lg" value="충전하기" style=" background:#727cb6; :white;">
 							</div>
 							
 							<div class="col-lg-2 col-md-2 col-sm-2"><br><br><br><br><br><br><br><br></div>

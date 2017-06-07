@@ -179,46 +179,22 @@ input[type="button"] {
                 <div class="row">
                     
 
-                        <div class="page_title">
-                           <h2>홈페이지 결제</h2>
+                        <div class="page_title" style="text-align: center;">
+                           <h2>홈페이지 이용권 구매</h2>
                         </div>
                     </div>
                 </div>
             </div>
              </section>
-             <br><br>
-                     <div class="col-sm-6 col-md-6 col-lg-6">
-                        <div class="serviceBox_5">
-                            <div class="service-image">
-                                <img src="<c:url value="/resources/images/사암만원.png"/>" width="400" height="300">
-                            </div>
-                            <div class="service-content bg2" id="read1">
-                                <div class="internal">
-                                    <div class="item_content">
-                                        <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>" >
-                                        </div>
-                                       <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;" id="price1">30.000원</sapn><br>
-                                        3개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
-                                        <a class="read" href="#">구입하기 !</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               
                     <div class="col-sm-12 col-md-12 col-lg-12"><br><br>
                     	<div class="col-sm-1 col-md-1 col-lg-1"></div>
                     	<div class="col-sm-10 col-md-10 col-lg-10">
-                    		<blockquote class="default" style="text-align: center; ">
+                    		<blockquote class="default" style="height: 50px; line-height: 30px;">
                     			<table>
                     				<thead style="text-align: center;">
                     					<tr id="dda">
 	                    					<th style="width: 300px; text-align: center;"><span class="highlight default"><%=userMini.getUserId() %></span>&nbsp;님 보유 포인트 &nbsp;:&nbsp;<span class="highlight light"><%=userMini.getUserPoint() %>P</span></th>
-	                    					<th style="width: 300px; text-align: center;">차감 될 포인트 &nbsp;:&nbsp;<span class="ddd" id="minus"></span></th>
-	                    					<th style="width: 300px; text-align: center;">결제 후 포인트 &nbsp;:&nbsp;<span class="ddd" id="result"></span></th>
 	                    					<th style="width: 65px; text-align: center;" id="btnPay">
-	                    					
 	                    					</th>
 	                    					
 	                    				</tr>
@@ -227,7 +203,38 @@ input[type="button"] {
                     		</blockquote>
 						</div>
 						<div class="col-sm-1 col-md-1 col-lg-1"></div>
-					</div>
+						</div>
+						  <div class="col-sm-12 col-md-12 col-lg-12" style="bottom: 50px;"><br><br>
+                    	<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                    	<div class="col-sm-10 col-md-10 col-lg-10">
+                    		<blockquote class="default" style="text-align: center; ">
+                    			<table>
+                    				<thead style="text-align: center;">
+                    					<tr id="dda">
+	                    					<th style="width: 300px; text-align: center;">차감 될 포인트: </th>
+	                    					<th style="width: 150px; text-align: center;"><span class="ddd" id="minus"></span></th>
+	                    					<th style="width: 300px; text-align: center;">결제 후 포인트 :</th>
+	                    					<th style="width: 150px; text-align: center;"><span class="ddd" id="result"></span></th>
+	                    					
+	                    					</th>
+	                    					
+	                    				</tr>
+                    				</thead>
+                    			</table>
+                    		</blockquote>
+						</div>
+						<div class="col-sm-1 col-md-1 col-lg-1"> 
+							<button type="button" id="btnLogin" class="btn_login03" style=" border-radius:20px; text-align: center; width :115px; height :35px; border:0; background:#727cb6; margin-left: 210px;  top: 50px;">
+								<span id="read1" style="color:white; font-size: 0.9em; font-weight: bold;">
+											이용권 구매하기</span>
+							</button>
+							
+						</div>
+						</div>
+						
+						
+						
+						
 							<br><br><br><br><br>
 					
 
