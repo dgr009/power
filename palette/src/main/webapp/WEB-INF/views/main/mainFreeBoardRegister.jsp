@@ -50,6 +50,9 @@ input[type="submit"] {
 input[type="button"] {
 	font-family:FontAwesome;
 }     
+.has-submenu{
+	font-size: 1.2em;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -65,19 +68,10 @@ input[type="button"] {
 	<!-- End Header -->
 		</header>
 		<!--start wrapper-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                        <div class="page_title">
-                           <h2>자유 게시판</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
             
  
-            <div class="col-lg-12 col-md-12 col-sm-12">
+             <div class="col-lg-11 col-md-11 col-sm-11" style="margin-left: 42px;">
 							<br><br>
 						
 							
@@ -90,7 +84,7 @@ input[type="button"] {
 				                    <thead>
 				                    <tr>
 										<form action="/palette/main/freeboard/register" method="post">
-										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="mainArticleTitle">
+										<h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:650px;"name="mainArticleTitle">
 
 									</tr>
                   					  </thead>
@@ -104,7 +98,7 @@ input[type="button"] {
               		   			<div id="id"></div>
               		   <div class="col-sm-12 text-center"><br>
  							<a href="#" onClick="history.back()"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="취소하기" style="color: white;"></a>
-                  			 &nbsp;&nbsp;
+                  			 &nbsp;&nbsp;&nbsp;&nbsp;
                   			 <input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="등록하기">
            				 </div>
 							

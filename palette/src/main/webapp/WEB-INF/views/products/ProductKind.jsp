@@ -80,18 +80,18 @@
                   <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
         <!--End Header-->
         <!--start wrapper-->
-        <section class="wrapper">
-         <section class="page_head">
-            <div class="container" ></div>
-            </div>
-         </section>
-         
-                    <!--물건 표시란 시작-->
-                    <div style="width: 80%; text-align: center; padding-left: 10%" >
-                <div class="mixed-container masonry_wrapper" style="margin-left: 10%;">
-			<c:forEach items="${result.result }" var="free">
+         <section class="wrapper" style="border-bottom: 1000px solid white;">
+			<section class="page_head">
+				<div class="container"></div>
+			</section>
+			
+                <br>
+                <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                	<div class="mixed-container masonry_wrapper">
+                	<c:forEach items="${result.result }" var="free">
                         <div class="item responsive">
-                            <figure class="touching effect-bubba">
+                             <figure class="touching effect-bubba">
                             <!-- 상품 이미지 표시 -->
                                 <img style="width: 200	px; height: 250px;" src="<c:url value='/productImg/${free.imgName }'/>" alt="" class="img-responsive">
 
@@ -112,33 +112,51 @@
                                 
                             </figure>
                         </div>
-</c:forEach>
-              
-
-
-
+                         </c:forEach>
+                         </div>
+                	</div>
+                	
+                	
+                	
+                 
+                 <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                 <br>
+                 <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                  <div class="col-sm-10 col-md-10 col-lg-10" style="margin-left: 100px;">
+                  	<div id="pagination" style="text-align: center;">
+			         <ul class='pagination' style='height: 20px;' >
+			         	<c:if test="${result.pagination.prev>0 }">
+							<li><a href="/palette/miniHome/${userId}/productKind/${smallKind}?pageNo=${result.pagination.prev}">이전으로</a></li>
+						</c:if>
+						
+						<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
+							<li>
+								<a href="/palette/miniHome/${userId}/productKind/${smallKind }?pageNo=${i}">${i} </a>
+							</li>
+						</c:forEach>
+						
+						<c:if test="${result.pagination.next>0 }">
+							<li><a href="/palette/miniHome/${userId }/productKind/${smallKind }?pageNo=${result.pagination.next}">다음으로</a></li>
+						</c:if>
+					</ul>
+                 </div> <br>
+                  <br>
+                 <br>
+                  </div>
+                 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+ 
             
-
-                    </div>
-                    </div>
-                    <!--물건 표시란 시작-->
-                </div>
-                
-                
-                    <!--페이징 시작 -->
-                <div class="col-sm-12 text-center">
-                    <ul class="pagination">
-                        	<c:if test="${result.pagination.prev>0 }"><a href="/palette/miniHome/${userId}/productKind/${smallKind}?pageNo=${result.pagination.prev}">이전으로</a></c:if>
-			
-			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/miniHome/${userId}/productKind/${smallKind }?pageNo=${i}">${i} </a>
-			</c:forEach>
-			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/miniHome/${userId }/productKind/${smallKind }?pageNo=${result.pagination.next}">다음으로</a></c:if>
-                </div>
-                    </ul>
-                </div>
-            </div> <!--페이징 끝 -->
+                 
+            
         </div> <!--./div-->
     </section>
 </section>

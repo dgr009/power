@@ -2,12 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  	<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
- 	 <div id="menu-bar">
+ 	 <div id="menu-bar" style="background-image:url('<c:url value="/resources/images/2142148.png"/>') ">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <div id="logo">
-                           <h1 style="color:white; font-size: 2.5em;"> <a href="/palette/miniHome/${userId }/main">${kind.home.homeTitle}</a></h1>
+                           <h1 style="color:white; font-size: 2.5em;"> <a href="/palette/miniHome/${userId }/main" style="text-decoration: none; color:white;">${kind.home.homeTitle}</a></h1>
                         </div>
                     </div>
      <div class="col-lg-8 col-sm-8 navbar navbar-default navbar-static-top container" role="navigation">

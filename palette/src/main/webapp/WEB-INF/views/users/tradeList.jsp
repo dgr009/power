@@ -43,7 +43,37 @@
 <!-- 헤더 -->
 <header id="header">
  <%@ include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
- <%@ include file="/WEB-INF/views/header/MainInfoHeader.jsp" %>
+ <div class="col-xs-12 col-xs-12 col-xs-12"  style="border-bottom: 1px solid silver;"><br>
+<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+<div class="col-xs-10 col-xs-10 col-xs-10" >
+	<a href="/palette/main"><img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;"></a>
+	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
+                            <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style=" margin-left: 120px;">
+                                <li  ><a href="/palette/users/info" style="color:black; width: 85px; text-align: center;  font-size: 1.1em;  border-radius: 35px;">내 정보보기</a>
+                                </li>
+
+                                <li><a href="/palette/users/bookmarkList" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; border-radius: 35px;">즐겨찾기</a>
+
+                                </li>
+
+                                <li><a href="/palette/users/basketList" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; border-radius: 35px;">장바구니</a>
+
+                                </li>
+
+                                <li><a href="/palette/users/orderList" class="has-submenu" style="color:black; width: 70px; text-align: center; font-size: 1.1em; border-radius: 35px;">주문내역</a>
+								</li>
+								
+								 <li style=" border-bottom: 2px solid #727cb6; height: 64px; "><a href="/palette/users/tradeList"class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; border-radius: 35px;">거래내역</a>
+								</li>
+                               	</ul>
+                        </div>
+                        <br>
+                        <br>
+                       
+</div>
+<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+</div>
+
 </header>
 <!-- 헤더 끝 -->
 <!-- 회원 정보 -->
@@ -58,7 +88,7 @@
 	
 	<div style="width:355px; height: 114px; display: inline-block;  margin-left: 40px;  border-right: 1px dashed gray; position: absolute; bottom:40px;">
 	
-	<p style="padding-top: 5px; font-size: 1.4em; font-weight: bold;">&nbsp;&nbsp;&nbsp;팔레트 포인트 잔액 : 
+	<p style="padding-top: 5px; font-size: 1.4em; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;팔레트 포인트 잔액 : 
 	<span style="color:#727cb6; font-size: 1.2em;">
 	<%=tradeUser.getUserPoint() %></span>&nbsp;원</p><br>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -151,28 +151,27 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div><br>
     </section>
 <!--Start recent work-->
 
    
 
     <!-- footer -->
-<br><br>
     <section class="promo_box wow bounceInUp" data-wow-offset="50">
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-9 col-lg-9">
                     <div class="promo_content">
-                        <h3>Edge is awesome responsive template, with clean design.</h3>
-                        <p>Lorem ipsum dolor sit amet, cons adipiscing elit. Aenean commodo ligula eget dolor. </p>
+                        <h3>개인 쇼핑몰 홈페이지에 오신 것을 환영합니다!</h3>
+                        <p>홈페이지를 만들고 평생 이용권을 구매하여 나만의 쇼핑몰을 운영하세요 </p>
                     </div>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="pb_action">
                         <a class="btn btn-lg btn-default" href="#fakelink">
                             <i class="fa fa-shopping-cart"></i>
-                            Download Now
+                           공지사항 가기
                         </a>
                     </div>
                 </div>
@@ -180,9 +179,6 @@
         </div>
     </section>
 </section><!--end wrapper-->
-
-
-
 <section class="footer_bottom">
     <div class="container">
         <div class="row">
@@ -204,17 +200,6 @@
         </div>
     </div>
 </section>
-    <!--=====================마감임박상품 끝========================-->
-
-<!--
-    밑에 꺼는 정확하게 어떤건지 모르니까 만지지 마시오...
--->
-
-<!-- Parallax with Testimonial -->
-    <section class="parallax parallax-1">
-        <div class="container">
-            <!--<h2 class="center">Testimonials</h2>-->
-<!-- end : Parallax with Testimonial -->
 
 <script type="text/javascript" src="<c:url value="/resources/js/jquery-1.10.2.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
