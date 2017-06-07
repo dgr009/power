@@ -12,5 +12,6 @@ public class MainFreeBoardList {
 	private String mainArticleTitle;
 	private int mainArticleHits;
 	private Date mainArticleDate;
+	private int mainArticleRepleCnt;
 	private String userId;
 }

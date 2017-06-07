@@ -1,6 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+		
+		
+		<div class="well well-lg" style="padding-left: 50px; padding-right: 50px;padding-top: 20px;"><h3><i class="fa fa-money"></i>    &nbsp;충전금액 선택</h3>
+							
+							
+										<table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+										<th style="text-align: center;">선택</th>
+										<th style="text-align: center;">충전 금액</th>
+										<th style="text-align: center;">실 충전 포인트</th>
+										<th style="text-align: center;">적립 혜택</th>
+									</tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                    
+                    <tr>
+										<td><input type="radio" value="5000"  class="selectPoint" name="selectPoint"></td>
+										<td>5000</td>
+										<td>5500</td>
+										<td>10% 추가 적립 +250P</td>
+								       
+									</tr>
+									
+									<tr>
+										<td><input type="radio"  value="10000"  class="selectPoint" name="selectPoint"></td>
+										<td>10000</td>
+										<td>11000</td>
+										<td>10% 추가 적립 +500P</td>
+								       
+									</tr>
+									<tr>
+										<td><input type="radio" value="20000" class="selectPoint" name="selectPoint"></td>
+										<td>20000</td>
+										<td>22000</td>
+										<td>10% 추가 적립 +1000P</td>
+								       
+									</tr>
+									<tr>
+										<td><input type="radio" value="30000" class="selectPoint" name="selectPoint"></td>
+										<td>30000</td>
+										<td>33000</td>
+										<td>10% 추가 적립 +3000P</td>
+								       
+									</tr>
+									<tr>
+										<td><input type="radio" value="50000" class="selectPoint" name="selectPoint"></td>
+										<td>50000</td>
+										<td>55000</td>
+										<td>10% 추가 적립 +5000P</td>
+								       
+									</tr>
+									<tr>
+										<td><input type="radio" value="0" class="selectPoint" name="selectPoint"></td>
+										<td>직접 입력</td>
+										<td><input type="text" id="inputPoint"></td>
+								       	<td>10% 추가 적립</td>
+									</tr>
+                    <tr>
+                      
+                
+                    
+                </table>
+				<div class="well well-lg" style="padding-left: 50px; padding-right: 50px;padding-top: 20px;"><h3><i class="fa fa-money"></i>    &nbsp;충전 금액</h3>
+							
+							
+										<table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+										
+										<th style="text-align: center;">충전 금액</th>
+										<th style="text-align: center;">실 충전 포인트</th>
+										
+									</tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                    
+                    <tr>
+										<td><input type="text" id="ip" readonly="readonly"></td>
+										<td><input type="text" id="rp" name="tradePoint" readonly="readonly"></td>
+								       
+					</tr>
+							
+                    
+                </table>
 
      <div class="col-sm-6 col-lg-3">
                         <div class="serviceBox_5">

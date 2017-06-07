@@ -102,7 +102,9 @@
 			}
 			
 		})
-
+		$("#back").on("click",function(){
+			self.close();
+		})
 		$("#complete").on("click",function(e){
 				e.preventDefault(); //기본 이벤트를 차단
 				 var formData = new FormData();
@@ -250,7 +252,7 @@
                  <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
                  <div class="col-lg-8 col-md-8 col-sm-8" style="margin-left: 75px;">
                  	<div class="col-lg-4 col-md-4 col-sm-4">
-                 	<button id="complete"  class="btn btn-default btn-lg btn-block" >이전으로</button>
+                 	<button id="back"  class="btn btn-default btn-lg btn-block" >이전으로</button>
                  </div>
                  <div class="col-lg-4 col-md-4 col-sm-4" style="margin-left: 10px;">
                  	<button id="complete"  class="btn btn-default btn-lg btn-block"  >수정완료</button>

@@ -28,6 +28,7 @@ public class UserLoginFilter implements Filter {
     	whiteList.add("/palette/users/findIdAndPwd");
     	whiteList.add("/palette/users/find");
     	whiteList.add("/palette/users/findPwd");
+    	whiteList.add("/palette/users/close");
     	whiteList.add("/palette/users/reverse/*");
     }
 	public void destroy() {
