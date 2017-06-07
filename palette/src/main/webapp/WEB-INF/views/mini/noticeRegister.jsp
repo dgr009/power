@@ -72,7 +72,7 @@ if(id === idid){
 	 
 }else{
 	 alert("권한이 없습니다")
-	 var url = "http://localhost:8087/palette/users/login";    
+	 var url = "/palette/users/login";    
 	 $(location).attr('href',url);
 }
 </script>

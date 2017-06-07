@@ -48,14 +48,47 @@
 		text-decoration: underline;
 		cursor: pointer;
 	}
-  }
+	a:HOVER {
+	text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
 <!-- 헤더 -->
 <header id="header">
  <%@ include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
- <%@ include file="/WEB-INF/views/header/MainInfoHeader.jsp" %>
+ <div class="col-xs-12 col-xs-12 col-xs-12"  style="border-bottom: 1px solid silver;"><br>
+<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+<div class="col-xs-10 col-xs-10 col-xs-10" >
+	<a href="/palette/main"><img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;"></a>
+	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
+                            <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style=" margin-left: 120px;">
+                                <li  ><a href="/palette/users/info" style="color:black; width: 85px; text-align: center;  font-size: 1.1em;  border-radius: 35px;">내 정보보기</a>
+                                </li>
+
+                                <li><a href="/palette/users/bookmarkList" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; border-radius: 35px;">즐겨찾기</a>
+
+                                </li>
+
+                                <li style=" border-bottom: 2px solid #727cb6; height: 64px; "><a href="/palette/users/basketList" class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; border-radius: 35px;">장바구니</a>
+
+                                </li>
+
+                                <li><a href="/palette/users/orderList" class="has-submenu" style="color:black; width: 70px; text-align: center; font-size: 1.1em; border-radius: 35px;">주문내역</a>
+								</li>
+								
+								 <li><a href="/palette/users/tradeList"class="has-submenu" style="color:black; width: 70px; text-align: center;  font-size: 1.1em; border-radius: 35px;">거래내역</a>
+								</li>
+                               	</ul>
+                        </div>
+                        <br>
+                        <br>
+                       
+</div>
+<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+</div>
+
 </header>
 <!-- 헤더 끝 -->
  <div class="col-xs-12 col-xs-12 col-xs-12" ><br><br>
@@ -89,7 +122,7 @@
 			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
 				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${index.count }</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }"><img src="<c:url value="/resources/images/portfolio/${basket.itemImg }"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></a></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }">${basket.itemName}</a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }" style="color:gray;">${basket.itemName}</a></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${basket.itemPrice.intValue()}<i class="fa fa-krw" style="color: #727cb6;"></i></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${basket.itemInven.intValue()}</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${basket.ownerId}</td>
@@ -101,7 +134,7 @@
 
 	    <br><br>
 	  <div style="width:1000px; height:30px;">
-	<ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
+	<ul class="pagination" style="margin-left: 470px; position: absolute; bottom: 23px; height: 10px;">
 		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/basketList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
 				<li><a href="/palette/users/basketList?pageNo=${i}">${i} </a></li>

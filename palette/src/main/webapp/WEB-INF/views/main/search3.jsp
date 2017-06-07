@@ -75,7 +75,7 @@
                         <c:forEach items="${result.homePage}" var="free">
                          <li class="col-sm-3 col-md-3 col-lg-3">
                             <figure class="touching effect-bubba">
-                                <img style="width: 200	px; height: 150px;" src="<c:url value='http://localhost:8087/palette/homeimg/${free.homeImg }'/>" alt="" class="img-responsive">
+                                <img style="width: 200	px; height: 150px;" src="<c:url value='/homeimg/${free.homeImg }'/>" alt="" class="img-responsive">
                                 <div class="option">
                                     <a href="/palette/miniHome/${free.userId}/main" class="fa fa-link"></a>
                                 </div>
@@ -123,7 +123,7 @@
                            <c:forEach items="${result.itemList}" var="free">
                          <li class="col-sm-3 col-md-3 col-lg-3">
                             <figure class="touching effect-bubba">
-                                <img style="width: 200	px; height: 150px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
+                                <img style="width: 200	px; height: 150px;" src="<c:url value='/productImg/${free.imgName }'/>" alt="" class="img-responsive">
                                 <div class="option">
                                     <a href="/palette/miniHome/${free.userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
                                 </div>

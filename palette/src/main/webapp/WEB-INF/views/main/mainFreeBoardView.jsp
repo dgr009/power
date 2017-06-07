@@ -60,6 +60,9 @@ input[type="button"] {
 #repleCnt #rrrrr{
 	font-weight: bold;
 }
+.has-submenu{
+	font-size: 1.2em;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -77,7 +80,7 @@ input[type="button"] {
 				var ccc= "Content"+reply.mainFreeRepleNo;
 				var cxc= reply.mainFreeRepleNo;
 				var str = " <thead><tr><th><span style='font-weight: normal;'>ID : </span>"+reply.mainFreeRepleName+"</th><th></th>";
-				str = str + "<th style='text-align: right;'><span style='font-weight: normal; font-size: 90%;'>작성일 : </span>"+reply.mainFreeRepleDate+"</th>";
+				str = str + "<th style='width: 180px; text-align: right;'><span style=' font-weight: normal; font-size: 90%;'>작성일 : </span>"+reply.mainFreeRepleDate+"</th>";
 				str = str + "</tr></thead><tbody><tr>"
 				str = str + "<td colspan='2' width='900px;' class='Content"+reply.mainFreeRepleNo+"' style='text-align: left;'><i class='fa fa-ellipsis-h'></i>&nbsp;&nbsp;&nbsp;"+reply.mainFreeRepleContent+"</td>";
 				str = str + "<input type='hidden' value='"+reply.mainFreeRepleName+"' name='mainFreeRepleName' class='mainFreeRepleName'>";
@@ -220,19 +223,10 @@ input[type="button"] {
 		<!--End Header-->
 	</header>
 		<!--start wrapper-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-
-                        <div class="page_title">
-                           <h2>자유 게시판</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
             
            
-            <div class="col-lg-12 col-md-12 col-sm-12">
+             <div class="col-lg-11 col-md-11 col-sm-11" style="margin-left: 42px;">
 							<br><br>
 						
 							<form action="/palette/main/freeboard/update/${main.home.mainArticleNo.intValue()}" method="get">
@@ -268,7 +262,7 @@ input[type="button"] {
 				                    <!-- 작성자 및 시간 -->
 				                    
 				                    <th style="text-align: left;"><span style="font-weight: normal;">작성자 : </span>${main.home.userId }</th>
-										<th style="text-align: right;"><span style="font-weight: normal;">작성일 : </span>${main.home.mainArticleDate }</th>
+										<th style=" text-align: right;"><span style="font-weight: normal;">작성일 : </span>${main.home.mainArticleDate }</th>
 									</tr>
                   					  </thead>
                    
@@ -332,9 +326,19 @@ input[type="button"] {
               						  </table>
               						  
                	
-               				 
+               				 <%if(session.getAttribute("user")!=null){ %>
+									<% Users mainUser = (Users) session.getAttribute("user");%>
+             						<p>댓글 작성</p>
+             						 <div class="col-lg-11 col-md-11 col-sm-11">
+             						 <input type="hidden" value='<%=mainUser.getUserId() %>'name='mainFreeRepleName' id="mainFreeRepleName">
+             						<textarea rows="3" cols="" id="mainFreeRepleContent" name="mainFreeRepleContent"></textarea>
+             						</div>
+										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
+										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
+										<%} %>
                				 <!-- 댓글 -->
-               				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
+               				 
+               				 <table id="comment" class="table table-striped table-hover" style="text-align: center; margin-top: 35px;" >
 				                    <c:forEach items="${main.reple }" var="reple">
 				                    <thead>
 				                    <tr>
@@ -342,7 +346,7 @@ input[type="button"] {
 				                    	<th><span style="font-weight: normal;">ID : </span>${reple.mainFreeRepleName }</th>
 				                    	<th></th>
 				                    	<!-- 시간 -->
-										<th style="text-align: right;"><span style="font-weight: normal; font-size: 90%;">작성일 : </span>${reple.mainFreeRepleDate}</th>
+										<th style="text-align: right; width: 180px;"><span style=" font-weight: normal; font-size: 90%;">작성일 : </span>${reple.mainFreeRepleDate}</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -384,26 +388,6 @@ input[type="button"] {
               						  </table>
               						  
               						<!-- 댓글 -->
-              						<%if(session.getAttribute("user")!=null){ %>
-									<% Users mainUser = (Users) session.getAttribute("user");%>
-             						<p>댓글 작성</p>
-             						 <div class="col-lg-11 col-md-11 col-sm-11">
-             						 <input type="hidden" value='<%=mainUser.getUserId() %>'name='mainFreeRepleName' id="mainFreeRepleName">
-             						<textarea rows="3" cols="" id="mainFreeRepleContent" name="mainFreeRepleContent"></textarea>
-             						</div>
-										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
-										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
-										<%} %>
-									<br><br>
-									<br><br>
-								
-							
-							
-								
-							
-						
-                            
-							
 									
 							</div>
 							

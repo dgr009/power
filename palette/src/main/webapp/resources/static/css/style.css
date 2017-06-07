@@ -521,6 +521,7 @@ a:focus{
 {
     color:#fff;
     background:#727CB6 ;
+    
 }
 .navbar-nav ul.sm-nowrap > li > a {
     white-space:nowrap;
@@ -550,6 +551,7 @@ ul.sm li *,ul.sm li *:before,ul.sm li *:after{-moz-box-sizing:content-box;-webki
     -moz-animation: fadeInUp .4s ease-in;
     -webkit-animation: fadeInUp .4s ease-in ;
     animation: fadeInUp .4s ease-in;
+    
 }
 
 .navbar-nav > li > ul.dropdown-menu li:hover ul{
@@ -557,6 +559,7 @@ ul.sm li *,ul.sm li *:before,ul.sm li *:after{-moz-box-sizing:content-box;-webki
     -moz-animation: fadeInUp .5s ease-in ;
     -webkit-animation: fadeInUp .5s ease-in ;
     animation: fadeInUp .5s ease-in;
+    
 }
 /*--------Animation_Hover_Effect_CSS---------------*/
 @-webkit-keyframes fadeInUp {

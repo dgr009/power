@@ -93,7 +93,7 @@
 													<c:forEach items="${item.itemImg }" var="img">
 
 														<img style="width: 700px; height: 500px;"
-															src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
+															src="<c:url value='/productImg/${img.imgName }'/>">
 														<input type="file" name="${img.imgName}" id="orgFile">
 													</c:forEach>
 												</div>

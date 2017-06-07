@@ -17,35 +17,35 @@
 
 	function openHome(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/<%=user.getUserId()%>/main","_blank");
+	    	window.open("/palette/miniHome/<%=user.getUserId()%>/main","_blank");
 		else{
 			if(<%=user.getUserActiveHome()%>==0){
-				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=700,height=600,toolbars=no,scrollbars=no');
+				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=600,height=300,toolbars=no,scrollbars=no');
 			}else{
-				window.open("http://localhost:8087/palette/users/homeRegister","_blank");
+				window.open("/palette/users/homeRegister","_blank");
 			}
 		}
 	}
 	
 	function openHomeUp(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/users/homeUpdate","_blank");
+	    	window.open("/palette/users/homeUpdate","_blank");
 		else{
 			if(<%=user.getUserActiveHome()%>==0){
-				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=700,height=600,toolbars=no,scrollbars=no');
+				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=600,height=300,toolbars=no,scrollbars=no');
 			}else{
-			window.open("http://localhost:8087/palette/users/homeRegister","_blank");
+			window.open("/palette/users/homeRegister","_blank");
 			}
 		}
 	}
 	function openHomeAd(){
 		if(<%=user.getUserIsHome()%>==1)
-	    	window.open("http://localhost:8087/palette/miniHome/UserAdmin/<%=user.getUserId()%>/register","_blank");
+	    	window.open("/palette/miniHome/UserAdmin/<%=user.getUserId()%>/register","_blank");
 		else{
 			if(<%=user.getUserActiveHome()%>==0){
-				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=700,height=600,toolbars=no,scrollbars=no');
+				window.open('/palette/miniHome/<%=user.getUserId()%>/admin/pay', '_blank', 'width=600,height=300,toolbars=no,scrollbars=no');
 			}else{
-			window.open("http://localhost:8087/palette/users/homeRegister","_blank");
+			window.open("/palette/users/homeRegister","_blank");
 			}
 		}
 	}
@@ -53,17 +53,16 @@
 
         <!-- ===============================헤더 시작================================ -->
        
-        <div class="header-top">
+       <div class="header-top">
             <div class="container">
                 <div class="row">
-                    <div class="hidden-xs col-lg-7 col-sm-5 top-info">
-                        
+                    <div class="hidden-xs col-lg-5 col-sm-5 top-info"  style="margin-left: 80px;">
                			 <span class="hidden-sm" style="color:white"><%=user.getUserId()%> 회원님</span>
                			  <span class="hidden-sm"style="color:white"><%=user.getUserGrade()%> 등급</span>
                			  <span class="hidden-sm"style="color:white">포인트:<%=user.getUserPoint()%>P</span>
                         
                       </div>
-                    <div class="hidden-xs col-lg-3 col-sm-5 top-info" style="text-align: right;">
+                    <div class="hidden-xs col-lg-5 col-sm-5 top-info" style="text-align: right; margin-right: 60px;">
                     	<span class="hidden-sm"><a href="/palette/users/info" style="color:white">마이페이지</a></span>
                        	  <span class="hidden-sm"><a href="#" onclick="openHomeAd();" style="color:white">관리페이지</a></span>
                         <span class="hidden-sm"><a href="/palette/users/logout" style="color:white">로그아웃</a></span>

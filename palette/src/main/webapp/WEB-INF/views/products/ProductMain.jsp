@@ -90,7 +90,7 @@
 							<div class="carousel-content">
 							<c:forEach items="${result.itemImg }" var="img">
 							<img class="carousel-item" style="width:800px; height:500px;"
-									src="<c:url value='http://localhost:8087/palette/productImg/${img.imgName }'/>">
+									src="<c:url value='/productImg/${img.imgName }'/>">
 									</c:forEach>
 							</div>
 						</div>
