@@ -99,36 +99,29 @@ $(function(){
 							<div class="widget_title">
 								<h4><span>주문 상품 정보</span></h4>
 							</div>
-								<table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-										<th>상품명</th>
-										<th>옵션</th>
-										<th>수량</th>
-										<th>총 금액</th>
-									</tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-										<td><input type="hidden" name="itemName" value="${itemName}">${ itemName}</td>
-										<td><input type="hidden" name="optionName" value="${itemOption}">${itemOption}</td>
-										<td><input type="hidden" name="orderSize" value="${itemSize}">${itemSize}개</td>
-										<td><input type="hidden" name="orderPrice" value="${itemPrice*itemSize}">${itemPrice*itemSize}원</td>
-										<input type="hidden" name="itemNo" value="${itemNo}">
-								       
-									</tr>
-                    <tr>
-                       
-                    </tbody>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                </table>
-							</ul>
+								
+                
+            <table> 
+			<thead>
+			<tr style="background: #fafafa;  border: 1px solid #e6e6e6; border-left: none; border-right: none; border-top: 2px solid silver;">
+				<th style="text-align: center; width: 230px;">상품명</th>
+				<th style="text-align: center; width: 170px;">옵션</th>
+				<th style="text-align: center; width: 80px;">수량</th>
+				<th style="text-align: center; width: 130px;">금액</th>
+			</tr>
+		</thead>
+		<tbody style="border: 1px solid #e6e6e6; border-left: none;  border-right: none;">
+		
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;"><input type="hidden" name="itemName" value="${itemName}">${ itemName}</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><input type="hidden" name="optionName" value="${itemOption}">${itemOption}</td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; "><input type="hidden" name="orderSize" value="${itemSize}">${itemSize}개</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none; ">
+					<input type="hidden" name="orderPrice" value="${itemPrice*itemSize}">${itemPrice*itemSize}원</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 						</div>
 						<div class="project_details">
 							<div class="widget_title">
@@ -140,13 +133,18 @@ $(function(){
 								<li><span>상세 주소</span><%= user1.getUserAddress()%></li>
 								<li><span>연락처 </span> <%= user1.getUserPhone()%></li>
 							</ul>
+							<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							  <input type="button" onclick="javascript:history.back()" value="쇼핑 계속하기" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" onclick="request.getHeader("referer")" style="color:white; font-size: 1.3em;">
+               				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" style="height: 40px; line-height: 10px;" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" >주문하기</button>
+						
 						</div>
 					</div>
 					
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<!--Project Details Page-->
 						<br><br>
-						<div class="porDetCarousel">
+						<div class="porDetCarousel" style="width: 550px; height: 400px;">
 							<div class="carousel-content">
 							<c:forEach items="${result.itemImg }" var="img">
 							<img class="carousel-item" style="width:700px; height:500px;"
@@ -161,9 +159,6 @@ $(function(){
 				
 				<div class="col-lg-1 col-md-1 col-sm-1"></div>
 				<div class="col-lg-6 col-md-6 col-sm-6">
-           
-                <button type="button" data-loading-text="Loading..."  id="orderBtn" class="btn btn-default btn-lg" >주문하기</button>
-						
 				</div>
 				<div class="col-lg-5 col-md-5 col-sm-5"></div>
 				
