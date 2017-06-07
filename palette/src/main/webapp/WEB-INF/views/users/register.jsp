@@ -224,7 +224,7 @@
                   </div>
                   <div class="form-group text-center">
                       <button type="button"  id="register" class="btn btn-info">회원가입</button>
-                      <button type="button" onclick="location.href='/palette/users/main'"  class="btn btn-warning">가입취소</button>
+                      <button type="button" onclick="location.href='/palette/main'"  class="btn btn-warning">가입취소</button>
                   </div>
                   </div>
               </form>

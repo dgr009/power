@@ -494,6 +494,7 @@
 													});
 								</script>
 <script type="text/javascript">
+	<%if(session.getAttribute("user")!=null){%>
 	$(function(){
 		$("#basket").on("click",function(){
 			$.ajax({
@@ -512,6 +513,7 @@
 			})
 		})
 	})
+	<%}%>
 </script>
 							
 								<!-- Start Style Switcher -->

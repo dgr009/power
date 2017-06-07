@@ -18,7 +18,7 @@
 <!--                                     </ul> -->
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center; border-radius: 30px;">홈으로</a>
+                                <li><a href="/palette/main" class="has-submenu" style="color:black; width: 80px; text-align: center; border-radius: 30px;">홈으로</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li> -->
 <!--                                             <a href="#" class="has-submenu" style="color:black;">악세사라<span class="sub-arrow">...</span></a> -->

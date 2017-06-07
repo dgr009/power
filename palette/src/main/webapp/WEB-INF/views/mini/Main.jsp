@@ -50,8 +50,6 @@
 
                                 <p class="slide-heading FromTop">${kind.home.homeTitle}</p><br/>
 
-                                <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
-
                                 <a href="/palette/miniHome/${userId}/Info" class="slider-read FromLeft">상세 보기</a>
                                 <%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
                             </div>
@@ -169,7 +167,7 @@
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3">
                     <div class="pb_action">
-                        <a class="btn btn-lg btn-default" href="#fakelink">
+                        <a class="btn btn-lg btn-default" href="/palette/miniHome/${userId}/noticeList">
                             <i class="fa fa-shopping-cart"></i>
                            공지사항 가기
                         </a>

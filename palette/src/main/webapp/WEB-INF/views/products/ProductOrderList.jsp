@@ -134,7 +134,7 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">주문번호와 배송번호를 입력하세요</h4>
 				</div>
-              <form  id='registerform' action="/palette/miniHome/admin/insertDelivery" method="post">
+              <form  id='registerform' action="/palette/miniHome/insertDelivery" method="post">
               <div class="modal-body">
                   <div class="form-group">
                       <label for="InputEmail">주문번호

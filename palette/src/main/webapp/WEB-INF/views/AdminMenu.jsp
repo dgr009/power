@@ -23,9 +23,6 @@
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/registerList" class="btn btn-block btn-default">내 상품조회리스트</a>
 								</div>
-								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/pay" class="btn btn-block btn-default">홈페이지 결제</a>
-								</div>
 									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/users/homeUpdate" class="btn btn-block btn-default">홈페이지 수정</a>
 								</div>

@@ -172,7 +172,7 @@
 			complete:function(){
 			}	
 		})
-		window.open("http://localhost:8087/palette/users/review?orderNo="+orderNo,"리뷰");
+		window.open("/palette/users/review?orderNo="+orderNo,"리뷰");
 	}
 	
 	</script>

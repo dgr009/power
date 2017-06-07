@@ -164,7 +164,7 @@ public class ProductController {
 		return "products/ProductMain";
 	}
 	//배송입력
-		@RequestMapping(value = "/UserAdmin/insertDelivery", method = RequestMethod.POST)
+		@RequestMapping(value = "/insertDelivery", method = RequestMethod.POST)
 		public String deliveryInsert(HttpSession sesstion,@RequestParam int orderNo,@RequestParam int deliNo,@RequestParam String itemNo) {
 			Users user=(Users) sesstion.getAttribute("user");
 			HashMap<String, Object> map=new HashMap<String, Object>();
