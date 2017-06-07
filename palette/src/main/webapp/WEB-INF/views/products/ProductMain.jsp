@@ -133,9 +133,9 @@
 								<li><span>등록일 :</span> ${result.item.itemDate}</li>
 								<li><span>상품종류 :</span>${result.item.smallKind}</li>
 								<li><span>남은수량 :</span><input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">${result.item.itemInven.intValue()}개</li>
-								<input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">
 			                     <input type="hidden" name="itemPrice" value="${result.item.itemPrice.intValue()}">
 			                     <input type="hidden" name="itemName" value="${result.item.itemName}">
+			                      <input type="hidden" id="itemNo" name="itemNo" value="${result.item.itemNo.intValue()}">
 						</div>
 						
 
@@ -176,7 +176,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			 <input type="button" onClick="location.href='http://localhost:8087/palette/users/orderList'" value="리뷰글 작성" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" onclick="request.getHeader("referer")" style="color:white; font-size: 1.1em;">
+			 <input type="button" onClick="location.href='/palette/users/orderList'" value="리뷰글 작성" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" style="color:white; font-size: 1.1em;">
 	</div>
 	<br>
 
@@ -505,7 +505,7 @@
 			$.ajax({
 				url:"/api/miniHome/basket",
 				type:"post",
-				data : {"userId": '<%=user1.getUserId()%>',"itemNo": $("#itemNo").val()},
+				data : {"userId":'<%=user1.getUserId()%>',"itemNo": $("#itemNo").val()},
 				dataType: 'JSON',
 				complete:function(r){
 				if(r.responseText==1)

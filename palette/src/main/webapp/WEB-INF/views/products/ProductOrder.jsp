@@ -38,7 +38,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$("#orderBtn").on("click",function(){			
+	$("#orderBtn").on("click",function(){
+	alert("dddd");	
+	
 		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize}){
 			$("#orderForm").submit();}
 		else if(<%=user1.getUserPoint()%><${itemPrice*itemSize}){
@@ -69,7 +71,7 @@ $(function(){
 	<!--start wrapper-->
 	
 		
-		 <form id="orderForm" action="/palette/miniHome/productOrder/${userId}/${itemNo}" method="POST" >
+		 <form id="orderForm" action="/palette/miniHome/productOrder/${userId}/${itemNo.intValue()}" method="POST" >
                 <section class="wrapper">
         <section class="page_head">
             <div class="container">
@@ -135,7 +137,7 @@ $(function(){
 							</ul>
 							<br>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							  <input type="button" onclick="javascript:history.back()" value="쇼핑 계속하기" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" onclick="request.getHeader("referer")" style="color:white; font-size: 1.3em;">
+							  <input type="button" onclick="javascript:history.back()" value="쇼핑 계속하기" data-loading-text="Loading..."  class="btn btn-default btn-lg"  style="color:white; font-size:1.3em;">
                				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" style="height: 40px; line-height: 10px;" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" >주문하기</button>
 						
 						</div>
@@ -147,7 +149,7 @@ $(function(){
 						<div class="porDetCarousel" style="width: 550px; height: 400px;">
 							<div class="carousel-content">
 							<c:forEach items="${result.itemImg }" var="img">
-							<img class="carousel-item" style="width:700px; height:500px;"
+							<img class="carousel-item" style="width:550px; height:400px;"
 									src="<c:url value='/productImg/${img.imgName }'/>">
 									</c:forEach>
 							</div>

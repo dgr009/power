@@ -102,7 +102,7 @@
 			<c:forEach items="${r.list }" var="b"  varStatus="i">
 			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
 				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${i.count.intValue() }</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><a href="/palette/miniHome/${b.ownerId}/main"><img src="<c:url value="/resources/images/${b.homeImg }"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><a href="/palette/miniHome/${b.ownerId}/main"><img src="<c:url value="/homeimg/${b.homeImg }"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></a></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${b.ownerId}/main">${b.homeTitle }</a></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none;"><a href="/palette/miniHome/${b.ownerId}/main">${b.ownerId }</a></td>
 			</tr>
