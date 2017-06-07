@@ -3,11 +3,11 @@
 <div class="col-lg-12 col-md-12 col-sm-12" style="border-bottom: 1px solid #727cb6;">
 	<div class="navbar-collapse collapse" style="width: 1050px; margin-right: 110px; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402" >
-                                <li><a href="#" class="has-submenu" style="color:black; width: 100px; text-align: center; font-family: 'Nanum Gothic';">사이트 소개</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 100px; text-align: center; border-radius: 30px;">사이트 소개</a>
 
                                 </li>
 
-                                <li><a href="/palette/main/notice/list" class="has-submenu" style="color:black; width: 80px; text-align: center;">공지사항</a>
+                                <li><a href="/palette/main/notice/list" class="has-submenu" style="color:black; width: 80px; text-align: center; border-radius: 30px;">공지사항</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li><a href="#"></a></li> -->
 <!--                                         <li><a href="#">코트</a></li> -->
@@ -18,7 +18,7 @@
 <!--                                     </ul> -->
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">홈으로</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center; border-radius: 30px;">홈으로</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li> -->
 <!--                                             <a href="#" class="has-submenu" style="color:black;">악세사라<span class="sub-arrow">...</span></a> -->
@@ -33,7 +33,7 @@
 <!--                                     </ul> -->
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">이벤트</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center; border-radius: 30px;">이벤트</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li><a href="#">과일</a> -->
        
@@ -68,9 +68,9 @@
 <!--                                     </ul> -->
                                     </li>
                                     
- 									<li><a href="/palette/main/freeboard/list" class="has-submenu" style="color:black; width: 90px; text-align: center; margin-left:310px;">자유게시판</a>
+ 									<li><a href="/palette/main/freeboard/list" class="has-submenu" style="color:black; width: 90px; text-align: center; margin-left:310px; border-radius: 30px;">자유게시판</a>
                                		 </li>
-                               		 <li><a href="/palette/main/customerCenter/list" class="has-submenu" style="color:black; width: 60px; text-align: center; ">FAQ</a>
+                               		 <li><a href="/palette/main/customerCenter/list" class="has-submenu" style="color:black; width: 60px; text-align: center; border-radius: 30px;">FAQ</a>
                                		 </li>
                                		 </ul>
                         </div>

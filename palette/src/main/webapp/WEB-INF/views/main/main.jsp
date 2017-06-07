@@ -49,8 +49,8 @@
     #rank{
     border-top-right-radius:35px; 
     border-top-left-radius:35px;
-    border-bottom-right-radius:10px;
-    border-bottom-left-radius:10px; 
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:5px; 
     border: 2px solid #727cb6;
     
     width:280px; 
@@ -414,7 +414,7 @@
 <div class="col-lg-2 col-md-2 col-sm-2"></div>
 <div class="col-lg-10 col-md-10 col-sm-10" style="margin-left: 105px;"><br>
        <div class="carousel-intro">
-                    <div class="col-md-11"  style="padding-left: 0; margin-left: 15px; ">
+                    <div class="col-md-11"  style="padding-left: 0; padding :0; margin-left: 30px; ">
                         <div class="dividerHeading">
                             <h4>&nbsp;&nbsp;<span  class="highlight default com">인기 상품</span></h4>
                         </div>

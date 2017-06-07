@@ -48,7 +48,10 @@
 		text-decoration: underline;
 		cursor: pointer;
 	}
-  }
+	a:HOVER {
+	text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -119,7 +122,7 @@
 			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
 				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${index.count }</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;"><a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }"><img src="<c:url value="/resources/images/portfolio/${basket.itemImg }"/>" alt="" class="info" style="padding:5px; border-radius:15px; width: 70px; height: 54px;"></a></td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }">${basket.itemName}</a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${basket.ownerId }/productMain/${basket.itemNo.intValue() }" style="color:gray;">${basket.itemName}</a></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${basket.itemPrice.intValue()}<i class="fa fa-krw" style="color: #727cb6;"></i></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${basket.itemInven.intValue()}</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${basket.ownerId}</td>

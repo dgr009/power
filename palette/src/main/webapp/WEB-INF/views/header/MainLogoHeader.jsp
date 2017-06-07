@@ -45,7 +45,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="http://localhost:8087/palette/users/tradeList"><span style="font-weight: bold; color:#727cb6;">포인트 충전</span></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="font-weight: bold; color:#727cb6;">장바구니</span>
+         <a href="/palette/users/basketList"><span style="font-weight: bold; color:#727cb6;">장바구니</span></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style="font-weight: bold; color:#727cb6;">등급별 혜택</span>
 </div>

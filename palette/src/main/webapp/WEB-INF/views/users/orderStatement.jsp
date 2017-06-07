@@ -133,7 +133,7 @@
 			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
 				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${index.count }</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.orderDate }</td>
-				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${order.userId }/productMain/${order.itemNo }">${order.itemName }</a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${order.userId }/productMain/${order.itemNo }" style="color:gray;">${order.itemName }</a></td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.optionName}</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.orderSize.intValue()}</td>
 				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.orderPrice.intValue() }<i class="fa fa-krw" style="color: #727cb6;"></i></td>
