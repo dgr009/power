@@ -499,7 +499,7 @@
 			$.ajax({
 				url:"/api/miniHome/basket",
 				type:"post",
-				data : {"userId": $(this).data("userId"), "itemNo" : $("#itemNo").val() },
+				data : {"userId": '<%=user1.getUserId()%>',"itemNo": $("#itemNo").val()},
 				dataType: 'JSON',
 				complete:function(r){
 				if(r.responseText==1)

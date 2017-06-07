@@ -74,7 +74,7 @@ public class ProductController {
 		 return service.selectItemDetail(map);
 	}
 	// 회원 장바구니 추가
-	@RequestMapping(value = "/basket", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	@RequestMapping(value = "/basket", method=RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public String basketInsert(@RequestParam String userId, @RequestParam String itemNo) {
 	System.out.println(itemNo);
 		int item=Integer.parseInt(itemNo);

@@ -29,7 +29,7 @@ public class UserLoginFilter implements Filter {
     	whiteList.add("/palette/users/find");
     	whiteList.add("/palette/users/findPwd");
     	whiteList.add("/palette/users/close");
-    	whiteList.add("/palette/users/reverse/*");
+    	whiteList.add("/palette/users/reverse/**");
     }
 	public void destroy() {
 	}
@@ -41,6 +41,7 @@ public class UserLoginFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse)response;
 		HttpSession session = req.getSession();
 		String uri = req.getRequestURI();
+		System.out.println("필터걸림");
 		int a=uri.indexOf("/", 3);
 		String destination=uri.substring(a+1);
 		String go = uri;
