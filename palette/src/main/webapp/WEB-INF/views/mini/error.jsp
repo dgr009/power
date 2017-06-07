@@ -9,7 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
 	alert("로그인이 필요합니다")
-	var url = "http://localhost:8087/palette/users/login"; 
+	var url = "/palette/users/login"; 
 	$(location).attr('href',url);
 
 </script>

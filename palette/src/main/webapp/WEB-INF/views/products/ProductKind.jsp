@@ -93,7 +93,7 @@
                         <div class="item responsive">
                             <figure class="touching effect-bubba">
                             <!-- 상품 이미지 표시 -->
-                                <img style="width: 200	px; height: 250px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
+                                <img style="width: 200	px; height: 250px;" src="<c:url value='/productImg/${free.imgName }'/>" alt="" class="img-responsive">
 
                                 <div class="option">
                                     <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>

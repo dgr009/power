@@ -56,7 +56,7 @@
                                 <%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
                             </div>
                             <div class="flex_caption2 FromRight">
-                            	 <img src="<c:url value='http://localhost:8087/palette/homeimg/${kind.home.homeImg}'/>" style="width:100%;  min-width: 293px;max-width: 293px; min-height: 320px;max-height: 320px; vertical-align: middle;"/>
+                            	 <img src="<c:url value='/homeimg/${kind.home.homeImg}'/>" style="width:100%;  min-width: 293px;max-width: 293px; min-height: 320px;max-height: 320px; vertical-align: middle;"/>
                             </div>
                         </div>
                     </li>
@@ -93,7 +93,7 @@
                            <c:forEach items="${item.recent}" var="free">
                          <li class="col-sm-3 col-md-3 col-lg-3">
                             <figure class="touching effect-bubba">
-                                <img style="width: 200	px; height: 150px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
+                                <img style="width: 200	px; height: 150px;" src="<c:url value='/productImg/${free.imgName }'/>" alt="" class="img-responsive">
                                 <div class="option">
                                     <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
                                 </div>
@@ -134,7 +134,7 @@
                       <c:forEach items="${item.inven}" var="free">
                         <li class="col-sm-3 col-md-3 col-lg-3">
                             <figure class="touching effect-bubba">
-                                <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" class="img-responsive" alt=""  style="width: 200	px; height: 150px;">
+                                <img src="<c:url value='/productImg/${free.imgName }'/>" class="img-responsive" alt=""  style="width: 200	px; height: 150px;">
 
                                 <div class="option">
                                  <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
