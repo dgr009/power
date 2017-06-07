@@ -20,14 +20,14 @@ public class AdminController {
 	private AdminService service;
 	
 	// 전체회원목록조회
-		 @RequestMapping(value="/all", method=RequestMethod.GET)
+		 @RequestMapping(value="/all", method=RequestMethod.GET, produces = "text/html;charset=utf-8")
 		    public String totalUser(@RequestParam(defaultValue = "1") int pageNo){
 			 Map<String,Object> map = service.totalUser(pageNo);
 			 return new Gson().toJson(map);
 		    }
 		 
 	// 홈페이지 개설회원 조회
-		@RequestMapping(value="/openUser", method = RequestMethod.GET)
+		@RequestMapping(value="/openUser", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 			public String openPageUser(@RequestParam(defaultValue = "1") int pageNo) {
 				Map<String, Object> map = service.FindOpenPageUser(pageNo);
 				return new Gson().toJson(map);
@@ -68,19 +68,19 @@ public class AdminController {
 		return new Gson().toJson(user);
 	}
 	//회원삭제	
-	@RequestMapping(value="/DeleteUser", method=RequestMethod.DELETE)
+	@RequestMapping(value="/DeleteUser", method=RequestMethod.DELETE, produces = "text/html;charset=utf-8")
 	public String userDelete(@RequestParam String userId) {
 		service.DeleteUser(userId);
 		return null;
 	}
 	//회원정보수정 
-	@RequestMapping(value = "/UpdateUser", method = RequestMethod.PUT)
+	@RequestMapping(value = "/UpdateUser", method = RequestMethod.PUT, produces = "text/html;charset=utf-8")
 	public String usersUpdate(@RequestBody Users user) {
 		service.UpdateUser(user);
 		return null;
 	} 
 	//홈페이지삭제
-	@RequestMapping(value="/DeletePage", method=RequestMethod.POST)
+	@RequestMapping(value="/DeletePage", method=RequestMethod.POST, produces = "text/html;charset=utf-8")
 	public String pageDelete(@RequestParam String userId) {
 		service.DeleteUserPage(userId);
 		return new Gson().toJson(userId);
