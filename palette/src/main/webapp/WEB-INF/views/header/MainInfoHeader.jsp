@@ -3,6 +3,7 @@
 <div class="col-xs-12 col-xs-12 col-xs-12"  style="border-bottom: 1px solid silver;"><br>
 <div class="col-xs-1 col-xs-1 col-xs-1" ></div>
 <div class="col-xs-10 col-xs-10 col-xs-10" >
+>
 	<a href="/palette/main"><img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:150px; height: 40px; margin-top: 3px;"></a>
 	<div class="navbar-collapse collapse" style="width: 700px; display: inline-block; ">
                             <ul class="nav navbar-nav sm" data-smartmenus-id="1495757258893402"  style=" margin-left: 120px;">
