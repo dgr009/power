@@ -312,12 +312,17 @@ input[type="button"] {
 
               						  </table>
               						  
-               				 <p>댓글 목록</p>
-               				 
-               				 <!-- 댓글 -->
+               				 	<p>댓글 작성</p>
+             						 <div class="col-lg-11 col-md-11 col-sm-11">
+             						 <input type="hidden" value='<%=userMini.getUserId() %>'name='freeRepleName' id="freeRepleName">
+             						<textarea rows="3" cols="" id="freeRepleContent" name="freeRepleContent"></textarea>
+             						</div>
+										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
+										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
+               				 <!-- 댓글 --><br><br>
                				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
 				                    <c:forEach items="${mini.reple }" var="reple">
-				                    <thead>
+				                    <thead><br>
 				                    <tr>
 				                    	<!-- 작성자 -->
 				                    	<th><span style="font-weight: normal;">ID : </span>${reple.freeRepleName }</th>
@@ -361,15 +366,8 @@ input[type="button"] {
               						  </table>
               						  
               						<!-- 댓글 -->
-             						<p>댓글 작성</p>
-             						 <div class="col-lg-11 col-md-11 col-sm-11">
-             						 <input type="hidden" value='<%=userMini.getUserId() %>'name='freeRepleName' id="freeRepleName">
-             						<textarea rows="3" cols="" id="freeRepleContent" name="freeRepleContent"></textarea>
-             						</div>
-										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
-										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
-									<br><br>
-									<br><br>
+             					
+									
 								
 							
 							

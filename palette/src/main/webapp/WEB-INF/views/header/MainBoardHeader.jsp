@@ -70,7 +70,7 @@
                                     
  									<li><a href="/palette/main/freeboard/list" class="has-submenu" style="color:black; width: 90px; text-align: center; margin-left:310px;">자유게시판</a>
                                		 </li>
-                               		 <li><a href="/palette/main/customerCenter/list" class="has-submenu" style="color:black; width: 90px; text-align: center; ">FAQ</a>
+                               		 <li><a href="/palette/main/customerCenter/list" class="has-submenu" style="color:black; width: 60px; text-align: center; ">FAQ</a>
                                		 </li>
                                		 </ul>
                         </div>

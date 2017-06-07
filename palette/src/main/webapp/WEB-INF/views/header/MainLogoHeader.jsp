@@ -32,7 +32,7 @@
 
 <div class="col-lg-6 col-md-6 col-sm-6">
 	 <div class="ab" style="padding-left: 55px; margin-top: 23px; ">
-	<a href="#" style="color: #727cb6;"><i class="fa fa-money fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
+	<a href="http://localhost:8087/palette/users/orderList" style="color: #727cb6;"><i class="fa fa-money fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="/palette/users/tradeList" style="color: #727cb6;"><i class="fa fa-paypal fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -41,9 +41,9 @@
         <a href="#" style="color: #727cb6;"><i class="fa fa-sitemap fa-3x" aria-hidden="true"></i> <span class="sr-only">Example of </span></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="font-weight: bold; color:#727cb6;">상품권 등록</span>
+        <a href="http://localhost:8087/palette/users/orderList"><span style="font-weight: bold; color:#727cb6;">상품권 등록</span></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style="font-weight: bold; color:#727cb6;">포인트 충전</span>
+        <a href="http://localhost:8087/palette/users/tradeList"><span style="font-weight: bold; color:#727cb6;">포인트 충전</span></a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span style="font-weight: bold; color:#727cb6;">장바구니</span>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

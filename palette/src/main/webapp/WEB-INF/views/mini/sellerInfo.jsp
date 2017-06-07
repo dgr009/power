@@ -146,29 +146,31 @@ input[type="button"] {
 		
 		</section>
 			
-		<section class="promo_box">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9 col-md-9 col-lg-9">
-						<div class="promo_content">
-							<h3>저희 홈페이지에 오신것을 환영합니다 ! </h3>
-							<p>가나다라마바사아 아자차카타파하 </p>
-						</div>
-					</div>
-					<div class="col-sm-3 col-md-3 col-lg-3">
-                        <div class="pb_action">
-                            <a class="btn btn-lg btn-default" href="#fakelink">
-                                <i class="fa fa-shopping-cart"></i>
-                                상품 보러가기
-                            </a>
-                        </div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="footer_bottom">
-		<div class="container">
-			<div class="row">
+    <!-- footer -->
+    <br><br><br><br>
+    <section class="promo_box wow bounceInUp" data-wow-offset="50">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-9 col-lg-9">
+                    <div class="promo_content">
+                        <h3>Edge is awesome responsive template, with clean design.</h3>
+                        <p>Lorem ipsum dolor sit amet, cons adipiscing elit. Aenean commodo ligula eget dolor. </p>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <div class="pb_action">
+                        <a class="btn btn-lg btn-default" href="#fakelink">
+                            <i class="fa fa-shopping-cart"></i>
+                            Download Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="footer_bottom">
+    <div class="container">
+        <div class="row">
             <div class="col-sm-6">
                 <p class="copyright">&copy; Copyright 2015 Edge | Powered by  <a href="http://www.jqueryrain.com/">jQuery Rain</a></p>
             </div>
@@ -185,8 +187,8 @@ input[type="button"] {
                 </div>
             </div>
         </div>
-		</div>
-	</section>
+    </div>
+</section>
 
 	
 	

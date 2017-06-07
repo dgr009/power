@@ -299,7 +299,7 @@
 <!-- 상품 최신순으로 가져오기 -->
 <div class="col-lg-7 col-md-7 col-sm-7">
        <div class="carousel-intro">
-                    <div class="col-md-11"  style="padding-left: 0; margin-left: 15px; margin-top: 18px;">
+                    <div class="col-md-11"  style="padding-left: 0; margin-left: 18px; margin-top: 15px;">
                         <div class="dividerHeading">
                             <h4>&nbsp;&nbsp;<span class="highlight default com">최신 상품</span></h4>
                         </div>
@@ -318,7 +318,7 @@
                         <c:forEach items="${list.recent1 }" var="recent1"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
                         	<a href="/palette/miniHome/${recent1.userId }/productMain/${recent1.itemNo.intValue()}">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
+                            <figure class="touching effect-bubba" style="border-radius: 5px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
                             <img src="<c:url value="/productImg/${recent1.imgName }"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;" class="effect"/>
 							
                             </figure>
@@ -352,7 +352,7 @@
                         <c:forEach items="${list.recent2 }" var="recent2"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 155px;">
                             <a href="/palette/miniHome/${recent2.userId }/productMain/${recent2.itemNo.intValue()}">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
+                            <figure class="touching effect-bubba" style="border-radius: 5px; border: 1px dashed #727cb6; width: 128px; height: 96px;">
                             <img src="<c:url value="/productImg/${recent2.imgName }"/>"style="width:100%; height:auto; max-width: 128px; max-height: 96px; vertical-align: middle;"/>
 
                             </figure>
@@ -389,7 +389,7 @@
                          <c:forEach items="${list.inven }" var="inven"  varStatus="index">
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 315px;">
                             <a href="/palette/miniHome/${inven.userId }/productMain/${inven.itemNo.intValue()}">
-                            <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
+                            <figure class="touching effect-bubba" style="border-radius: 5px; border: 1px dashed #727cb6;">
                             <img src="<c:url value="/productImg/${inven.imgName }"/>" style="width:100%;  max-width: 288px; min-width:288px; min-height:217px; max-height: 217px; vertical-align: middle;"/>
 
                               
@@ -434,7 +434,7 @@
                         <li class="col-sm-2 col-md-2 col-lg-2" style="padding-left: 15px; margin-left: 7px; width: 475px;">
                           
 							<a href="/palette/miniHome/${score.userId }/productMain/${score.itemNo.intValue()}">	
-							 <figure class="touching effect-bubba" style="border-radius: 10px; border: 1px dashed #727cb6;">
+							 <figure class="touching effect-bubba" style="border-radius: 5px; border: 1px dashed #727cb6;">
                              <img src="<c:url value="/productImg/${score.imgName }"/>" style="width:100%;  min-width: 448px;max-width: 448px; min-height: 338px;max-height: 338px; vertical-align: middle;"/>
                             </figure>
                             </a>

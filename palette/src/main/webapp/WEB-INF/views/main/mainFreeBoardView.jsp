@@ -326,9 +326,19 @@ input[type="button"] {
               						  </table>
               						  
                	
-               				 
+               				 <%if(session.getAttribute("user")!=null){ %>
+									<% Users mainUser = (Users) session.getAttribute("user");%>
+             						<p>댓글 작성</p>
+             						 <div class="col-lg-11 col-md-11 col-sm-11">
+             						 <input type="hidden" value='<%=mainUser.getUserId() %>'name='mainFreeRepleName' id="mainFreeRepleName">
+             						<textarea rows="3" cols="" id="mainFreeRepleContent" name="mainFreeRepleContent"></textarea>
+             						</div>
+										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
+										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
+										<%} %>
                				 <!-- 댓글 -->
-               				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
+               				 
+               				 <table id="comment" class="table table-striped table-hover" style="text-align: center; margin-top: 35px;" >
 				                    <c:forEach items="${main.reple }" var="reple">
 				                    <thead>
 				                    <tr>
@@ -378,26 +388,6 @@ input[type="button"] {
               						  </table>
               						  
               						<!-- 댓글 -->
-              						<%if(session.getAttribute("user")!=null){ %>
-									<% Users mainUser = (Users) session.getAttribute("user");%>
-             						<p>댓글 작성</p>
-             						 <div class="col-lg-11 col-md-11 col-sm-11">
-             						 <input type="hidden" value='<%=mainUser.getUserId() %>'name='mainFreeRepleName' id="mainFreeRepleName">
-             						<textarea rows="3" cols="" id="mainFreeRepleContent" name="mainFreeRepleContent"></textarea>
-             						</div>
-										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
-										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
-										<%} %>
-									<br><br>
-									<br><br>
-								
-							
-							
-								
-							
-						
-                            
-							
 									
 							</div>
 							

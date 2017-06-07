@@ -87,8 +87,6 @@ a:VISITED {
 	}
 	else self.name = ''; 
 	
-	
-	
 </script>
 </head>
 <body>
@@ -126,11 +124,15 @@ a:VISITED {
 								<td style="text-align: left; ">
 									<a href="/palette/main/freeboard/view/${main.mainArticleNo.intValue()}" id="under">
 										${main.mainArticleTitle }
+										
+										
 										<c:if test="${main.mainFreeRepleCnt.intValue()>0 }">
 										<span id="rc">&nbsp;&nbsp;(
 											<span>${main.mainArticleRepleCnt.intValue() }</span>&nbsp;)
 										</span>
 										</c:if>
+										
+										
 									</a>
 								</td>
 								<td>
