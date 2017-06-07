@@ -97,56 +97,64 @@
 					</div>
 
 
-					<div class="col-lg-4 col-md-4 col-sm-4">
+					<div class="col-lg-4 col-md-4 col-sm-4" style="bottom:15px;">
 						<div class="project_description">
 							<div class="widget_title">
 								<h2 id="productN">
 									<span></span>
 							</div>
-							<h1>상품 이름:${result.item.itemName}</h1>
-							<p>상품 내용</p>
-							<p style="height: 150px;" id="productC">${result.item.itemContent}</p>
-							<input type="hidden"  id="itemNo" name="itemNo" value="${result.item.itemNo.intValue()}">
-							<p>상품 가격<span></span> :${result.item.itemPrice.intValue()}원
-							</p>
-							<input type="hidden" name="itemPrice" value="${result.item.itemPrice.intValue()}">
-							<input type="hidden" name="itemName" value="${result.item.itemName}">
-							<p>상품 개수: <select name="itemSize">
-							<option value=1>1</option>
-							<option value=2>2</option>
-							<option value=3>3</option>
-							<option value=4>4</option>
-							<option value=5>5</option>
-							</select>
-							</p>
-							<p>상품 옵션: <select name="itemOption">
+							
+							
+						<div class="project_description">
+							<div class="widget_title">
+								<h4 style="margin-bottom: 0;"><span style="color:gray; font-size: 1.4em;">${result.item.itemName}</span></h4><br>
+							</div>
+
+							<p style="height: 75px; margin:0;">${result.item.itemContent}</p>
+						</div>
+						
+						<div class="project_details">
+							<div class="widget_title">
+								<h4 style="margin-bottom: 0; margin-top: 0;"><span>Product Details</span></h4>
+							</div>
+							<ul class="details">
+								<li><span>가격 :</span>${result.item.itemPrice.intValue()}</li>
+								<li><span>수량 :</span> <select name="itemSize">
+	 							<option value=1>1</option>
+	 							<option value=2>2</option>
+								<option value=3>3</option> 
+	 							<option value=4>4</option>
+								<option value=5>5</option>
+							</select></li>
+							<li><span>옵션 :</span><select name="itemOption">
 							<c:forEach items="${result.itemOption}"   var="free">
 							<option value="${free.optionName}">${free.optionName}</option>
-							<</c:forEach></select></p>
-							<p>
-								등록일<span></span> :${result.item.itemDate}</p>
-
-							<p>
-								상품종류<span></span> :${result.item.smallKind}</p>
-							<p>
-								남은수량<span></span> :<input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">${result.item.itemInven.intValue()}개</p>
-							<ul class="progress-skill-bar mrg-0">
+							<</c:forEach></select></li>
+								<li><span>등록일 :</span> ${result.item.itemDate}</li>
+								<li><span>상품종류 :</span>${result.item.smallKind}</li>
+								<li><span>남은수량 :</span><input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">${result.item.itemInven.intValue()}개</li>
+								<input type="hidden" name="itemInven" value="${result.item.itemInven.intValue()}">
+			                     <input type="hidden" name="itemPrice" value="${result.item.itemPrice.intValue()}">
+			                     <input type="hidden" name="itemName" value="${result.item.itemName}">
+						</div>
+						
 
 							
 									
-									</div> <br>
-									<p></p> <!-- 즐겨찾기 주문하기 상품평가 상세보기 --> <br>
+									</div>
+									<p></p> <!-- 즐겨찾기 주문하기 상품평가 상세보기 -->
 									<div>
 										<div>
 										<%if(session.getAttribute("user")!=null){ %>
+										 &nbsp; &nbsp; &nbsp; &nbsp;
 											<button type="button"
-												 style="color: white;"
-												class="btn btn-default btn-lg" id="basket" style=width:30px; data-userId="<%=user1.getUserId() %>" >장바구니로</button> 
-											<%} %>
+												 style="color: white; font-size: 1.1em;"
+												class="btn btn-default btn-lg" id="basket" data-userId="<%=user1.getUserId() %>" >장바구니로</button> 
+											<%} %>&nbsp;&nbsp;&nbsp;
 												<input
 												type="submit"
 												style="color: white;" class="btn btn-default btn-lg"
-												value="주문하기"> <a
+												value="주문하기">&nbsp;&nbsp;&nbsp;&nbsp; <a
 												href="/palette/miniHome/${userId}/productInquiryList/${result.item.itemNo.intValue()}"><input
 												type="button" 
 												style="color: white;" class="btn btn-default btn-lg"
@@ -162,46 +170,43 @@
 </form>
 	<div>
 	<!-- 리뷰를 넣어보자 --> 
-	<h1>상품리뷰</h1>
-					<table class="table table-striped table-hover" style="text-align: center;border: double;color:#9F81F7;">
-                    <div style="font: ">
-                    <thead style="font: bold;color: black;">
-                    <tr>
-						<th style="text-align: center;  width: 120px;">번호</th>
-						<th style="text-align: center;  width: 120px;">점수</th>
-						<th style="text-align: center;">내용</th>	<!-- 댓글수 -->	
-						<th style="text-align: center;  width: 120px;">작성자</th>		
-						<th style="text-align: center; width: 150px;">작성일</th>
-					</tr>
-                    </thead>
-                    
-                    <tbody id="review" style="font:lighter;color: black;">
-                    <c:forEach items="${result.review}" var="free">
-							<tr>			
-								<td>
-								${free.reviewNo.intValue()}
-								</td>
-								<td>
-								${free.reviewScore.intValue()}점
-								</td>
-								<td style="text-align: left; ">
-								${free.reviewContent}
-								</td>
-								<td>
-								 ${free.userId}
-								</td>
-								<td>
-								${free.reviewDate}
-								</td>
-							</tr>
-								
-								</c:forEach>
-								</tbody>
-								</div>
-                </table>
-	
+	<div class="widget_title">
+			<h4 style="margin:0; color:gray; font-size: 1.7em;">상품리뷰</h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			 <input type="button" onClick="location.href='http://localhost:8087/palette/users/orderList'" value="리뷰글 작성" data-loading-text="Loading..." id="orderBtn" class="btn btn-default btn-lg" onclick="request.getHeader("referer")" style="color:white; font-size: 1.1em;">
 	</div>
+	<br>
 
+				
+            <table style="width: 1140px;"> 
+			<thead>
+			<tr style="background: #fafafa;  border: 1px solid #e6e6e6; border-left: none; border-right: none; border-top: 2px solid silver;">
+				<th style="text-align: center; width: 80px;">번호</th>
+				<th style="text-align: center; width: 170px;">점수</th>
+				<th style="text-align: center; width: 230px;">내용</th>
+				<th style="text-align: center; width: 130px;">작성자</th>
+				<th style="text-align: center; width: 150px;">작성일</th>
+			</tr>
+		</thead>
+		<tbody id="review"  style="border: 1px solid #e6e6e6; border-left: none;  border-right: none;">
+			 <c:forEach items="${result.review}" var="free">
+				<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+					<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${free.reviewNo.intValue()}</td>
+					<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${free.reviewScore.intValue()}점</td>
+					<td style="text-align: center; border: 1px solid #e6e6e6; ">${free.reviewContent}</td>
+					<td style="text-align: center; border: 1px solid #e6e6e6; "> ${free.userId}</td>
+					<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center; border-right: none; ">${free.reviewDate}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<br><br>
+	</div>
+<br><br><br>
+<br><br>
 
 
 
