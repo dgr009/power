@@ -9,6 +9,7 @@ public class Users {
 	public Users(String msg) {
 		this.userId = msg;
 	}
+	private int rnum;
 	private String userId;
 	private String userPwd;
 	private String userName;
@@ -20,6 +21,6 @@ public class Users {
 	private String userIsHome;
 	private String enabled;
 	private String userGrade;
-	
+	private String userActiveHome;
 	
 }

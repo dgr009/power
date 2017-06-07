@@ -99,7 +99,7 @@ a:VISITED {
                     <thead>
                     <tr>
 						<th style="text-align: center;  width: 120px;">번호</th>
-						<th style="text-align: center;">적용 시작일<th>	
+						<th style="text-align: center; width: 120px;" >적용 시작일</th>	
 						<th style="text-align: center;  width: 120px;">종료일</th>		
 						<th style="text-align: center; width: 150px;">아이디</th>
 					</tr>

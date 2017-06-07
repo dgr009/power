@@ -1,27 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="api.dao.AdminDao">
+
+	<!-- 전체회원목록조회 -->
+	<select id="totalUser" parameterType="hashmap" resultType="Users">
+	<![CDATA[
+select * from
+(select rownum rnum,b.* from 
+(select *
+from users) b
+where rownum<=#{end}) where rnum>=#{start}
+	]]>
+	</select>
+	
+	<!-- 홈페이지 개설회원 조회 -->
+	<select id="findPageUser" parameterType="hashmap" resultType="Users">
+	<![CDATA[
+	select * from
+	(select rownum rnum,b.* from 
+		(select * from users where user_ishome='1') b
+	where rownum<=#{end}) where rnum>=#{start}
+	]]>
+	</select>
+	
 	<!--  회원 이름별 조회 -->
 	<select id="findUserName" parameterType="String" resultType="Users" >
-		select user_id, user_name from users where user_name =#{userName}
+		select * from users where user_id =#{userId}
 	</select>
-	<!-- 홈페이지 개설회원 조회 -->
-	<select id="findPageUser" parameterType="String" resultType="Users">
-	<![CDATA[
-		select user_id, user_name, user_ishome from users where user_ishome='1'
-	]]>
+	<!-- 유저숫자보기 -->
+	<select id="userCnt" resultType="int">
+	select count(*) from users
 	</select>
-	<!-- 전체회원목록조회 -->
-	<select id="totalUser" resultType="HashMap">
-	<![CDATA[
-		select user_id, user_name from users
-	]]>
+	<!-- 홈페이지 개설 유저 숫자보기 -->
+	<select id="userHomeCnt" resultType="int">
+		select count(*) from users where user_ishome='1'
 	</select>
-
 	<!-- 회원상세조회 -->
-	<select id="userDetail" parameterType="String" resultType="HashMap">
+	<select id="userDetail" parameterType="String" resultType="Users">
 	<![CDATA[
-		select user_id, user_name, user_address, user_post, user_mail, user_phone, user_point, user_ishome from users where user_id=#{userId}
+		select * from users where user_id=#{userId}
 	]]>
 	</select>
 

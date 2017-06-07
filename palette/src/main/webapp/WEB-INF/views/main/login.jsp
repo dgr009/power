@@ -79,16 +79,16 @@
 </script>
 </head>
 <body>
-	<div class="col-xs-12 col-xs-12 col-xs-12" style="padding: 0; background: #727cb6; height: 15px;"></div>
+	<%@include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
 	<br><br><br><br>
 	<div class="col-xs-2 col-xs-2 col-xs-2"></div>
 	<div class="col-xs-8 col-xs-8 col-xs-8" style="text-align: center;">
-	 <form  action="/palette/users/login"  novalidate="novalidate" method="post">
-		<img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:230px; height: 60px;"><br><br><br><br>
+	 <form  action="/palette/login"  novalidate="novalidate" method="post">
+		<a href="/palette/main"><img alt="" src="<c:url value="/resources/images/로고4.png"/>" style="width:230px; height: 60px;"></a><br><br><br><br>
 		<input type="text" name="userId" style="height: 50px; width: 370px; padding-left: 15px;" placeholder="아이디"><br>
 		<input type="password" name="userPwd" style="padding-left: 15px; height: 50px; margin-left:5px;  width: 370px;border-right:  1px solid gray; border-left:  1px solid gray; border-top:  0px solid gray; border-bottom:  1px solid gray;"placeholder="비밀번호">
 		<br><br>
-			<p style="text-align: right;  color:gray; font-size: 0.85em; width:230px; margin-left :45%; height: 15px;"><span id="d1"><a href="/palette/users/findIdAndPwd">아이디/비밀번호 찾기</a></span><sapn class="bar">ㅣ</sapn> <span id="d3"><a href="#">회원가입</a></span>&nbsp;&nbsp;</p>
+			<p style="text-align: right;  color:gray; font-size: 0.85em; width:230px; margin-left :45%; height: 15px;"><span id="d1"><a href="/palette/users/findIdAndPwd">아이디/비밀번호 찾기</a></span><sapn class="bar">ㅣ</sapn> <span id="d3"><a href="#" data-toggle="modal" data-target="#registerModal">회원가입</a></span>&nbsp;&nbsp;</p>
 				<br>
 			
 				<button type="submit" id="btnLogin" title="로그인 " class="btn_login03"style="text-align: center; margin-left: 5px;"><span id="login">로그인</span></button>

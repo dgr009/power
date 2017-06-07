@@ -168,22 +168,8 @@ input[type="button"] {
 <body>
 <!--Start Header-->
 	<header id="header">
-		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					<div class="col-lg-3 col-sm-3 ">
-						<div id="logo">
-							<h1>
-								    <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-							</h1>
-						</div>
-					</div>
 					
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-                 <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 		<!--End Header-->
 		</header>
@@ -201,16 +187,16 @@ input[type="button"] {
             </div>
              </section>
              <br><br>
-                    <div class="col-sm-6 col-lg-3" style="margin-left: 150px;">
+                     <div class="col-sm-6 col-md-6 col-lg-6">
                         <div class="serviceBox_5">
                             <div class="service-image">
-                                <img src="<c:url value="/resources/images/사암만원.png"/>">
+                                <img src="<c:url value="/resources/images/사암만원.png"/>" width="400" height="300">
                             </div>
                             <div class="service-content bg2" id="read1">
                                 <div class="internal">
                                     <div class="item_content">
                                         <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
+                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>" >
                                         </div>
                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;" id="price1">30.000원</sapn><br>
                                         3개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
@@ -220,46 +206,7 @@ input[type="button"] {
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="serviceBox_5">
-                            <div class="service-image">
-                                <img src="<c:url value="/resources/images/오오만원.png"/>">
-                            </div>
-                            <div class="service-content bg3 "id="read2" >
-                                <div class="internal">
-                                    <div class="item_content">
-                                        <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
-                                        </div>
-                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">50.000원</sapn><br>
-                                        6개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
-                                        <a class="read" href="">구입하기 !</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                      <div class="col-sm-6 col-lg-3">
-                        <div class="serviceBox_5">
-                            <div class="service-image">
-                                <img src="<c:url value="/resources/images/시입마너언.png"/>">
-                            </div>
-                            <div class="service-content "id="read3">
-                                <div class="internal">
-                                    <div class="item_content">
-                                        <div class="service-icon">
-                                            <img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>"><img src="<c:url value="/resources/images/services/service-3-icon2.png"/>">
-                                        </div>
-                                        <h3 ><sapn style="font-size: 1.3em; text-decoration:underline;">100.000원</sapn><br>
-                                        12개월 이용권<sapn style="font-size: 0.8em;"> + 이벤트</sapn></h3>
-                                        <a class="read" href="">구입하기 !</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
+               
                     <div class="col-sm-12 col-md-12 col-lg-12"><br><br>
                     	<div class="col-sm-1 col-md-1 col-lg-1"></div>
                     	<div class="col-sm-10 col-md-10 col-lg-10">

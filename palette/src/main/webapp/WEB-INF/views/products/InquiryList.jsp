@@ -98,16 +98,7 @@ a:VISITED {
 	<header id="header">
 		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-				<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>
-					<!-- Logo / Mobile Menu -->
-					
+	
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->

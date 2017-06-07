@@ -61,15 +61,7 @@ $(function(){
  <!--end Header-->   
  
  <!--메뉴바 시작-->
-    <div id="menu-bar">
-        <div class="container">
-            <div class="row">
-                <!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>                    <!-- =====================메인 메뉴(우측상단) 시작============================= -->
+                    <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                     <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
 <!--End Header-->
@@ -77,7 +69,7 @@ $(function(){
 	<!--start wrapper-->
 	
 		
-		 <form id="orderForm" action="/palette/miniHome/${userId}/productOrder/${itemNo}" method="POST" >
+		 <form id="orderForm" action="/palette/miniHome/productOrder/${userId}/${itemNo}" method="POST" >
                 <section class="wrapper">
         <section class="page_head">
             <div class="container">

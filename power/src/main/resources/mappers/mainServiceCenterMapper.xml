@@ -42,5 +42,48 @@
 		 faq_title=#{faqTitle},faq_content=#{faqContent}
 		 where faq_no=#{faqNo}
 	</update>
+	<!-- 공지사항 게시판 전체 글 개수 출력 -->
+	<select id="noticeListCnt"  resultType="int">
+			select count(*)from main_notice_board
+	</select>
+ 	
+ 	<!--공지사항 게시판 리스트목록 얻어 오기(페이징) -->
+	<select id="noticeList" parameterType="hashmap" resultType="MainNotice">
+	<![CDATA[
+		 select * from  
+			(select rownum rnum, b1.* from
+				(select * from main_notice_board order by main_notice_article_no desc) b1
+			where rownum <=#{end}) b2
+		where rnum>=#{start}
+		]]>
+	</select>
+	<!--공지사항 게시판 생성하기-->
+	<insert id="noticeRegister" parameterType="MainNotice">
+		<selectKey keyProperty="mainNoticeArticleNo" resultType="int" order="BEFORE">
+	    	select main_notice_board_seq.nextval from dual
+	  	</selectKey>
+		insert into main_notice_board values(#{mainNoticeArticleNo},#{mainNoticeArticleTitle},#{mainNoticeArticleContent},sysdate,0)
+	</insert>
+	
+	<!--공지사항 게시판 상세보기 -->
+	<select id="noticeView" parameterType="int" resultType="MainNotice">
+	select * from main_notice_board where main_notice_article_no=#{mainNoticeArticleNo}
+	</select>
+ 	
+ 	<!--공지사항 게시판 삭제 -->
+	<delete id="noticeDelete" parameterType="int">
+	delete from main_notice_board where main_notice_article_no=#{mainNoticeArticleNo}
+	</delete>
+	
+	<!--공지사항 게시판 수정하기-->
+	<update id="noticeUpdate" parameterType="MainNotice">
+		update main_notice_board set 
+		 main_notice_article_title=#{mainNoticeArticleTitle},main_notice_article_content=#{mainNoticeArticleContent}
+		 where main_notice_article_no=#{mainNoticeArticleNo}
+	</update>
+	<!-- 공지사항 조회수증가 -->
+	<update id="noticeViewCnt" parameterType="int">
+	update main_notice_board set main_notice_article_hits=main_notice_article_hits+1 where main_notice_article_no=#{mainNoticeArticleNo} 
+	</update>
 
 </mapper>

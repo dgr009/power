@@ -53,17 +53,7 @@
 	<header id="header">
  <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 		<!--end Header-->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>					<%if(session.getAttribute("user")!=null){ %>
-					<%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
-					<%} %>
+		
 					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
   <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
 	<!-- =====================메인 메뉴(우측상단) 끝============================= -->
@@ -90,7 +80,7 @@
 				</div>
 			</div>
 		</section>
-<form action="/palette/miniHome/${userId}/productOrder/${result.item.itemNo.intValue()}" method="get">
+<form action="/palette/miniHome/productOrder/${userId}/${result.item.itemNo.intValue()}" method="get">
 		<section class="content portfolio_single">
 			<div class="container">
 				<div class="row sub_content">

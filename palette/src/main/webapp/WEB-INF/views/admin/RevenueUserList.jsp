@@ -91,6 +91,7 @@
 <body>
 	<!--Start Header-->
 	<header id="header">
+		<%@include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
 </header>
 	<!-- End Header -->
 		<div id="menu-bar">
@@ -164,13 +165,13 @@
         </div>
                  <!--페이징 시작 -->
                 <div class="col-sm-12 text-center"  id="pagination" >
-                	<c:if test="${r.pagination.prev>0 }"><a href="/palette/users/bookmarkList?pageNo=${r.pagination.prev}&startDate=${r.sDate}&endDate=${r.eDate}">이전으로</a></c:if>
+                	<c:if test="${r.pagination.prev>0 }"><a href="/palette/admin/revenueUserList?pageNo=${i}&startDate=${r.sDate}&endDate=${r.eDate}&userId=${r.ownerId}">이전으로</a></c:if>
 			
 			<c:forEach var="i" begin="${r.pagination.startPage}" end="${r.pagination.endPage}">
-				<a href="/palette/admin/revenueList?pageNo=${i}&startDate=${r.sDate}&endDate=${r.eDate}">${i} </a>
+				<a href="/palette/admin/revenueUserList?pageNo=${i}&startDate=${r.sDate}&endDate=${r.eDate}&userId=${r.ownerId}">${i} </a>
 			</c:forEach>
 			
-		<c:if test="${r.pagination.next>0 }"><a href="/palette/admin/revenueList?pageNo=${r.pagination.next}&startDate=${r.sDate}&endDate=${r.eDate}">다음으로</a></c:if>
+		<c:if test="${r.pagination.next>0 }"><a href="/palette/admin/revenueUserList?pageNo=${r.pagination.next}&startDate=${r.sDate}&endDate=${r.eDate}&userId=${r.ownerId}">다음으로</a></c:if>
                 
                 </div>
             </div> <!--페이징 끝 -->

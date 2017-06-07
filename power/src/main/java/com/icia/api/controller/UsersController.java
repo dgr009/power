@@ -166,7 +166,7 @@ public class UsersController {
 
 	}
 
-	// 회원 토큰으로 정보 얻기
+	// 회원 토큰으로 홈이미지 얻기
 		@RequestMapping(value = "/homeImg", method = RequestMethod.GET, produces = "text/html;charset=utf-8")
 		public String getHomeImgByToken(@RequestHeader("token") String token) {
 			// 500오류 (406 not acceptable이 발생하면 @RestController가 Users를 변환못하는 오류)
@@ -286,9 +286,8 @@ public class UsersController {
 	}
 
 	// 회원 장바구니 취소하기
-	@RequestMapping(value = "/basketDelete", method = RequestMethod.DELETE, produces = "text/html;charset=utf-8")
-	public ResponseEntity<String> basketDelete(@RequestHeader("token") String token, @RequestParam int itemNo) {
-		String userId = service.getUserIdByToken(token);
+	@RequestMapping(value = "/basketDelete", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+	public ResponseEntity<String> basketDelete(@RequestParam String userId, @RequestParam int itemNo) {
 		int result = service.userBasketDelete(userId, itemNo);
 		if (result == 1)
 			return new ResponseEntity<String>("수정 성공", HttpStatus.OK);

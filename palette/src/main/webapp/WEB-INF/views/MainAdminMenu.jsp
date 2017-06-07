@@ -13,12 +13,11 @@
 						
 								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="#" class="btn btn-block btn-default">회원 조회</a>
+									<a href="/palette/admin/all" class="btn btn-block btn-default">전체회원 조회</a>
 								</div>
 									<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="#" class="btn btn-block btn-default">홈페이지 조회</a>
+									<a href="/palette/admin/openPage" class="btn btn-block btn-default">홈페이지 개설회원 조회</a>
 								</div>
-								
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/admin/revenueList" class="btn btn-block btn-default">전체매출내역</a>
 								</div>
@@ -27,7 +26,10 @@
 								</div>
 									
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
-									<a href="#" class="btn btn-block btn-default">광고관리</a>
+									<a href="/palette/main/notice/list" class="btn btn-block btn-default">공지사항 관리</a>
+								</div>
+								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
+									<a href="/palette/main/customerCenter/list" class="btn btn-block btn-default">FAQ 관리</a>
 								</div>
 								<div class="pricingTable-sign-up"><!-- BUTTON BOX-->
 									<a href="/palette/admin/logout" class="btn btn-block btn-default">로그아웃</a>

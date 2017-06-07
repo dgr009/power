@@ -54,15 +54,7 @@
 	<header id="header">
 		<%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
 		<!--end Header-->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
+					<!-- =====================메인 메뉴(우측상단) 시작============================= -->
 					  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
 					<!-- =====================메인 메뉴(우측상단) 끝============================= -->
 					<!--End Header-->
@@ -88,7 +80,7 @@
 								</div>
 							</div>
 						</section>
-						<form action="/palette/miniHome/<%=user1.getUserId()%>/admin/productUpdate/${item.item.itemNo.intValue()}" method="POST"
+						<form action="/palette/miniHome/UserAdmin/<%=user1.getUserId()%>/productUpdate/${item.item.itemNo.intValue()}" method="POST"
 							enctype="multipart/form-data">
 							<section class="content portfolio_single">
 								<div class="container">

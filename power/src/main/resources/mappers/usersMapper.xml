@@ -4,7 +4,7 @@
 <mapper namespace="api.dao.UsersDao">
 	<!-- 회원 가입 -->
 	<insert id="usersRegister" parameterType="Users">
-		insert into users values(#{userId},#{userPwd},#{userName},#{userAddress},#{userPost},#{userMail},#{userPhone},0,'0','1','bronze')
+		insert into users values(#{userId},#{userPwd},#{userName},#{userAddress},#{userPost},#{userMail},#{userPhone},0,'0','1','bronze','0')
 	</insert>
 	<!-- 회원 아이디 중복 체크 -->
 	<select id="usersHasId" parameterType="string" resultType="int">
@@ -24,7 +24,7 @@
 	</select>
 	<!-- 회원 로그인 -->
 	<select id="usersLogin" parameterType="hashmap" resultType="Users">
-		select user_id userId,user_pwd userPwd,user_name userName,user_address userAddress,user_post userPost,user_mail userMail,user_phone userPhone,user_point userPoint,user_ishome userIsHome,enabled,user_grade userGrade from users where user_id=#{userId} and user_pwd=#{userPwd}
+		select user_id userId,user_pwd userPwd,user_name userName,user_address userAddress,user_post userPost,user_mail userMail,user_phone userPhone,user_point userPoint,user_ishome userIsHome,enabled,user_grade userGrade,user_activeHome userActiveHome from users where user_id=#{userId} and user_pwd=#{userPwd}
 	</select>
 	<!-- 즐겨찾기 추가 -->
 	<insert id="usersBookmark" parameterType="hashmap">
@@ -39,7 +39,7 @@
 		<![CDATA[
 		  	select * from  
 				(select rownum rnum,a.* from 
-					(select b.owner_id ownerId,h.home_title homeTitle from bookmark b,
+					(select b.owner_id ownerId,h.home_title homeTitle,h.home_img homeImg from bookmark b,
 					home h where b.owner_id=h.user_id and b.order_id=#{orderId}) a 
       			where rownum<=#{end}) 
  			where rnum>=#{start}
@@ -118,7 +118,7 @@
 	<!-- 개인 회원 정보 보기 -->
 	<select id="usersInfo" parameterType="string" resultType="Users">
 		select user_name,user_id,user_address,user_post,
-			user_mail,user_phone,user_point,user_ishome,enabled,user_grade 
+			user_mail,user_phone,user_point,user_ishome,enabled,user_grade ,user_activeHome 
 		from users where user_id=#{userId}
 	</select>
 	<!-- 개인 회원 정보 변경 -->
@@ -177,7 +177,7 @@
 	<!-- 홈페이지 개설 -->
 	<!-- 회원 홈페이지 생성 -->
 	<insert id="usersHomeRegister" parameterType="MiniHome">
-		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce},0)
+		insert into home values(#{userId},#{homeTitle},#{homeImg},#{homeDesign},sysdate,0,#{homeIntroduce},'1')
 	</insert>
 	<!-- 회원 홈페이지 개설여부 -->
 	<update id="usersIsHomeOk" parameterType="string">
@@ -337,30 +337,7 @@
 		from home where user_id like '%' ||  #{search} || '%' 
 		]]>
 	</select>
-	
 	<select id="getHomeImg" parameterType="string" resultType="string">
 		select home_img from home where user_id=#{userId}
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 </mapper>

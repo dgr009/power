@@ -1,8 +1,9 @@
 
+<%@page import="com.icia.palette.vo.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-   
+   <%Users orderUser = (Users) session.getAttribute("user"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,125 +23,112 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<style>
-
-.name {
-	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
-}
-
-.well {
-    min-height: 360px;
-    padding : 0;
-    padding-left: 50px;
-    }
-    tr{
-    	font-size: 1.1em;
-    	height: 28px;
-    	line-height: 28px;
-    }
-    
-    .form-control{
-    height: 20px;
-    	line-height: 20px;
-    	
-    }
-       footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-</style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-$(function(){
+<style>    
+	a,a:hover,a:link,a:VISITED{
+		text-decoration: none;
+	}
 	
-})
-
-</script>
+ 	th{
+		text-align: center;
+	}
+	td{
+		text-align: center;
+	}
+	.title:HOVER{
+		text-decoration: underline;
+		cursor: pointer;
+	}
+  }
+  </style>
 </head>
 <body>
 <!-- 헤더 -->
 <header id="header">
- <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
+<%@ include file="/WEB-INF/views/header/MainTopHeader.jsp" %>
+ <%@ include file="/WEB-INF/views/header/MainInfoHeader.jsp" %>
 </header>
-<br><br><br><br><br><br>
 <!-- 헤더 끝 -->
-<div class="container text-center">    
-  <div class="row">
-  	<!-- 랭킹 -->
-    <%@ include file="/WEB-INF/views/side/InfoSide.jsp" %>
-    <!-- 랭킹 끝 -->
- <div class="col-sm-10"> 
-		<div class="well well-lg"style="padding-left: 50px; padding-right: 50px; height: 650px; padding-top: 10px;"><h3><i class="fa fa-laptop"></i> 주문내역</h3>
-	<table width="80%" class="table table-striped table-hover" >
-		<thead>
-		<tr>
-			<th style="text-align: center;">번호</th>
-			<th style="text-align: center;">상품명</th>
-			<th style="text-align: center;">총 가격</th>
-			<th style="text-align: center;">개수</th>
-			<th style="text-align: center;">옵션</th>
-			<th style="text-align: center;">주문날짜</th>
-			<th style="text-align: center;">주문상태</th>
-		</tr>
-		<thead>
-		<tbody>
+
+<!-- 회원 정보 -->
+<div class="col-xs-12 col-xs-12 col-xs-12"  style=""><br><br>
+
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+	<div class="col-xs-10 col-xs-10 col-xs-10" >
+	
+	
+	<div style="width: 1000px; height: 200px; border : 1px solid silver;  position: relative;"> 
+	
+	<div style="width:355px; height: 114px; display: inline-block;  margin-left: 40px;  border-right: 1px dashed gray; position: absolute; bottom:40px;">
+	
+	<p style="padding-top: 5px; font-size: 1.4em; font-weight: bold;">&nbsp;&nbsp;&nbsp;팔레트 포인트 잔액 : 
+	<span style="color:#727cb6; font-size: 1.2em;">
+	<%=orderUser.getUserPoint() %></span>&nbsp;원</p><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button type="button" id="btnLogin" class="btn_login03"style="border-radius:20px; text-align: center; width :95px; height :35px; border:0; background:#727cb6; margin-left: 10px; position: absolute; top: 50px;">
+	<a href="/palette/miniHome/<%=orderUser.getUserId() %>/admin/pay" onclick="window.open(this.href, '_blank', 'width=600,height=600,toolbars=no,scrollbars=no'); return false"><span id="login" style="color:white; font-size: 0.9em; font-weight: bold;">
+				이용권 구매</span></a>
+	</button>
+	<button type="button" id="btnLogin" class="btn_login03"style="border-radius:20px; text-align: center; width :110px; height :35px; border:0; background:white; border:1px solid #727cb6; margin-left: 5px; position: absolute; top: 50px; left: 150px;">
+	<a href="/palette/miniHome/payList" onclick="window.open(this.href, '_blank', 'width=700,height=600,toolbars=no,scrollbars=no'); return false"><span id="login" style="color:#727cb6; font-size: 0.9em; font-weight: bold;">
+				이용권 구매내역</span></a>
+			</button>
+	</div>
+	<div style="width:550px; height : 114px; display: inline-block;  margin : 35px; margin-top: 50px; position: absolute; left:400px; margin-left: none; " >
+		<p>팔레트 포인트는 이용권을 구매하실 때 사용 하실 수 있습니다.</p>
+		<p>결제금액은 팔레트 충전금액에 부가가치세 10%가 포함된 실제 결제된 금액입니다.</p>
+		<p>팔레트 충전금액과 내역은 마이페이지 > 결제목록에서 확인 가능합니다.</p>
+	</div>
+	
+	
+	</div>
+	<div class="col-xs-1 col-xs-1 col-xs-1" ></div>
+	
+<br>	
+	<table style="width: 1000px;"> 
+		<thead >
+			<tr style="background: #fafafa;  border: 1px solid #e6e6e6; border-left: none; border-right: none; border-top: 2px solid silver;">
+				<th style="text-align: center; height: 20px; width: 65px;">NO</th>
+				<th style="text-align: center; width: 160px;">날짜</th>
+				<th style="text-align: center;">상품명</th>
+				<th style="text-align: center; width: 180px;">옵션</th>
+				<th style="text-align: center; width: 65px;">개수</th>
+				<th style="text-align: center; width: 100px;">금액</th>
+				<th style="text-align: center;width: 100px;">주문상태</th>
+				<th style="text-align: center;width: 40px;"></th>
+			</tr>
+		</thead>
+		<tbody style="border: 1px solid #e6e6e6; border-left: none;  border-right: none;">
 		<c:forEach items="${result.list }" var="order"  varStatus="index">
-		<tr>			
-			<td>
-				${index.count }
-			</td>
-			<td>
-				<a href="/palette/miniHome/${order.userId }/productMain/${order.itemNo }">${order.itemName }</a>
-			</td>
-			<td>
-				${order.orderPrice.intValue() }
-			</td>
-			<td>
-				${order.orderSize.intValue()}
-			</td>
-			<td>
-				${order.optionName}
-			</td>
-			<td>
-				${order.orderDate }
-			</td>
-			<td>
-				${order.orderState }
-			</td>
-			<td>
-				<c:if test="${order.orderState=='배송준비중' }"><a href="/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}">주문취소</a></c:if>
-				<c:if test="${order.orderState=='배송중' }"><a href="#" id='reviewBtn' onclick="review(${order.orderNo.intValue()})">주문확정</a></c:if>
-			</td>
-		</tr>
+			<tr style="border: 1px solid #e6e6e6; border-left: none; border-right: none;">
+				<td style="border: 1px solid #e6e6e6;  border-left: none; height: 40px; text-align: center;">${index.count }</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.orderDate }</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: left; padding-left: 30px;"><a href="/palette/miniHome/${order.userId }/productMain/${order.itemNo }">${order.itemName }</a></td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.optionName}</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.orderSize.intValue()}</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">${order.orderPrice.intValue() }<i class="fa fa-krw" style="color: #727cb6;"></i></td>
+				<td style="text-align: center; border: 1px solid #e6e6e6; border-right: none;">${order.orderState }</td>
+				<td style="border: 1px solid #e6e6e6;  border-left: none; text-align: center;">
+					<c:if test="${order.orderState=='배송준비중' }"><a href="/palette/users/orderDelete?orderNo=${order.orderNo.intValue()}">취소</a></c:if>
+					<c:if test="${order.orderState=='배송중' }"><a href="#" id='reviewBtn' onclick="review(${order.orderNo.intValue()})">확정</a></c:if>
+				</td>
+			</tr>
 		</c:forEach>
 		</tbody>
-</table>
-
-
-			<c:if test="${result.pagination.prev>0 }"><a href="/palette/users/orderList?pageNo=${result.pagination.prev}">이전으로</a></c:if>
-			
+	</table>	<br>
+	 <ul class="pagination" style="margin-left: 450px; position: absolute; bottom: 23px; height: 10px;">
+		 <c:if test="${result.pagination.prev>0 }"><li><a href="/palette/users/orderList?pageNo=${result.pagination.prev}">«</a></li></c:if>
 			<c:forEach var="i" begin="${result.pagination.startPage}" end="${result.pagination.endPage}">
-				<a href="/palette/users/orderList?pageNo=${i}">${i} </a>
+				<li><a href="/palette/users/orderList?pageNo=${i}">${i} </a></li>
 			</c:forEach>
-			
-		<c:if test="${result.pagination.next>0 }"><a href="/palette/users/orderList?pageNo=${result.pagination.next}">다음으로</a></c:if>
-		<br><br>
-	<button onclick="location.href='/palette/users/main'">홈으로</button>
-  </div>
-		</div>
-
-  </div>
+		<c:if test="${result.pagination.next>0 }"><li><a href="/palette/users/orderList?pageNo=${result.pagination.next}">»</a></li></c:if>
+	</ul>
+	<br><br><br><br>
+	</div>
 </div>
-<br><br><br><br><br><br><br><br>
-
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
-
+<!-- footer -->
+<%@include file="/WEB-INF/views/footer/normalFooter.jsp" %>
+	
 </body>
 	
 	

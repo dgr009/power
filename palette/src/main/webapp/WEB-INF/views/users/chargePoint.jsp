@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/layout/wide.css"/>" data-name="layout">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/switcher.css"/>"
 	media="screen" />
-	
+	  <link rel="stylesheet" href="<c:url value="/resources/css/animate.css"/>">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -52,18 +52,18 @@
       padding: 15px;
     }
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-	
+	$(function(){
+			$("#charge").on("click",function(){
+				$("#chargeForm").submit();
+				alert("충전완료");
+
+			})
+	})
 </script>
 </head>
 <body>
 <!-- 헤더 -->
-<header id="header">
- <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
-</header>
-<br><br><br><br><br><br>
 <!-- 헤더 끝 -->
 <div class="container text-center">    
   <div class="row">
@@ -81,7 +81,7 @@
              </section>
             
  
-           <form action="/palette/users/chargePoint"  method="post">
+           <form id="chargeForm" action="/palette/users/chargePoint"  method="post">
             <br><br>
 					<div class="col-lg-1 col-md-1 col-sm-1">
 
@@ -202,14 +202,14 @@
 							<div class="col-lg-8 col-md-8 col-sm-8" style="text-align: center;"><br>
 							
 								
-								<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="충전하기">
+								<input type="submit"  id="charge" data-loading-text="Loading..." class="btn btn-default btn-lg" value="충전하기">
 							</div>
 							
 							<div class="col-lg-2 col-md-2 col-sm-2"><br><br><br><br><br><br><br><br></div>
 							
 							</form>
 	 </div>
-		</div>
+	</div>
 		
 		
 <br><br><br><br><br><br><br><br>
@@ -238,4 +238,5 @@
 			<script type="text/javascript" src="<c:url value="/resources/js/jquery.isotope.min.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/resources/js/swipe.js"/>"></script>
 			<script type="text/javascript" src="<c:url value="/resources/js/jquery-scrolltofixed-min.js"/>"></script>
+			<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </html>

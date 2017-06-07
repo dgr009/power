@@ -7,7 +7,7 @@
 
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">공지사항</a>
+                                <li><a href="/palette/main/notice/list" class="has-submenu" style="color:black; width: 80px; text-align: center;">공지사항</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li><a href="#"></a></li> -->
 <!--                                         <li><a href="#">코트</a></li> -->
@@ -18,7 +18,7 @@
 <!--                                     </ul> -->
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">메뉴2</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">홈으로</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li> -->
 <!--                                             <a href="#" class="has-submenu" style="color:black;">악세사라<span class="sub-arrow">...</span></a> -->
@@ -33,7 +33,7 @@
 <!--                                     </ul> -->
                                 </li>
 
-                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">메뉴3</a>
+                                <li><a href="#" class="has-submenu" style="color:black; width: 80px; text-align: center;">이벤트</a>
 <!--                                     <ul class="dropdown-menu"> -->
 <!--                                         <li><a href="#">과일</a> -->
        
@@ -68,9 +68,9 @@
 <!--                                     </ul> -->
                                     </li>
                                     
- 									<li><a href="#" class="has-submenu" style="color:black; width: 90px; text-align: center; margin-left:310px;">자유게시판</a>
+ 									<li><a href="/palette/main/freeboard/list" class="has-submenu" style="color:black; width: 90px; text-align: center; margin-left:310px;">자유게시판</a>
                                		 </li>
-                               		 <li><a href="#" class="has-submenu" style="color:black; width: 90px; text-align: center; ">문의게시판</a>
+                               		 <li><a href="/palette/main/customerCenter/list" class="has-submenu" style="color:black; width: 90px; text-align: center; ">FAQ</a>
                                		 </li>
                                		 </ul>
                         </div>

@@ -62,5 +62,10 @@ public class MiniHomeDao {
 		return tpl.selectOne("api.dao.HomeDao.countActiveDate",userId);
 	}
 
+	// 유저 홈페이지 결제 완료
+	public void userActivateHome(String userId) {
+		tpl.update("api.dao.HomeDao.userActiveHome",userId);
+	}
+
 	
 }

@@ -69,85 +69,97 @@
         </ul>
     </nav>
 	</blockquote>
-	
-	
-	<div class="row sub_content" style="padding-top: 0;">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-								<h4><span>검색된 <span class="highlight default">상품</span> 목록</span></h4>
-							</div>
-							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
-                        <ul class="jcarousel-list" style="left: 0px;">
-                            <!-- Recent Work Item -->
-                                    <c:forEach items="${result.itemList}" var="free">
-                            <li class="col-sm-3 col-md-3 col-lg-3" style="width:342px; margin-left: 10px;">
-                                <figure class="touching effect-bubba" style="border-radius: 10px;" >
-                                    <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive"
-                                     style="width:100%;  min-width: 322px;max-width: 322px; min-height: 243px;max-height: 243px; vertical-align: middle;">
-
-                                    <div class="option">
-                                           <a href="/palette/miniHome/${free.userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
-                                    </div>
-                                    <figcaption class="item-description">
-                                        <h5>${free.itemName}</h5>
-                                        <p>${free.itemPrice.intValue()}원</p>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            </c:forEach>
-                        </ul>
+	   <section class="latest_work">
+        <div class="container">
+            <div class="row sub_content" style="padding-bottom: 20px;">
+                <div class="carousel-intro">
+                    <div class="col-md-12">
+                        <div class="dividerHeading">
+                            <h4><span class="highlight default">검색</span> 상품</h4>
+                        </div>
+                        <div class="carousel-navi">
+                            <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+                            <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-				</div>
+                </div>
+
+                <div class="jcarousel recent-work-jc">
+                    <ul class="jcarousel-list">
+                        <!-- Recent Work Item -->
+                      <c:forEach items="${result.itemList}" var="free">
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <figure class="touching effect-bubba">
+                                <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" class="img-responsive" alt=""  style="width: 250px; height: 150px;">
+
+                                <div class="option">
+                                 <a href="/palette/miniHome/${free.userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
+                                </div>
+                                <figcaption class="item-description">
+                                    <h5>${free.itemName}</h5>
+                                    <p>${free.itemPrice.intValue()}원</p>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        </c:forEach>
+
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+	   <section class="latest_work">
+        <div class="container">
+            <div class="row sub_content" style="padding-bottom: 20px;">
+                <div class="carousel-intro">
+                    <div class="col-md-12">
+                        <div class="dividerHeading">
+                            <h4><span class="highlight default">검색된</span> 홈페이지</h4>
+                        </div>
+                        <div class="carousel-navi">
+                            <div id="work-prev" class="arrow-left jcarousel-prev"><i class="fa fa-angle-left"></i></div>
+                            <div id="work-next" class="arrow-right jcarousel-next"><i class="fa fa-angle-right"></i></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div class="jcarousel recent-work-jc">
+                    <ul class="jcarousel-list">
+                        <!-- Recent Work Item -->
+                      <c:forEach items="${result.homePage}" var="free">
+                        <li class="col-sm-3 col-md-3 col-lg-3">
+                            <figure class="touching effect-bubba">
+                                <img  src="<c:url value='http://localhost:8087/palette/homeimg/${free.homeImg }'/>" class="img-responsive" alt=""  style="width: 200	px; height: 150px;">
+                                <div class="option">
+                               <a href="/palette/miniHome/${free.userId}/main" class="fa fa-link"></a>
+                                </div>
+                                <figcaption class="item-description">
+                                    <h5>${free.userId}</h5>
+                                    <p>${free.homeTitle}</p>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        </c:forEach>
+
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
 				
-			<div class="row sub_content" style="padding-top: 0;">
-					<div class="carousel-intro">
-						<div class="col-md-12">
-							<div class="dividerHeading">
-								<h4><span>검색된 <span class="highlight default">홈페이지</span> 목록</span></h4>
-							</div>
-							<div class="carousel-navi">
-								<div id="work-prev" class="arrow-left jcarousel-prev" data-jcarouselcontrol="true"><i class="fa fa-angle-left"></i></div>
-								<div id="work-next" class="arrow-right jcarousel-next active" data-jcarouselcontrol="true"><i class="fa fa-angle-right"></i></div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-
-                    <div class="jcarousel recent-work-jc" data-jcarousel="true" style="height: 162px;">
-                        <ul class="jcarousel-list" style="left: 0px;">
-                         <c:forEach items="${result.homePage}" var="free">
-                            <!-- Recent Work Item -->
-                            <li class="col-sm-3 col-md-3 col-lg-3" style="width:205px; margin-left: 13px;">
-                                <figure class="touching effect-bubba" style="border-radius: 10px;">
-                                    <img src="<c:url value='http://localhost:8087/palette/homeimg/${free.homeImg }'/>" alt="" class="img-responsive" 
-                                    style="width:100%;  min-width: 185px;max-width: 185px; min-height: 139px;max-height: 139px; vertical-align: middle;">
-
-                                    <div class="option">
-										<a href="/palette/miniHome/${free.userId}/main" class="fa fa-link"></a>
-                                    </div>
-                                    <figcaption class="item-description">
-                                        <h5>${free.userId}</h5>
-                                        <p>${free.homeTitle}</p>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            </c:forEach>
-                        </ul>
-                    </div><br><br>
+				
+			
+                    <br><br>
 
 				</div>
 				
 				    
-</div>
+
 
 
 <div class="col-xs-1 col-xs-1 col-xs-1"></div><!-- 여백 -->

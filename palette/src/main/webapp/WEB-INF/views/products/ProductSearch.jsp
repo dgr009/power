@@ -66,7 +66,6 @@
       }
 
    </style>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script>
       
    </script>
@@ -75,15 +74,8 @@
 <!--Start Header-->
     <header id="header">
   <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
-        <div id="menu-bar">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>                    <!-- Navigation
+  </header>
+                         <!-- Navigation
                     ================================================== -->
                   <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
         <!--End Header-->
@@ -91,7 +83,6 @@
         <section class="wrapper">
          <section class="page_head">
             <div class="container"></div>
-            </div>
          </section>
 
                     <!--물건 표시란 시작-->

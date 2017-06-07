@@ -4,7 +4,9 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
+import com.google.gson.*;
 import com.icia.api.controller.*;
 import com.icia.api.dao.*;
 import com.icia.api.util.*;
@@ -14,22 +16,39 @@ import com.icia.api.vo.*;
 public class AdminService {
 	@Autowired
 	private AdminDao dao;
+	@Autowired
+	private UsersDao udao;
 	
-	//	회원이름으로 조회
-	public String findUserName(String userName){
-		return dao.FindUserName(userName);
-	}
-	// 홈페이지 개설회원 조회
-	public String FindOpenPageUser(String userId) {
-		return dao.FindOpenPageUser(userId);
-	}
 	// 전체회원목록조회
-	public List<Users> totalUser(){
-	      return dao.totalUser();
-	 }
 	
-	// 회원상세조회
-	public HashMap<String, Object> DetailUser(String userId) {
+	@Transactional
+		public HashMap<String, Object> totalUser(int pageNo){
+			int cnt = dao.allUser();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list", dao.totalUser(pagination.getStartArticle(), pagination.getEndArticle()));
+		    return map;
+		 }
+	
+		// 홈페이지 개설회원 조회
+	@Transactional
+		public HashMap<String, Object> FindOpenPageUser(int pageNo) {
+			int cnt = dao.isHomeUserCnt();
+			Pagination pagination = PagingUtil.setPageMaker(pageNo, cnt);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("pagination", pagination);
+			map.put("list", dao.FindOpenPageUser(pagination.getStartArticle(), pagination.getEndArticle()));
+			return map;
+		}
+		
+	//	회원이름으로 조회 (전체)
+	public Users findUserName(String userId){
+		return dao.FindUserName(userId);
+	}
+	
+	// 회원이름으로 조회 (미니홈)
+	public Users DetailUser(String userId) {
 		return dao.DetailUser(userId);
 	}
 	

@@ -75,15 +75,7 @@
 <!--Start Header-->
     <header id="header">
   <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp"%>
-        <div id="menu-bar">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>                    <!-- Navigation
+                        <!-- Navigation
                     ================================================== -->
                   <%@include file="/WEB-INF/views/MenuSelect.jsp"%>
         <!--End Header-->
@@ -101,7 +93,7 @@
                         <div class="item responsive">
                             <figure class="touching effect-bubba">
                             <!-- 상품 이미지 표시 -->
-                                <img style="width: 100	px; height: 350px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
+                                <img style="width: 200	px; height: 250px;" src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive">
 
                                 <div class="option">
                                     <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>

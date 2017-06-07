@@ -92,23 +92,13 @@ a:VISITED {
 <body>
 <!--Start Header-->
 	<header id="header">
-		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
-	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-					
-					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-        <!-- =====================메인 메뉴(우측상단) 끝============================= -->
+		 <%@ include file="/WEB-INF/views/header/MainHeader.jsp" %>
 		<!--End Header-->
-		</header>
+	</header>
 		<!--start wrapper-->
-		<section class="page_head">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
-
                         <div class="page_title">
                            <h2>고객센터</h2>
                         </div>
@@ -116,7 +106,6 @@ a:VISITED {
                 </div>
             </div>
             
-             </section>
             
  
             
@@ -124,7 +113,7 @@ a:VISITED {
 							<br><br>
 							
 							
-			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     문의게시판 글 목록</h3>
+			<div class="well well-lg" style="padding-right: 50px; padding-left: 50px; margin-left: 50px; margin-right: 50px; padding-top: 10px;"><h3><i class="fa fa-info-circle"></i>&nbsp;     자주묻는 질문</h3>
 						
 				<table class="table table-striped table-hover" style="text-align: center;">
                     <thead>
@@ -175,9 +164,10 @@ a:VISITED {
               	<div class="col-lg-9 col-md-9 col-sm-9">
               		   		<a href="../customerCenter/list?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
               		   </div>  
+              		   <%if(session.getAttribute("admin")!=null){ %>
               		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
               		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/main/customerCenter/register'"  style="color:white;"/></div>
-                
+						<%} %>                
 					<br>  <br>
                 </div>
                  <br>  <br><br>  <br>

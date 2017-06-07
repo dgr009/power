@@ -71,15 +71,7 @@
 		 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
 		</header>
 	<!-- End Header -->
-		<div id="menu-bar">
-			<div class="container">
-				<div class="row">
-					<!-- Logo / Mobile Menu -->
-<div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1>
-                        </div>
-                    </div>					
+						
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
@@ -109,7 +101,7 @@
 							<div class="well well-lg" style="height:360px; padding-left: 50px; padding-right: 30px; padding-top: 10px; padding-bottom: 20px;" ><h3><i class="fa fa-leaf"></i>    상품 판매 등록</h3>
 						
 							
-							<form action="/palette/miniHome/<%=users.getUserId()%>/admin/register" method="POST" enctype="multipart/form-data">
+							<form action="/palette/miniHome/UserAdmin/<%=users.getUserId()%>/register" method="POST" enctype="multipart/form-data">
 							<div class="col-lg-3 col-md-3 col-sm-3">
 							<table>
 								<tbody>
@@ -451,59 +443,17 @@
 										});
 					</script>
 					<script>
-	$(function(){
-		var i = 1;
-
-		$("#addOption").on("click", function(){
-			if( i<4){
-				i= i+1;
-				$("#space").after('<tr $(function() {              
-		                 
-			               //datepicker 한국어로 사용하기 위한 언어설정
-			               $.datepicker.setDefaults($.datepicker.regional['ko']); 
-			               
-			               // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
-			               // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
-			 
-			               //시작일.
-			               $('#fromDate').datepicker({
-			                    //dateFormat: "yy-mm-dd",
-			                    //monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-			                    //dayNamesMin:["일","월","화","수","목","금","토"],
-			                   //buttonImage: "/jdAdmin/images/calendar.png", // 버튼 이미지
-			                   //buttonImageOnly : true,             // 버튼 이미지만 표시할지 여부
-			                   //buttonText: "날짜선택",             // 버튼의 대체 텍스트
-			                   dateFormat: "yy-mm-dd",             // 날짜의 형식
-			                   changeMonth: true,                  // 월을 이동하기 위한 선택상자 표시여부
-			                       maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
-			                   onClose: function( selectedDate ) {    
-			                       // 시작일(fromDate) datepicker가 닫힐때
-			                       // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-			                       $("#toDate").datepicker( "option", "minDate", selectedDate );
-			                   }                
-			               });
-			 
-			               //종료일
-			               $('#toDate').datepicker({
-			                    //dateFormat: "yy-mm-dd",
-			                    //monthNamesShort: ["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-			                    //dayNamesMin:["일","월","화","수","목","금","토"], 
-			                   dateFormat: "yy-mm-dd",
-			                   changeMonth: true,
-			                   maxDate: 0, // 오늘 이후 날짜 선택 불가
-			                   onClose: function( selectedDate ) {
-			                       // 종료일(toDate) datepicker가 닫힐때
-			                       // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-			                       $("#fromDate").datepicker( "option", "maxDate", selectedDate );
-			                   }                
-			               });
-			               
-			               
-			               
-			           });
-		})
-	})
-	
+					$(function(){
+					      var i = 1;
+					      $("#addOption").on("click", function(){
+					         if( i<4){
+					            i= i+1;
+					            $("#space").after('<tr><td><input type="text" id="optionName" name="optionName"></td></tr>');
+					         }
+					         
+					      })
+					   })
+					   
 </script>
 					<script src="<c:url value="/resources/js/main.js"/>"></script>
 </body>

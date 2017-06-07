@@ -38,13 +38,13 @@ public class UserService {
 			session.setAttribute("user", user);
 			return 1;
 		}
-
 	}
 
 	// 회원 로그아웃
 	public void logout(HttpSession session) {
 		session.removeAttribute("token");
 		session.removeAttribute("user");
+		session.removeAttribute("destination");
 	}
 
 	// 회원 가입

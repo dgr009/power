@@ -351,7 +351,6 @@ public class UsersDao {
 	public List<MiniHome> selectHomeByName(String search){
 		return tpl.selectList("api.dao.UsersDao.selectHomeByName", search);
 		}
-
 	//홈페이지 이미지 가져오기
 	public String getHomeImg(String userId) {
 		return tpl.selectOne("api.dao.UsersDao.getHomeImg",userId);
@@ -380,7 +379,4 @@ public class UsersDao {
 	public int selectHomeByNameCnt(String search) {
 		return tpl.selectOne("api.dao.UsersDao.hompageSearchCnt", search);
 	}
-	
-	
-	
 }

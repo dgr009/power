@@ -35,20 +35,11 @@
         <!-- Start header-top -->
 <%@ include file="/WEB-INF/views/header/MiniMainHeader.jsp" %>
         <!--/.header-top -->
-
-        <div id="menu-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3">
-                        <div id="logo">
-                            <a href="/palette/miniHome/${userId }/main"><h1 style="color:white; font-size: 2.5em;">${kind.home.homeTitle}</h1></a>
-                        </div>
-                    </div>
                      <!-- Navigation
                     ================================================== -->
                      <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
+                     
             <!--/.container -->
-        </div>
         <!--/#menu-bar -->
         <div class="slider_block">
             <div class="flexslider top_slider">
@@ -61,6 +52,7 @@
 
                                 <p class="sub-line FromBottom">${kind.home.homeIntroduce}</p><br/>
 
+                                <a href="/palette/miniHome/${userId}/Info" class="slider-read FromLeft">상세 보기</a>
                                 <%@include file="/WEB-INF/views/header/BookmarkHeader.jsp" %>
                             </div>
                             <div class="flex_caption2 FromRight">
@@ -122,7 +114,7 @@
 
     <section class="latest_work">
         <div class="container">
-            <div class="row sub_content" style="padding:0;">
+            <div class="row sub_content" style="padding-bottom: 20px;">
                 <div class="carousel-intro">
                     <div class="col-md-12">
                         <div class="dividerHeading">
@@ -140,10 +132,9 @@
                     <ul class="jcarousel-list">
                         <!-- Recent Work Item -->
                       <c:forEach items="${item.inven}" var="free">
-                        <li class="col-sm-3 col-md-3 col-lg-3"style="width:390px;">
+                        <li class="col-sm-3 col-md-3 col-lg-3">
                             <figure class="touching effect-bubba">
-                                <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" alt="" class="img-responsive"
-                                 style="width:100%;  min-width: 370px;max-width:370px; min-height: 279px;max-height: 279px; vertical-align: middle;">
+                                <img src="<c:url value='http://localhost:8087/palette/productImg/${free.imgName }'/>" class="img-responsive" alt=""  style="width: 200	px; height: 150px;">
 
                                 <div class="option">
                                  <a href="/palette/miniHome/${userId}/productMain/${free.itemNo.intValue()}" class="fa fa-link"></a>
