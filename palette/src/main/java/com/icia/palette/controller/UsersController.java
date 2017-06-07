@@ -180,8 +180,8 @@ public class UsersController {
 	}
 
 	// 회원 활성화
-	@RequestMapping(value = "/reverse/{userId}", method = RequestMethod.POST)
-	public String deleteEnd(HttpSession session, @PathVariable String userId) {
+	@RequestMapping(value = "/reverse", method = RequestMethod.POST)
+	public String deleteEnd(HttpSession session, @RequestParam String userId) {
 		service.reverseUser(userId);
 		return "redirect:/main";
 	}
