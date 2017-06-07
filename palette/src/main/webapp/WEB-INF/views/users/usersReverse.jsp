@@ -73,11 +73,14 @@
 						<h2>비활성화 된 계정입니다. </h2>
 						<h2>다시 활성화 하시겠습니까?</h2>
 					</div>
-<form action='/palette/users/reverse/${user.userId}' method='post'>
- <div class="row" >
-                            <div class="form-group">
-								<button>예 </button>
+				</div>
+<form action='/palette/users/reverse' method='post'>
+                            <input type="hidden" value="${user.userId }" name="userId">
+							<input type="submit" value="예">
 </form>
 <button onclick="location.href='/palette/users/home'">아니오</button>
+</div>
+</div>
+
 </body>
 </html>
