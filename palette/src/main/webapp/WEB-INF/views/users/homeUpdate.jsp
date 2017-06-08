@@ -123,10 +123,13 @@
 					})
 					
 					for(var j=0; j<i; j++){
+						var check=0;
 						$(".smallName"+(j+1)).each(function() {
+							check++;
 							smallResult +=$(this).html()+",";
 						});
-						smallResult +="\n";
+						if(check!=0)
+							smallResult +="\n";
 					}
 				
 				$.ajax({
@@ -226,7 +229,7 @@
                   </div>
                   <div class="col-lg-4 col-md-4col-sm-4" style="padding:0;">
                       			 <label for="InputPassword2">프로필 사진 선택</label>
-                  			<img style="width:300px; height:250px;" src="<c:url value='http://localhost:8087/palette/homeimg/${result.home.homeImg}'/>">
+                  			<img style="width:300px; height:250px;" src="<c:url value='/homeimg/${result.home.homeImg}'/>">
 									
                       		<input type="hidden" class="form-control" name="userId" id="uid"  value="<%=users.getUserId()%>">
                       		<input type="hidden" class="form-control" name="homeImg" id="hideImg"  value="${result.home.homeImg }">
@@ -252,13 +255,14 @@
                  <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
                  <div class="col-lg-8 col-md-8 col-sm-8" style="margin-left: 75px;">
                  	<div class="col-lg-4 col-md-4 col-sm-4">
-                 	<button id="back"  class="btn btn-default btn-lg btn-block" >이전으로</button>
-                 </div>
-                 <div class="col-lg-4 col-md-4 col-sm-4" style="margin-left: 10px;">
-                 	<button id="complete"  class="btn btn-default btn-lg btn-block"  >수정완료</button>
-                 </div> <br><br> <br><br>
-                 <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
-                   <br><br>
+	                 	<button id="back"  class="btn btn-default btn-lg btn-block" >이전으로</button>
+	                 </div>
+	                 <div class="col-lg-4 col-md-4 col-sm-4" style="margin-left: 10px;">
+	                 	<button id="complete"  class="btn btn-default btn-lg btn-block"  >수정완료</button>
+	                 </div> <br><br> <br><br>
+	                 <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;">
+	                 </div>
+	                   <br><br>
                   </div> 
                    <div class="col-lg-1 col-md-1 col-sm-1"></div>
 </div>

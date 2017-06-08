@@ -3,9 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users userMini = (Users) session.getAttribute("user");
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -184,11 +182,11 @@ a:VISITED {
                  </div>
                  
               	<div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
               		   </div>  
               		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;">
+              		   	<%if(session.getAttribute("user")!=null){ %>
               		   	<input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="글 작성" onclick="window.location.href='/palette/miniHome/${userId }/freeRegister'"  style="color:white;"/></div>
-                
+                		<%} %>
 					<br>  <br>
                 </div>
                  <br>  <br><br>  <br>

@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users userMini = (Users) session.getAttribute("user");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -92,13 +89,15 @@ input[type="button"] {
 				str = str + "<input type='hidden' value='"+reply.freeRepleName+"' name='freeRepleName' class='repleName'>";
 				str = str + "<input type='hidden' value='"+reply.freeRepleNo+"' name='freeRepleNo' class='freeRepleNo'>";
 				str = str + "<input type='hidden' value='"+reply.freeNo+"' name='freeNo' class='freeNo'>";
+				<%if(session.getAttribute("user")!=null){%>
+				<%Users userMini = (Users) session.getAttribute("user"); %>
 				
 				if(reply.freeRepleName=="<%=userMini.getUserId()%>"){
 					str = str + "<td style='text-align: right;'><input type='button' id='updateReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg updateReple' data-content='"+reply.freeRepleContent +"'data-nono='"+reply.freeRepleNo +"' value='수정' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'>";
 					str = str + "&nbsp;<input type='button' id='deleteReple"+cxc+"' data-loading-text='Loading...' class='btn btn-default btn-lg deleteReple' data-cno='"+reply.freeRepleNo+"' value='삭제' style='margin-top: 5px; margin-bottom:5px; height: 20px; line-height: 1px; color: white;'></td></tr></tbody>"
 					
 				}
-			
+				<%}%>
 				$("#comment").append(str).trigger("create");
 				$("#freeRepleContent").val("");
 				
@@ -278,14 +277,16 @@ input[type="button"] {
               		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="목록으로" style="color:white;"></a>
               		   </div>  
               		   
+              		   <%if(session.getAttribute("user")!=null){%>
+						<%Users userMini = (Users) session.getAttribute("user"); %>
               		   <c:set var="ddddd" value="<%=userMini.getUserId()%>" />
 						<c:set var="ooooo" value="${mini.free.freeName }" />
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
-					
 						<c:if test="${ddddd eq ooooo}">
 							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정하기">
-						</form>
 						</c:if>
+						</form>
+						
               		   		 
               		 		
 								
@@ -297,11 +298,10 @@ input[type="button"] {
 								 <input type="hidden" value="${mini.freeNo.intValue() }" name="freeNo"id="freeNo">
 								</form>
 					
-									</c:if>
-									
-							
-              		 		 
-              		   </div>  
+								</c:if>
+              		  
+              		   </div>
+              		   	<%} %>	  
 						<table class="table table-striped table-hover" style="text-align: center;">
 				                    <thead>
 				                    <tr >
@@ -311,7 +311,8 @@ input[type="button"] {
                    
 
               						  </table>
-              						  
+              					<%if(session.getAttribute("user")!=null){%>
+								<%Users userMini = (Users) session.getAttribute("user"); %>	  
                				 	<p>댓글 작성</p>
              						 <div class="col-lg-11 col-md-11 col-sm-11">
              						 <input type="hidden" value='<%=userMini.getUserId() %>'name='freeRepleName' id="freeRepleName">
@@ -319,6 +320,7 @@ input[type="button"] {
              						</div>
 										&nbsp;&nbsp;<input type="button" id="btn1" data-loading-text="Loading..." 
 										class="btn btn-default btn-lg" value="등록" style="margin-top: 10px; color: white;">
+										<%} %>
                				 <!-- 댓글 --><br><br>
                				 <table id="comment" class="table table-striped table-hover" style="text-align: center;" >
 				                    <c:forEach items="${mini.reple }" var="reple">
@@ -342,6 +344,8 @@ input[type="button"] {
 												name="freeRepleNo" class="freeRepleNo">
 											<input type="hidden" value="${reple.freeNo.intValue() }"
 												name="freeNo" class="freeNo">
+             								<%if(session.getAttribute("user")!=null){%>
+											<%Users userMini = (Users) session.getAttribute("user"); %>
              								<td style=" text-align: right;" class="rrr">
              								<!-- 버튼 -->
              								<c:set var="name" value="<%=userMini.getUserId()%>" />
@@ -360,6 +364,7 @@ input[type="button"] {
 	             								
              								</c:if>	
              								</td>
+             								<%} %>
              							</tr>
              							</tbody>
              							</c:forEach>

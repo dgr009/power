@@ -71,9 +71,10 @@ public class MiniHomeController {
 	//추가 끝
 	@RequestMapping(value="/{homeId}/freeRegister",method = RequestMethod.POST)
 	public String InsertEnd(HttpSession session,@ModelAttribute MiniHomeFree free){
+		System.out.println("시바박삽재갑재가ㅐㅂㅈ " + free.getUserId());
 		String result = service.miniHomeRegisterFree(session, free);
 		//return 값으로 freeNo를 넘겼으므로 result안에 들어있다
-		return "redirect:freeView/"+result;
+		return "mini/freeList";
 	}
 	
 	//공지게시판 추가 시작

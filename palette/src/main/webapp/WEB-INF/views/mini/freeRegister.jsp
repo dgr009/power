@@ -72,10 +72,6 @@ input[type="button"] {
 		
 					
 					 <!-- =====================메인 메뉴(우측상단) 시작============================= -->
-<<<<<<< HEAD
->>>>>>> branch 'sangyun' of https://github.com/dgr009/power.git
-=======
->>>>>>> branch 'sumin' of https://github.com/dgr009/power.git
                  <%@include file="/WEB-INF/views/MenuSelect.jsp" %>
         <!-- =====================메인 메뉴(우측상단) 끝============================= -->
       <!--End Header-->
@@ -105,10 +101,12 @@ input[type="button"] {
                        </div>
                      <div class="col-lg-10 col-md-10 col-sm-10">
                      <h3><i class="fa fa-info-circle"></i>&nbsp; 자유 게시판 글 작성</h3>
+            <form  action="/palette/miniHome/${homeId }/freeRegister" method="post">
                         <table class="table table-striped table-hover" style="text-align: center;">
                                 <thead>
+            
                                 <tr>
-                              <form  action="/palette/miniHome/${homeId }/freeRegister" method="post">
+           
                               <h3 style="display: inline-block;">제목 : </h3>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" style="width:730px;"name="freeTitle">
 
                            </tr>
@@ -119,7 +117,6 @@ input[type="button"] {
                        <textarea rows="15" cols="" name="freeContent" ></textarea>
                        <input type="hidden" name="freeName" id="freeName" value='${userId}'><br>
                   <input type="hidden" name="userId" id="userId" value="${homeId }">
-                  <input type="hidden" name="seq" id="seq" value="${nn }">
                   <br>      
                                 <div id="id"></div>
                        <div class="col-sm-12 text-center"><br>

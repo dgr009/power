@@ -39,7 +39,6 @@
 <script>
 $(function(){
 	$("#orderBtn").on("click",function(){
-	alert("dddd");	
 	
 		if(<%=user1.getUserPoint()%>>=${itemPrice*itemSize}&&${itemInven}>=${itemSize}){
 			$("#orderForm").submit();}

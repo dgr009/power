@@ -165,10 +165,8 @@ input[type="button"] {
 						
 						<div class="col-lg-3 col-md-3 col-sm-3" style="text-align: right;">
 					<c:set var = "userId" scope = "session" value = "<%=user1.getUserId()%>"/>
-						<c:if test="${result.inquiry.userId==userId}">
 							<input type="submit" data-loading-text="Loading..." class="btn btn-default btn-lg" value="수정완료">
 						</form>
-						</c:if>
 						
               		   		 
               		 		

@@ -49,11 +49,10 @@
 	</select>
 	
 	<!--  (개인)자유게시판 작성-->
-	<insert id="miniHomeRegisterFree" parameterType="MiniHomeFree" useGeneratedKeys="true" keyProperty="freeNo"  
-keyColumn="freeNo">
+	<insert id="miniHomeRegisterFree" parameterType="MiniHomeFree" >
 		<selectKey keyProperty="freeNo" resultType="int" order="BEFORE">
 			select seq_free.nextval from dual
-		</selectKey>
+		</selectKey>-
 		insert into free_board values(#{freeNo},#{freeTitle},#{freeName},0,#{freeContent},sysdate,#{userId},0)
 		
 	</insert>

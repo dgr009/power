@@ -66,7 +66,7 @@ public class MiniHomeController {
 		int result = service.miniHomeRegisterFree(free);
 //		System.out.println(free.getFreeNo());
 //		System.out.println(new Gson().toJson(free.getFreeNo()));
-		return new Gson().toJson(free.getFreeNo());	//추가된 게시글 번호를 알기 위해
+		return new Gson().toJson(result);	//추가된 게시글 번호를 알기 위해
 	}
 
 	//공지게시판 작성

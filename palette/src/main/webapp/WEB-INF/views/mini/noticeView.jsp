@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@page import="com.icia.palette.vo.Users"%>
-<%
-	Users userMini = (Users) session.getAttribute("user");
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -152,7 +149,10 @@ input[type="button"] {
 						data-loading-text="Loading..." class="btn btn-default btn-lg"
 						value="목록으로" style="color: white;"></a>
 				</div>
-				
+				<%if(session.getAttribute("user")!=null){ %>
+				<%
+					Users userMini = (Users) session.getAttribute("user");
+				%>
 				<c:set var="name" value="<%=userMini.getUserId()%>" />
 				<c:set var="userId" value="${mini.userId }" />
 		
@@ -175,6 +175,7 @@ input[type="button"] {
 					
 				</c:if>
 			</div>
+			<%} %>
 	<table class="table table-striped table-hover" style="text-align: center;">
 				                    <thead>
 				                    <tr >

@@ -90,7 +90,7 @@ $(function(){
 	//자신이 주인이면 게시글등록이 보여짐
 	<%if(session.getAttribute("user")!=null){%>
 	<%Users userMini = (Users) session.getAttribute("user"); %>
-	id = <%=userMini.getUserId()%>
+	id = '<%=userMini.getUserId()%>';
 	if(id===idid){
 		
 		$("#meme").empty()
@@ -184,7 +184,6 @@ $(function(){
                  </div>
                  
               	<div class="col-lg-9 col-md-9 col-sm-9">
-              		   		<a href="../freeList?pageNo=1"><input type="button" data-loading-text="Loading..." class="btn btn-default btn-lg" value="이전으로" style="color:white;"></a>
               		   </div>  
               		   <div class="col-lg-3 col-md-3 col-sm-3"  style="text-align: right;" id="meme">
               		   </div>
