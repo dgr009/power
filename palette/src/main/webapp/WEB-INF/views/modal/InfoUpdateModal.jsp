@@ -8,6 +8,11 @@ $(function(){
 	var b =  /^[a-zA-Z0-9]{3,20}$/;// 비밀번호
 	
 	$("#upmail").on("blur",function(){
+		if('${user.userMail}'==$("#upmail").val()){
+			$("#upmailchecked").html("사용 가능한 메일입니다.");
+			$("#upmailchecked").css("color","green");
+			mailcheck=0;
+		}else{
 		$.ajax({
 			url:"/api/users/hasMail",
 			type:"post",
@@ -25,6 +30,7 @@ $(function(){
 				}
 			}
 		})
+		}
 	})
 	
 	

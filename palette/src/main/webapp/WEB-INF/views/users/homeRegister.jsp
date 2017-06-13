@@ -39,6 +39,15 @@
 <script>
 	$(function(){
 		var i =0;
+		var kk =0;
+		
+		$("#title").on("change",function(){
+			$("#titleR").html($(this).val());
+		})
+		
+		$("#back").on("click",function(){
+			self.close();
+		})
 		
 		$("#insertBigTag").on("click",function(){
 			i++;
@@ -52,7 +61,8 @@
 		})
 		
 		$(document).on("click","#insertSmallTag",function(){
-			var stag = "<li style='display:inline-block;' id='smallLi"+$(this).data("sno")+"'><a href='#' class='smallName"+$(this).data("sno")+"' id='smallName' data-nno='"+$(this).data("sno")+"'>새태그</a></li>";
+			kk++;
+			var stag = "<li style='display:inline-block;' id='smallLi"+kk+"'><a href='#' class='smallName"+$(this).data("sno")+"' id='smallName' data-nno='"+kk+"'>새태그</a></li>";
 			$("#smallTag"+$(this).data("sno")).append(stag);
 		})
 		
@@ -88,10 +98,13 @@
 					})
 					
 					for(var j=0; j<i; j++){
+						var check = 0;
 						$(".smallName"+(j+1)).each(function() {
+							check++;
 							smallResult +=$(this).html()+",";
 						});
-						smallResult +="\n";
+						if(check!=0)
+							smallResult +="\n";
 					}
 					 
 				var formData = new FormData();
@@ -142,9 +155,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <div id="logo">
-                      <input type="hidden" class="form-control" name="userId" id="uid"  value="<%=users.getUserId()%>">
-                      <input type="file" class="form-control" name="homeImg" id="img" value="홈페이지 로고">
-                      <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title">
+                      		<h1 style="color: white;" id='titleR'></h1>
                         </div>
                     </div>
                    
@@ -171,26 +182,62 @@
             </div>
 </section>
  <div class="col-lg-12 col-md-12 col-sm-12">
+ <div class="col-lg-1 col-md-1 col-sm-1"></div>
+ <div class="col-lg-10 col-md-10col-sm-10">
+ <br><br>
  <div class="form-group">
          <label for="tag" >태그 소분류</label>
          <ul  id="smallTag"  >
          
          </ul>
  </div>
-	 <div class="form-group">
+ 	  <div class="col-lg-4 col-md-4 col-sm-4" style="padding:0;">
+				 
+                   <div class="form-group">
+	                      <label for="InputPassword2">홈페이지 제목</label>
+	                      <input type="text" class="form-control" name="homeTitle" placeholder="홈페이지 제목" id="title">
+                  </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="form-group">
                       <label for="InputPassword2">홈페이지 디자인 선택</label>
                       <select name="homeDesign" id="design" class="form-control" >
 							<option value="1">기본타입</option>
 							<option value="1">기본타입</option>
 					  </select>
-                  </div>
-                  <div class="form-group">
+					  
+      		</div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+             <div class="form-group">
+                      <label for="InputPassword2">홈페이지 타이틀 사진</label>
+                      <input type="file" class="form-control" name="homeImg" id="img" value="홈페이지 사진">
+      		</div>
+                  <br><br>
+      </div>
+       
+      <div class="col-lg-12 col-md-12 col-sm-12">
+      			<div class="form-group">
                       <label for="username">홈페이지 소개</label>
                       <textarea class="form-control"  rows="20" cols="60" id='content'><%=users.getUserId() %>의 홈페이지 입니다.</textarea>
                   </div>
+      </div> 
+      
+      <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
+                 <div class="col-lg-8 col-md-8 col-sm-8" style="margin-left: 75px;">
+	                 <div class="col-lg-4 col-md-4 col-sm-4">
+	                 	<button id="back"  class="btn btn-default btn-lg btn-block" >이전으로</button>
+	                 </div>
+	                 <div class="col-lg-4 col-md-4 col-sm-4" style="margin-left: 10px;">
+	                 	<button id="complete"  class="btn btn-default btn-lg btn-block"  >제작완료</button>
+	                 </div> <br><br> <br><br>
+	             </div>
+      <div class="col-lg-2 col-md-2 col-sm-2" style="padding:0;"></div>
+               
+ 	
 </div>
-<button id="complete"  class="btn btn-default btn-lg btn-block" >완료</button>
-
+<div class="col-lg-1 col-md-1 col-sm-1"></div>
+</div>
 
 <!--
     밑에 꺼는 정확하게 어떤건지 모르니까 만지지 마시오...
