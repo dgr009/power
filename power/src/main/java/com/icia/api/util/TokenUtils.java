@@ -10,6 +10,7 @@ import com.auth0.jwt.interfaces.*;
 import com.icia.api.vo.*;
 
 public class TokenUtils {
+	
 	public static String getToken(Users user) {
 		String token = "";
 		// 현재시간을 얻어 1시간을 더한다음 Date로 형변환

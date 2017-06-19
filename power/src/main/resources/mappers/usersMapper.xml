@@ -22,10 +22,16 @@
 	<select id="usersFindPwd" parameterType="hashmap" resultType="string">
 		select user_pwd from users where user_id=#{userId} and user_name=#{userName} and user_mail=#{userMail}
 	</select>
+	
 	<!-- 회원 로그인 -->
 	<select id="usersLogin" parameterType="hashmap" resultType="Users">
-		select user_id userId,user_pwd userPwd,user_name userName,user_address userAddress,user_post userPost,user_mail userMail,user_phone userPhone,user_point userPoint,user_ishome userIsHome,enabled,user_grade userGrade,user_activeHome userActiveHome from users where user_id=#{userId} and user_pwd=#{userPwd}
+		select user_id userId,user_pwd userPwd,user_name userName,
+		user_address userAddress,user_post userPost,user_mail userMail,
+		user_phone userPhone,user_point userPoint,user_ishome userIsHome,
+		enabled,user_grade userGrade,user_activeHome userActiveHome 
+		from users where user_id=#{userId} and user_pwd=#{userPwd}
 	</select>
+	
 	<!-- 즐겨찾기 추가 -->
 	<insert id="usersBookmark" parameterType="hashmap">
 		insert into bookmark values(#{orderId},#{ownerId})
@@ -183,6 +189,7 @@
 	<update id="usersIsHomeOk" parameterType="string">
 		update users set user_ishome=1 where user_id=#{userId}
 	</update>
+	
 	<!-- 큰 태그 등록하기 -->
 	<insert id="usersBigTagRegister" parameterType="hashmap">
 	<selectKey keyProperty="bigKindNo" resultType="int" order="BEFORE">

@@ -40,7 +40,8 @@ public class RevenueService {
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		HttpEntity requestEntity = new HttpEntity(gson.toJson(maps), headers);
-		String result = tpl.exchange("http://localhost:8087/api/admin/revenueUserList",HttpMethod.POST, requestEntity, String.class).getBody();
+		String result = tpl.exchange("http://localhost:8087/api/admin/revenueUserList",
+				HttpMethod.POST, requestEntity, String.class).getBody();
 		Map<String,Object> map = new Gson().fromJson(result, Map.class);
 		return map;
 	}

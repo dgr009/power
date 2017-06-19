@@ -16,7 +16,8 @@ public class RevenueController {
 
 	
 	// 관리자 매출내역 보기
-	@RequestMapping(value = "/revenueList", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	@RequestMapping(value = "/revenueList", method = RequestMethod.POST, 
+			produces = "text/html;charset=utf-8", consumes = "application/json")
 	public String tradeList(@RequestBody Map<String, Object> map) {
 		Map<String, Object> maps = service.selectRevenueList(map,(Integer)map.get("pageNo"));
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
@@ -24,8 +25,9 @@ public class RevenueController {
 
 	}
 	
-	// 관리자 매출내역 보기
-		@RequestMapping(value = "/revenueUserList", method = RequestMethod.POST, produces = "text/html;charset=utf-8", consumes = "application/json")
+	// 관리자 각 회원 매출내역 보기
+		@RequestMapping(value = "/revenueUserList", method = RequestMethod.POST, 
+				produces = "text/html;charset=utf-8", consumes = "application/json")
 		public String tradeUserList(@RequestBody Map<String, Object> map) {
 			Map<String, Object> maps = service.selectRevenueUserList(map,(Integer)map.get("pageNo"));
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();

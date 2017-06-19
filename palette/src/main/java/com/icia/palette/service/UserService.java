@@ -18,18 +18,14 @@ public class UserService {
 	public int login(String userId, String userPwd, HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
 		HashMap<String, String> map = new HashMap<String, String>();
-		System.out.println("아이디 비번 : " + userId + " " + userPwd);
 		map.put("userId", userId);
 		map.put("userPwd", userPwd);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(map), headers);
-		System.out.println("회원 로그인 api가기 직전" + requestEntity);
 		String result = tpl
-				.exchange("http://localhost:8087/api/users/login", HttpMethod.POST, requestEntity, String.class)
-				.getBody();
-
-		System.out.println(result);
+				.exchange("http://localhost:8087/api/users/login", 
+						HttpMethod.POST, requestEntity, String.class).getBody();
 		if (result.equals("로그인 실패")) {
 			return 0;
 		} else {
@@ -339,14 +335,12 @@ public class UserService {
 	// 홈페이지 만들기
 	public void homeRegister(MiniHome home, HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
-		System.out.println("Service User" + home);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(home), headers);
 		String result = tpl
-				.exchange("http://localhost:8087/api/users/homeRegister", HttpMethod.POST, requestEntity, String.class)
-				.getBody();
-		System.out.println(result);
+				.exchange("http://localhost:8087/api/users/homeRegister", HttpMethod.POST, requestEntity,
+						String.class).getBody();
 		if (!result.equals("제작 실패")) {
 			session.setAttribute("user", userInfo(session));
 		}

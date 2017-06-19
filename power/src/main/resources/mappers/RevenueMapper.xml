@@ -81,26 +81,33 @@
    <!-- 회원 기간별 매출보기 -->
    <select id="selectRevenueUserListByDate" parameterType="hashmap" resultType="Revenue">
    	<![CDATA[
-      select * from  
-				(select rownum rnum,a.* from 
-					(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_date orderDate,
-					o.order_price orderPrice,i.item_name itemName,i.user_id ownerId,o.user_id orderId, o.option_name optionName,o.item_no itemNo
-					 from order_statement o,users u,item i 
-					 where o.item_no=i.item_no and o.user_id=u.user_id and i.user_id=#{ownerId} and order_state='주문완료' and o.ORDER_DATE>=#{startDate} and o.order_date<=#{endDate} order by o.order_date desc) a 
-      			where rownum<=#{end})
- 			where rnum>=#{start}
+    select * from  
+		(select rownum rnum,a.* from 
+			(select o.order_no orderNo,o.order_size orderSize,o.order_state orderState,o.order_date orderDate,
+				o.order_price orderPrice,i.item_name itemName,i.user_id ownerId,o.user_id orderId, 
+				o.option_name optionName,o.item_no itemNo
+			from order_statement o,users u,item i 
+			where o.item_no=i.item_no and o.user_id=u.user_id and i.user_id=#{ownerId} and 
+				order_state='주문완료' and o.ORDER_DATE>=#{startDate} and o.order_date<=#{endDate} 
+				order by o.order_date desc) a 
+      	where rownum<=#{end})
+ 	where rnum>=#{start}
    ]]>
    </select>
    <!-- 회원 기간별 매출 개수 -->
    <select id="selectRevenueUserListByDateCnt" parameterType="hashmap" resultType="int">
    <![CDATA[
-   		select count(*) from order_statement o, item i where o.item_no=i.item_no and i.user_id=#{ownerId} and o.order_state='주문완료' and o.ORDER_DATE>=#{startDate} and o.order_date<=#{endDate}
+   		select count(*) from order_statement o, item i 
+   		where o.item_no=i.item_no and i.user_id=#{ownerId} and o.order_state='주문완료' 
+   				and o.ORDER_DATE>=#{startDate} and o.order_date<=#{endDate}
    	]]>
    </select>
    <!-- 회원 기간별 매출 합계 -->
     <select id="selectRevenueUserSum" parameterType="hashmap" resultType="int">
    <![CDATA[
-   		select sum(o.order_price) from order_statement o, item i where o.item_no=i.item_no and i.user_id=#{ownerId} and o.order_state='주문완료' and o.ORDER_DATE>=#{startDate} and o.order_date<=#{endDate}
+   		select sum(o.order_price) from order_statement o, item i 
+   		where o.item_no=i.item_no and i.user_id=#{ownerId} and o.order_state='주문완료' 
+   				and o.ORDER_DATE>=#{startDate} and o.order_date<=#{endDate}
    	]]>
    </select>
    

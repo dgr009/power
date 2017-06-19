@@ -152,17 +152,13 @@ public class MiniHomeController {
 	public String payStart(HttpSession session,@PathVariable String homeId, Model model){
 		model.addAttribute("kind", service1.productKind(homeId));
 		model.addAttribute("homeId", homeId);
-		System.out.println("controller userId : "+service.getUserIdByToken(session));
 		model.addAttribute("userId", service.getUserIdByToken(session));
 		return "mini/homePay";
 	}
-	
 	//결제 처리
 	@RequestMapping(value="/{homeId}/pay",method = RequestMethod.POST)
 	public String payEnd(HttpSession session,@RequestParam String userId){
-		System.out.println(userId+"ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		service2.homePay(session, userId);
-		System.out.println("완료 완료 완료 완료");
 		return "users/close";
 	}
 

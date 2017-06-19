@@ -91,13 +91,15 @@ public class MiniHomeBoardService {
 		String result=tpl.exchange("http://localhost:8087/api/miniHome/{userId}/noticeRegister", HttpMethod.POST, requestEntity, String.class,notice.getUserId()).getBody();
 		return result;
 	}
+	
 	//토큰으로 아이디 가져오기(X)
 	public String getUserIdByToken(HttpSession session) {
 		RestTemplate tpl = new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("token", (String)session.getAttribute("token"));
 		HttpEntity requestEntity =  new HttpEntity(headers);
-		String result=tpl.exchange("http://localhost:8087/api/miniHome/getUserInfo", HttpMethod.POST, requestEntity, String.class).getBody();
+		String result=tpl.exchange("http://localhost:8087/api/miniHome/getUserInfo",
+				HttpMethod.POST, requestEntity, String.class).getBody();
 		String userId = new Gson().fromJson(result, String.class);
 		return userId;
 	}

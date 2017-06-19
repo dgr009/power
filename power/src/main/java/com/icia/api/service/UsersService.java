@@ -190,18 +190,13 @@ public class UsersService {
 	public int homeTagRegister(String userId, String bigKind, String smallKind) {
 		String[] big = bigKind.split(",");
 		String[] smalls = smallKind.split("\n");
-
 		for (int i = 0; i < big.length; i++) {
-			System.out.print(big[i] + " big : ");
 			dao.bigTagRegister(userId, big[i]);
 			String[] small = smalls[i].split(",");
 			for (String strS : small) {
-				System.out.print(strS + "-s ");
 				dao.smallTagRegister(userId, big[i], strS);
 			}
-			System.out.println("");
 		}
-
 		return 1;
 	}
 

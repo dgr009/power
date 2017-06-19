@@ -29,10 +29,12 @@ public class RevenueDao {
 	public int selectRevenueUserListByDateCnt(Map<String, Object> map) {
 		return tpl.selectOne("api.dao.RevenueDao.selectRevenueUserListByDateCnt",map);
 	}
+	
+	//회원 매출내역 조회하기
 	public Object selectRevenueUserListByDate(Map<String, Object> map) {
 		return tpl.selectList("api.dao.RevenueDao.selectRevenueUserListByDate",map);
 	}
-	
+	//회원 매출내역 합계 구하기
 	public int selectRevenueUserSum(Map<String,Object> map){
 		return tpl.selectOne("api.dao.RevenueDao.selectRevenueUserSum",map);
 	}

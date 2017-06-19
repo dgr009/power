@@ -23,16 +23,20 @@
 	
 	<!-- 홈페이지 결제 : 활성화기록 생성 -->
 	<insert id="miniHomeInsertActiveStatement" parameterType="string">
-		insert into activedate(activeno,active_start,active_end,user_id) values(seq_active.nextval,sysdate,add_months(sysdate,3),#{userId})
+		insert into activedate(activeno,active_start,active_end,user_id) 
+		values(seq_active.nextval,sysdate,add_months(sysdate,3),#{userId})
 	</insert>
 	<!-- 홈페이지 결제 : 회원 포인트 차감 -->
 	<update id="miniHomeDecreaseUsersPoint" parameterType="string">
 		update users set user_point=user_point-30000 where user_id=#{userId}
 	</update>
-	
 	<!-- 홈페이지 결제 : 홈페이지 활성화 -->
 	<update id="miniHomeActivateHome" parameterType="string">
 		 update home set home_active=1 where user_id=#{userId}
+	</update>
+	<!-- 홈페이지 결제 : 회원 홈페이지 결제 완료 -->
+	<update id="userActiveHome" parameterType="string">
+		update users set user_activeHome='1' where user_id=#{userId}
 	</update>
 	
 	<!-- 판매자(홈페이지 주인) 회원정보조회 -->
@@ -58,10 +62,6 @@
 		select count(*) from activedate where user_id=#{userId}
 	</select>
 
-	<!-- 회원 홈페이지 결제 완료 -->
-	<update id="userActiveHome" parameterType="string">
-		update users set user_activeHome='1' where user_id=#{userId}
-	</update>
 	
 </mapper>
 

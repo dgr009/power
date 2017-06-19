@@ -34,12 +34,8 @@ public class MiniHomeService {
 		headers.add("token", (String) session.getAttribute("token"));
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 		HttpEntity requestEntity = new HttpEntity(new Gson().toJson(userId), headers);
-		tpl
-				.exchange("http://localhost:8087/api/miniHome/{userId}/pay", HttpMethod.POST, requestEntity, String.class,userId)
-				.getBody();
-
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-		
+		tpl.exchange("http://localhost:8087/api/miniHome/{userId}/pay", 
+						HttpMethod.POST, requestEntity, String.class,userId).getBody();
 		session.setAttribute("user", userInfo(session));
 	}
 	

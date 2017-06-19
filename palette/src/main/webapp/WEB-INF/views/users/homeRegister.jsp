@@ -133,7 +133,9 @@
 				 $.ajax({
 					 url:"/api/users/homeTagRegister",
 					 type:"post",
-					 data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),"smallKind":smallResult},
+					 data: {"userId":"<%=users.getUserId()%>" ,"bigKind":bigArray.join(","),
+						 "smallKind":smallResult},
+					 }
 					 complete:function(result){
 					 		regit();
 					 }

@@ -201,14 +201,14 @@ public class UsersDao {
 		return tpl.selectOne("api.dao.UsersDao.usersTradeListCnt", userId);
 	}
 	
-	// 
+	// 큰 태그 만들기
 	public int bigTagRegister(String userId, String bigTag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
 		map.put("bigTag", bigTag);
 		return tpl.insert("api.dao.UsersDao.usersBigTagRegister", map);
 	}
-
+	// 작은 태그 만들기
 	public int smallTagRegister(String userId, String bigTag, String smallTag) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);
