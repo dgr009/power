@@ -13,8 +13,8 @@
         </div>
 	<br><br><br>
 	<div class="col-xs-12 col-xs-12 col-xs-12"  style="border-top: 1px solid #e6e6e6; bottom:10px; padding:0;"></div><br>
-		<p style="font-size: 0.85em; color:gray; text-align: center;">서울시 강남구 테헤란로 103길 17대표이사 신원수, 박성훈사업자등록번호 138-81-05876통신판매업 신고번호 제2011-서울강남-02008호</p>
+		<p style="font-size: 0.85em; color:gray; text-align: center;">인천광역시 남구 메소홀로 488번길 대표이사 김상연, 이수민 사업자등록번호 138-81-05876 통신판매업 신고번호 제2011-서울강남-02008호</p>
 		<p style="font-size: 0.8em; color:gray;text-align: center;">
-		문의전화(평일 09:00~18:00) 1566-7727 (유료)이메일 : meloninformation@iloen.com© 2016. LOEN Entertainment, Inc. ALL RGIHTS RESERVED.</p>
+		문의전화(평일 09:00~18:00) 010-1234-5678 (유료)이메일 : icia@iloen.com© 2016. Palette Entertainment, Inc. ALL RGIHTS RESERVED.</p>
 	<br>
 </div>

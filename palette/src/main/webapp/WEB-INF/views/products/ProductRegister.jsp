@@ -153,8 +153,8 @@
 										</tbody>
 								</table>
 								<br><br><br><br><br><br><br>
-								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload"> 
-							<i class="fa fa-rocket"></i> 상품 등록하기</button>
+								&nbsp;&nbsp;<input class="btn btn-default btn-lg btn-block" type="submit" id="upload" value="상품 등록하기"> 
+							
 							
 							</div>
                             
